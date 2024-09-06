@@ -1,12 +1,37 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Git\\YGProgramming\\C (Haim)\\TestTestC\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5560C8E3-B3CC-44F6-B531-F6C3248B5113}|TestTestC\\TestTestC.vcxproj|C:\\Git\\YGProgramming\\C (Haim)\\TestTestC\\TestTestC\\test.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5560C8E3-B3CC-44F6-B531-F6C3248B5113}|TestTestC\\TestTestC.vcxproj|solutionrelative:TestTestC\\test.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "test.c",
+              "DocumentMoniker": "C:\\Git\\YGProgramming\\C (Haim)\\TestTestC\\TestTestC\\test.c",
+              "RelativeDocumentMoniker": "TestTestC\\test.c",
+              "ToolTip": "C:\\Git\\YGProgramming\\C (Haim)\\TestTestC\\TestTestC\\test.c",
+              "RelativeToolTip": "TestTestC\\test.c",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2024-09-06T17:20:24.364Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
