@@ -3,6 +3,6 @@
 void main() {
 	int var = 0;
 	printf("Num: ");
-	scanf("%d", &var);
+	int g = scanf("%d", &var);
 	printf("%d", var);
 }
