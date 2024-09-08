@@ -5,5 +5,4 @@
 void main() {
 	int var = 0;
 	printf("Num: ");
-	printf("%d", var);
 }
