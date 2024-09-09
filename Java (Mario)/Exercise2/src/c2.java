@@ -6,6 +6,7 @@ public class c2 {
         Scanner scanner = new Scanner(System.in);
         int[] arr = new int[] { 1, 1, 1, 1, 4, 4, 4, 6, 7, 8, 9, 9 };
         int num = scanner.nextInt();
+        scanner.close();
         System.out.println(getOcurencesCount(arr, num));
     }
 
