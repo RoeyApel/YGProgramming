@@ -1,0 +1,181 @@
+{
+  "main": {
+    "id": "ef428363214441a6",
+    "type": "split",
+    "children": [
+      {
+        "id": "909d338cad2693f0",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0294f35d19d7c8a1",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "יג/אסמבלר.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "d8064fd2efe8ec77",
+    "type": "split",
+    "children": [
+      {
+        "id": "d47227fe35080090",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "dba7d89e7dedbfb7",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "28bceff24da3a354",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "05be29089254bcca",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "a45d2f739d5b502d",
+    "type": "split",
+    "children": [
+      {
+        "id": "050d7a26077eecc2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ad154be48700fe05",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "יג/אסמבלר.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "d2b87c516a7b412e",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "יג/אסמבלר.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "795ce20a7c64f59c",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "96007f551a631fac",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "יג/אסמבלר.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "0294f35d19d7c8a1",
+  "lastOpenFiles": [
+    "2024-09-11.md",
+    "יג/אסמבלר.md",
+    "Untitled.canvas",
+    "רשימת משימות.md",
+    "Time Zones.md",
+    "יג/כללי.md",
+    "יג/סטטיסטיקה והסתברות.md",
+    "יג/כלי עזר.md",
+    "יג/בסיסי נתונים - SQL.md",
+    "יג/אתרים - Full Stuck.md",
+    "יג/סיבוכיות זמן ריצה ויעילות.md",
+    "יג/שפת C.md",
+    "יג/שפת python.md",
+    "Untitled",
+    "יג",
+    "Untitled 2.md",
+    "Untitled 1.md",
+    "().md",
+    "זה בעברית עכשיו.md",
+    "2024-05-18.md",
+    "Untitled 1.canvas",
+    "ghjj.md",
+    "kljllk.md",
+    "kll.md",
+    "lkjklkj.md",
+    "red.md",
+    "uyioyu/Untitled.md",
+    "uyioyu",
+    "uyioyu/yes.md"
+  ]
+}
