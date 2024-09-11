@@ -1,0 +1,11 @@
+﻿  C1.c
+C:\Users\Student\YGProgramming\C (Haim)\Exercise1\Exercise1\C1.c(20,7): warning C4047: 'function': 'int *' differs in levels of indirection from 'int'
+C:\Users\Student\YGProgramming\C (Haim)\Exercise1\Exercise1\C1.c(20,7): warning C4024: 'sort': different types for formal and actual parameter 1
+C:\Users\Student\YGProgramming\C (Haim)\Exercise1\Exercise1\C1.c(20,10): warning C4047: 'function': 'int *' differs in levels of indirection from 'int'
+C:\Users\Student\YGProgramming\C (Haim)\Exercise1\Exercise1\C1.c(20,10): warning C4024: 'sort': different types for formal and actual parameter 2
+C:\Users\Student\YGProgramming\C (Haim)\Exercise1\Exercise1\C1.c(20,13): warning C4047: 'function': 'int *' differs in levels of indirection from 'int'
+C:\Users\Student\YGProgramming\C (Haim)\Exercise1\Exercise1\C1.c(20,13): warning C4024: 'sort': different types for formal and actual parameter 3
+C:\Users\Student\YGProgramming\C (Haim)\Exercise1\Exercise1\C1.c(48,37): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\Student\YGProgramming\C (Haim)\Exercise1\Exercise1\C1.c(53,9): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\Student\YGProgramming\C (Haim)\Exercise1\Exercise1\C1.c(51,64): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Exercise1.vcxproj -> C:\Users\Student\YGProgramming\C (Haim)\Exercise1\x64\Debug\Exercise1.exe
