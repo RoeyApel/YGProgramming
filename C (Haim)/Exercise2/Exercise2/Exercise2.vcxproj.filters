@@ -18,5 +18,8 @@
     <ClCompile Include="PerfectNumber.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="AllEndsUpOne.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
