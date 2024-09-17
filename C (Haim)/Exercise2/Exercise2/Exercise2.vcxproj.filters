@@ -21,5 +21,20 @@
     <ClCompile Include="AllEndsUpOne.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PiEstimate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OneSequence.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BiggestThree.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseConversion.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EMathEstimate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -128,7 +128,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AllEndsUpOne.c" />
+    <ClCompile Include="BaseConversion.c" />
+    <ClCompile Include="BiggestThree.c" />
+    <ClCompile Include="EMathEstimate.c" />
+    <ClCompile Include="OneSequence.c" />
     <ClCompile Include="PerfectNumber.c" />
+    <ClCompile Include="PiEstimate.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

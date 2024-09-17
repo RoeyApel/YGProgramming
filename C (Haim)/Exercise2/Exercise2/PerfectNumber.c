@@ -19,7 +19,7 @@
 // Programer : Roey Apel
 // Date : 16.09.24
 //-----------------------------------------------------------------------------------
-void main() 
+void main1() 
 {
 	// Variable definition
 	int nNum;
