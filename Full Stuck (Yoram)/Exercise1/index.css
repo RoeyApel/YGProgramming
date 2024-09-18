@@ -13,3 +13,7 @@ body {
 h1 {
     font-size: 3em;
 }
+circle{
+    border-radius: 50%;
+    background-color: cadetblue;
+}
