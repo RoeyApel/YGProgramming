@@ -1,12 +1,9 @@
-import T1.Triangle;
+import T2.BankAccount;
+import T3.Date;
 
 public class Main {
     public static void main(String[] args) {
-        Triangle triangle = new Triangle(6);
-        Triangle triangle2 = new Triangle(6);
-        Triangle triangle3 = new Triangle(6);
-        Triangle triangle4 = new Triangle(6);
-        triangle.show('r','y');
-        System.err.println(Triangle.getCount());
+        Date date = new Date();
+        date.print();
     }
 }
