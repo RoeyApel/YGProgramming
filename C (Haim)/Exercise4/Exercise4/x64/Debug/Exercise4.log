@@ -1,2 +1,3 @@
-﻿  T1.c
-  Exercise4.vcxproj -> C:\Users\Student\YGProgramming\C (Haim)\Exercise4\x64\Debug\Exercise4.exe
+﻿  Targilim.c
+C:\Git\YGProgramming\C (Haim)\Exercise4\Exercise4\Targilim.c(71,25): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  Exercise4.vcxproj -> C:\Git\YGProgramming\C (Haim)\Exercise4\x64\Debug\Exercise4.exe
