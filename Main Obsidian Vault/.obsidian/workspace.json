@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "909d338cad2693f0",
+        "id": "a659088178217e05",
         "type": "tabs",
         "children": [
           {
-            "id": "0294f35d19d7c8a1",
+            "id": "543a2da0c776f861",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -146,17 +146,18 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "0294f35d19d7c8a1",
+  "active": "543a2da0c776f861",
   "lastOpenFiles": [
-    "יג/בסיסי נתונים - SQL.md",
+    "יג/ASCII.png",
+    "יג/אסמבלר.md",
     "יג/מידע כללי.md",
     "יג/כלי עזר ועוד.md",
     "יג/שפת C.md",
+    "יג/בסיסי נתונים - SQL.md",
     "יג/שפת python.md",
     "יג/סיבוכיות זמן ריצה ויעילות.md",
     "יג/סטטיסטיקה והסתברות.md",
     "יג/אתרים - Full Stuck.md",
-    "יג/אסמבלר.md",
     "רשימת משימות.md",
     "יג/כלי עזר.md",
     "2024-09-11.md",
