@@ -80,7 +80,7 @@ void maxSumOfDigits(int left, int right) {
 	printf("Max: %d", maxNum);
 }
 //-----------------------------------------------------------------------------
-//								sumOfDigits
+//								Sum Of Digits
 //								-----------
 //
 // General : The function calculates the sum of the digits of a given number.
@@ -102,8 +102,8 @@ int sumOfDigits(int num) {
 }
 
 //-----------------------------------------------------------------------------
-//									OddEven
-//									-------
+//									Odd Even
+//									--------
 //
 // General : This function determines whether there are more even or odd 
 //          digits in the given number.
@@ -135,8 +135,8 @@ void OddEven(int num) {
 }
 
 //-----------------------------------------------------------------------------
-//									convertToC
-//									----------
+//									Convert To C
+//									-------------
 //
 // General : Converts a temperature from Fahrenheit to Celsius.
 //
@@ -149,10 +149,36 @@ void OddEven(int num) {
 float convertToC(float tempInF) {
 	return 5 * tempInF / 9 - (160.0 / 9.0);
 }
+
+//-----------------------------------------------------------------------------
+//								Convert To F
+//								------------
+//
+// General : Converts a temperature from Celsius to Fahrenheit.
+//
+// Parameters :
+//		tempInC - The temperature in Celsius to be converted (In)
+//
+// Return Value : The converted temperature in Fahrenheit.
+//
+//-----------------------------------------------------------------------------
 float convertToF(float tempInC) {
 	return tempInC * 5 / 9 + 32;
 }
 
+//-----------------------------------------------------------------------------
+//									Merge
+//									-----
+//
+// General : Merges two unsigned integers by interleaving their digits.
+//
+// Parameters :
+//		a - First unsigned integer to merge (In)
+//		b - Second unsigned integer to merge (In)
+//
+// Return Value : The merged result as an unsigned long integer.
+//
+//-----------------------------------------------------------------------------
 unsigned long merge(unsigned int a, unsigned int b) {
 	int merge = 0;
 	a = reverse(a);
@@ -173,6 +199,18 @@ unsigned long merge(unsigned int a, unsigned int b) {
 	return merge;
 }
 
+//-----------------------------------------------------------------------------
+//									Reverse
+//									-------
+//
+// General : Reverses the digits of an unsigned integer.
+//
+// Parameters :
+//		num - The unsigned integer to be reversed (In)
+//
+// Return Value : The reversed integer as an unsigned long.
+//
+//-----------------------------------------------------------------------------
 unsigned long reverse(unsigned int num) {
 	int rNum = 0;
 	while (num != 0) {
