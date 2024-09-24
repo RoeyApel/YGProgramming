@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 
+// Functions declarations
 unsigned long merge(unsigned int a, unsigned int b);
 unsigned long reverse(unsigned int num);
 float convertToC(float tempInF);
@@ -10,9 +11,20 @@ void OddEven(int num);
 int sumOfDigits(int num);
 void maxSumOfDigits(int left, int right);
 void printGodNums();
-
+//----------------------------------------------------------------------
+//								Targilim
+//								--------
+// 
+// General : Store many unrelated functions
+// 
+// Input : Null 
+// 
+// Process : Many different random things
+// 
+// Output : Null
+//----------------------------------------------------------------------
+//----------------------------------------------------------------------
 void main() {
-	printGodNums(9998, 15451);
 }
 
 void printGodNums() {
