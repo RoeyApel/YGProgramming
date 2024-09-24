@@ -6,7 +6,7 @@ public class BingoPlayer {
 
     public BingoPlayer(int[] deck) {
         count++;
-        this.playerId = Integer.toString(count) + "#";
+        playerId = Integer.toString(count) + "#";
         bingoBoard = new BingoBoard(deck);
         loser = false;
     }
