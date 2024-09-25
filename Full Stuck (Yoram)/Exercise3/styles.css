@@ -1,4 +1,33 @@
+body {
+    height: 98vh;
+    background-color: #282829;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+table {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 2em;
+    border-collapse: collapse;
+}
+
 img {
-    width: 100px;
-    height: 80px;
+    width: 200px;
+    height: 140px;
+    display: block;
+}
+
+th {
+    text-align: center;
+    padding: 18px;
+    color: #ffffff;
+}
+
+td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 18px;
+    border: 2px solid rgba(235, 235, 235, 0.267);
+    color: #ffffff;
 }

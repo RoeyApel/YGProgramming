@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "יג/כלי עזר ועוד.md",
+                "file": "יג/אתרים - Full Stuck.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "יג/כלי עזר ועוד.md",
+                "file": "יג/אתרים - Full Stuck.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "יג/כלי עזר ועוד.md",
+                "file": "יג/אתרים - Full Stuck.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "יג/כלי עזר ועוד.md"
+                "file": "יג/אתרים - Full Stuck.md"
               }
             }
           }
@@ -148,12 +148,12 @@
   },
   "active": "0294f35d19d7c8a1",
   "lastOpenFiles": [
+    "יג/בסיסי נתונים - SQL.md",
+    "יג/כלי עזר ועוד.md",
+    "יג/מידע כללי.md",
     "יג/שפת C.md",
     "יג/אתרים - Full Stuck.md",
-    "יג/מידע כללי.md",
     "יג/ASCII.png",
-    "יג/כלי עזר ועוד.md",
-    "יג/בסיסי נתונים - SQL.md",
     "יג/שפת python.md",
     "יג/סיבוכיות זמן ריצה ויעילות.md",
     "יג/סטטיסטיקה והסתברות.md",
