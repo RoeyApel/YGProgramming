@@ -11,12 +11,8 @@
             "id": "0294f35d19d7c8a1",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "יג/אסמבלר.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -85,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "יג/אסמבלר.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "יג/אסמבלר.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -124,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "יג/אסמבלר.md"
-              }
+              "state": {}
             }
           }
         ]
@@ -148,17 +140,30 @@
   },
   "active": "0294f35d19d7c8a1",
   "lastOpenFiles": [
-    "יג/בסיסי נתונים - SQL.md",
-    "יג/אתרים - Full Stuck.md",
+    "רשימת משימות.md",
     "יג/שפת python.md",
     "יג/שפת C.md",
-    "יג/מידע כללי.md",
-    "יג/כלי עזר ועוד.md",
-    "רשימת משימות.md",
-    "יג/ASCII.png",
     "יג/סיבוכיות זמן ריצה ויעילות.md",
     "יג/סטטיסטיקה והסתברות.md",
+    "יג/מידע כללי.md",
+    "יג/כלי עזר ועוד.md",
+    "יג/בסיסי נתונים - SQL.md",
+    "יג/אתרים - Full Stuck.md",
     "יג/אסמבלר.md",
+    "יג/ASCII.png",
+    "יג/ועוד/מערכת שעות.png",
+    "יג/ועוד",
+    "יג/מקצועות",
+    "יג/ועוד/ASCII.png",
+    "יג/ועוד/מידע כללי.md",
+    "יג/ועוד/כלי עזר ועוד.md",
+    "יג/מקצועות/בסיסי נתונים - SQL.md",
+    "יג/מקצועות/שפת C.md",
+    "יג/מקצועות/שפת python.md",
+    "יג/מקצועות/סיבוכיות זמן ריצה ויעילות.md",
+    "יג/מקצועות/סטטיסטיקה והסתברות.md",
+    "יג/מקצועות/אתרים - Full Stuck.md",
+    "יג/מקצועות/אסמבלר.md",
     "יג/כלי עזר.md",
     "2024-09-11.md",
     "Untitled.canvas",
@@ -169,15 +174,7 @@
     "Untitled 1.md",
     "().md",
     "זה בעברית עכשיו.md",
-    "2024-05-18.md",
     "Untitled 1.canvas",
-    "ghjj.md",
-    "kljllk.md",
-    "kll.md",
-    "lkjklkj.md",
-    "red.md",
-    "uyioyu/Untitled.md",
-    "uyioyu",
-    "uyioyu/yes.md"
+    "uyioyu"
   ]
 }
