@@ -4,15 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "909d338cad2693f0",
+        "id": "c4de97dcf250261e",
         "type": "tabs",
         "children": [
           {
-            "id": "0294f35d19d7c8a1",
+            "id": "f648df9f198b006d",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "image",
+              "state": {
+                "file": "יג/ועוד/מערכת שעות.png"
+              }
             }
           }
         ]
@@ -81,6 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "יג/ועוד/מערכת שעות.png",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +100,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "יג/ועוד/מערכת שעות.png",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +122,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "יג/ועוד/מערכת שעות.png"
+              }
             }
           }
         ]
@@ -138,9 +144,22 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "0294f35d19d7c8a1",
+  "active": "f648df9f198b006d",
   "lastOpenFiles": [
+    "יג/ועוד/מידע כללי.md",
+    "יג/ועוד/מערכת שעות.png",
+    "יג/ועוד/כלי עזר ועוד.md",
+    "יג/מקצועות/שפת C.md",
+    "יג/מקצועות/אתרים - Full Stuck.md",
+    "יג/מקצועות/בסיסי נתונים - SQL.md",
+    "יג/מקצועות/סטטיסטיקה והסתברות.md",
+    "יג/מקצועות/אסמבלר.md",
     "רשימת משימות.md",
+    "יג/מקצועות/סיבוכיות זמן ריצה ויעילות.md",
+    "יג/מקצועות/שפת python.md",
+    "יג/מקצועות",
+    "יג/ועוד/ASCII.png",
+    "יג/ועוד",
     "יג/שפת python.md",
     "יג/שפת C.md",
     "יג/סיבוכיות זמן ריצה ויעילות.md",
@@ -151,19 +170,6 @@
     "יג/אתרים - Full Stuck.md",
     "יג/אסמבלר.md",
     "יג/ASCII.png",
-    "יג/ועוד/מערכת שעות.png",
-    "יג/ועוד",
-    "יג/מקצועות",
-    "יג/ועוד/ASCII.png",
-    "יג/ועוד/מידע כללי.md",
-    "יג/ועוד/כלי עזר ועוד.md",
-    "יג/מקצועות/בסיסי נתונים - SQL.md",
-    "יג/מקצועות/שפת C.md",
-    "יג/מקצועות/שפת python.md",
-    "יג/מקצועות/סיבוכיות זמן ריצה ויעילות.md",
-    "יג/מקצועות/סטטיסטיקה והסתברות.md",
-    "יג/מקצועות/אתרים - Full Stuck.md",
-    "יג/מקצועות/אסמבלר.md",
     "יג/כלי עזר.md",
     "2024-09-11.md",
     "Untitled.canvas",
@@ -173,7 +179,6 @@
     "Untitled 2.md",
     "Untitled 1.md",
     "().md",
-    "זה בעברית עכשיו.md",
     "Untitled 1.canvas",
     "uyioyu"
   ]
