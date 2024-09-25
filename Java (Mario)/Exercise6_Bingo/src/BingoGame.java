@@ -27,12 +27,19 @@ public class BingoGame {
 
         System.out.println("------------------------------------");
 
+        int countWinners = 0;
         for (int i = 0; i < players.length; i++) {
             if (!players[i].loser) {
                 System.out.println(players[i].playerId + " Won!");
                 players[i].printBoard();
+                countWinners++;
             }
         }
+        if (countWinners == 0) {
+            System.out.println("No winners this round!");
+        }
+
+        System.out.println("------------------------------------");
 
         BingoPlayer.count = 0;
     }
