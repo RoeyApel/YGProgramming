@@ -11,9 +11,11 @@
             "id": "f648df9f198b006d",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "יג/ועוד/מערכת שעות.png"
+                "file": "יג/מקצועות/אסמבלר.md",
+                "mode": "source",
+                "source": false
               }
             }
           }
@@ -83,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "יג/ועוד/מערכת שעות.png",
+                "file": "יג/מקצועות/אסמבלר.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "יג/ועוד/מערכת שעות.png",
+                "file": "יג/מקצועות/אסמבלר.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -123,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "יג/ועוד/מערכת שעות.png"
+                "file": "יג/מקצועות/אסמבלר.md"
               }
             }
           }
@@ -146,8 +148,8 @@
   },
   "active": "f648df9f198b006d",
   "lastOpenFiles": [
-    "יג/ועוד/מידע כללי.md",
     "יג/ועוד/מערכת שעות.png",
+    "יג/ועוד/מידע כללי.md",
     "יג/ועוד/כלי עזר ועוד.md",
     "יג/מקצועות/שפת C.md",
     "יג/מקצועות/אתרים - Full Stuck.md",
