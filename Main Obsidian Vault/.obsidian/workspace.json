@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "יג/כלי עזר ועוד.md",
+                "file": "יג/ועוד/כלי עזר ועוד.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "יג/כלי עזר ועוד.md",
+                "file": "יג/ועוד/כלי עזר ועוד.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "יג/כלי עזר ועוד.md",
+                "file": "יג/ועוד/כלי עזר ועוד.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "יג/כלי עזר ועוד.md"
+                "file": "יג/ועוד/כלי עזר ועוד.md"
               }
             }
           }
@@ -148,6 +148,12 @@
   },
   "active": "0294f35d19d7c8a1",
   "lastOpenFiles": [
+    "יג/מקצועות/אתרים - Full Stuck.md",
+    "יג/מקצועות/שפת python.md",
+    "יג/מקצועות/שפת C.md",
+    "יג/מקצועות/סיבוכיות זמן ריצה ויעילות.md",
+    "יג/מקצועות/סטטיסטיקה והסתברות.md",
+    "יג/מקצועות/בסיסי נתונים - SQL.md",
     "יג/מידע כללי.md",
     "יג/אסמבלר.md",
     "יג/בסיסי נתונים - SQL.md",
@@ -173,11 +179,6 @@
     "Untitled 1.canvas",
     "ghjj.md",
     "kljllk.md",
-    "kll.md",
-    "lkjklkj.md",
-    "red.md",
-    "uyioyu/Untitled.md",
-    "uyioyu",
-    "uyioyu/yes.md"
+    "uyioyu"
   ]
 }
