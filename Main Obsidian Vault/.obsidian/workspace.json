@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "יג/אסמבלר.md",
+                "file": "יג/כלי עזר ועוד.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "יג/אסמבלר.md",
+                "file": "יג/כלי עזר ועוד.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "יג/אסמבלר.md",
+                "file": "יג/כלי עזר ועוד.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "יג/אסמבלר.md"
+                "file": "יג/כלי עזר ועוד.md"
               }
             }
           }
@@ -148,17 +148,17 @@
   },
   "active": "0294f35d19d7c8a1",
   "lastOpenFiles": [
+    "יג/מידע כללי.md",
+    "יג/אסמבלר.md",
     "יג/בסיסי נתונים - SQL.md",
     "יג/אתרים - Full Stuck.md",
     "יג/שפת python.md",
     "יג/שפת C.md",
-    "יג/מידע כללי.md",
     "יג/כלי עזר ועוד.md",
     "רשימת משימות.md",
     "יג/ASCII.png",
     "יג/סיבוכיות זמן ריצה ויעילות.md",
     "יג/סטטיסטיקה והסתברות.md",
-    "יג/אסמבלר.md",
     "יג/כלי עזר.md",
     "2024-09-11.md",
     "Untitled.canvas",
