@@ -12,15 +12,17 @@ public class BingoGame {
 
         BingoDeck bingoDeck = new BingoDeck();
         for (int i = 0; i < players.length; i++) {
-            players[i] = new BingoPlayer(bingoDeck.deck);
+            players[i] = new BingoPlayer(bingoDeck.deck, i);
             bingoDeck.mixDeck();
         }
 
         for (int i = 0; i < 28; i++) {
+            // System.out.print(managerDeck.deck[i] + ", ");
+
             System.out.println("Card " + (i + 1) + ": [ " + managerDeck.deck[i] + " ]");
             for (int j = 0; j < players.length; j++) {
                 if (!players[j].loser) {
-                    players[j].checkIfLoser(i);
+                    players[j].checkIfLoser(managerDeck.deck[i]);
                 }
             }
         }
@@ -41,7 +43,6 @@ public class BingoGame {
 
         System.out.println("------------------------------------");
 
-        BingoPlayer.count = 0;
     }
 
 }

@@ -1,12 +1,10 @@
 public class BingoPlayer {
-    static int count = 0;
     String playerId;
     BingoBoard bingoBoard;
     boolean loser;
 
-    public BingoPlayer(int[] deck) {
-        count++;
-        playerId = Integer.toString(count) + "#";
+    public BingoPlayer(int[] deck, int index) {
+        playerId = Integer.toString(index + 1) + "#";
         bingoBoard = new BingoBoard(deck);
         loser = false;
     }

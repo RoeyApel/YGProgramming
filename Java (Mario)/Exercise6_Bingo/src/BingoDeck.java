@@ -23,4 +23,11 @@ public class BingoDeck {
         }
     }
 
+    public void printDeck() {
+        for (int i = 0; i < deck.length - 2; i++) {
+            System.out.print(deck[i] + " ");
+        }
+        System.out.println();
+    }
+
 }
