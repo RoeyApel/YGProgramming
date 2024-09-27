@@ -5,11 +5,25 @@ int getMax();
 int getMin();
 int countLower(int n, int k);
 int calculPow(int x, int n);
+int convertToBase2(int num);
 
 int main()
 {
-    printf("result: %d", calculPow(2, 8));
+    printf("result: %d", convertToBase2(20));
     return 0;
+}
+
+int convertToBase2(int num)
+{
+    if (num == 0)
+    {
+        return 0;
+    }
+    if (num == 1)
+    {
+        return 1;
+    }
+    return convertToBase2(num / 2) * 10 + num % 2;
 }
 
 int calculPow(int x, int n)
