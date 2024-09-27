@@ -1,4 +1,8 @@
 public class BingoGame {
+    private final String RESET = "\u001B[0m";
+    private final String RED = "\u001B[31m";
+    private final String GREEN = "\u001B[32m";
+
     BingoDeck managerDeck;
     BingoPlayer[] players;
 
@@ -32,13 +36,14 @@ public class BingoGame {
         int countWinners = 0;
         for (int i = 0; i < players.length; i++) {
             if (!players[i].loser) {
-                System.out.println(players[i].playerId + " Won!");
+                System.out.println(GREEN + players[i].playerId + " Won!");
                 players[i].printBoard();
+                System.out.print(RESET);
                 countWinners++;
             }
         }
         if (countWinners == 0) {
-            System.out.println("No winners this round!");
+            System.out.println(RED + "No winners this round!" + RESET);
         }
 
         System.out.println("------------------------------------");
