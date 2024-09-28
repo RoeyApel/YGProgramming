@@ -1,9 +1,11 @@
 public class Board {
-    private final String RESET = "\u001B[0m";
+    public final String RESET = "\u001B[0m";
     private final String RED = "\u001B[31m";
     private final String GREEN = "\u001B[32m";
     private final String BLUE = "\u001B[34m";
     private final String YELLOW = "\u001B[33m";
+    public final String PURPLE = "\u001B[35m";
+    public final String CYAN = "\u001B[36m";
 
     public final char PLAYER1 = '#';
     public final char PLAYER2 = '$';
@@ -29,11 +31,31 @@ public class Board {
             return false;
         }
 
-        int row = board.length - 1 - columnsHights[col];
+        int row = findRowByCol(col);
         board[row][col] = player;
 
         columnsHights[col]++;
         return true;
+    }
+
+    public int findRowByCol(int col) {
+        return board.length - 1 - columnsHights[col];
+    }
+
+    public boolean boardFull() {
+        for (int i = 0; i < board[0].length; i++) {
+            if (board[0][i] == EMPTY) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isOutOfRange(int col, int row) {
+        boolean outOfRangeCol = col >= getNumOfCols() || col < 0;
+        boolean outOfRangeRow = row >= getNumOfRows() || row < 0;
+
+        return outOfRangeCol || outOfRangeRow;
     }
 
     private void resetBoard() {
@@ -56,6 +78,7 @@ public class Board {
             }
             System.out.println();
         }
+
         int f = 1;
         for (int i = 0; i < board[0].length; i++) {
             System.out.print(BLUE);
@@ -68,9 +91,8 @@ public class Board {
             System.out.print(f + " ");
             f++;
         }
-        System.out.print(RESET);
 
-        System.out.print("\n\n");
+        System.out.print(RESET + "\n\n");
     }
 
     private String getColoredString(char ch) {
