@@ -1,4 +1,5 @@
 {
   "promptDelete": false,
-  "rightToLeft": true
+  "rightToLeft": true,
+  "alwaysUpdateLinks": true
 }
