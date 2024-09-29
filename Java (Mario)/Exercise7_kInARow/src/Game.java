@@ -91,31 +91,31 @@ public class Game {
                 return true;
             }
         }
+        if (kInARow(col, row, player, dir.UP.x, dir.UP.y)) {
+            return true;
+        }
+        if (kInARow(col, row, player, dir.DOWN.x, dir.DOWN.y)) {
+            return true;
+        }
+        if (kInARow(col, row, player, dir.LEFT.x, dir.LEFT.y)) {
+            return true;
+        }
+        if (kInARow(col, row, player, dir.RIGHT.x, dir.RIGHT.y)) {
+            return true;
+        }
+        if (kInARow(col, row, player, dir.DIAGONAL_UL.x, dir.DIAGONAL_UL.y)) {
+            return true;
+        }
+        if (kInARow(col, row, player, dir.DIAGONAL_DL.x, dir.DIAGONAL_DL.y)) {
+            return true;
+        }
+        if (kInARow(col, row, player, dir.DIAGONAL_UR.x, dir.DIAGONAL_UR.y)) {
+            return true;
+        }
+        if (kInARow(col, row, player, dir.DIAGONAL_DR.x, dir.DIAGONAL_DR.y)) {
+            return true;
+        }
         return false;
-        // if (kInARow(col, row, player, dir.UP.x, dir.UP.y)) {
-        // return true;
-        // }
-        // if (kInARow(col, row, player, dir.DOWN.x, dir.DOWN.y)) {
-        // return true;
-        // }
-        // if (kInARow(col, row, player, dir.LEFT.x, dir.LEFT.y)) {
-        // return true;
-        // }
-        // if (kInARow(col, row, player, dir.RIGHT.x, dir.RIGHT.y)) {
-        // return true;
-        // }
-        // if (kInARow(col, row, player, dir.DIAGONAL_UL.x, dir.DIAGONAL_UL.y)) {
-        // return true;
-        // }
-        // if (kInARow(col, row, player, dir.DIAGONAL_DL.x, dir.DIAGONAL_DL.y)) {
-        // return true;
-        // }
-        // if (kInARow(col, row, player, dir.DIAGONAL_UR.x, dir.DIAGONAL_UR.y)) {
-        // return true;
-        // }
-        // if (kInARow(col, row, player, dir.DIAGONAL_DR.x, dir.DIAGONAL_DR.y)) {
-        // return true;
-        // }
     }
 
     private boolean kInARow(int col, int row, char player, int x, int y) {
@@ -146,7 +146,7 @@ public class Game {
 }
 
 enum dir {
-    DOWN(1, 0), LEFT(0, -1), RIGHT(0, 1), DIAGONAL_UL(-1, -1),
+    UP(-1, 0), DOWN(1, 0), LEFT(0, -1), RIGHT(0, 1), DIAGONAL_UL(-1, -1),
     DIAGONAL_UR(1, -1), DIAGONAL_DL(-1, 1), DIAGONAL_DR(1, 1);
 
     int x, y;
