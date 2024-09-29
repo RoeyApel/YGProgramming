@@ -15,8 +15,11 @@ public class Board {
     int[] columnsHights;
 
     public Board(int k) {
-        board = new char[k * 2 - 2][k * 2 - 1];
-        columnsHights = new int[k * 2 - 1];
+        int row = k * 2 - 2, col = k * 2 - 1;
+
+        board = new char[row][col];
+        columnsHights = new int[col];
+
         resetBoard();
     }
 
