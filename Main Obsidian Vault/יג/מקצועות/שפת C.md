@@ -4,9 +4,8 @@ https://meyda.education.gov.il/files/CSIT/K13/System_Programing-C.pdf
 **מצגות, תרגילם ומבחנים של מכללת אורט כפר סבא - שפת C**
 https://ortks.wordpress.com/%D7%AA%D7%9B%D7%A0%D7%95%D7%AA-%D7%9E%D7%A2%D7%A8%D7%9B%D7%95%D7%AA-%D7%91%D7%A9%D7%A4%D7%AA-%D7%A1%D7%99/
 **חוברת סטנדרטים של בסמ"ח (2013)**
-	file:///C:/Users/mayap/Downloads/%D7%97%D7%95%D7%91%D7%A8%D7%AA%20%D7%A1%D7%98%D7%A0%D7%93%D7%A8%D7%98%D7%99%D7%9D%20%D7%AA%D7%A9%D7%A2%D7%95%20%D7%91%D7%A7%D7%95%D7%A8%D7%A1%20%D7%AA%D7%9B%D7%A0%D7%95%D7%AA.pdf
-	עוד קישור תנסה
-	https://docs.google.com/document/d/1js_1vhbY3ah5NBWours0V42UbQ6H2md4ZoY-Ul-hC60/edit
+https://docs.google.com/document/d/1js_1vhbY3ah5NBWours0V42UbQ6H2md4ZoY-Ul-hC60/edit
+------------------
 **הדרכת השפה - Geeksforgeeks** 
 https://www.geeksforgeeks.org/c-programming-language/?ref=lbp
 **הדרכת השפה - Programiz**
