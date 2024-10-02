@@ -2,8 +2,9 @@
 
 data segment
     ; add your data here!
-    arr db -2, 0, -42, 77, 33, 55, -1  
-    rez db 1
+    arr db -2, 1, 42, 1, 33, 55, 1  
+    num db 1   
+    max db ?
     pkey db "press any key...$"
 ends
 
@@ -20,37 +21,9 @@ start:
 
     ; add your code here  
     
-    mov dl, 0  
-    
-    mov bx, offset arr
-    mov si, offset rez
-    sub si, bx
-    mov di, 0
-    
-while: cmp si, di
-       je gSof
-       
-       mov al, [bx + di]
-       mov ah, [bx + di + 1]
-       inc di
-       
-       cmp dl, 1
-       je checkS
-       
-       cmp ah, al
-       jle sof
-       inc dl
-       jmp while  
-checkS:       
-       cmp ah, al
-       jge sof
-       dec dl
-       jmp while 
-sof:
-       mov [rez], 0
-gSof:
-
-        
+    mov ax, 620h
+    sub ah, 76h
+               
     lea dx, pkey
     mov ah, 9
     int 21h        ; output string at ds:dx
