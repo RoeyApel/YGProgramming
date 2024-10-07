@@ -1,6 +1,8 @@
 #define _CRT_SECURE_NO_WARNINGS
+#define _CRT_NONSTDC_NO_WARNINGS
 
 #include <stdio.h>
+#include <conio.h>
 
 #define N 20
 
@@ -9,39 +11,59 @@ void swap(int* a, int* b);
 void marge(int* pa, int sizeA, int* pb, int sizeB, int* pc);
 void bubleSortByIndex(int** arr, int size);
 void getArrInput(char* arr, int size);
+void printArr(char* arr, int size);
+void changeArr(char* arr, int size);
 
 void main() {
-	char a[N];
-	int ch;
+	char arr[N];
 
-	getArrInput(a, N);
-	/*for (int i = 0; i < N; i++)
+	getArrInput(arr, N);
+
+	changeArr(arr, N);
+
+	printArr(arr, N);
+}
+
+void changeArr(char* arr, int size) {
+	char ch;
+
+	int i;
+	for (i = 0; i < size; i++)
 	{
-		putch(*(a + i));
-	}*/
-
-	//int* arr[N], a[N] = { 1,2,4,5,3 };
-
-	//for (int i = 0; i < N; i++)
-	//{
-	//	*(arr + i) = (a + i);
-	//}
-
-	//bubleSortByIndex(arr, N);
-
-	//for (int i = 0; i < N; i++)
-	//{
-	//	printf("%d\n", **(arr + i));
-	//}
+		ch = *(arr + i);
+		if (ch >= 'A' && ch <= 'Z') {
+			ch += 32;
+		}
+		else if (ch >= 'a' && ch <= 'z') {
+			ch -= 32;
+		}
+		else if(ch >= '0' && ch <= '8')
+		{
+			ch++;
+		}
+		else if(ch == '9')
+		{
+			ch = '0';
+		}
+		*(arr + i) = ch;
+	}
 }
 
 void getArrInput(char* arr, int size) {
-	char ch;
 	for (int i = 0; i < size; i++)
 	{
-		//ch = getch();
+		printf("Press a key to add to array!\n");
 
 		*(arr + i) = getch();
+		printf("\nYou pressed: %c\n", *(arr + i));
+	}
+}
+
+void printArr(char* arr, int size) {
+	for (int i = 0; i < size; i++)
+	{
+		putch(*(arr + i));
+		putch(' ');
 	}
 }
 
