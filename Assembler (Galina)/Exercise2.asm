@@ -18,8 +18,8 @@ start:
 
     ; add your code here 
     mov bl, 0
-    mov ax, 0110110110110110b   
-    mov cx, 12
+    mov ax, 0110110110111011b   
+    mov cx, 13
     
  go:
     mov dh, ah
