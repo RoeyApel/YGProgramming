@@ -1,14 +1,12 @@
 ; multi-segment executable file template.
 
 data segment
-    ; add your data here! 
-    numbers db 100 dup(?)  
-    app db 256 dup(0)
+    ; add your data here!
     pkey db "press any key...$"
 ends
 
-stack segment 
-    dw   128h  dup(0)     
+stack segment
+    dw   128  dup(0)
 ends
 
 code segment
@@ -17,18 +15,22 @@ start:
     mov ax, data
     mov ds, ax
     mov es, ax
+
+    ; add your code here 
+    mov bl, 0
+    mov ax, 0110110110111011b   
+    mov cx, 13
     
-    ; add your code here
-    mov cx, 100
-    mov si, 0 
-A1: mov di, [numbers + si] 
-    mov bl, [app + di]
+ go:
+    mov dh, ah
+    and dh, 0f0h
+    cmp dh, 0b0h
+    jne no
     inc bl
-    mov [app + al], bl 
-    inc si
-    loop A1
+ no:shl ax, 1 
+    loop go
     
-           
+            
     lea dx, pkey
     mov ah, 9
     int 21h        ; output string at ds:dx

@@ -1,5 +1,6 @@
 public class App {
     public static void main(String[] args) throws Exception {
-        Game game = new Game(2);
+        Game game = new Game();
+        game.play(2);
     }
 }

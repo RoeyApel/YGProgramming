@@ -15,12 +15,12 @@ public class Card {
     }
 
     public void print() {
-        System.out.printf("[ %s %c ] ", stringValue, shape);
+        System.out.printf("( %s %c ) ", stringValue, shape);
     }
 
     private String converToStringValue(int v) {
         if (v >= 2 && v <= 9) {
-            return String.valueOf(v + '0');
+            return String.valueOf(Character.toChars(v + '0'));
         }
         if (v == 1) {
             return "A";
