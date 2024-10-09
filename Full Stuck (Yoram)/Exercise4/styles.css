@@ -1,0 +1,22 @@
+.cir-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 100px;
+
+}
+
+.cir {
+    width: 120px;
+    height: 120px;
+    background-color: rgb(231, 71, 71);
+    border-radius: 50%;
+}
+
+.mouth {
+    height: 70px;
+    background-color: rgb(68, 219, 54);
+    margin-left: 170px;
+    margin-right: 170px;
+    margin-top: 150px;
+    rotate: -5deg;
+}
