@@ -1,6 +1,6 @@
 ﻿  Source.c
-C:\Git\YGProgramming\C (Haim)\Exercise8\Exercise8\Source.c(77,15): warning C4047: 'function': 'int *' differs in levels of indirection from 'int **'
-C:\Git\YGProgramming\C (Haim)\Exercise8\Exercise8\Source.c(77,15): warning C4024: 'swap': different types for formal and actual parameter 1
-C:\Git\YGProgramming\C (Haim)\Exercise8\Exercise8\Source.c(77,30): warning C4047: 'function': 'int *' differs in levels of indirection from 'int **'
-C:\Git\YGProgramming\C (Haim)\Exercise8\Exercise8\Source.c(77,30): warning C4024: 'swap': different types for formal and actual parameter 2
-  Exercise8.vcxproj -> C:\Git\YGProgramming\C (Haim)\Exercise8\x64\Debug\Exercise8.exe
+C:\Users\Student\YGProgramming\C (Haim)\Exercise8\Exercise8\Source.c(105,15): warning C4047: 'function': 'int *' differs in levels of indirection from 'int **'
+C:\Users\Student\YGProgramming\C (Haim)\Exercise8\Exercise8\Source.c(105,15): warning C4024: 'swap': different types for formal and actual parameter 1
+C:\Users\Student\YGProgramming\C (Haim)\Exercise8\Exercise8\Source.c(105,30): warning C4047: 'function': 'int *' differs in levels of indirection from 'int **'
+C:\Users\Student\YGProgramming\C (Haim)\Exercise8\Exercise8\Source.c(105,30): warning C4024: 'swap': different types for formal and actual parameter 2
+  Exercise8.vcxproj -> C:\Users\Student\YGProgramming\C (Haim)\Exercise8\x64\Debug\Exercise8.exe
