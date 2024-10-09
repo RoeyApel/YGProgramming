@@ -13,7 +13,7 @@
             "state": {
               "type": "image",
               "state": {
-                "file": "יג/עוד/ASCII.png"
+                "file": "יג/עוד/מערכת שעות.png"
               }
             }
           }
@@ -83,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "יג/עוד/ASCII.png",
+                "file": "יג/עוד/מערכת שעות.png",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,7 +100,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "יג/עוד/ASCII.png",
+                "file": "יג/עוד/מערכת שעות.png",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -123,7 +123,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "יג/עוד/ASCII.png"
+                "file": "יג/עוד/מערכת שעות.png"
               }
             }
           }
@@ -146,8 +146,8 @@
   },
   "active": "4b6b022c0a25626b",
   "lastOpenFiles": [
-    "יג/עוד/ASCIIE.png",
     "יג/עוד/ASCII.png",
+    "יג/עוד/ASCIIE.png",
     "יג/עוד/מערכת שעות.png",
     "something.md",
     "Time Zones.md",

@@ -11,19 +11,57 @@ void getArrInput(char* arr, int size);
 void printArr(char* arr, int size);
 void changeArr(char* arr, int size);
 void changeArr2(char* arr, int size);
+int intParse(char* arr, int size);
+void tostring(int num, char* arr);
+int strLen(char* str);
+void strcpy(char* dest, char* sur);
 
 void main() {
-	char arr[N];
+	char str[N] = "hello world";
+	strcpy(str, "jello hghg");
+	printf("%s", str);
+	//printArr(str, N);
+	//tostring(2344, str);
+	//puts("\n--");
+	//printArr(str, N);
 
-	getArrInput(arr, N);
-
-	changeArr(arr, N);
-
-	printArr(arr, N);
 }
 
-int intParse() {
+int strLen(char* str) {
+	int i = 0;
+	while (*(str + i)) {
+		i++;
+	}
+	return i;
+}
 
+void strcpy(char* dest, char* sur) {
+	int i = 0;
+
+	while (*(sur+i))
+	{
+		*(dest + i) = *(sur + i);
+		i++;
+	}
+	*(dest + i) = '\0';
+}
+
+void tostring(int num, char* arr) {
+	if (num != 0) {
+		tostring(num / 10, arr);
+		*arr = (num % 10) + '0';
+		arr++;
+	}
+}
+
+int intParse(char* arr, int size) {
+	int i, num = 0;
+
+	for (i = 0; i < size; i++)
+	{
+		num = num * 10 + (*(arr + i) - '0');
+	}
+	return num;
 }
 
 void changeArr2(char* arr, int size) {
@@ -91,6 +129,6 @@ void printArr(char* arr, int size) {
 	for (int i = 0; i < size; i++)
 	{
 		putch(*(arr + i));
-		putch(' ');
+		putch('|');
 	}
 }
