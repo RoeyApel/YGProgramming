@@ -5,15 +5,34 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sign Up</title>
 </head>
 
 <body>
-    <div class="cir-container">
-        <div class="cir"></div>
-        <div class="cir"></div>
+    <div class="container">
+        <form>
+            <legend>Sign Up</legend>
+            <fieldset>
+                <div class="field">
+                    <label for="name">User</label>
+                    <input type="text" id="name" name="name">
+                </div>
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email">
+                </div>
+                <div class="field">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password">
+                </div>
+                <div class="field">
+                    <label for="rePassword">RePassword</label>
+                    <input type="password" id="rePassword" name="rePassword">
+                </div>
+                <input type="submit" value="Submit" class="submit" />
+            </fieldset>
+        </form>
     </div>
-    <div class="mouth"></div>
 </body>
 
 </html>

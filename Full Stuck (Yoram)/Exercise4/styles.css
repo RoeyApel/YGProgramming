@@ -1,22 +1,53 @@
-.cir-container {
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: url(images/bg_image.jpg);
+    height: 98vh;
     display: flex;
-    justify-content: space-around;
-    margin: 100px;
+    align-items: center;
+    justify-content: end;
 
 }
 
-.cir {
-    width: 120px;
-    height: 120px;
-    background-color: rgb(231, 71, 71);
-    border-radius: 50%;
+.container {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.mouth {
-    height: 70px;
-    background-color: rgb(68, 219, 54);
-    margin-left: 170px;
-    margin-right: 170px;
-    margin-top: 150px;
-    rotate: -5deg;
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Geneva, Tahoma, sans-serif;
+}
+
+legend {
+    font-size: 4em;
+    align-items: center;
+    margin-bottom: 40px;
+    color: #ffffff;
+}
+
+fieldset {
+    display: flex;
+    flex-direction: column;
+    border: 0px;
+    font-size: 1.1em;
+}
+
+.submit {
+    margin-top: 10px;
+}
+
+label {}
+
+input {
+    /* width: 160px; */
+    margin-bottom: 10px;
+    margin-top: 5px;
 }
