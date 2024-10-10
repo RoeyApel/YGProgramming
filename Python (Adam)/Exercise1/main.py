@@ -1,5 +1,0 @@
-file = open("text.txt","br+")
-print(file.read())
-# file.write("hello")
-file.seek(0,0)
-print(file.read())
