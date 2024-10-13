@@ -17,14 +17,25 @@ int strLen(char* str);
 void strcpy(char* dest, char* sur);
 
 void main() {
-	char str[N] = "hello world";
-	strcpy(str, "jello hghg");
-	printf("%s", str);
-	//printArr(str, N);
-	//tostring(2344, str);
-	//puts("\n--");
-	//printArr(str, N);
+	char str[N] = { '0' };
+	printArr(str, N);
+	tostring(2344, str);
+	puts("\n--");
+	printArr(str, N);
 
+}
+
+void tostring(int num, char* arr) {
+	if (num > 10) {
+		tostring(num / 10, arr);
+		arr++;
+		*arr = (num % 10) + '0';
+	}
+	else
+	{
+		*arr = (num % 10) + '0';
+	}
+	
 }
 
 int strLen(char* str) {
@@ -38,20 +49,12 @@ int strLen(char* str) {
 void strcpy(char* dest, char* sur) {
 	int i = 0;
 
-	while (*(sur+i))
+	while (*(sur + i))
 	{
 		*(dest + i) = *(sur + i);
 		i++;
 	}
 	*(dest + i) = '\0';
-}
-
-void tostring(int num, char* arr) {
-	if (num != 0) {
-		tostring(num / 10, arr);
-		*arr = (num % 10) + '0';
-		arr++;
-	}
 }
 
 int intParse(char* arr, int size) {
@@ -129,6 +132,6 @@ void printArr(char* arr, int size) {
 	for (int i = 0; i < size; i++)
 	{
 		putch(*(arr + i));
-		putch('|');
+		putch(',');
 	}
 }

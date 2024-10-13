@@ -19,8 +19,12 @@ typedef struct
 Doctor doctors[50];
 Patient patients[3000];
 
+int highestVeterancy();
+void printBestDoctors();
+
 int main()
 {
+    printBestDoctors();
     return 0;
 }
 
@@ -42,17 +46,34 @@ void printBestDoctors()
 {
     int doctorsScore[50] = {0};
     int numOfPatients = sizeof(patients) / sizeof(Patient);
-    int i;
+    int i, docId;
     Patient *patient;
     for (i = 0; i < numOfPatients; i++)
     {
         patient = patients + i;
         for (int j = 0; j < patient->appointments; j++)
         {
-            for (int k = 0; k < sizeof(patient->docorsIds) / sizeof(patient->docorsIds[0]); k++)
-            {
-                *(doctorsScore + k) += 1;
-            }
+            docId = *(patient->docorsIds + j);
+            *(doctorsScore + docId) += 1;
+        }
+    }
+
+    int *max = doctorsScore;
+    int maxId = 0;
+    for (i = 1; i < sizeof(doctorsScore) / sizeof(*doctorsScore); i++)
+    {
+        if (*max < *(doctorsScore + i))
+        {
+            max = doctorsScore + i;
+            maxId = i;
+        }
+    }
+
+    for (i = 0; i < sizeof(doctors) / sizeof(*doctors); i++)
+    {
+        if ((doctors + i)->id == maxId)
+        {
+            printf("Id: %d, name: %s, sepcia: %s, verty: %d");
         }
     }
 }

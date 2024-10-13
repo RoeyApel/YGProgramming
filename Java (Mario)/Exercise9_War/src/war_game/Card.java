@@ -1,3 +1,5 @@
+package war_game;
+
 public class Card {
     public static final char SPADE = 6;
     public static final char HEART = 3;
@@ -14,7 +16,7 @@ public class Card {
         this.shape = shape;
     }
 
-    public void print() {
+    public void printCard() {
         System.out.printf("( %s %c ) ", stringValue, shape);
     }
 
