@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "יג/עוד/כלי עזר ועוד.md",
+                "file": "יג/Do To.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "יג/עוד/כלי עזר ועוד.md",
+                "file": "יג/Do To.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "יג/עוד/כלי עזר ועוד.md",
+                "file": "יג/Do To.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "יג/עוד/כלי עזר ועוד.md"
+                "file": "יג/Do To.md"
               }
             }
           }
@@ -148,10 +148,10 @@
   },
   "active": "4b6b022c0a25626b",
   "lastOpenFiles": [
+    "יג/עוד/כלי עזר ועוד.md",
     "יג/Do To.md",
     "Time Zones.md",
     "יג/מקצועות/אתרים - Full Stack.md",
-    "יג/עוד/כלי עזר ועוד.md",
     "יג/עוד/מערכת שעות.png",
     "יג/עוד/ASCII.png",
     "יג/עוד/ASCIIE.png",

@@ -1,9 +1,9 @@
 file = open("file.exercise.txt", "r+")
 
-list = file.readlines()
+fileLines = file.readlines()
 urls = []
 
-for line in list:
+for line in fileLines:
     if "http" in line:
         urls.append(line[line.find("http"):len(line) - 2])
 

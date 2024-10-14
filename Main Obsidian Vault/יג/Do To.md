@@ -5,7 +5,7 @@ Python
 ----
 Java 
 1. Finish the homework you have (recursion). **H AND M**
-2. Finish war game.
+2. ~~Finish war game.~~ 
 3. **Research for big project.**
 4. Learn pointers in java.
 5. Learn data types in java (LinkedList, ArrayList, HashMap, Trees, Graphs). How they work, what is there time complexity, what are they best fit for.

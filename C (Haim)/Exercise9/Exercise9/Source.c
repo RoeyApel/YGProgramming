@@ -25,17 +25,16 @@ void main() {
 
 }
 
-void tostring(int num, char* arr) {
-	if (num > 10) {
-		tostring(num / 10, arr);
-		arr++;
-		*arr = (num % 10) + '0';
+int toString(int num, char* parr) {
+	int index = 0;
+	if (num / 10 == 0) {
+		*parr = num + '0';
+		return 1;
 	}
-	else
-	{
-		*arr = (num % 10) + '0';
-	}
-	
+	index = toString(num / 10, parr);
+	*(parr + index) = (num % 10) + '0';
+	return index + 1;
+
 }
 
 int strLen(char* str) {
