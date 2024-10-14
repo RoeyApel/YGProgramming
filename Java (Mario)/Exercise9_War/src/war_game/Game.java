@@ -9,11 +9,13 @@ public class Game {
     Deck onTableDeck;
     ArrayList<Player> players;
     int numOfPlayers;
+    int numOfCardsUsed;
 
     private Scanner scanner;
 
     public Game() {
         numOfPlayers = 0;
+        numOfCardsUsed = 0;
         sortedDeck = new Deck();
         onTableDeck = new Deck();
         scanner = new Scanner(System.in);
@@ -104,7 +106,7 @@ public class Game {
             printPlayer(player, winner);
         }
 
-        if (winner.getDeck().size() + winner.getExtraDeck().size() == Deck.MAX_CAPACITY) {
+        if (winner.getDeck().size() + winner.getExtraDeck().size() == numOfCardsUsed) {
             System.out.println(BLUE.get() + "\nThe Winner Is Player " + winner.id + RESET.get());
             return TurnStatus.END;
         }
@@ -153,6 +155,7 @@ public class Game {
         for (int i = 0; i < numOfPlayers; i++) {
             players.add(new Player(sortedDeck.deck, 52 / numOfPlayers, i + 1));
         }
+        numOfCardsUsed = (52 / numOfPlayers) * numOfPlayers;
     }
 
     private void clearScreen() {
