@@ -11,7 +11,7 @@ Java
 5. Learn data types in java (LinkedList, ArrayList, HashMap, Trees, Graphs). How they work, what is there time complexity, what are they best fit for.
 ---
 C  
-1. Finish the homework you have (tostring).
+1. ~~Finish the homework you have (tostring).~~
 2. Do all the exercises of the things you know on the website.
 3. Make progress and learn new things in c that are a part of the curriculum.
 4. Learn Learn data types in c (Stack, Queue, ArrayList, LinkedList, Trees?). How they work, what is there time complexity, what are they best fit for.
