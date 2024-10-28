@@ -27,10 +27,10 @@
             "state": {
               "type": "image",
               "state": {
-                "file": "יג/עוד/מערכת שעות.png"
+                "file": "יג/עוד/ASCII.png"
               },
               "icon": "lucide-image",
-              "title": "מערכת שעות"
+              "title": "ASCII"
             }
           }
         ],
@@ -106,7 +106,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "יג/עוד/מערכת שעות.png",
+                "file": "יג/עוד/ASCII.png",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -116,7 +116,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for מערכת שעות"
+              "title": "Backlinks for ASCII"
             }
           },
           {
@@ -125,12 +125,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "יג/עוד/מערכת שעות.png",
+                "file": "יג/עוד/ASCII.png",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from מערכת שעות"
+              "title": "Outgoing links from ASCII"
             }
           },
           {
@@ -152,10 +152,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "יג/עוד/מערכת שעות.png"
+                "file": "יג/עוד/ASCII.png"
               },
               "icon": "lucide-list",
-              "title": "Outline of מערכת שעות"
+              "title": "Outline of ASCII"
             }
           }
         ]
@@ -177,6 +177,7 @@
   },
   "active": "5f3990a42623079b",
   "lastOpenFiles": [
+    "יג/עוד/מערכת שעות.png",
     "יג/מקצועות/סטטיסטיקה והסתברות.md",
     "יג/מקצועות/בסיסי נתונים - SQL.md",
     "יג/מקצועות/אתרים - Full Stack.md",
@@ -187,7 +188,6 @@
     "יג/עוד/מידע כללי.md",
     "יג/עוד/כלי עזר ועוד.md",
     "Untitled",
-    "יג/עוד/מערכת שעות.png",
     "יג/עוד/ASCII.png",
     "יג/עוד/ASCIIE.png",
     "יג/מקצועות/שפת C.md",
@@ -213,7 +213,6 @@
     "Untitled.canvas",
     "יג",
     "Untitled 2.md",
-    "Untitled 1.md",
     "Untitled 1.canvas",
     "uyioyu"
   ]
