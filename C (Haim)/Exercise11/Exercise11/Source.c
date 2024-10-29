@@ -8,7 +8,9 @@ void reverse(char* str);
 void swapCh(char* a, char* b);
 
 void main() {
-
+	char str[] = "hellyo";
+	reverse(str);
+	puts(str);
 }
 
 void reverse(char* str) {
