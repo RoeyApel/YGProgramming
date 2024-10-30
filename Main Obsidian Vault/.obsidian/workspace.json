@@ -25,12 +25,14 @@
             "id": "5f3990a42623079b",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "יג/עוד/ASCII.png"
+                "file": "יג/מקצועות/אתרים - Full Stack.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "ASCII"
+              "icon": "lucide-file",
+              "title": "אתרים - Full Stack"
             }
           }
         ],
@@ -177,6 +179,7 @@
   },
   "active": "5f3990a42623079b",
   "lastOpenFiles": [
+    "יג/עוד/ASCII.png",
     "יג/עוד/מערכת שעות.png",
     "יג/מקצועות/סטטיסטיקה והסתברות.md",
     "יג/מקצועות/בסיסי נתונים - SQL.md",
@@ -188,7 +191,6 @@
     "יג/עוד/מידע כללי.md",
     "יג/עוד/כלי עזר ועוד.md",
     "Untitled",
-    "יג/עוד/ASCII.png",
     "יג/עוד/ASCIIE.png",
     "יג/מקצועות/שפת C.md",
     "יג/עוד/הגדרות של פונט לEMU8086.png",
