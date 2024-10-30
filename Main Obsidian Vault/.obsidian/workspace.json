@@ -25,14 +25,12 @@
             "id": "5f3990a42623079b",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "יג/מקצועות/אתרים - Full Stack.md",
-                "mode": "source",
-                "source": false
+                "file": "יג/עוד/מערכת שעות.png"
               },
-              "icon": "lucide-file",
-              "title": "אתרים - Full Stack"
+              "icon": "lucide-image",
+              "title": "מערכת שעות"
             }
           }
         ],
@@ -179,11 +177,11 @@
   },
   "active": "5f3990a42623079b",
   "lastOpenFiles": [
+    "יג/מקצועות/אתרים - Full Stack.md",
     "יג/עוד/ASCII.png",
     "יג/עוד/מערכת שעות.png",
     "יג/מקצועות/סטטיסטיקה והסתברות.md",
     "יג/מקצועות/בסיסי נתונים - SQL.md",
-    "יג/מקצועות/אתרים - Full Stack.md",
     "יג/מקצועות/אסמבלר.md",
     "יג/Do To.md",
     "יג/עוד/EMU8086 - file template.md",
