@@ -13,11 +13,25 @@ void strInsert(char* str1, int place, char* str2);
 void strEncrypt(char* str);
 
 void main() {
-	char str1[200] = "worl td";
-	puts(str1);
-	strEncrypt(str1);
-	puts(str1);
+
 }
+
+
+//---to be deleted---
+void strcombine(char* s1, char* s2, char* s3) {
+	char* temp;
+	while (*s1) {
+		for (temp = s2; *temp != *s1 && *(temp - 1) != 0; temp++);
+		if (*temp == '\0') {
+			*s3 = *s1;
+			s3++;
+		}
+		s1++;
+	}
+	*s3 = 0;
+}
+//------------------
+
 
 void strEncrypt(char* str) {
 	char ch;
