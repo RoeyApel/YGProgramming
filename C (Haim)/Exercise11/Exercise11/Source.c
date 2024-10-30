@@ -12,11 +12,6 @@ void strJump(char* str, char* place);
 void strInsert(char* str1, int place, char* str2);
 void strEncrypt(char* str);
 
-void main() {
-
-}
-
-
 //---to be deleted---
 void strcombine(char* s1, char* s2, char* s3) {
 	char* temp;
@@ -32,6 +27,12 @@ void strcombine(char* s1, char* s2, char* s3) {
 }
 //------------------
 
+void main() {
+	char one[] = "abflx", two[] = "baowexr", three[30] = { {0} };
+	strcombine(one,two,three);
+	strcombine(two, one, three + strlen(three) + 1);
+	puts(three);
+}
 
 void strEncrypt(char* str) {
 	char ch;
