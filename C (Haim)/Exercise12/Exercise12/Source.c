@@ -25,7 +25,6 @@ void main() {
 		sum+= mat[k][k];
 		sum += mat[k][5 - k - 1];
 	}
-	if()
 	printf("sum: %d\n", sum);
 
 	//-------------------
@@ -61,7 +60,7 @@ void main() {
 	{
 		for (int j = 0; j < 5; j++)
 		{
-			printf("%2d ", mat[i][j]);
+			printf("\033[0; 31m%2d ", mat[i][j]);
 		}
 		printf("\n");
 	}
