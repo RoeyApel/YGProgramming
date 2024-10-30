@@ -1,0 +1,6 @@
+﻿  Source.c
+C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise12\Exercise12\Source.c(12,8): warning C4244: 'function': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise12\Exercise12\Source.c(43,9): warning C4101: 'j': unreferenced local variable
+C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise12\Exercise12\Source.c(43,6): warning C4101: 'i': unreferenced local variable
+C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise12\Exercise12\Source.c(14,6): warning C4101: 'h': unreferenced local variable
+  Exercise12.vcxproj -> C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise12\x64\Debug\Exercise12.exe
