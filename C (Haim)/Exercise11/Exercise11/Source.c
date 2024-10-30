@@ -5,6 +5,7 @@
 #include <string.h>
 #include <ctype.h>
 
+// Functions declerations
 void strReverse(char* str);
 void swapCh(char* a, char* b);
 void strDelete(char* str, int place, int len);
@@ -12,28 +13,38 @@ void strJump(char* str, char* place);
 void strInsert(char* str1, int place, char* str2);
 void strEncrypt(char* str);
 
-//---to be deleted---
-void strcombine(char* s1, char* s2, char* s3) {
-	char* temp;
-	while (*s1) {
-		for (temp = s2; *temp != *s1 && *(temp - 1) != 0; temp++);
-		if (*temp == '\0') {
-			*s3 = *s1;
-			s3++;
-		}
-		s1++;
-	}
-	*s3 = 0;
-}
-//------------------
-
+//----------------------------------------------------------------------
+//								Targilim
+//								--------
+// 
+// General : Store many unrelated functions.
+// 
+// Input : None.
+// 
+// Process : Many different random things.
+// 
+// Output : None.
+// 
+//----------------------------------------------------------------------
+// Programmer : Roey Apel
+// Date : 28.09.24
+//----------------------------------------------------------------------
 void main() {
-	char one[] = "abflx", two[] = "baowexr", three[30] = { {0} };
-	strcombine(one,two,three);
-	strcombine(two, one, three + strlen(three) + 1);
-	puts(three);
 }
-
+//-----------------------------------------------------------------------------
+//								strEncrypt
+//								----------
+//
+// General : This function encrypts a string by replacing spaces with '@' and
+//           converting other characters to uppercase. Each non-space character
+//           is moved forward in the string by one position.
+//
+// Parameters :
+//		str - Pointer to the character string to be encrypted (Input/Output)
+//
+// Return Value : None (The function modifies the string in place).
+//
+//-----------------------------------------------------------------------------
 void strEncrypt(char* str) {
 	char ch;
 
@@ -51,7 +62,21 @@ void strEncrypt(char* str) {
 		}
 	}
 }
-
+//-----------------------------------------------------------------------------
+//								strInsert
+//								---------
+//
+// General : This function inserts a string (str2) into another string (str1)
+//           at a specified position.
+//
+// Parameters :
+//		str1  - Pointer to the main character string to be modified (Input/Output)
+//		place - Integer representing the insertion position in str1 (Input)
+//		str2  - Pointer to the string to be inserted into str1 (Input)
+//
+// Return Value : None (The function modifies str1 in place).
+//
+//-----------------------------------------------------------------------------
 void strInsert(char* str1, int place, char* str2) {
 	char* strTemp = str1 + place;
 	char* str3[] = { 0 };
@@ -62,6 +87,20 @@ void strInsert(char* str1, int place, char* str2) {
 	strcat(str1, str3);
 }
 
+//-----------------------------------------------------------------------------
+//							strJump
+//							-------
+//
+// General : This function shifts characters in a string to create space for 
+//           inserting a new character at a specified position.
+//
+// Parameters :
+//		str   - Pointer to the original string (Input/Output)
+//		place - Pointer to the position where space is needed (Input)
+//
+// Return Value : None (The function modifies the string in place).
+//
+//-----------------------------------------------------------------------------
 void strJump(char* str, char* place) {
 	int len = strlen(str);
 	if ((str + len) == place) {
@@ -79,6 +118,18 @@ void strJump(char* str, char* place) {
 	*(str + len + 1) = '\0';
 }
 
+//-----------------------------------------------------------------------------
+//							strReverse
+//							----------
+//
+// General : This function reverses a string in place.
+//
+// Parameters :
+//		str - Pointer to the character string to be reversed (Input/Output)
+//
+// Return Value : None (The function modifies the string in place).
+//
+//-----------------------------------------------------------------------------
 void strReverse(char* str) {
 	int i, len = strlen(str);
 	for (i = 0; i < len / 2; i++)
@@ -87,6 +138,21 @@ void strReverse(char* str) {
 	}
 }
 
+//-----------------------------------------------------------------------------
+//								strDelete
+//							    ---------
+//
+// General : This function deletes a substring from a string starting at a 
+//           specified position and extending for a given length.
+//
+// Parameters :
+// str   - Pointer to the character string to be modified (Input/Output)
+// place - Integer indicating the starting position of deletion (Input)
+// len   - Integer indicating the number of characters to delete (Input)
+//
+// Return Value : None (The function modifies the string in place).
+//
+//-----------------------------------------------------------------------------
 void strDelete(char* str, int place, int len) {
 	if (len == 0) {
 		return;
@@ -101,6 +167,19 @@ void strDelete(char* str, int place, int len) {
 	*(str + totalLen - len) = 0;
 }
 
+//-----------------------------------------------------------------------------
+//								swapCh
+//								------
+//
+// General : This function swaps the values of two characters.
+//
+// Parameters :
+//		a - Pointer to the first character (Input/Output)
+//		b - Pointer to the second character (Input/Output)
+//
+// Return Value : None (The function modifies the characters in place).
+//
+//-----------------------------------------------------------------------------
 void swapCh(char* a, char* b) {
 	*a += *b;
 	*b = *a - *b;
