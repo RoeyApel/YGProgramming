@@ -1,0 +1,14 @@
+body{
+    height: 98vh;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+.example1{
+    font-size: 30px;
+    display: block;
+}
+.example2{
+    font-size: 30px;
+    display: block;
+}
