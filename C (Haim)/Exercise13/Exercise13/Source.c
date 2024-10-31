@@ -5,17 +5,16 @@
 #include <time.h>
 
 #define N 5
+#define BLUE "\033[0;36m"
+#define GREEN "\033[0;32m"
+#define YELLOW "\033[0;33m"
+#define RESET "\033[0m"
 
 void main() {
-	char color1[] = "\033[0;36m";
-	char color2[] = "\033[0;32m";
-	char color3[] = "\033[0;33m";
-	char reset[] = "\033[0m";
-
 	int mat[N][N];
 	srand(time(NULL));
 
-	int j, i, max = 7, min = 1;
+	int j, i, max = 99, min = 10;
 	for (int i = 0; i < 5; i++)
 	{
 		for (j = 0; j < 5; j++)
@@ -29,13 +28,13 @@ void main() {
 		for (j = 0; j < N; j++)
 		{
 			if (i == N / 2 && j == N / 2) {
-				printf("%s%2d %s", color3, mat[i][j], reset);
+				printf("%s%2d %s", YELLOW, mat[i][j], RESET);
 			}
 			else if (i == j) {
-				printf("%s%2d %s", color1, mat[i][j], reset);
+				printf("%s%2d %s", BLUE, mat[i][j], RESET);
 			}
 			else if (j == N - i - 1) {
-				printf("%s%2d %s", color2, mat[i][j], reset);
+				printf("%s%2d %s", GREEN, mat[i][j], RESET);
 			}
 			else {
 				printf("%2d ", mat[i][j]);
@@ -46,37 +45,28 @@ void main() {
 
 	int sumAboveMain = 0, sumBelowMain = 0, sumAboveSecond = 0, sumBelowSecond = 0;
 
-	for (i = 1; i < N; i++)
+	for (i = 0; i < N; i++)
 	{
-		for (j = 0; j < i; j++)
+		for (j = 0; j < N; j++)
 		{
-			sumAboveMain += mat[i][j];
+			if (i < j) {
+				sumAboveMain += mat[i][j];
+			}
+			if (i > j){
+				sumBelowMain += mat[i][j];
+			}
+			if (i < N - j - 1) {
+				sumAboveSecond += mat[i][j];
+			}
+			if (i > N  - j - 1) {
+				sumBelowSecond += mat[i][j];
+			}
 		}
 	}
 
-	for (i = 0; i < N - 1; i++)
-	{
-		for (j = 0; j < N - i - 1; j++)
-		{
-			sumBelowMain += mat[i][j];
-		}
-	}
-
-	for (i = 0; i < N - 1; i++)
-	{
-		for (j = 0; j < N - i - 1; j++)
-		{
-			sumAboveSecond += mat[i][j];
-		}
-	}
-
-	for (i = 1; i < N; i++)
-	{
-		for (j = 0; j < i; j++)
-		{
-			sumBelowSecond += mat[i][j];
-		}
-	}
+	printf("--------------------\n");
 	printf("SumAM: %d, SumBM: %d\n", sumAboveMain, sumBelowMain);
 	printf("SumAS: %d, SumBS: %d\n", sumAboveSecond, sumBelowSecond);
+	printf("--------------------\n");
+
 }
