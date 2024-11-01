@@ -25,12 +25,14 @@
             "id": "5f3990a42623079b",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "יג/עוד/ASCII.png"
+                "file": "יג/עוד/כלי עזר ועוד.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "ASCII"
+              "icon": "lucide-file",
+              "title": "כלי עזר ועוד"
             }
           }
         ],
@@ -106,7 +108,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "יג/עוד/ASCII.png",
+                "file": "יג/עוד/כלי עזר ועוד.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -116,7 +118,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for ASCII"
+              "title": "Backlinks for כלי עזר ועוד"
             }
           },
           {
@@ -125,12 +127,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "יג/עוד/ASCII.png",
+                "file": "יג/עוד/כלי עזר ועוד.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from ASCII"
+              "title": "Outgoing links from כלי עזר ועוד"
             }
           },
           {
@@ -152,10 +154,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "יג/עוד/ASCII.png"
+                "file": "יג/עוד/כלי עזר ועוד.md"
               },
               "icon": "lucide-list",
-              "title": "Outline of ASCII"
+              "title": "Outline of כלי עזר ועוד"
             }
           }
         ]
@@ -177,6 +179,7 @@
   },
   "active": "5f3990a42623079b",
   "lastOpenFiles": [
+    "יג/עוד/ASCII.png",
     "עוד/Request.md",
     "עוד/con2.png",
     "עוד/con1.png",
@@ -192,7 +195,6 @@
     "יג/עוד/מידע כללי.md",
     "יג/עוד/כלי עזר ועוד.md",
     "Untitled",
-    "יג/עוד/ASCII.png",
     "יג/עוד/ASCIIE.png",
     "יג/מקצועות/שפת C.md",
     "יג/עוד/הגדרות של פונט לEMU8086.png",
@@ -216,7 +218,6 @@
     "2024-09-11.md",
     "Untitled.canvas",
     "יג",
-    "Untitled 2.md",
     "Untitled 1.canvas",
     "uyioyu"
   ]

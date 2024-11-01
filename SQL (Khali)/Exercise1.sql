@@ -19,12 +19,5 @@ select SupplierID as "A",
  Phone as "J", Fax as "K", HomePage as "L"
  from suppliers;
  
- select * from customers
- where city like "Madrid";
- 
- select * from customers
- where country in ("Sweden", "Germany");
- 
-select * from customers
- where country like "UK" and customerID < 10;
+
  
