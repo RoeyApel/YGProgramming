@@ -25,14 +25,12 @@
             "id": "5f3990a42623079b",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "יג/עוד/כלי עזר ועוד.md",
-                "mode": "source",
-                "source": false
+                "file": "יג/עוד/מערכת שעות.png"
               },
-              "icon": "lucide-file",
-              "title": "כלי עזר ועוד"
+              "icon": "lucide-image",
+              "title": "מערכת שעות"
             }
           }
         ],
@@ -108,7 +106,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "יג/עוד/כלי עזר ועוד.md",
+                "file": "יג/עוד/מערכת שעות.png",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,7 +116,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for כלי עזר ועוד"
+              "title": "Backlinks for מערכת שעות"
             }
           },
           {
@@ -127,12 +125,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "יג/עוד/כלי עזר ועוד.md",
+                "file": "יג/עוד/מערכת שעות.png",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from כלי עזר ועוד"
+              "title": "Outgoing links from מערכת שעות"
             }
           },
           {
@@ -154,10 +152,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "יג/עוד/כלי עזר ועוד.md"
+                "file": "יג/עוד/מערכת שעות.png"
               },
               "icon": "lucide-list",
-              "title": "Outline of כלי עזר ועוד"
+              "title": "Outline of מערכת שעות"
             }
           }
         ]
@@ -179,21 +177,21 @@
   },
   "active": "5f3990a42623079b",
   "lastOpenFiles": [
-    "יג/עוד/ASCII.png",
+    "יג/מקצועות/אסמבלר.md",
     "עוד/Request.md",
-    "עוד/con2.png",
     "עוד/con1.png",
+    "יג/עוד/כלי עזר ועוד.md",
+    "יג/עוד/ASCII.png",
+    "עוד/con2.png",
     "עוד",
     "יג/עוד/מערכת שעות.png",
     "יג/מקצועות/סטטיסטיקה והסתברות.md",
     "יג/מקצועות/בסיסי נתונים - SQL.md",
     "יג/מקצועות/אתרים - Full Stack.md",
-    "יג/מקצועות/אסמבלר.md",
     "יג/Do To.md",
     "יג/עוד/EMU8086 - file template.md",
     "Time Zones.md",
     "יג/עוד/מידע כללי.md",
-    "יג/עוד/כלי עזר ועוד.md",
     "Untitled",
     "יג/עוד/ASCIIE.png",
     "יג/מקצועות/שפת C.md",
