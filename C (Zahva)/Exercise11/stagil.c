@@ -2,8 +2,4 @@
 
 int main(){
     printf("test\n\nfhgh");
-    printf("test\n\nfhgh");
-    printf("test\n\nfhgh");
-    printf("test\n\nfhgh");
-    printf("test\n\nfhgh");
 }
