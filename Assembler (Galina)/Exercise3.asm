@@ -2,8 +2,8 @@
 
 data segment
     ; add your data here!  
-    arra db 10 dup(?)
-    arrb db 100 dup(?)
+    arra db 1,2,3,4,5
+    arrb db 3,5,6,1,2,3,4,5,1,2 
     v db ?
     p db ?
     pkey db "press any key...$"
@@ -21,10 +21,12 @@ start:
     mov es, ax
 
     ; add your code here
-    mov cx, 10
+    mov cx, 5
     xor bx, bx
     mov al, arra[bx]
     mov [v], al
+    push bx
+    push cx
     call TEST
     mov dh, [p]
     cmp dh, -1
@@ -37,8 +39,8 @@ loopX:
     push cx
     call TEST
     mov dl, [p]
-    cmp dl , -1
-    jz no
+    cmp dl , 0
+    jle no
     dec dl
     cmp dl, dh
     jnz no 
@@ -51,7 +53,7 @@ no: mov bl, 0
 sof1:    
     
     proc TEST            
-        mov cx, 100
+        mov cx, 10
         mov bx, 0 
         mov al, [v]
     lop:cmp al, arrb[bx]
@@ -61,9 +63,12 @@ sof1:
         mov [p], -1
         jmp sof  
     yes:mov [p], bl
-    sof:
+    sof:  
+        pop ax
         pop cx
         pop bx
+        push ax 
+        ret
     endp TEST
          
     lea dx, pkey

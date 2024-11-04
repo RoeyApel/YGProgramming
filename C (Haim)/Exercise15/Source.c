@@ -9,17 +9,24 @@
 
 void setMat(int* mat, int row, int col);
 void printMat(int* mat, int row, int col);
+int sumAround(int(*p)[4], int Rows, int Cols, int i, int j);
 
 void main() {
 	int mat[R][C];
-	srand(time(NULL));
 
 	setMat(*mat, R, C);
 
 	printMat(*mat, R, C);
 
+
 }
+
+int sumAround(int(*p)[4], int Rows, int Cols, int i, int j) {
+
+}
+
 void setMat(int *mat, int row, int col) {
+	srand(time(NULL));
 
 	int j, i, max = 99, min = 10;
 	for (i = 0; i < row; i++)
