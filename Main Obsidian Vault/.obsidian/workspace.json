@@ -25,12 +25,14 @@
             "id": "5f3990a42623079b",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "יג/עוד/מערכת שעות.png"
+                "file": "עוד/Request Denied.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "מערכת שעות"
+              "icon": "lucide-file",
+              "title": "Request Denied"
             }
           }
         ],
@@ -177,8 +179,8 @@
   },
   "active": "5f3990a42623079b",
   "lastOpenFiles": [
-    "עוד/Request.md",
     "יג/עוד/מערכת שעות.png",
+    "עוד/Request Denied.md",
     "יג/מקצועות/אסמבלר.md",
     "עוד/con1.png",
     "יג/עוד/כלי עזר ועוד.md",
