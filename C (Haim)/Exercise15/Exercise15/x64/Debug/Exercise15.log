@@ -1,0 +1,5 @@
+﻿  Source.c
+C:\Git\YGProgramming\C (Haim)\Exercise15\Source.c(53,9): warning C4101: 'j': unreferenced local variable
+C:\Git\YGProgramming\C (Haim)\Exercise15\Source.c(171,8): warning C4244: 'function': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Git\YGProgramming\C (Haim)\Exercise15\Source.c(39,1): warning C4715: 'isUnitMat': not all control paths return a value
+  Exercise15.vcxproj -> C:\Git\YGProgramming\C (Haim)\Exercise15\x64\Debug\Exercise15.exe
