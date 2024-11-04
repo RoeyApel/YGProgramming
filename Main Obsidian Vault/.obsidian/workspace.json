@@ -25,14 +25,12 @@
             "id": "5f3990a42623079b",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "יג/עוד/מידע כללי.md",
-                "mode": "source",
-                "source": false
+                "file": "יג/עוד/מערכת שעות.png"
               },
-              "icon": "lucide-file",
-              "title": "מידע כללי"
+              "icon": "lucide-image",
+              "title": "מערכת שעות"
             }
           }
         ],
@@ -179,6 +177,7 @@
   },
   "active": "5f3990a42623079b",
   "lastOpenFiles": [
+    "יג/עוד/מידע כללי.md",
     "יג/עוד/כלי עזר ועוד.md",
     "עוד/Request Denied.md",
     "יג/עוד/מערכת שעות.png",
@@ -193,7 +192,6 @@
     "יג/Do To.md",
     "יג/עוד/EMU8086 - file template.md",
     "Time Zones.md",
-    "יג/עוד/מידע כללי.md",
     "Untitled",
     "יג/עוד/ASCIIE.png",
     "יג/מקצועות/שפת C.md",

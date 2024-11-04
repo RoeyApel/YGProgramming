@@ -33,7 +33,7 @@ void main() {
 	printMat(mat);
 }
 
-void printMat(int* (mat)[N]) {
+void printMat(int mat[][N]) {
 	int i, j;
 	for (i = 0; i < N; i++)
 	{
@@ -54,6 +54,7 @@ void printMat(int* (mat)[N]) {
 		}
 		puts("");
 	}
+	printf("--------------\n");
 }
 
 void bigSwap(int* mat, int len) {
@@ -61,7 +62,7 @@ void bigSwap(int* mat, int len) {
 
 	for (i = 0; i < len; i++)
 	{
-		swap(mat + i * len + i, mat + (len - 1 - i) * len + i);
+		swap(mat + i * len + i, mat + i * len + len - 1 - i);
 	}
 }
 

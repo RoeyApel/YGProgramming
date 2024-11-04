@@ -21,12 +21,49 @@ start:
     mov es, ax
 
     ; add your code here
-    proc TEST
-        mov cx, 100
-        mov di, 0 
-        mov al, [v]
-    lop:cmp al, arr[di]
+    mov cx, 10
+    xor bx, bx
+    mov al, arra[bx]
+    mov [v], al
+    call TEST
+    mov dh, [p]
+    cmp dh, -1
+    jz no
+    inc bx
+loopX:  
+    mov al, arra[bx]
+    mov [v], al    
+    push bx
+    push cx
+    call TEST
+    mov dl, [p]
+    cmp dl , -1
+    jz no
+    dec dl
+    cmp dl, dh
+    jnz no 
+    inc dh 
+    inc bx
+    loop loopX    
+    mov bl, 1 
+    jmp sof
+no: mov bl, 0   
+sof1:    
     
+    proc TEST            
+        mov cx, 100
+        mov bx, 0 
+        mov al, [v]
+    lop:cmp al, arrb[bx]
+        jz yes    
+        inc bx
+        loop lop 
+        mov [p], -1
+        jmp sof  
+    yes:mov [p], bl
+    sof:
+        pop cx
+        pop bx
     endp TEST
          
     lea dx, pkey

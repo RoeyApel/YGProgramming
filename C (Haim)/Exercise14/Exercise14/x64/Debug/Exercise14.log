@@ -4,4 +4,5 @@ C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise14\Exercise14\S
 C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise14\Exercise14\Source.c(29,11): warning C4024: 'printMat': different types for formal and actual parameter 1
 C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise14\Exercise14\Source.c(33,11): warning C4047: 'function': 'int **' differs in levels of indirection from 'int [5][5]'
 C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise14\Exercise14\Source.c(33,11): warning C4024: 'printMat': different types for formal and actual parameter 1
+C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise14\Exercise14\Source.c(36,19): warning C4028: formal parameter 1 different from declaration
   Exercise14.vcxproj -> C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise14\x64\Debug\Exercise14.exe
