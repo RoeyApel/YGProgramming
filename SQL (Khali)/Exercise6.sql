@@ -33,10 +33,38 @@ group by department_id;
 
 #7
 select avg(year(curdate()) - year(hire_date)) as avgD,
-year(curdate()) - year(avg(hire_date)) as avgD2, 
 job_id
 from employees
 group by job_id;
-#job history :>
 
+#8
+select avg(salary) as avgS, year(curdate()) - year(hire_date) as veterancy
+from employees
+group by veterancy;
 
+#9
+select avg((min_salary + max_salary) / 2) as avgS,
+length(job_title) as lenT
+from jobs
+group by lenT;
+
+#10
+select left(phone_number, 3) as Kidomet, count(phone_number) as count
+from employees
+group by Kidomet;
+
+#11
+select department_id, count(employee_id) as count
+from employees
+group by department_id;
+
+#12
+select department_id, count(employee_id) as countE
+from employees
+group by department_id
+having countE = 1;
+
+#13
+select department_id, concat(min(salary)," - ",max(salary)) as טווח
+from employees
+group by department_id;
