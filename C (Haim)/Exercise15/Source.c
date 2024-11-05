@@ -3,9 +3,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <limits.h>
 
-#define R 10
+#define R 6
 #define C 5
+#define N 5
 
 void setMat(int* mat, int row, int col);
 void outputMat(int* mat, int row, int col);
@@ -18,7 +20,41 @@ int binSearch(int* arr, int size, int num);
 void pirnt(int* arr, int size, int num, int row);
 void q5(int mat[R][C]);
 int isSymmetric(int* mat, int size);
-void sortMatLines(int (*mat)[C], int rows, int cols);
+void sortMatLines(int(*mat)[C], int rows, int cols);
+int isUnitMat(int* mat, int size);
+int isSurroundingSmaller(int* mat, int rows, int cols, int x, int y);
+
+void main() {
+	int mat[N][N];
+	int* addr[2 * N] = { NULL };
+	setMat(*mat, R, C);
+
+	outputMat(*mat, R, C);
+
+	printf("%d", isSurroundingSmaller(*mat, R, C, 1, 1));
+}
+
+void golowing(int(*pMat)[N], int rows, int cols, int** pAddr) {
+
+}
+
+int isSurroundingSmaller(int* mat, int rows, int cols, int x, int y) {
+	int num = *(mat + x * cols + y);
+	*(mat + x * cols + y) = INT_MIN;
+	int i, j;
+
+	for (i = x - 1; i <= x + 1; i++)
+	{
+		for (j = y - 1; j <= y + 1; j++)
+		{
+			if (num <= *(mat + i * cols + j)) {
+				return 0;
+			}
+		}
+	}
+	*(mat + x * cols + y) = num;
+	return 1;
+}
 
 int isUnitMat(int* mat, int size) {
 	int i, j;
@@ -38,18 +74,7 @@ int isUnitMat(int* mat, int size) {
 	}
 }
 
-void main() {
-	int mat[R][C];
-	setMat(*mat, R, C);
-
-	outputMat(*mat, R, C);
-	sortMatLines(mat, R, C);
-	outputMat(*mat, R, C);
-
-	printf("%d", isSymmetric(*mat, R));
-}
-
-void sortMatLines(int (*mat)[C], int rows, int cols) {
+void sortMatLines(int(*mat)[C], int rows, int cols) {
 	int i, j;
 
 	for (i = 0; i < rows; i++)
