@@ -1,5 +1,8 @@
 ﻿  Source.c
-C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise15\Source.c(72,9): warning C4101: 'j': unreferenced local variable
-C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise15\Source.c(190,8): warning C4244: 'function': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise15\Source.c(69): warning C4715: 'isUnitMat': not all control paths return a value
+C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise15\Source.c(37,28): warning C4020: 'printGlowing': too many actual parameters
+C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise15\Source.c(42,81): warning C4029: declared formal parameter list different from definition
+C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise15\Source.c(55,23): warning C4244: '=': conversion from '__int64' to 'int', possible loss of data
+C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise15\Source.c(123,9): warning C4101: 'j': unreferenced local variable
+C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise15\Source.c(241,8): warning C4244: 'function': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise15\Source.c(120): warning C4715: 'isUnitMat': not all control paths return a value
   Exercise15.vcxproj -> C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise15\x64\Debug\Exercise15.exe

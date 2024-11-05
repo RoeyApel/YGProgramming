@@ -23,19 +23,62 @@ int isSymmetric(int* mat, int size);
 void sortMatLines(int(*mat)[C], int rows, int cols);
 int isUnitMat(int* mat, int size);
 int isSurroundingSmaller(int* mat, int rows, int cols, int x, int y);
+int glowing(int(*pMat)[C], int rows, int cols, int** pAddr);
+void printGlowing(int** pAddr, int size, int* startAddress, int rows, int cols);
+
 
 void main() {
-	int mat[N][N];
-	int* addr[2 * N] = { NULL };
-	setMat(*mat, R, C);
+	int mat[R][C];
+	int* addr[2 * C] = { NULL };
 
+	setMat(*mat, R, C);
 	outputMat(*mat, R, C);
 
-	printf("%d", isSurroundingSmaller(*mat, R, C, 1, 1));
+	int sizeA = glowing(mat, R, C, addr);
+	printGlowing(addr, sizeA, *mat, R, C);
 }
 
-void golowing(int(*pMat)[N], int rows, int cols, int** pAddr) {
+void printGlowing(int** pAddr, int size, int* startAddress, int rows, int cols) {
+	int i, * address, num, location, x, y;
 
+	printf("GLOWING:\n");
+
+	if (size == 0) {
+		printf("None\n");
+		return;
+	}
+
+	for (i = 0; i < size; i++)
+	{
+		address = *(pAddr + i);
+		location = (address - startAddress);
+		x = location / cols;
+		y = location % cols;
+		num = *address;
+		printf("(%d,%d): %2d\n", x, y, num);
+	}
+	printf("\n");
+}
+
+int glowing(int(*pMat)[C], int rows, int cols, int** pAddr) {
+	int i, j, k = 0;
+
+	for (i = 1; i < rows - 1; i++)
+	{
+		for (j = 1; j < cols - 1; j += 2)
+		{
+			if (isSurroundingSmaller(*pMat, rows, cols, i, j)) {
+				*(pAddr + k) = *(pMat + i) + j;
+				k++;
+			}
+			else if (j + 1 < cols - 1 && isSurroundingSmaller(*pMat, rows, cols, i, j + 1)) {
+				*(pAddr + k) = *(pMat + i) + j + 1;
+				k++;
+				j++;
+			}
+		}
+	}
+	return k;
 }
 
 int isSurroundingSmaller(int* mat, int rows, int cols, int x, int y) {
@@ -48,6 +91,7 @@ int isSurroundingSmaller(int* mat, int rows, int cols, int x, int y) {
 		for (j = y - 1; j <= y + 1; j++)
 		{
 			if (num <= *(mat + i * cols + j)) {
+				*(mat + x * cols + y) = num;
 				return 0;
 			}
 		}
