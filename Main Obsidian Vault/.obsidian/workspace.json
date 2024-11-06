@@ -11,12 +11,14 @@
             "id": "5f3990a42623079b",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "יג/עוד/ASCII.png"
+                "file": "יג/מקצועות/אתרים - Front End.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "ASCII"
+              "icon": "lucide-file",
+              "title": "אתרים - Front End"
             }
           }
         ]
@@ -162,13 +164,13 @@
   },
   "active": "5f3990a42623079b",
   "lastOpenFiles": [
-    "יג/עוד/ASCIIE.png",
+    "יג/עוד/מערכת שעות.png",
     "יג/עוד/ASCII.png",
+    "יג/עוד/ASCIIE.png",
     "עוד/Request Denied.md",
     "Time Zones.md",
     "עוד/con1.png",
     "עוד/con2.png",
-    "יג/עוד/מערכת שעות.png",
     "יג/Do To.md",
     "יג/מקצועות/אסמבלר.md",
     "עוד/Request.md",
@@ -176,7 +178,7 @@
     "עוד",
     "יג/מקצועות/סטטיסטיקה והסתברות.md",
     "יג/מקצועות/בסיסי נתונים - SQL.md",
-    "יג/מקצועות/אתרים - Full Stack.md",
+    "יג/מקצועות/אתרים - Front End.md",
     "יג/עוד/EMU8086 - file template.md",
     "יג/עוד/מידע כללי.md",
     "Untitled",
