@@ -2,3 +2,4 @@
 2. אתר למציאת הסברים והדרכה https://developer.mozilla.org/en-US/
 3. אתר של מדריך טוב ביוטיוב https://www.slayingthedragon.io/
 4. ללימוד flexBox ועוד https://flexboxfroggy.com/#he
+5. להעלות אתרים להגשה למורה https://app.netlify.com/teams/roeyapel/sites

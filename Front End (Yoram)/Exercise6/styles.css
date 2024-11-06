@@ -1,0 +1,62 @@
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 40%;
+    height: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 2.5px solid;
+    border-radius: 3%;
+    gap: 60px;
+}
+
+.inner {
+    width: 100px;
+    height: 90px;
+    border: 2px solid;
+    border-radius: 5%;
+}
+
+.a {
+    background-color: rgb(44, 79, 153);
+}
+
+.b {
+    background-color: rgb(44, 153, 100);
+}
+
+.c {
+    background-color: rgb(153 44 60);
+}
+
+.d {
+    background-color: rgb(153, 44, 111);
+}
+
+.e {
+    background-color: rgb(153, 44, 111);
+}
+
+.f {
+    background-color: rgb(153, 44, 111);
+}
+
+.g {
+    background-color: rgb(153, 44, 111);
+}
+
+.h {
+    background-color: rgb(153, 44, 111);
+}
+
+.i {
+    background-color: rgb(153, 44, 111);
+}
