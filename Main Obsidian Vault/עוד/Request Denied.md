@@ -9,5 +9,3 @@
 	
 1. visual studio code extentions (code runner and C/C++ Extension Pack) + MinGW - Minimalist GNU for Windows + add to enviromaental veriables to path: C:\MinGW\bin
 	- In order to write c in visual studio code.
-	![[con2.png]]
-	![[con1.png]]
