@@ -3,17 +3,21 @@
 #include <stdio.h>
 
 #define N 4
+#define G 6
 
 typedef struct {
 	char name[30];
 	long id;
-	int grades[6];
+	int grades[G];
 	float avg;
 }Talmid, * TalmidPtr;
 
+float calcTalmidAvg(Talmid* talmid, int numOfGrades);
 float calcClassAvg(TalmidPtr parr, int size);
+float calcSchoolAvg(Talmid* (mat)[N], int rows, int cols, float* avgs);
+void findBestTalmidim(Talmid(*p)[30], int rows, int cols, Talmid** parr);
 
-void main() {
+void mainx() {
 	Talmid yossi;
 	TalmidPtr p = &yossi;
 
@@ -27,38 +31,58 @@ void main() {
 	printf("%.2f", calcClassAvg(talmidim, N));
 }
 
-float calcClassAvg(TalmidPtr parr, int size) {
-	int i, k;
-	float totalSum = 0;
+float calcTalmidAvg(Talmid* talmid, int numOfGrades) {
+	int i;
 
-	for (k = 0; k < size; k++)
+	for (i = 0, talmid->avg; i < numOfGrades; i++)
 	{
-		int sum = 0;
-		for (i = 0; i < 6; i++)
-		{
-			sum += *((parr + k)->grades + i);
-		}
-		(parr + k)->avg = (float)sum / 6;
-		totalSum += (parr + k)->avg;
+		talmid->avg += *(talmid->grades + i);
 	}
-	return totalSum / size;
+	talmid->avg /= numOfGrades;
+
+	return talmid->avg;
 }
 
-float calcAvgClass(Talmid* (mat)[N], int rows, int cols, float* avgs) {
-	int i, j = 0, sum = 0, count = 0;
+float calcClassAvg(TalmidPtr parr, int size) {
+	int i = 0, count = 0;;
+	float sum = 0;
 
-	for (i = 0; i < rows; i++)
-	{
+
+	while ((parr + i)->id != 0 && i < size) {
+		sum += calcTalmidAvg(parr + i, G);
+		i++;
 		count++;
-		sum += avgCalc(*(mat + i), cols);
 	}
 	return sum / count;
 }
 
-void func(Talmid(*p)[30], int rows, int cols, Talmid** parr) {
-	int i, max = -1;
+float calcSchoolAvg(Talmid* (mat)[N], int rows, int cols, float* avgs) {
+	int i, j = 0, sum = 0, count = 0;
+
 	for (i = 0; i < rows; i++)
 	{
-		// todo
+		*(avgs + i) = calcClassAvg(*(mat + i), cols);
+	}
+}
+
+void findBestTalmidim(Talmid(*p)[30], int rows, int cols, Talmid** parr) {
+	int i, j, max;
+	float avg = 0;
+	TalmidPtr tp = *p;
+
+	for (i = 0; i < rows; i++)
+	{
+		max = -1;
+		for (j = 0; j < cols; j++)
+		{
+			avg = calcTalmidAvg(*(p + i) + j, G);
+
+			if (avg > max) {
+				max = avg;
+				tp = *(p + i) + j;
+			}
+			
+		}
+		*(parr + i) = tp;
 	}
 }
