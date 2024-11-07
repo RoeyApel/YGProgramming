@@ -1,3 +1,2 @@
-﻿  Source.c
-C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise16\Exercise16\Source.c(69): warning C4716: 'func': must return a value
-  Exercise16.vcxproj -> C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise16\x64\Debug\Exercise16.exe
+﻿Source.obj : error LNK2019: unresolved external symbol avgCalc referenced in function calcAvgClass
+C:\Git\YGProgramming\C (Haim)\Exercise16\x64\Debug\Exercise16.exe : fatal error LNK1120: 1 unresolved externals

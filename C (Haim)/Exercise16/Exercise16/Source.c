@@ -11,9 +11,7 @@ typedef struct {
 	float avg;
 }Talmid, * TalmidPtr;
 
-float avgCalc(TalmidPtr parr, int size);
-float func(Talmid* (mat)[N], int rows, int cols, float* avgs);
-
+float calcClassAvg(TalmidPtr parr, int size);
 
 void main() {
 	Talmid yossi;
@@ -26,27 +24,16 @@ void main() {
 	 {"David", 1004, {70, 75, 80, 65, 72, 78}, 0.0}
 	};
 
-	printf("%.2f", avgCalc(talmidim, N));
-	/*gets(p->name);
-	scanf("%d", &p->id);
-
-	int i;
-	for (i = 0; i < 6; i++)
-	{
-		printf("Z%d: ", i + 1);
-		scanf("%d", p->grades + i);
-	}
-
-
-	printf("%.2f", p->avg);*/
+	printf("%.2f", calcClassAvg(talmidim, N));
 }
 
-float avgCalc(TalmidPtr parr, int size) {
-	int i, k, sum = 0;
+float calcClassAvg(TalmidPtr parr, int size) {
+	int i, k;
 	float totalSum = 0;
+
 	for (k = 0; k < size; k++)
 	{
-		sum = 0;
+		int sum = 0;
 		for (i = 0; i < 6; i++)
 		{
 			sum += *((parr + k)->grades + i);
