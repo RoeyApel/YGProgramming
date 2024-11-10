@@ -27,10 +27,10 @@
             "state": {
               "type": "image",
               "state": {
-                "file": "יג/עוד/לוח מבחנים.jpeg"
+                "file": "יג/עוד/מערכת שעות.png"
               },
               "icon": "lucide-image",
-              "title": "לוח מבחנים"
+              "title": "מערכת שעות"
             }
           }
         ],
@@ -106,7 +106,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "יג/עוד/לוח מבחנים.jpeg",
+                "file": "יג/עוד/מערכת שעות.png",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -116,7 +116,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for לוח מבחנים"
+              "title": "Backlinks for מערכת שעות"
             }
           },
           {
@@ -125,12 +125,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "יג/עוד/לוח מבחנים.jpeg",
+                "file": "יג/עוד/מערכת שעות.png",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from לוח מבחנים"
+              "title": "Outgoing links from מערכת שעות"
             }
           },
           {
@@ -152,10 +152,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "יג/עוד/לוח מבחנים.jpeg"
+                "file": "יג/עוד/מערכת שעות.png"
               },
               "icon": "lucide-list",
-              "title": "Outline of לוח מבחנים"
+              "title": "Outline of מערכת שעות"
             }
           }
         ]
@@ -177,8 +177,8 @@
   },
   "active": "5f3990a42623079b",
   "lastOpenFiles": [
-    "יג/Do To.md",
     "יג/עוד/לוח מבחנים.jpeg",
+    "יג/Do To.md",
     "יג/מקצועות/אתרים - Front End.md",
     "לוח מבחנים 1.jpeg",
     "לוח מבחנים.jpeg",
