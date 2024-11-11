@@ -1,4 +1,3 @@
-from turtledemo.paint import switchupdown
 
 import pygame
 from sys import exit

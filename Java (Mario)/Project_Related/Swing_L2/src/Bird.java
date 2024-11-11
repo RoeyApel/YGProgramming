@@ -30,7 +30,7 @@ public class Bird {
 
         y += velocity;
         y = Math.max(y, 0);
-
+ 
         acceleration = 0;
     }
 
