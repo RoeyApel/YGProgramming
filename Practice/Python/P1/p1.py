@@ -24,6 +24,11 @@ def getSortedNoD(lst):
     return list(sorted(set(lst)))
 
 
+l = ["h,yhh", "hhh", "hhgyh"]
+l.insert(2, "g")
+k = l[-2:]
+print(k.)
+
 l = ["you", "Tom", "hello"]
 with open("story.txt", "w+") as file:
     file.write(" ".join(l))
