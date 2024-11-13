@@ -1,0 +1,35 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container,
+.b,
+.a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  width: 90vw;
+  height: 90vh;
+}
+.a {
+  width: 90%;
+  height: 90%;
+  background-color: aquamarine;
+}
+.b {
+  width: 90%;
+  height: 90%;
+  background-color: rgba(127, 153, 255, 0.361);
+}
+.name {
+  color: aquamarine;
+  font-size: 4em;
+}

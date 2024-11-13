@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+  background-image: url(https://pic1.yitweb.co.il/picserver/mynet/crop_images/2021/11/03/H14mz1lvt/H14mz1lvt_0_0_640_360_0_large.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+option,
+input,
+select {
+  font-family: sans-serif;
+}
+.myform {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 10px 10px;
+  border: 2px solid;
+  border-radius: 5%;
+  padding: 20px;
+  gap: 10px;
+}
