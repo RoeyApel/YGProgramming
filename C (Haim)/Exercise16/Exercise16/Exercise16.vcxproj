@@ -127,7 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source.c" />
+    <ClCompile Include="Source1.c" />
     <ClCompile Include="Source2.c" />
     <ClCompile Include="Source3.c" />
     <ClCompile Include="Source4.c" />
