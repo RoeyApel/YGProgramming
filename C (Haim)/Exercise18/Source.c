@@ -8,7 +8,7 @@ void main() {
 	printf("len: ");
 	scanf("%d", &len);
 
-	int* arr = malloc(len * sizeof(int));
+	int* arr = (int*)malloc(len * sizeof(int));
 
 	int i;
 	for (i = 0; i < len; i++)
@@ -26,7 +26,7 @@ void main() {
 	printf("len: ");
 	scanf("%d", &newLen);
 
-	int* arr2 = malloc(newLen * sizeof(int));
+	int* arr2 = (int*)malloc(newLen * sizeof(int));
 
 	int lenc;
 	if (newLen <= len) {
@@ -40,6 +40,8 @@ void main() {
 	{
 		*(arr2 + i) = *(arr + i);
 	}
+
+	free(arr);
 
 	if (newLen > len) {
 		lenc = newLen - len;
