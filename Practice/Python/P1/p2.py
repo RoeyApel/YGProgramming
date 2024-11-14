@@ -1,8 +1,4 @@
-class Solution:
-    def lengthOfLastWord(self, s: str) -> int:
-        s = s.strip()
-        return len(s[s.rfind(" "):]) - 1
+import os
+from os.path import getsize
 
-
-s = Solution()
-s.lengthOfLastWord("  Hello World  ")
+print(os.path.getsize(filename="story.txt"))
