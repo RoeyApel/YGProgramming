@@ -4,13 +4,16 @@
     <link rel="stylesheet" href="styles.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MyWebsite</title>
+    <title>Netflix</title>
+    <link rel="icon" type="image/png" href="images/ic_n.png" />
   </head>
   <body>
     <div class="screen-container">
       <div class="top-container">
         <div class="logo-container">
-          <img class="logo" src="images/logo.png" alt="logo" />
+          <a href="https://www.netflix.com/browse" target="_blank">
+            <img class="logo" src="images/logo.png" alt="logo" />
+          </a>
         </div>
         <div class="nav-bar">
           <a href="" class="nav-item">Products</a>
@@ -48,10 +51,30 @@
         <div class="menu">
           <div class="menu-header">Categories</div>
           <div class="menu-items">
-            <a class="menu-item" href="">TV Shows</a>
-            <a class="menu-item" href="">New Shows</a>
-            <a class="menu-item" href="">Movies</a>
-            <a class="menu-item" href="">Popular</a>
+            <a
+              class="menu-item"
+              href="https://www.netflix.com/browse/genre/83"
+              target="_blank"
+              >TV Shows</a
+            >
+            <a
+              class="menu-item"
+              href="https://www.netflix.com/latest"
+              target="_blank"
+              >New Shows</a
+            >
+            <a
+              class="menu-item"
+              href="https://www.netflix.com/browse/genre/34399"
+              target="_blank"
+              >Movies</a
+            >
+            <a
+              class="menu-item"
+              href="https://www.netflix.com/latest"
+              target="_blank"
+              >Popular</a
+            >
           </div>
         </div>
         <div class="content">
@@ -86,22 +109,22 @@
         </div>
       </div>
       <div class="buttom-container">
-        <div class="link-item">
-          <img class="icon" src="images/ic_fb.svg" alt="" />
-          <a href="">Facebook</a>
-        </div>
-        <div class="link-item">
-          <img class="icon" src="images/1.svg" alt="" />
-          <a href="">Instagram</a>
-        </div>
-        <div class="link-item">
+        <a class="link-item" href="">
+          <img class="icon icon-fb" src="images/ic_fb.svg" alt="" />
+          Facebook
+        </a>
+        <a class="link-item" href="">
+          <img class="icon" src="images/ic_ig.svg" alt="" />
+          Instagram
+        </a>
+        <a class="link-item" href="">
           <img class="icon" src="images/ic_tw.svg" alt="" />
-          <a href="">Twitter</a>
-        </div>
-        <div class="link-item">
-          <img class="icon" src="images/2.svg" alt="" />
-          <a href="">Whatsapp</a>
-        </div>
+          Twitter
+        </a>
+        <a class="link-item" href="">
+          <img class="icon" src="images/ic_wa.svg" alt="" />
+          Whatsapp
+        </a>
       </div>
     </div>
   </body>
