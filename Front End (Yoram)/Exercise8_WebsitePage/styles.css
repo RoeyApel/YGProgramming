@@ -2,9 +2,9 @@
   box-sizing: border-box;
 }
 body {
+  background-image: url("images/background3.jpg");
   height: 100vh;
   margin: 0;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,12 +15,13 @@ body {
 .screen-container {
   width: 80vw;
   height: 90vh;
-  background-color: #141414;
+  background-color: #141414ee;
   color: #e5e5e5;
   /* background-color: #ffffff;
   color: #232323; */
   border: 2px solid;
-  border-radius: 1%;
+  border-radius: 10px;
+  transition: 200ms;
 }
 .top-container {
   height: 14vh;
@@ -32,7 +33,7 @@ body {
 }
 .logo {
   height: 80px;
-  margin: 24px 0 0 37px;
+  margin: 26px 0 0 37px;
 }
 .nav-bar {
   width: 60%;
@@ -75,6 +76,7 @@ body {
   align-items: center;
   gap: 5px;
   border: 1px solid #f7f7f7;
+  background-color: #1e1e1e;
 }
 .search-icon {
   margin: 4px;
