@@ -25,12 +25,14 @@
             "id": "5f3990a42623079b",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "יג/עוד/מערכת שעות.png"
+                "file": "יג/מקצועות/אתרים - Front End.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "מערכת שעות"
+              "icon": "lucide-file",
+              "title": "אתרים - Front End"
             }
           }
         ],
@@ -177,9 +179,9 @@
   },
   "active": "5f3990a42623079b",
   "lastOpenFiles": [
+    "יג/עוד/מערכת שעות.png",
     "יג/עוד/ASCIIE.png",
     "יג/עוד/ASCII.png",
-    "יג/עוד/מערכת שעות.png",
     "עוד/Request Denied.md",
     "יג/עוד/לוח מבחנים.jpeg",
     "יג/Do To.md",
