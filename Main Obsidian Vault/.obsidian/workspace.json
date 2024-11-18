@@ -27,10 +27,10 @@
             "state": {
               "type": "image",
               "state": {
-                "file": "יג/עוד/מערכת שעות.png"
+                "file": "יג/עוד/ASCII.png"
               },
               "icon": "lucide-image",
-              "title": "מערכת שעות"
+              "title": "ASCII"
             }
           }
         ],
@@ -179,10 +179,10 @@
   "lastOpenFiles": [
     "יג/עוד/ASCIIE.png",
     "יג/עוד/ASCII.png",
+    "יג/עוד/לוח מבחנים.jpeg",
     "יג/עוד/מערכת שעות.png",
     "יג/מקצועות/אתרים - Front End.md",
     "עוד/Request Denied.md",
-    "יג/עוד/לוח מבחנים.jpeg",
     "יג/Do To.md",
     "לוח מבחנים 1.jpeg",
     "לוח מבחנים.jpeg",
