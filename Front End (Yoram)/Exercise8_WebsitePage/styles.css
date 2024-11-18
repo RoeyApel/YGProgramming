@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 body {
-  background-image: url("images/background3.jpg");
+  background-image: url("images/backgrounds/background3.jpg");
   height: 100vh;
   margin: 0;
   display: flex;
