@@ -72,8 +72,7 @@ having max(salary) - min(salary) = (
 ;
 
 #12
-
-select D.department_name
+select D.department_name, department_id
 from employees E inner join departments D on E.department_id = D.department_id
 group by department_id 
 having max(salary) - min(salary) = (
@@ -85,6 +84,8 @@ having max(salary) - min(salary) = (
 		) as diff
 	)
 ;
+
+#13
 
 
 select * from employees;
