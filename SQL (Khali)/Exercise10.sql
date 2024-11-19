@@ -21,12 +21,72 @@ where salary =
 and last_name != "Kochhar";
 
 #4
--- שאילתא שתציג את כל העובדים שמרוויחים יותר ממנהלי
--- המכירות בחברה job_id=‘SA_MAN’ ומיינו לפי שכר
--- מגבוה לנמוך
+select *
+from employees
+where salary < 
+(select max(salary) from employees where job_id = "SA_MAN")
+order by salary desc;
 
-select E1.salary, E2.manager_id, E1.employee_id, E2.job_id
-from employees E1 inner join employees E2 on E1.employee_id = E2.manager_id
-where E2.job_id = "SA_MAN" 
-order by salary;
+#5
+select employee_id from employees E
+where (select city from departments D inner join locations L on L.location_id = D.location_id
+where department_id = E.department_id)
+like "T%";
 
+#6
+select city from locations 
+where postal_code = 
+(select max(postal_code) from locations);
+
+#7
+select job_title from jobs where min_salary = 
+(select min(min_salary) from jobs);
+
+#8
+select department_id  from employees
+group by department_id having avg(year(curdate()) - year(hire_date)) <
+(select avg(year(curdate()) - year(hire_date)) from employees);
+
+#9
+select employee_id from employees
+where employee_id not in(select distinct manager_id from employees where manager_id is not null)
+order by employee_id;
+
+#10
+select D.department_name, D.department_id 
+from employees E right join departments D on E.department_id = D.department_id
+where E.employee_id is null;
+
+#11
+select department_id 
+from employees 
+group by department_id 
+having max(salary) - min(salary) = (
+	select max(m)
+	from (
+		select max(salary) - min(salary) as m
+        from employees 
+        group by department_id
+		) as diff
+	)
+;
+
+#12
+
+select D.department_name
+from employees E inner join departments D on E.department_id = D.department_id
+group by department_id 
+having max(salary) - min(salary) = (
+	select max(m)
+	from (
+		select max(salary) - min(salary) as m
+        from employees 
+        group by department_id
+		) as diff
+	)
+;
+
+
+select * from employees;
+# select * from departments order by location_id;
+# select * from locations order by city;
