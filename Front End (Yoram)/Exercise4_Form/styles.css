@@ -1,66 +1,67 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    background: url(images/bg_image.jpg);
-    height: 100vh;
-    display: flex;
-    margin: 0;
-    align-items: center;
-    justify-content: end;
+  background: url(images/bg_image.jpg);
+  height: 100vh;
+  display: flex;
+  margin: 0;
+  align-items: center;
+  justify-content: end;
 }
 
 .container {
-    width: 50%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: Geneva, Tahoma, sans-serif;
-    color: #262626;
-    padding: 35px;
-    border: 3px solid ;
-    border-radius: 7%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Geneva, Tahoma, sans-serif;
+  color: #262626;
+  padding: 35px;
+  border: 3px solid;
+  border-radius: 7%;
 }
 
 legend {
-    font-size: 4em;
-    align-items: center;
-    margin-bottom: 40px;
+  font-size: 4em;
+  align-items: center;
+  margin-bottom: 40px;
 }
 
 .txt-field {
-    border: 0;
-    font-size: 1.1em;
+  border: 0;
+  font-size: 1.1em;
 }
 
 .submit {
-    width: auto;
-    padding: 0 25px;
-    margin: 15px 0;
-    border: .5px solid;
-    border-radius: 7%;
-    background-color: #ffffff;
-    font-family: 'Lucida Sans';
-    font-style: normal;
+  width: auto;
+  padding: 0 25px;
+  margin: 15px 0;
+  border: 0.5px solid;
+  border-radius: 3px;
+  background-color: #ffffff;
+  font-family: "Lucida Sans";
+  font-style: normal;
 }
 
 label {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular';
+  font-family: "Lucida Sans", "Lucida Sans Regular";
 }
 
 input {
-    width: 100%;
-    height: 30px;
-    margin-block: 10px;
-    border: 1px solid;
-    font-size: 17px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular';
+  width: 100%;
+  height: 30px;
+  margin-block: 10px;
+  border: 1px solid;
+  border-radius: 3px;
+  font-size: 17px;
+  font-family: "Lucida Sans", "Lucida Sans Regular";
 }
