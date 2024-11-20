@@ -27,10 +27,10 @@
             "state": {
               "type": "image",
               "state": {
-                "file": "יג/עוד/ASCII.png"
+                "file": "יג/עוד/מערכת שעות.png"
               },
               "icon": "lucide-image",
-              "title": "ASCII"
+              "title": "מערכת שעות"
             }
           }
         ],
@@ -177,10 +177,10 @@
   },
   "active": "5f3990a42623079b",
   "lastOpenFiles": [
-    "יג/עוד/ASCIIE.png",
-    "יג/עוד/ASCII.png",
-    "יג/עוד/לוח מבחנים.jpeg",
     "יג/עוד/מערכת שעות.png",
+    "יג/עוד/ASCII.png",
+    "יג/עוד/ASCIIE.png",
+    "יג/עוד/לוח מבחנים.jpeg",
     "יג/מקצועות/אתרים - Front End.md",
     "עוד/Request Denied.md",
     "יג/Do To.md",

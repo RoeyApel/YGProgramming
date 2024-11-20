@@ -160,11 +160,13 @@ body {
   float: right;
   margin: 0 0 3px 18px;
 }
+
 .show1-img:hover,
 .show2-img:hover {
   width: 220px;
   margin-right: 18px;
 }
+
 .buttom-container {
   height: 19vh;
   display: flex;
