@@ -1,60 +1,33 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <stdio.h>
-
-#define PLAYER '0'
-#define EMPTY '#'
-
-typedef struct {
-	char* board;
-	int row;
-	int col;
-	int playerX;
-	int playerY;
-} Game;
-
-void init(Game* game, int row, int col);
-void printBoard(Game game);
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include "Game.h"
 
 void main() {
 	Game game;
-	init(&game,3,5);
-	printBoard(game);
-}
+	init(&game, 4, 6);
 
-void init(Game* game, int row, int col) {
-	game->board = (char*)malloc(row * col * sizeof(char));
+	printBoard(&game);
 
-	if (!game->board) {
-		puts("error in alocation!");
-		exit(1);
+	char userInput;
+	printf("Type (w/a/s/d) to move or (e) to exit: ");
+	scanf("%c", &userInput);
+
+	while (userInput != 'e') {
+		direction direction = tolower(userInput);
+		step(&game, direction);
+
+		clearScreen();
+
+
+		printBoard(&game);
+
+		printf("Type (w/a/s/d) to move or (e) to exit: ");
+		scanf("%c", &userInput);
 	}
 
-	game->playerX = col / 2;
-	game->playerY = row / 2;
-	game->col = col;
-	game->row = row;
-
-	int i, j;
-	for (i = 0; i < row; i++)
-	{
-		for (j = 0; j < col; j++)
-		{
-			*(game->board + i * col + j) = '#';
-		}
-	}
-
-	*(game->board + game->playerX * col + game->playerY) = PLAYER;
-}
-
-void printBoard(Game game) {
-	int i, j;
-	for (i = 0; i < game.row; i++)
-	{
-		for (j = 0; j < game.col; j++)
-		{
-			printf("%c ", *(game.board + i * game.col + j));
-		}
-		printf("\n");
-	}
+	freeGame(&game);
 }

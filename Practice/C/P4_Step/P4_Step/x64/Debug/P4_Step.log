@@ -1,5 +1,4 @@
-﻿  Source.c
-C:\Users\Student\Documents\GitHub\YGProgramming\Practice\C\P4_Step\P4_Step\Source.c(26,23): warning C4013: 'malloc' undefined; assuming extern returning int
-C:\Users\Student\Documents\GitHub\YGProgramming\Practice\C\P4_Step\P4_Step\Source.c(26,55): warning C4312: 'type cast': conversion from 'int' to 'char *' of greater size
-C:\Users\Student\Documents\GitHub\YGProgramming\Practice\C\P4_Step\P4_Step\Source.c(30,3): warning C4013: 'exit' undefined; assuming extern returning int
-  P4_Step.vcxproj -> C:\Users\Student\Documents\GitHub\YGProgramming\Practice\C\P4_Step\x64\Debug\P4_Step.exe
+﻿  Game.c
+  Source.c
+  Generating Code...
+  P4_Step.vcxproj -> C:\Git\YGProgramming\Practice\C\P4_Step\x64\Debug\P4_Step.exe
