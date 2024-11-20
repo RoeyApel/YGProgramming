@@ -1,0 +1,4 @@
+﻿  Source.c
+C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise21\Exercise21\Source.c(9,2): warning C4013: 'gets' undefined; assuming extern returning int
+C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise21\Exercise21\Source.c(16,3): warning C4013: 'exit' undefined; assuming extern returning int
+  Exercise21.vcxproj -> C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise21\x64\Debug\Exercise21.exe
