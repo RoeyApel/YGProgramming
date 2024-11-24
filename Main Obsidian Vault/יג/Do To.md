@@ -31,8 +31,7 @@ Statistic and probability
 1. Do your homework.
 ---
 Time complexity
-1. Learn how to calculate time complexity of recursion.
-2. Learn everything related to the time complexity of these data types (Stack, Queue, LinkedList, ArrayList, HashMap, Trees, Graphs).
+1. Homework in classroom Zahava.
 ----
 Blind Typing
 1. Make as much progress as possible.
