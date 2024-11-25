@@ -20,21 +20,8 @@
               "icon": "lucide-file",
               "title": "Do To"
             }
-          },
-          {
-            "id": "5f3990a42623079b",
-            "type": "leaf",
-            "state": {
-              "type": "image",
-              "state": {
-                "file": "יג/עוד/מערכת שעות.png"
-              },
-              "icon": "lucide-image",
-              "title": "מערכת שעות"
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -175,16 +162,17 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "5f3990a42623079b",
+  "active": "4b6b022c0a25626b",
   "lastOpenFiles": [
-    "יג/עוד/מידע כללי.md",
-    "עוד/Request Denied.md",
-    "יג/Do To.md",
+    "יג/עוד/Dark theme for MySQL Workbench.md",
     "יג/עוד/מערכת שעות.png",
     "יג/עוד/ASCII.png",
-    "יג/עוד/ASCIIE.png",
-    "יג/עוד/לוח מבחנים.jpeg",
+    "יג/עוד/מידע כללי.md",
     "יג/מקצועות/אתרים - Front End.md",
+    "יג/עוד/ASCIIE.png",
+    "עוד/Request Denied.md",
+    "יג/עוד/לוח מבחנים.jpeg",
+    "יג/Do To.md",
     "לוח מבחנים 1.jpeg",
     "לוח מבחנים.jpeg",
     "יג/מקצועות/אסמבלר.md",
@@ -215,7 +203,6 @@
     "יג/כלי עזר ועוד.md",
     "יג/בסיסי נתונים - SQL.md",
     "יג/אתרים - Full Stuck.md",
-    "יג/אסמבלר.md",
     "Untitled.canvas",
     "יג",
     "Untitled 1.canvas",
