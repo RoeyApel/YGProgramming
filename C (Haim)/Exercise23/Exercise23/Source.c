@@ -7,18 +7,50 @@ int zerosInARow(unsigned int num);
 void printCZR(int* arr, int size);
 void putBitZ(int* arr, unsigned short num1, unsigned short num2);
 unsigned short flipBwise(unsigned short num);
+void toBArray(int* arr, unsigned short num);
+void flipyBity(short* num, int min, int max);
 
 void main() {
-	printf("%x", flipBwise(0x7d3c));
+	short num = 0x00af;
+	flipyBity(&num, 4, 15);
+	printf("%x", num);
 }
 
-unsigned short flipBwise(unsigned short num) { // Does not work!
+void flipyBity(short* num, int min, int max) {
+	short mask = 0x1;
+	mask <<= min;
+
+	int i;
+	for (i = 0; i < max - min; i++)
+	{
+		if ((*num & mask) == mask) {
+			*num &= ~mask;
+		}
+		else
+		{
+			*num |= mask;
+		}
+		mask <<= 1;
+	}
+}
+
+void toBArray(int* arr, unsigned short num) {
+	unsigned short mask = 0x1, i;
+
+	for (i = 0; i < sizeof(num) * 8; i++)
+	{
+		*(arr + i) = num & mask;
+		num >>= 1;
+	}
+}
+
+unsigned short flipBwise(unsigned short num) {
 	unsigned short i, fliped = 0, mask = 0x8000;
 
 	for (i = 0; i < sizeof(num) * 8; i++)
 	{
 		if (num & 1) {
-			fliped = fliped | mask;
+			fliped |= mask;
 		}
 		num >>= 1;
 		mask >>= 1;
