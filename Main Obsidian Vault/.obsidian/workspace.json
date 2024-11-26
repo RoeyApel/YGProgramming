@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "יג/Do To.md",
-                "mode": "source",
+                "file": "יג/עוד/Dark theme for MySQL Workbench.md",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Do To"
+              "title": "Dark theme for MySQL Workbench"
             }
           }
         ]
@@ -164,6 +164,7 @@
   },
   "active": "4b6b022c0a25626b",
   "lastOpenFiles": [
+    "יג/Do To.md",
     "יג/עוד/Dark theme for MySQL Workbench.md",
     "יג/עוד/מערכת שעות.png",
     "יג/עוד/ASCII.png",
@@ -172,7 +173,6 @@
     "יג/עוד/ASCIIE.png",
     "עוד/Request Denied.md",
     "יג/עוד/לוח מבחנים.jpeg",
-    "יג/Do To.md",
     "לוח מבחנים 1.jpeg",
     "לוח מבחנים.jpeg",
     "יג/מקצועות/אסמבלר.md",
