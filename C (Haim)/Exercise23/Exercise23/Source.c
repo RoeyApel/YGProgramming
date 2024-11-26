@@ -6,10 +6,24 @@ int countOns(unsigned int num);
 int zerosInARow(unsigned int num);
 void printCZR(int* arr, int size);
 void putBitZ(int* arr, unsigned short num1, unsigned short num2);
+unsigned short flipBwise(unsigned short num);
 
 void main() {
-	int output = zerosInARow(0xffff8e80);
-	printf("%d", output);
+	printf("%x", flipBwise(0x7d3c));
+}
+
+unsigned short flipBwise(unsigned short num) { // Does not work!
+	unsigned short i, fliped = 0, mask = 0x8000;
+
+	for (i = 0; i < sizeof(num) * 8; i++)
+	{
+		if (num & 1) {
+			fliped = fliped | mask;
+		}
+		num >>= 1;
+		mask >>= 1;
+	}
+	return fliped;
 }
 
 void putBitZ(int* arr, unsigned short num1, unsigned short num2) {
