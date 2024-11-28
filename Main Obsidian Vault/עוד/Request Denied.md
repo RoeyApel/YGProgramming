@@ -9,7 +9,7 @@
 	
 1. visual studio code extentions (code runner and C/C++ Extension Pack) + MinGW - Minimalist GNU for Windows + add to enviromaental veriables to path: C:\MinGW\bin 
 	```cpp
-set Path=C:\MinGW\bin;%PATH%
+Z:\myDown\MinGW\bin
 gcc -v
 ```
 	- In order to write c in visual studio code. 
