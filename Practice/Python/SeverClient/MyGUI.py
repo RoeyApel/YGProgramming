@@ -1,3 +1,4 @@
+import os
 import tkinter as tk
 from socket import socket
 
@@ -42,7 +43,3 @@ class MyGUI:
     def onClosing(self):
         self.mysocket.onClose()
 
-
-file = open("Total_Fail2.txt", "w")
-file.write("kill me")
-file.close()
