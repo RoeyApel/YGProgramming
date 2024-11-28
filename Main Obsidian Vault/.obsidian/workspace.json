@@ -11,12 +11,14 @@
             "id": "4b6b022c0a25626b",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "יג/עוד/מערכת שעות.png"
+                "file": "עוד/Request Denied.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "מערכת שעות"
+              "icon": "lucide-file",
+              "title": "Request Denied"
             }
           }
         ]
@@ -162,9 +164,9 @@
   },
   "active": "4b6b022c0a25626b",
   "lastOpenFiles": [
+    "יג/עוד/מערכת שעות.png",
     "יג/Do To.md",
     "יג/עוד/Dark theme for MySQL Workbench.md",
-    "יג/עוד/מערכת שעות.png",
     "יג/עוד/ASCII.png",
     "יג/עוד/מידע כללי.md",
     "יג/מקצועות/אתרים - Front End.md",

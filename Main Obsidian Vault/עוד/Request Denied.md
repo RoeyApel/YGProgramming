@@ -7,5 +7,9 @@
 4. visual studio code extention (live server)
 	- For front development
 	
-1. visual studio code extentions (code runner and C/C++ Extension Pack) + MinGW - Minimalist GNU for Windows + add to enviromaental veriables to path: C:\MinGW\bin
-	- In order to write c in visual studio code.
+1. visual studio code extentions (code runner and C/C++ Extension Pack) + MinGW - Minimalist GNU for Windows + add to enviromaental veriables to path: C:\MinGW\bin 
+	```cpp
+set Path=C:\MinGW\bin;%PATH%
+gcc -v
+```
+	- In order to write c in visual studio code. 
