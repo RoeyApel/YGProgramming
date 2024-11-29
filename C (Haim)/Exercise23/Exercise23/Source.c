@@ -10,20 +10,7 @@ unsigned short flipBwise(unsigned short num);
 void toBArray(int* arr, unsigned short num);
 void flipyBity(short* num, int min, int max);
 
-typedef struct {
-	int y;
-	char v;
-} dd;
-
 void main() {
-	char carr[3][7] = { "eti","yuval","tzipi" };
-	printf("%c\n",(carr[2]));
-	int arr[3] = { 1,2,3 };
-	int* p = arr;
-	dd d = { 4,'f' };
-	dd* pd = &d;
-	printf("%d\n", (*p++));
-	printf("%d\n", sizeof(&d));
 }
 
 void flipyBity(short* num, int min, int max) {
