@@ -1,5 +1,6 @@
 #include <stdio.h>
+#include "fgfd.h"
 
 int main(){
-    printf("test\n\nfhgh");
+    printf("%d",sum(2,3));
 }
