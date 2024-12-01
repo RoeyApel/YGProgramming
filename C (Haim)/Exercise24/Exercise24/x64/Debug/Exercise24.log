@@ -1,2 +1,3 @@
 ﻿  Source.c
+C:\Git\YGProgramming\C (Haim)\Exercise24\Exercise24\Source.c(15,9): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'double'
   Exercise24.vcxproj -> C:\Git\YGProgramming\C (Haim)\Exercise24\x64\Debug\Exercise24.exe

@@ -12,7 +12,7 @@ void main() {
 
 	//printf("%d", recGCF(30, 12));
 
-	printf("%d",fib(6));
+	printf("%d",10.5);
 }
 
 int fib(int n) {
