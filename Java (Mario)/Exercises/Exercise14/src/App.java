@@ -1,24 +1,17 @@
-
-class Flag {
-    public static int f;
-
-    public Flag() {
-        f = 0;
-    }
-}
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class App {
-    public static Flag flag = new Flag();
+    public static AtomicInteger flag = new AtomicInteger(0);
 
     public static void main(String[] args) throws Exception {
-        Thread bThread = new BackgroundThead();
-        bThread.start();
-        int count = 6;
+        Thread thread = new Thread(new Run());
+        thread.start();
 
+        int count = 6;
         while (count != 0) {
-            if (flag.f == 0) {
+            if (flag.get() == 0) {
                 System.out.println("main Thread");
-                flag.f = 1;
+                flag.set(1);
                 count--;
             } else {
                 Thread.yield();
@@ -26,18 +19,22 @@ public class App {
         }
     }
 
-    static class BackgroundThead extends Thread {
+    static class Run implements Runnable {
+        @Override
         public void run() {
             int count = 6;
+
             while (count != 0) {
-                if (flag.f == 1) {
+
+                if (flag.get() == 1) {
                     System.out.println("bg Thread");
-                    flag.f = 0;
+                    flag.set(0);
                     count--;
                 } else {
                     Thread.yield();
                 }
             }
         }
+
     }
 }
