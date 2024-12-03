@@ -1,4 +1,6 @@
-public abstract class Book {
+import java.util.Arrays;
+
+public abstract class Book implements Readable {
     private String name;
     private int maxPages;
 
@@ -13,6 +15,15 @@ public abstract class Book {
     }
 
     public static void sort(Book[] books) {
-
+        Arrays.sort(books, (b1, b2) -> b1.name.compareTo(b2.name));
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getMaxPages() {
+        return maxPages;
+    }
+
 }

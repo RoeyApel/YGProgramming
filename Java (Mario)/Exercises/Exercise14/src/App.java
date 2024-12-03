@@ -9,9 +9,8 @@ public class App {
 
         int count = 6;
         while (count != 0) {
-            if (flag.get() == 0) {
+            if (flag.compareAndSet(0, 1)) {
                 System.out.println("main Thread");
-                flag.set(1);
                 count--;
             } else {
                 Thread.yield();
@@ -26,9 +25,8 @@ public class App {
 
             while (count != 0) {
 
-                if (flag.get() == 1) {
+                if (flag.compareAndSet(1, 0)) {
                     System.out.println("bg Thread");
-                    flag.set(0);
                     count--;
                 } else {
                     Thread.yield();

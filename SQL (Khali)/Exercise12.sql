@@ -32,5 +32,27 @@ where p1.CategoryID = CategoryID
 group by CategoryID);
 
 #4
+select distinct EmployeeID
+from orders O1
+group by EmployeeID
+having 
+count(EmployeeID) <
+(select count(EmployeeID) from orders O2 where O2.EmployeeID != O1.EmployeeID) / 8;
 
 #5
+select Country ,count(CustomerID) 
+from customers C1
+group by Country
+having count(CustomerID) >
+(select count(CustomerID) from customers where C1.Country != Country) * 0.1;
+
+#6
+select ProductName, UnitPrice
+from products P
+where UnitPrice >=
+(select sum(UnitPrice) from products where P.CategoryID = CategoryID group by CategoryID) * 2;
+
+
+
+
+
