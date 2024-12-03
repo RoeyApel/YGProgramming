@@ -1,9 +1,57 @@
 const content = document.getElementById("content");
-document.getElementById("start-btn").addEventListener("click", startTest);
+
+let letters = [];
+let endLetterElemet = document.createElement("span");
+endLetterElemet.textContent = "Sof";
+let currentLetter = 0;
 
 function startTest() {
+  currentLetter = 0;
+  letters.splice(0);
   clearText();
-  generateText(55);
+  generateText(30);
+  // createCaret();
+}
+function createCaret() {
+  const caret = document.createElement("div");
+  caret.setAttribute("id", "caret");
+  caret.setAttribute("class", "caret");
+  content.appendChild(caret);
+}
+window.addEventListener("load", (event) => {
+  startTest();
+});
+document.addEventListener("keydown", function (event) {
+  if (event.key == "Enter") {
+    startTest();
+  } else if (event.key == "Backspace") {
+    currentLetter = Math.max(0, currentLetter - 1);
+    letters[currentLetter].style.color = "#646669";
+  } else if (event.key == " ") {
+    if (letters[currentLetter].textContent == "Sof") {
+      currentLetter++;
+    }
+  } else if (isLetter(event.key)) {
+    handleLetterTyped(event.key);
+  }
+  console.log(
+    `Current Index: ${currentLetter}\nKey Pressed: ${event.key}\nCurrent Letter: ${letters[currentLetter].textContent}`
+  );
+});
+
+function handleLetterTyped(key) {
+  let letterElement = letters[currentLetter];
+  if (letterElement.textContent == key) {
+    letterElement.style.color = "#ffffff";
+    currentLetter++;
+  } else {
+    letterElement.style.color = "#ca4754";
+    currentLetter++;
+  }
+}
+
+function isLetter(str) {
+  return str.length === 1 && str.match(/[a-z]/i);
 }
 
 function clearText() {
@@ -28,8 +76,11 @@ function generateWord(word) {
     letterElement.setAttribute("id", "letter");
     letterElement.setAttribute("class", "letter");
     letterElement.textContent = letter;
+    letters.push(letterElement);
     wordElement.appendChild(letterElement);
   }
+
+  letters.push(endLetterElemet);
 
   return wordElement;
 }

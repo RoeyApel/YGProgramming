@@ -4,7 +4,8 @@
 body {
   height: 100vh;
   margin: 0;
-  font-family: "Roboto Monso", "Roboto Mono", Vazirmatn, monospace;
+  background-color: #323437;
+  font-family: Vazirmatn, monospace, "Roboto Mono";
 }
 .nav-cont {
   height: 20%;
@@ -15,26 +16,36 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2em;
+  gap: 3em;
 }
 .content {
-  flex-basis: auto;
-  margin: 0 5em 0;
+  flex-basis: content;
   display: flex;
   flex-wrap: wrap;
+  margin: 0 3.5em 0;
+  font-size: 3rem;
+  position: relative;
 }
 .word {
-  font-size: 2rem;
-  margin-right: 0.5em;
+  margin: 0.2em 0.3em 0;
 }
-.startBtn {
+.letter {
+  color: #646669;
+}
+.caret {
+  position: absolute;
+  width: 3px;
+  height: 1em;
+  top: 15px;
+  left: 12px;
+  background-color: black;
 }
 .buttom-cont {
   height: 20%;
 }
-.buttom-cont,
+/* .buttom-cont,
 .content-cont,
 .nav-cont,
 .content {
   border: 2px solid;
-}
+} */
