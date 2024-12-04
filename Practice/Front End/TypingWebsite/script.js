@@ -65,7 +65,7 @@ function onType(key) {
 
   if (key == " " && letters[letterCount].textContent == "\0") {
     updateCaret(1);
-    letters[letterCount].style.color = "#ffffff";
+    letters[letterCount].style.color = "#dddddd";
     letterCount++;
     wordCount++;
     return;
@@ -76,7 +76,7 @@ function onType(key) {
   }
 
   if (key == letters[letterCount].textContent) {
-    letters[letterCount].style.color = "#ffffff";
+    letters[letterCount].style.color = "#dddddd";
   } else {
     letters[letterCount].style.color = "#ca4754";
   }
