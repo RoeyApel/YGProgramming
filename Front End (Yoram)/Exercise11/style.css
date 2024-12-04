@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+}
+.item1 {
+  background-color: #15dbc9;
+}
+.item2 {
+  background-color: #db1515;
+}
+.item1,
+.item2 {
+  width: 100px;
+  height: 100px;
+  border: 3px solid black;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font: 3em sans-serif;
+}

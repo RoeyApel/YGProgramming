@@ -2,6 +2,8 @@
   box-sizing: border-box;
 }
 body {
+  background-image: url(images/background2.jpg);
+  background-size: 100% 100%;
   margin: 0;
   height: 100vh;
   display: flex;
@@ -14,8 +16,10 @@ body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 4rem;
+  color: rgb(0, 0, 0);
 }
 .imagesWarpper {
+  background-color: rgba(51, 51, 51, 0.438);
   width: 80%;
   height: 80%;
   padding: 1.2em 0;
@@ -24,14 +28,19 @@ body {
   align-items: center;
   justify-content: space-evenly;
   row-gap: 1em;
-  overflow: scroll;
+  overflow: auto;
   scrollbar-width: none;
+  border: 2px solid;
+  border-radius: 3px;
 }
 .image {
   width: 23%;
   height: 32%;
+  border: 2px solid;
+  border-radius: 3px;
 }
 .imagesWarpper,
 .image {
   border: 2px solid;
+  border-radius: 3px;
 }

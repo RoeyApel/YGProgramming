@@ -11,14 +11,12 @@
             "id": "4b6b022c0a25626b",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "יג/עוד/Dark theme for MySQL Workbench.md",
-                "mode": "preview",
-                "source": false
+                "file": "יג/עוד/מערכת שעות.png"
               },
-              "icon": "lucide-file",
-              "title": "Dark theme for MySQL Workbench"
+              "icon": "lucide-image",
+              "title": "מערכת שעות"
             }
           }
         ]
@@ -164,6 +162,7 @@
   },
   "active": "4b6b022c0a25626b",
   "lastOpenFiles": [
+    "יג/עוד/Dark theme for MySQL Workbench.md",
     "יג/עוד/מערכת שעות.png",
     "עוד/Request Denied.md",
     "יג/מקצועות/שפת python.md",
@@ -177,7 +176,6 @@
     "יג/עוד/ASCII.png",
     "יג/עוד/לוח מבחנים.jpeg",
     "יג/Do To.md",
-    "יג/עוד/Dark theme for MySQL Workbench.md",
     "יג/עוד/ASCIIE.png",
     "לוח מבחנים 1.jpeg",
     "לוח מבחנים.jpeg",
