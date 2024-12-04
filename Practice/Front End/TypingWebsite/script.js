@@ -1,22 +1,26 @@
 const content = document.getElementById("content");
-
+const caretElement = document.createElement("div");
 let letters = [];
 let endLetterElemet = document.createElement("span");
-endLetterElemet.textContent = "Sof";
-let currentLetter = 0;
+endLetterElemet.textContent = "Space";
+let letterCount = 0;
+let wordCount = 0;
 
 function startTest() {
-  currentLetter = 0;
+  reset();
+  generateText(30);
+  createCaret();
+}
+function reset() {
+  wordCount = 0;
+  letterCount = 0;
   letters.splice(0);
   clearText();
-  generateText(30);
-  // createCaret();
 }
 function createCaret() {
-  const caret = document.createElement("div");
-  caret.setAttribute("id", "caret");
-  caret.setAttribute("class", "caret");
-  content.appendChild(caret);
+  caretElement.setAttribute("id", "caret");
+  caretElement.setAttribute("class", "caret");
+  content.appendChild(caretElement);
 }
 window.addEventListener("load", (event) => {
   startTest();
@@ -24,29 +28,38 @@ window.addEventListener("load", (event) => {
 document.addEventListener("keydown", function (event) {
   if (event.key == "Enter") {
     startTest();
-  } else if (event.key == "Backspace") {
-    currentLetter = Math.max(0, currentLetter - 1);
-    letters[currentLetter].style.color = "#646669";
+    return;
+  }
+  if (event.key == "Backspace") {
+    letterCount = Math.max(0, letterCount - 1);
+    letters[letterCount].style.color = "#646669";
   } else if (event.key == " ") {
-    if (letters[currentLetter].textContent == "Sof") {
-      currentLetter++;
+    if (letters[letterCount].textContent == "Space") {
+      letterCount++;
     }
   } else if (isLetter(event.key)) {
     handleLetterTyped(event.key);
   }
+  moveCaret(25);
   console.log(
-    `Current Index: ${currentLetter}\nKey Pressed: ${event.key}\nCurrent Letter: ${letters[currentLetter].textContent}`
+    `Current Index: ${letterCount}\nKey Pressed: ${event.key}\nCurrent Letter: ${letters[letterCount].textContent}`
   );
 });
 
+function moveCarpet(size) {
+  let currentLeft = parseInt(window.getComputedStyle(caretElement).left, 10);
+
+  element.style.left = currentLeft + size + "px";
+}
+
 function handleLetterTyped(key) {
-  let letterElement = letters[currentLetter];
+  let letterElement = letters[letterCount];
   if (letterElement.textContent == key) {
     letterElement.style.color = "#ffffff";
-    currentLetter++;
+    letterCount++;
   } else {
     letterElement.style.color = "#ca4754";
-    currentLetter++;
+    letterCount++;
   }
 }
 
