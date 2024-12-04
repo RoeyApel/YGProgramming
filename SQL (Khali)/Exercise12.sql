@@ -36,8 +36,8 @@ select distinct EmployeeID
 from orders O1
 group by EmployeeID
 having 
-count(EmployeeID) <
-(select count(EmployeeID) from orders O2 where O2.EmployeeID != O1.EmployeeID) / 8;
+count(distinct CustomerID) <
+(select count(distinct CustomerID) from orders O2 where O2.EmployeeID != O1.EmployeeID) / 8;
 
 #5
 select Country ,count(CustomerID) 
