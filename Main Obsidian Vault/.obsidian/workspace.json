@@ -4,19 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "c4de97dcf250261e",
+        "id": "5728a166e1e2da91",
         "type": "tabs",
         "children": [
           {
-            "id": "4b6b022c0a25626b",
+            "id": "256426ecd64976d6",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "יג/עוד/מערכת שעות.png"
+                "file": "Time Zones.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "מערכת שעות"
+              "icon": "lucide-file",
+              "title": "Time Zones"
             }
           }
         ]
@@ -160,22 +162,24 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "4b6b022c0a25626b",
+  "active": "256426ecd64976d6",
   "lastOpenFiles": [
-    "יג/עוד/Dark theme for MySQL Workbench.md",
-    "יג/עוד/מערכת שעות.png",
     "עוד/Request Denied.md",
-    "יג/מקצועות/שפת python.md",
-    "יג/מקצועות/שפת C.md",
-    "יג/מקצועות/סיבוכיות זמן ריצה ויעילות.md",
+    "יג/עוד/מידע כללי.md",
+    "יג/עוד/לוח מבחנים.jpeg",
+    "יג/מקצועות/אסמבלר.md",
     "יג/מקצועות/סטטיסטיקה והסתברות.md",
+    "יג/מקצועות/שפת C.md",
+    "יג/To Do.md",
+    "יג/מקצועות/שפת python.md",
+    "יג/מקצועות/סיבוכיות זמן ריצה ויעילות.md",
     "יג/מקצועות/בסיסי נתונים - SQL.md",
     "יג/מקצועות/אתרים - Front End.md",
-    "יג/מקצועות/אסמבלר.md",
-    "יג/עוד/מידע כללי.md",
+    "יג/עוד/הגדרות של פונט לEMU8086.png",
+    "יג/עוד/מערכת שעות.png",
     "יג/עוד/ASCII.png",
-    "יג/עוד/לוח מבחנים.jpeg",
-    "יג/Do To.md",
+    "יג/עוד/EMU8086 - file template.md",
+    "יג/עוד/Dark theme for MySQL Workbench.md",
     "יג/עוד/ASCIIE.png",
     "לוח מבחנים 1.jpeg",
     "לוח מבחנים.jpeg",
@@ -185,10 +189,8 @@
     "עוד/con2.png",
     "עוד",
     "יג/מקצועות/אתרים - Full Stack.md",
-    "יג/עוד/EMU8086 - file template.md",
     "Time Zones.md",
     "Untitled",
-    "יג/עוד/הגדרות של פונט לEMU8086.png",
     "צילום מסך 2024-09-28 103506 1.png",
     "רשימת משימות.md",
     "יג/מקצועות",
