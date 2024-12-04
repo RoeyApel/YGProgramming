@@ -22,26 +22,47 @@ body {
   flex-basis: content;
   display: flex;
   flex-wrap: wrap;
+  justify-content: start;
   margin: 0 3.5em 0;
   font-size: 3rem;
-  position: relative;
 }
 .word {
   margin: 0.2em 0 0 0;
   outline: 2px solid #323437;
 }
 .letter {
+  position: relative;
   color: #646669;
 }
 .caret {
   position: absolute;
-  width: 3px;
+  width: 4px;
   height: 56px;
-  top: 10px;
-  background-color: black;
+  left: 0;
+  top: 0;
+  background-color: #ddc828;
+  border-radius: 4px;
+  animation: caretAnimate 600ms ease-in-out infinite alternate;
+}
+@keyframes caretAnimate {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 .buttom-cont {
   height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.info {
+  font-size: 1.7rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #0000009f;
+  font-weight: 350;
 }
 /* .buttom-cont,
 .content-cont,

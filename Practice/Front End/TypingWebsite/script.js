@@ -1,75 +1,116 @@
 const content = document.getElementById("content");
 const caretElement = document.createElement("div");
 let letters = [];
-let letterCount = 0;
+let words = [];
 let wordCount = 0;
-let CARET_STEP = 26.39;
+let letterCount = 0;
+let numOfWord = 24;
 
 function start() {
   reset();
-  generateText(30);
+  generateText(numOfWord);
   createCaret();
 }
-function reset() {
-  caretElement.style.left = 0 + "px";
-  wordCount = 0;
-  letterCount = 0;
-  letters.splice(0);
-  clearText();
-}
-function createCaret() {
-  caretElement.setAttribute("id", "caret");
-  caretElement.setAttribute("class", "caret");
-  content.appendChild(caretElement);
-}
+
 window.addEventListener("load", (event) => {
   start();
 });
+
+function reset() {
+  wordCount = 0;
+  letterCount = 0;
+  letters.splice(0);
+  words.splice(0);
+  clearText();
+}
+
+function createCaret() {
+  caretElement.setAttribute("id", "caret");
+  caretElement.setAttribute("class", "caret");
+  letters[letterCount].appendChild(caretElement);
+  caretElement.style.animation =
+    "caretAnimate 600ms ease-in-out infinite alternate";
+}
+
 document.addEventListener("keydown", function (event) {
+  caretElement.style.animation = "none";
   let key = event.key;
-  let letterElement = letters[letterCount];
 
   if (key == "Enter") {
     start();
-    return;
+  } else if (key == "Backspace") {
+    onDelete();
+  } else if (isLetter(key) || key == " ") {
+    onType(key);
   }
-  if (key == "Backspace") {
-    if (letterCount > 0) {
-      letterCount--;
-      letterElement = letters[letterCount];
-      letterElement.style.color = "#646669";
-      moveCaret(CARET_STEP * -1);
-    }
-    return;
-  }
-  if (key == " " && letterElement.textContent == "\0") {
-    moveCaret(CARET_STEP);
-    letterCount++;
-  }
-  if (isLetter(key)) {
-    moveCaret(CARET_STEP);
-    handleLetterTyped(key);
-  }
-  moveCaret(CARET_STEP * caretDir);
+
   console.log(
-    `Current Index: ${letterCount}\nKey Pressed: ${key}\nCurrent Letter: ${letterElement.textContent}`
+    `Current Index: ${letterCount}\nKey Pressed: ${key}\nCurrent Letter: ${letters[letterCount].textContent}\nWordCount: ${wordCount}`
   );
 });
 
-function moveCaret(size) {
-  let currentLeft = parseFloat(window.getComputedStyle(caretElement).left, 10);
-
-  caretElement.style.left = currentLeft + size + "px";
+function isEqual(key, letter) {
+  if (key == letters[letterCount].textContent) {
+    return true;
+  }
+  if (key == " " && letters[letterCount].textContent == "\0") {
+    return true;
+  }
 }
 
-function handleLetterTyped(key) {
-  let letterElement = letters[letterCount];
-  if (letterElement.textContent == key) {
-    letterElement.style.color = "#ffffff";
+function onType(key) {
+  if (letterCount == letters.length - 1) {
+    return;
+  }
+
+  if (key == " " && letters[letterCount].textContent == "\0") {
+    updateCaret(1);
+    letters[letterCount].style.color = "#ffffff";
     letterCount++;
+    wordCount++;
+    return;
+  }
+  if (key != " " && letters[letterCount].textContent == "\0") {
+    // addExtraInorrectLetter(key);
+    return;
+  }
+
+  if (key == letters[letterCount].textContent) {
+    letters[letterCount].style.color = "#ffffff";
   } else {
-    letterElement.style.color = "#ca4754";
-    letterCount++;
+    letters[letterCount].style.color = "#ca4754";
+  }
+
+  updateCaret(1);
+  letterCount++;
+}
+
+function addExtraInorrectLetter(letter) {
+  let spaceElement = words[wordCount].lastElementChild;
+  words[wordCount].removeChild(spaceElement);
+
+  const letterElement = createLetter(letter, "letter extra-letter");
+  words[wordCount].appendChild(letterElement);
+
+  spaceElement = createLetter("\0", "letter space");
+  letters.push(spaceElement);
+  wordElement.appendChild(spaceElement);
+}
+
+function onDelete() {
+  if (letters[letterCount - 1].textContent == "\0") {
+    wordCount--;
+  }
+  updateCaret(-1);
+  letterCount = Math.max(0, letterCount - 1);
+  letters[letterCount].style.color = "#646669";
+}
+
+function updateCaret(direction) {
+  if (direction == 1) {
+    letters[letterCount + 1].appendChild(caretElement);
+  } else if (direction == -1 && letterCount > 0) {
+    letters[letterCount - 1].appendChild(caretElement);
   }
 }
 
@@ -83,8 +124,9 @@ function clearText() {
 
 function generateText(numOfWords) {
   for (let i = 0; i < numOfWords; i++) {
-    wordElement = generateWord(fetchRandomWord());
+    const wordElement = generateWord(fetchRandomWord());
     console.log(wordElement);
+    words.push(wordElement);
     content.appendChild(wordElement);
   }
 }
@@ -95,20 +137,22 @@ function generateWord(word) {
   wordElement.setAttribute("class", "word");
 
   for (let letter of word) {
-    const letterElement = document.createElement("span");
-    letterElement.setAttribute("id", "letter");
-    letterElement.setAttribute("class", "letter");
-    letterElement.textContent = letter;
+    const letterElement = createLetter(letter, "letter");
     letters.push(letterElement);
     wordElement.appendChild(letterElement);
   }
-  const letterElementEnd = document.createElement("span");
-  letterElementEnd.setAttribute("id", "letter");
-  letterElementEnd.setAttribute("class", "letter");
-  letterElementEnd.textContent = "\0";
+  const letterElementEnd = createLetter("\0", "letter space");
   letters.push(letterElementEnd);
   wordElement.appendChild(letterElementEnd);
+
   return wordElement;
+}
+function createLetter(letter, name) {
+  const letterElement = document.createElement("span");
+  letterElement.setAttribute("id", name);
+  letterElement.setAttribute("class", name);
+  letterElement.textContent = letter;
+  return letterElement;
 }
 
 function fetchRandomWord() {
