@@ -71,7 +71,6 @@ function onType(key) {
     return;
   }
   if (key != " " && letters[letterCount].textContent == "\0") {
-    // addExtraInorrectLetter(key);
     return;
   }
 
@@ -83,18 +82,6 @@ function onType(key) {
 
   updateCaret(1);
   letterCount++;
-}
-
-function addExtraInorrectLetter(letter) {
-  let spaceElement = words[wordCount].lastElementChild;
-  words[wordCount].removeChild(spaceElement);
-
-  const letterElement = createLetter(letter, "letter extra-letter");
-  words[wordCount].appendChild(letterElement);
-
-  spaceElement = createLetter("\0", "letter space");
-  letters.push(spaceElement);
-  wordElement.appendChild(spaceElement);
 }
 
 function onDelete() {
