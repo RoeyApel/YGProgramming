@@ -5,6 +5,8 @@ let words = [];
 let wordCount = 0;
 let letterCount = 0;
 let numOfWord = 24;
+let correctLettersTyped = 0;
+let incorrectLettersTyped = 0;
 
 function start() {
   reset();
@@ -36,6 +38,11 @@ document.addEventListener("keydown", function (event) {
   caretElement.style.animation = "none";
   let key = event.key;
 
+  if (key == "Control") {
+    window.location.href = "/results.html";
+    console.log(key);
+    return;
+  }
   if (key == "Enter") {
     start();
   } else if (key == "Backspace") {
@@ -49,15 +56,6 @@ document.addEventListener("keydown", function (event) {
   );
 });
 
-function isEqual(key, letter) {
-  if (key == letters[letterCount].textContent) {
-    return true;
-  }
-  if (key == " " && letters[letterCount].textContent == "\0") {
-    return true;
-  }
-}
-
 function onType(key) {
   if (letterCount == letters.length - 1) {
     return;
@@ -68,16 +66,20 @@ function onType(key) {
     letters[letterCount].style.color = "#dddddd";
     letterCount++;
     wordCount++;
+    correctLettersTyped++;
     return;
   }
   if (key != " " && letters[letterCount].textContent == "\0") {
+    incorrectLettersTyped++;
     return;
   }
 
   if (key == letters[letterCount].textContent) {
     letters[letterCount].style.color = "#dddddd";
+    correctLettersTyped++;
   } else {
     letters[letterCount].style.color = "#ca4754";
+    incorrectLettersTyped++;
   }
 
   updateCaret(1);
@@ -91,6 +93,10 @@ function onDelete() {
   updateCaret(-1);
   letterCount = Math.max(0, letterCount - 1);
   letters[letterCount].style.color = "#646669";
+}
+
+function calcAccuracyPercentage(correctLetters, incorrectLetters) {
+  return (correctLetters / (correctLetters + incorrectLetters)) * 100;
 }
 
 function updateCaret(direction) {
@@ -111,14 +117,14 @@ function clearText() {
 
 function generateText(numOfWords) {
   for (let i = 0; i < numOfWords; i++) {
-    const wordElement = generateWord(fetchRandomWord());
+    const wordElement = createWord(fetchRandomWord());
     console.log(wordElement);
     words.push(wordElement);
     content.appendChild(wordElement);
   }
 }
 
-function generateWord(word) {
+function createWord(word) {
   const wordElement = document.createElement("span");
   wordElement.setAttribute("id", "word");
   wordElement.setAttribute("class", "word");
