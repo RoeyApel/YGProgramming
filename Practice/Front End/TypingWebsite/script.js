@@ -1,24 +1,74 @@
+class Statistics {
+  constructor() {
+    this.correctLettersTyped = 0;
+    this.incorrectLettersTyped = 0;
+    this.secondsTyping = 0;
+    this.accuracy = 0;
+    this.wpm = 0;
+  }
+
+  reset() {
+    this.correctLettersTyped = 0;
+    this.incorrectLettersTyped = 0;
+    this.secondsTyping = 0;
+    this.accuracy = 0;
+    this.wpm = 0;
+  }
+
+  update() {
+    this.wpm = this.calcWPM();
+    this.accuracy = this.calcAccuracyPercentage();
+  }
+
+  calcAccuracyPercentage() {
+    const totalLetters = this.correctLettersTyped + this.incorrectLettersTyped;
+    if (totalLetters === 0) {
+      return 0;
+    }
+    return (this.correctLettersTyped / totalLetters) * 100;
+  }
+
+  calcWPM() {
+    const wordsTyped = this.correctLettersTyped / 5;
+    const minutesTyping = this.secondsTyping / 60;
+    if (minutesTyping === 0) {
+      return 0;
+    }
+    return wordsTyped / minutesTyping;
+  }
+}
+
+export const statistics = new Statistics();
+
 const content = document.getElementById("content");
 const caretElement = document.createElement("div");
+const wordCounterElement = document.getElementById("wordCounter");
+const infoElement = document.getElementById("info");
+
+const numOfWord = 7;
+const intervalMilies = 100;
 let letters = [];
 let words = [];
 let wordCount = 0;
 let letterCount = 0;
-let numOfWord = 24;
-let correctLettersTyped = 0;
-let incorrectLettersTyped = 0;
+let running = false;
+let timerId;
 
-function start() {
+function create() {
   reset();
   generateText(numOfWord);
   createCaret();
 }
 
 window.addEventListener("load", (event) => {
-  start();
+  if (window.location.pathname == "/index.html") {
+    create();
+  }
 });
 
 function reset() {
+  statistics.reset();
+  running = false;
   wordCount = 0;
   letterCount = 0;
   letters.splice(0);
@@ -26,12 +76,25 @@ function reset() {
   clearText();
 }
 
-function createCaret() {
-  caretElement.setAttribute("id", "caret");
-  caretElement.setAttribute("class", "caret");
-  letters[letterCount].appendChild(caretElement);
-  caretElement.style.animation =
-    "caretAnimate 600ms ease-in-out infinite alternate";
+function start() {
+  wordCounterElement.style.visibility = "visible";
+  wordCounterElement.innerHTML = "0/" + numOfWord;
+  infoElement.style.visibility = "hidden";
+  timerId = setInterval(timer, intervalMilies);
+}
+
+function stop() {
+  clearInterval(timerId);
+  wordCounterElement.style.visibility = "hidden";
+  infoElement.style.visibility = "visible";
+  statistics.update();
+  window.location.href = "/results.html";
+}
+
+function timer() {
+  statistics.secondsTyping += intervalMilies / 1000.0;
+  wordCounterElement.innerHTML = wordCount + "/" + numOfWord;
+  console.log(Math.round(statistics.secondsTyping));
 }
 
 document.addEventListener("keydown", function (event) {
@@ -40,14 +103,18 @@ document.addEventListener("keydown", function (event) {
 
   if (key == "Control") {
     window.location.href = "/results.html";
-    console.log(key);
     return;
   }
   if (key == "Enter") {
-    start();
+    stop();
+    create();
   } else if (key == "Backspace") {
     onDelete();
   } else if (isLetter(key) || key == " ") {
+    if (!running) {
+      start();
+      running = true;
+    }
     onType(key);
   }
 
@@ -58,6 +125,8 @@ document.addEventListener("keydown", function (event) {
 
 function onType(key) {
   if (letterCount == letters.length - 1) {
+    stop();
+    wordCount++;
     return;
   }
 
@@ -66,20 +135,20 @@ function onType(key) {
     letters[letterCount].style.color = "#dddddd";
     letterCount++;
     wordCount++;
-    correctLettersTyped++;
+    statistics.correctLettersTyped++;
     return;
   }
   if (key != " " && letters[letterCount].textContent == "\0") {
-    incorrectLettersTyped++;
+    statistics.correctLettersTyped++;
     return;
   }
 
   if (key == letters[letterCount].textContent) {
     letters[letterCount].style.color = "#dddddd";
-    correctLettersTyped++;
+    statistics.correctLettersTyped++;
   } else {
     letters[letterCount].style.color = "#ca4754";
-    incorrectLettersTyped++;
+    statistics.incorrectLettersTyped++;
   }
 
   updateCaret(1);
@@ -95,8 +164,12 @@ function onDelete() {
   letters[letterCount].style.color = "#646669";
 }
 
-function calcAccuracyPercentage(correctLetters, incorrectLetters) {
-  return (correctLetters / (correctLetters + incorrectLetters)) * 100;
+function createCaret() {
+  caretElement.setAttribute("id", "caret");
+  caretElement.setAttribute("class", "caret");
+  letters[letterCount].appendChild(caretElement);
+  caretElement.style.animation =
+    "caretAnimate 600ms ease-in-out infinite alternate";
 }
 
 function updateCaret(direction) {
@@ -140,6 +213,7 @@ function createWord(word) {
 
   return wordElement;
 }
+
 function createLetter(letter, name) {
   const letterElement = document.createElement("span");
   letterElement.setAttribute("id", name);

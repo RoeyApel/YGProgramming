@@ -1,14 +1,28 @@
 * {
   box-sizing: border-box;
 }
+
 body {
   margin: 0;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  background-color: #323437;
+  font-family: Vazirmatn, monospace, "Roboto Mono";
 }
-.accuracy {
+
+.statistics {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.accuracy,
+.wpm {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 2em;
+  font-size: 3em;
+  color: #d9d9d9;
 }
