@@ -8,17 +8,23 @@ body {
   font-family: Vazirmatn, monospace, "Roboto Mono";
 }
 .nav-cont {
-  height: 20%;
+  height: 35%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.logo {
+  width: 250px;
 }
 .center-cont {
-  height: 60%;
+  height: 35%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 .content-cont {
-  width: 85%;
+  width: 75%;
   display: flex;
   justify-content: center;
   align-items: start;
@@ -64,16 +70,26 @@ body {
   }
 }
 .buttom-cont {
-  height: 20%;
+  height: 30%;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
 }
 .info {
-  font-size: 1.7rem;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: #0000009f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3em;
+  font-size: 3rem;
+  font-family: Verdana, sans-serif;
+  color: #b3b3b3;
   font-weight: 350;
+}
+.info img {
+  width: 1.2em;
+}
+.info div {
+  height: fit-content;
 }
 /* .buttom-cont,
 .content-cont,

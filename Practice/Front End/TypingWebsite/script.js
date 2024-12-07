@@ -38,14 +38,15 @@ class Statistics {
   }
 }
 
-export const statistics = new Statistics();
+const statistics = new Statistics();
 
 const content = document.getElementById("content");
 const caretElement = document.createElement("div");
 const wordCounterElement = document.getElementById("wordCounter");
 const infoElement = document.getElementById("info");
+const logoElement = document.getElementById("logo");
 
-const numOfWord = 7;
+const numOfWord = 25;
 const intervalMilies = 100;
 let letters = [];
 let words = [];
@@ -54,25 +55,23 @@ let letterCount = 0;
 let running = false;
 let timerId;
 
+window.addEventListener("load", (event) => {
+  create();
+});
+
 function create() {
   reset();
   generateText(numOfWord);
   createCaret();
 }
 
-window.addEventListener("load", (event) => {
-  if (window.location.pathname == "/index.html") {
-    create();
-  }
-});
-
 function reset() {
   statistics.reset();
   running = false;
   wordCount = 0;
   letterCount = 0;
-  letters.splice(0);
-  words.splice(0);
+  letters = [];
+  words = [];
   clearText();
 }
 
@@ -80,15 +79,20 @@ function start() {
   wordCounterElement.style.visibility = "visible";
   wordCounterElement.innerHTML = "0/" + numOfWord;
   infoElement.style.visibility = "hidden";
+  logoElement.style.visibility = "hidden";
   timerId = setInterval(timer, intervalMilies);
 }
 
 function stop() {
   clearInterval(timerId);
   wordCounterElement.style.visibility = "hidden";
-  infoElement.style.visibility = "visible";
   statistics.update();
+  localStorage.setItem("wpm", statistics.wpm);
+  localStorage.setItem("accuracy", statistics.accuracy);
+  localStorage.setItem("time", statistics.secondsTyping);
   window.location.href = "/results.html";
+  infoElement.style.visibility = "visible";
+  logoElement.style.visibility = "visible";
 }
 
 function timer() {
@@ -118,13 +122,13 @@ document.addEventListener("keydown", function (event) {
     onType(key);
   }
 
-  console.log(
-    `Current Index: ${letterCount}\nKey Pressed: ${key}\nCurrent Letter: ${letters[letterCount].textContent}\nWordCount: ${wordCount}`
-  );
+  // console.log(
+  //   `Current Index: ${letterCount}\nKey Pressed: ${key}\nCurrent Letter: ${letters[letterCount].textContent}\nWordCount: ${wordCount}`
+  // );
 });
 
 function onType(key) {
-  if (letterCount == letters.length - 1) {
+  if (letterCount == letters.length - 2) {
     stop();
     wordCount++;
     return;
