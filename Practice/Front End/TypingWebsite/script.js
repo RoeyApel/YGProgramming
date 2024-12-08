@@ -98,7 +98,7 @@ function stop() {
 function timer() {
   statistics.secondsTyping += intervalMilies / 1000.0;
   wordCounterElement.innerHTML = wordCount + "/" + numOfWord;
-  console.log(Math.round(statistics.secondsTyping));
+  // console.log(Math.round(statistics.secondsTyping));
 }
 
 document.addEventListener("keydown", function (event) {
@@ -121,7 +121,7 @@ document.addEventListener("keydown", function (event) {
     }
     onType(key);
   }
-
+  console.log(statistics.correctLettersTyped + "");
   // console.log(
   //   `Current Index: ${letterCount}\nKey Pressed: ${key}\nCurrent Letter: ${letters[letterCount].textContent}\nWordCount: ${wordCount}`
   // );
@@ -139,11 +139,10 @@ function onType(key) {
     letters[letterCount].style.color = "#dddddd";
     letterCount++;
     wordCount++;
-    statistics.correctLettersTyped++;
     return;
   }
   if (key != " " && letters[letterCount].textContent == "\0") {
-    statistics.correctLettersTyped++;
+    statistics.incorrectLettersTyped++;
     return;
   }
 
