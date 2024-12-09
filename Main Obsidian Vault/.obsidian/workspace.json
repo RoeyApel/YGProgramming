@@ -13,10 +13,10 @@
             "state": {
               "type": "image",
               "state": {
-                "file": "יג/עוד/לוח מבחנים.jpeg"
+                "file": "יג/עוד/מערכת שעות.png"
               },
               "icon": "lucide-image",
-              "title": "לוח מבחנים"
+              "title": "מערכת שעות"
             }
           }
         ]
@@ -162,6 +162,7 @@
   },
   "active": "4b6b022c0a25626b",
   "lastOpenFiles": [
+    "יג/עוד/לוח מבחנים.jpeg",
     "יג/עוד/מערכת שעות.png",
     "יג/עוד/Batch file and cmd.md",
     "יג/מקצועות/שפת python.md",
@@ -174,7 +175,6 @@
     "יג/מקצועות/אסמבלר.md",
     "יג/עוד/מידע כללי.md",
     "יג/עוד/ASCII.png",
-    "יג/עוד/לוח מבחנים.jpeg",
     "עוד/Request Denied.md",
     "יג/Do To.md",
     "יג/עוד/Dark theme for MySQL Workbench.md",
