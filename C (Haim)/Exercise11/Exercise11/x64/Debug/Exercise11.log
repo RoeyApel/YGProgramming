@@ -1,9 +1,9 @@
 ﻿  Source.c
-C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise11\Exercise11\Source.c(58,9): warning C4047: 'function': 'char *' differs in levels of indirection from 'char *[1]'
-C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise11\Exercise11\Source.c(58,9): warning C4024: 'strcpy': different types for formal and actual parameter 1
-C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise11\Exercise11\Source.c(62,15): warning C4047: 'function': 'const char *' differs in levels of indirection from 'char *[1]'
-C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise11\Exercise11\Source.c(62,15): warning C4024: 'strcat': different types for formal and actual parameter 2
-C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise11\Exercise11\Source.c(66,12): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise11\Exercise11\Source.c(83,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise11\Exercise11\Source.c(94,17): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  Exercise11.vcxproj -> C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise11\x64\Debug\Exercise11.exe
+C:\Git\YGProgramming\C (Haim)\Exercise11\Exercise11\Source.c(84,9): warning C4047: 'function': 'char *' differs in levels of indirection from 'char *[1]'
+C:\Git\YGProgramming\C (Haim)\Exercise11\Exercise11\Source.c(84,9): warning C4024: 'strcpy': different types for formal and actual parameter 1
+C:\Git\YGProgramming\C (Haim)\Exercise11\Exercise11\Source.c(88,15): warning C4047: 'function': 'const char *' differs in levels of indirection from 'char *[1]'
+C:\Git\YGProgramming\C (Haim)\Exercise11\Exercise11\Source.c(88,15): warning C4024: 'strcat': different types for formal and actual parameter 2
+C:\Git\YGProgramming\C (Haim)\Exercise11\Exercise11\Source.c(106,12): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Git\YGProgramming\C (Haim)\Exercise11\Exercise11\Source.c(135,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Git\YGProgramming\C (Haim)\Exercise11\Exercise11\Source.c(161,17): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Exercise11.vcxproj -> C:\Git\YGProgramming\C (Haim)\Exercise11\x64\Debug\Exercise11.exe
