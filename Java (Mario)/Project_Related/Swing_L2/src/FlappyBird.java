@@ -49,7 +49,7 @@ public class FlappyBird extends JPanel implements KeyListener {
         for (Pipe pipe : pipes) {
             pipe.draw(g);
         }
-        
+
         score.draw(g, gameOver);
     }
 
