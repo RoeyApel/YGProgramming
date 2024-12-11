@@ -17,8 +17,6 @@ body {
   height: 90vh;
   background-color: #141414db;
   color: #e5e5e5;
-  /* background-color: #ffffff;
-  color: #232323; */
   border: 2px solid;
   border-radius: 10px;
   transition: 200ms;
@@ -46,9 +44,11 @@ body {
   text-decoration: none;
   color: inherit;
   font-weight: 500;
+  transition: transform 0.5s;
 }
 .nav-item:hover {
   color: #e9e9e9dc;
+  transform: translate(0,-10px);
 }
 .search-form {
   width: 20%;
@@ -140,11 +140,13 @@ body {
 .side-img {
   width: 142px;
   border-radius: 50%;
-  transition: 200ms;
+  transition: 250ms;
 }
 .side-img:hover {
   width: 153px;
   border-radius: 6%;
+  transform: rotate(15deg);
+  
 }
 .show1-img,
 .show2-img {
@@ -163,8 +165,7 @@ body {
 
 .show1-img:hover,
 .show2-img:hover {
-  width: 220px;
-  margin-right: 18px;
+  transform: scale(1.1);
 }
 
 .buttom-container {
