@@ -1,5 +1,4 @@
 import java.awt.Image;
-import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 
@@ -7,7 +6,7 @@ public enum Pieces {
     PLAYER("images/checker1.svg", 60),
     OPPONENT("images/checker2.svg", 60),
     PLAYER_KING("images/checker1.svg", 70),
-    OPPONENT_KING("images/checker1.svg", 70);
+    OPPONENT_KING("images/checker2.svg", 70);
 
     private Image image;
     private int size;

@@ -1,78 +1,90 @@
 @font-face {
-    font-family: Seven Led;
-    src: url("/fonts/digital-7.ttf");
+  font-family: Seven Led;
+  src: url("/fonts/digital-7.ttf");
 }
-*{
-    box-sizing: border-box;
-    /* border: 1px solid; */
+
+* {
+  box-sizing: border-box;
+  /* border: 1px solid; */
 }
-body{
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center; 
-    align-items: center;
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.calculator{
-    width: 30vw;
-    /* height: 75%; */
-    border: 2px solid;
-    border-radius: 7px;
-    background-color: #0f2183;
-    padding: 0.5em;
-    /* display: flex;
+.calculator {
+  width: 25vw;
+  /* height: 75%; */
+  border: 2px solid;
+  border-radius: 7px;
+  background-color: #0f2183;
+  padding: 0.5em;
+  /* display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column; */
 }
-.display{
-    font-family: Seven Led;
-    font-size: 3rem;
-    padding: 0.2em;
-    border-radius: 7px;
-    background-color: #e7eaf3;
+.display {
+  font-family: Seven Led;
+  font-size: 3rem;
+  padding: 0.2em;
+  border-radius: 7px;
+  background-color: #e7eaf3;
+  margin-bottom: 0.3em;
 }
-.display-targil{
-    color: #686d81;
-    font-size: 1.7rem;
-    text-align: right;
-    padding: 0.1em 0.3em 0.1em 0;
+.display-targil {
+  color: #686d81;
+  font-size: 1.7rem;
+  text-align: right;
+  padding: 0.1em 0.3em 0.1em 0;
 }
-.wrapper{
-    color: #1e265f;
-    display: flex;  
+.wrapper {
+  color: #1e265f;
+  display: flex;
 }
-.display-num-cur{
-    text-align: right;
-    flex-basis: 92%;
+.display-num-cur {
+  text-align: right;
+  flex-basis: 92%;
 }
-.display-op-cur{
-    text-align: center;
-    flex-basis: 8%;
+.display-op-cur {
+  text-align: center;
+  flex-basis: 8%;
 }
-.btn-wrapper{
-    margin: 1em 0;
-    display: flex;
-    justify-content: center;
-    gap: 1.5em;
-    flex-wrap: wrap;
-    padding: 0 2.5em;
+.btn-wrapper {
+  margin: 1em 0;
+  display: flex;
+  justify-content: center;
+  gap: 1.5em;
+  flex-wrap: wrap;
+  padding: 0 2.5em;
 }
-.numbers-wrapper{
-    /* border-top: 1px solid;
+.numbers-wrapper {
+  /* border-top: 1px solid;
     border-image: linear-gradient(to right black,rgb(108, 31, 31));
     border-bottom: 1px solid gainsboro; */
 }
-.calc-btn{
-    background-color: #031265;
-    border: 2px solid #354390;
-    color: #929fc4;
-    border-radius: 5px;
-    flex-basis: 25%;
-    flex-grow: 1;
-    font-size: 1.8em;
-    padding: 0.2em 0;
+.calc-btn {
+  background-color: #031265;
+  border: 2px solid #354390;
+  color: #929fc4;
+  border-radius: 5px;
+  flex-basis: 25%;
+  flex-grow: 1;
+  font-size: 1.8em;
+  padding: 0.2em 0;
 }
-.op-btn{
-    flex-basis: 30%;
+.op-btn {
+  flex-basis: 30%;
+}
+.divider {
+  height: 1px;
+  background-image: linear-gradient(
+    to right,
+    transparent,
+    rgb(172, 172, 172),
+    transparent
+  );
+  border: none;
 }

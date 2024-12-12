@@ -20,7 +20,6 @@ public class Board {
     public void drawPieces(Graphics g) {
         for (Piece piece : pieces) {
             g.drawImage(piece.image, piece.row * SLOT_SIZE + OFFSET, piece.col * SLOT_SIZE + OFFSET, null);
-            g.drawImage(Pieces.OPPONENT_KING.getImage(), 0, 0, null);
             System.out.println(piece.image);
         }
     }

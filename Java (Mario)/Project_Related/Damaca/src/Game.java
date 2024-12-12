@@ -20,6 +20,7 @@ public class Game extends JPanel implements MouseListener {
         Board board = new Board();
         board.drawBoard(g);
         board.drawPieces(g);
+        g.drawImage(Pieces.OPPONENT_KING.getImage(), 330, 330, null);
     }
 
     public void update() {
