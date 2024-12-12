@@ -11,12 +11,14 @@
             "id": "4b6b022c0a25626b",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "יג/עוד/לוח מבחנים.jpeg"
+                "file": "יג/Current Test.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "לוח מבחנים"
+              "icon": "lucide-file",
+              "title": "Current Test"
             }
           }
         ]
@@ -162,11 +164,13 @@
   },
   "active": "4b6b022c0a25626b",
   "lastOpenFiles": [
-    "יג/עוד/מערכת שעות.png",
     "יג/עוד/לוח מבחנים.jpeg",
+    "יג/Current Test.md",
+    "יג/To Do.md",
+    "Untitled",
+    "יג/עוד/מערכת שעות.png",
     "יג/עוד/Batch file and cmd.md",
     "יג/מקצועות/שפת python.md",
-    "יג/To Do.md",
     "יג/מקצועות/שפת C.md",
     "יג/מקצועות/סיבוכיות זמן ריצה ויעילות.md",
     "יג/מקצועות/סטטיסטיקה והסתברות.md",
@@ -189,7 +193,6 @@
     "יג/מקצועות/אתרים - Full Stack.md",
     "יג/עוד/EMU8086 - file template.md",
     "Time Zones.md",
-    "Untitled",
     "יג/עוד/הגדרות של פונט לEMU8086.png",
     "צילום מסך 2024-09-28 103506 1.png",
     "רשימת משימות.md",
@@ -200,7 +203,6 @@
     "יג/סיבוכיות זמן ריצה ויעילות.md",
     "יג/סטטיסטיקה והסתברות.md",
     "יג/מידע כללי.md",
-    "יג/כלי עזר ועוד.md",
     "Untitled.canvas",
     "יג",
     "Untitled 1.canvas",

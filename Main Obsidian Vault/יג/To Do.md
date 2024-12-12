@@ -1,5 +1,5 @@
 Python
-		1. Learn different kind of files (txt, image, json files) and how to manipulate them.
+1. Learn different kind of files (txt, image, json files) and how to manipulate them.
 1. Learn how to make a visual representation of the code in some way.
 2. Create a mini project in python (maybe a game) with the visualization and files (make sure to include as much of the material as possible).
 ----
