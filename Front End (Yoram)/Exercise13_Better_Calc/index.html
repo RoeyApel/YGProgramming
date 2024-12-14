@@ -8,42 +8,45 @@
   </head>
   <body>
     <div class="calculator">
-      <div class="display">
-        <div class="display-targil">34 + 5 = 9</div>
+      <div class="display" id="display">
+        <div class="display-targil" id="display-targil"></div>
         <div class="wrapper">
-          <div class="display-num-cur">8</div>
-          <div class="display-op-cur">+</div>
+          <div class="display-num-cur" id="display-num-cur"></div>
+          <div class="display-op-cur" id="display-op-cur"></div>
         </div>
       </div>
 
       <hr class="divider" />
 
       <div class="btn-wrapper numbers-wrapper">
-        <button class="calc-btn num-btn">C</button>
-        <button class="calc-btn num-btn">CE</button>
-        <button class="calc-btn num-btn">&lt;&lt;&lt;</button>
-        <button class="calc-btn num-btn">1</button>
-        <button class="calc-btn num-btn">2</button>
-        <button class="calc-btn num-btn">3</button>
-        <button class="calc-btn num-btn">4</button>
-        <button class="calc-btn num-btn">5</button>
-        <button class="calc-btn num-btn">6</button>
-        <button class="calc-btn num-btn">7</button>
-        <button class="calc-btn num-btn">8</button>
-        <button class="calc-btn num-btn">9</button>
-        <button class="calc-btn num-btn">.</button>
-        <button class="calc-btn num-btn">0</button>
+        <button class="calc-btn num-btn" onclick="clearDisplay()">C</button>
+        <button class="calc-btn num-btn" onclick="clearDisplay()">CE</button>
+        <button class="calc-btn num-btn" onclick="deleteFromDisplay()">
+          &lt;&lt;&lt;
+        </button>
+        <button class="calc-btn num-btn" onclick="addToDisplay('1')">1</button>
+        <button class="calc-btn num-btn" onclick="addToDisplay('2')">2</button>
+        <button class="calc-btn num-btn" onclick="addToDisplay('3')">3</button>
+        <button class="calc-btn num-btn" onclick="addToDisplay('4')">4</button>
+        <button class="calc-btn num-btn" onclick="addToDisplay('5')">5</button>
+        <button class="calc-btn num-btn" onclick="addToDisplay('6')">6</button>
+        <button class="calc-btn num-btn" onclick="addToDisplay('7')">7</button>
+        <button class="calc-btn num-btn" onclick="addToDisplay('8')">8</button>
+        <button class="calc-btn num-btn" onclick="addToDisplay('9')">9</button>
+        <button class="calc-btn num-btn" onclick="addToDisplay('.')">.</button>
+        <button class="calc-btn num-btn" onclick="addToDisplay('0')">0</button>
       </div>
 
       <hr class="divider" />
 
       <div class="btn-wrapper operations-wrapper">
-        <button class="calc-btn op-btn">+</button>
-        <button class="calc-btn op-btn">-</button>
-        <button class="calc-btn op-btn">/</button>
-        <button class="calc-btn op-btn">*</button>
-        <button class="calc-btn op-btn">=</button>
+        <button class="calc-btn op-btn" onclick="addToDisplay('+')">+</button>
+        <button class="calc-btn op-btn" onclick="addToDisplay('-')">-</button>
+        <button class="calc-btn op-btn" onclick="addToDisplay('/')">/</button>
+        <button class="calc-btn op-btn" onclick="addToDisplay('*')">*</button>
+        <button class="calc-btn op-btn" onclick="calc()">=</button>
       </div>
     </div>
+    <script src="index.js"></script>
   </body>
 </html>
