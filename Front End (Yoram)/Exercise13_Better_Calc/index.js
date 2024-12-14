@@ -3,6 +3,7 @@ let display_num_cur = document.querySelector("#display-num-cur");
 let display_op_cur = document.querySelector("#display-op-cur");
 
 let needClearing = false;
+let current_num = "";
 
 function addToDisplay(ch) {
   if (needClearing) {
@@ -12,10 +13,12 @@ function addToDisplay(ch) {
 
   display_targil.textContent += ch;
 
-  if (isNaN(ch)) {
+  if (isNaN(ch) && ch != ".") {
     display_op_cur.textContent = ch;
+    current_num = "";
   } else {
-    display_num_cur.textContent = ch;
+    current_num += ch;
+    display_num_cur.textContent = current_num;
     display_op_cur.textContent = "";
   }
 }
@@ -24,20 +27,41 @@ function deleteFromDisplay() {
   if (needClearing) {
     clearDisplay();
     needClearing = false;
+    return;
+  }
+
+  let deletedCh = display_targil.textContent.charAt(
+    display_targil.textContent.length - 1
+  );
+
+  display_targil.textContent = display_targil.textContent.slice(0, -1);
+
+  if (isNaN(deletedCh) && deletedCh != ".") {
+    display_op_cur.textContent = "";
   } else {
-    display_targil.textContent = display_targil.textContent.slice(0, -1);
+    current_num = current_num.slice(0, -1);
+    display_num_cur.textContent = current_num;
   }
 }
 
 function clearDisplay() {
+  current_num = "";
   display_targil.textContent = "";
   display_num_cur.textContent = "";
   display_op_cur.textContent = "";
+  display_num_cur.style.color = "#3b3a49";
+  display_targil.style.color = "#4a4767";
 }
 
 function calc() {
   try {
     let result = Math.round(eval(display_targil.textContent) * 100) / 100;
+
+    if (result == 666) {
+      display_targil.style.color = "#a51f32";
+      display_num_cur.style.color = "#a51f32";
+    }
+
     display_targil.textContent += "=" + result;
     display_num_cur.textContent = result;
     display_op_cur.textContent = "";

@@ -44,9 +44,9 @@ body {
   justify-content: flex-end;
   gap: 5px;
   font-size: 1em;
-  color: #3b3a49;
 }
 .display-num-cur {
+  color: #3b3a49;
   text-align: right;
   /* flex-basis: 90%; */
 }
@@ -57,6 +57,7 @@ body {
   text-align: center;
   /* flex-basis: 10%; */
   font-size: 0.8em;
+  color: #3b3a49;
 }
 .btn-wrapper {
   margin: 1em 0;

@@ -15,11 +15,11 @@ body {
   align-items: center;
 }
 .calculator {
-  width: 24vw;
+  width: 23.5vw;
   border-radius: 7px;
   background-color: #0f2183;
   padding: 0.8em;
-  box-shadow: 5px 5px 2px #9fa9d68e;
+  box-shadow: 5px 5px 2px #939dc98e;
 }
 .display {
   font-family: Seven Led;
@@ -37,16 +37,17 @@ body {
   padding: 0.1em 0.3em 0.1em 0;
 }
 .wrapper {
-  color: #3344af;
+  color: #2e3ea5;
   display: flex;
+  justify-content: flex-end;
+  gap: 7px;
 }
 .display-num-cur {
+  flex-grow: 1;
   text-align: right;
-  flex-basis: 92%;
 }
 .display-op-cur {
   text-align: center;
-  flex-basis: 8%;
 }
 .btn-wrapper {
   margin: 1em 0;
@@ -57,6 +58,8 @@ body {
   padding: 0 2.5em;
 }
 .calc-btn {
+  font-family: Times, serif;
+  font-weight: 500;
   background-color: #031265;
   border: none;
   box-shadow: 0 0 3px 1px #6974b7;
