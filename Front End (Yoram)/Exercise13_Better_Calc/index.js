@@ -1,4 +1,5 @@
 let body = document.body;
+let display = document.querySelector("#display");
 let display_targil = document.querySelector("#display-targil");
 let display_num_cur = document.querySelector("#display-num-cur");
 let display_op_cur = document.querySelector("#display-op-cur");
@@ -50,9 +51,7 @@ function clearDisplay() {
   display_targil.textContent = "";
   display_num_cur.textContent = "";
   display_op_cur.textContent = "";
-  display_num_cur.style.color = "#3b3a49";
-  display_targil.style.color = "#4a4767";
-  body.style.backgroundImage = "url('images/background.jpg')";
+  disableEvilMode();
 }
 
 function calc() {
@@ -60,9 +59,7 @@ function calc() {
     let result = Math.round(eval(display_targil.textContent) * 100) / 100;
 
     if (result == 666) {
-      display_targil.style.color = "#c9324c";
-      display_num_cur.style.color = "#c9324c";
-      body.style.backgroundImage = "url('images/evil_background.jpg')";
+      enableEvilMode();
     }
 
     display_targil.textContent += "=" + result;
@@ -79,4 +76,18 @@ function calc() {
   }
 
   needClearing = true;
+}
+
+function enableEvilMode() {
+  display_targil.style.color = "#d33d4b";
+  display_num_cur.style.color = "#d33d4b";
+  body.style.backgroundImage = "url('images/evil_background.jpg')";
+  display.style.backgroundColor = "#5b2222";
+}
+
+function disableEvilMode() {
+  display_num_cur.style.color = "#3b3a49";
+  display_targil.style.color = "#4a4767";
+  body.style.backgroundImage = "url('images/background.jpg')";
+  display.style.backgroundColor = "#dddddd";
 }
