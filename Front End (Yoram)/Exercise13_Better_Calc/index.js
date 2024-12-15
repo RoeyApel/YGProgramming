@@ -1,3 +1,4 @@
+let body = document.body;
 let display_targil = document.querySelector("#display-targil");
 let display_num_cur = document.querySelector("#display-num-cur");
 let display_op_cur = document.querySelector("#display-op-cur");
@@ -51,6 +52,7 @@ function clearDisplay() {
   display_op_cur.textContent = "";
   display_num_cur.style.color = "#3b3a49";
   display_targil.style.color = "#4a4767";
+  body.style.backgroundImage = "url('images/background.jpg')";
 }
 
 function calc() {
@@ -58,8 +60,9 @@ function calc() {
     let result = Math.round(eval(display_targil.textContent) * 100) / 100;
 
     if (result == 666) {
-      display_targil.style.color = "#a51f32";
-      display_num_cur.style.color = "#a51f32";
+      display_targil.style.color = "#c9324c";
+      display_num_cur.style.color = "#c9324c";
+      body.style.backgroundImage = "url('images/evil_background.jpg')";
     }
 
     display_targil.textContent += "=" + result;
