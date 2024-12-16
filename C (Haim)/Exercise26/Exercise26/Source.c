@@ -75,7 +75,7 @@ void add_node_sorted(ListType** list, int sub_num, int grade) {
 		*list = newNode;
 	}
 	
-	for (temp = *list ; i < length; i++)
+	for (temp = *list ; ;)
 	{
 
 	}
