@@ -65,7 +65,7 @@ void create_grades_lists(char* filename, StudentType* arr, int size) {
 	}
 }
 
-void add_node_sorted(ListType** list, int sub_num, int grade) {
+void add_node_sorted(ListType** list, int sub_num, int grade) { // not done!!
 	ListPtr temp, newNode;
 	newNode = malloc(sizeof(ListType));
 	newNode->sub_num = sub_num;
