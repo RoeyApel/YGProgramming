@@ -16,7 +16,7 @@ typedef struct nodeType {
 typedef struct List {
 	int sub_num;
 	int grade;
-	struct list* next;
+	struct List* next;
 }ListType, * ListPtr;
 
 typedef struct {
@@ -42,8 +42,32 @@ typedef struct {
 int func(nodePtr list);
 void* getPositive(nodePtr* head);
 void flip(nodePtr* list);
+void calc_students_stats(StudentPtr arr, int size);
+void create_grades_lists(char* filename, StudentType* arr, int size);
+void add_node_sorted(ListType** list, int sub_num, int grade);
+StudentPtr create_student_arr(char* filename, int* size);
+int cmpById(void* a, void* b);
 
 void main() {
+}
+
+void calc_students_stats(StudentPtr arr, int size) {
+	StudentPtr student;
+	ListPtr temp;
+
+	int i;
+	for (i = 0; i < size; i++)
+	{
+		student = arr + i;
+
+		for (temp = student->list; temp; temp = temp->next) {
+			student->avg += temp->grade;
+			if (temp->grade < 60) {
+				student->fails++;
+			}
+		}
+		student->avg /= size;
+	}
 }
 
 void create_grades_lists(char* filename, StudentType* arr, int size) {
@@ -63,22 +87,32 @@ void create_grades_lists(char* filename, StudentType* arr, int size) {
 		student = (StudentPtr)bsearch(&key, arr, size, sizeof(StudentType), cmpById);
 		add_node_sorted(&student->list, gradeItem.sub_num, gradeItem.grade);
 	}
+
+	fclose(fgrades);
 }
 
-void add_node_sorted(ListType** list, int sub_num, int grade) { // not done!!
+void add_node_sorted(ListType** list, int sub_num, int grade) {
 	ListPtr temp, newNode;
 	newNode = malloc(sizeof(ListType));
 	newNode->sub_num = sub_num;
 	newNode->grade = grade;
 
-	if (!(list)) {
+	if (!(*list)) {
 		*list = newNode;
+		return;
 	}
-	
-	for (temp = *list ; ;)
-	{
 
+	if ((*list)->sub_num > sub_num) {
+		newNode->next = *list;
+		*list = newNode;
+		return;
 	}
+
+	for (temp = *list; temp->next && temp->next->sub_num < sub_num; temp = temp->next);
+
+	newNode->next = temp->next;
+	temp->next = newNode;
+
 }
 
 StudentPtr create_student_arr(char* filename, int* size) {
@@ -101,6 +135,8 @@ StudentPtr create_student_arr(char* filename, int* size) {
 		*(arr + (*size) - 1) = student;
 	}
 	qsort(arr, *size, sizeof(StudentType), cmpById);
+
+	fclose(fstudents);
 	return arr;
 }
 
