@@ -4,6 +4,15 @@
 #include <stdlib.h>
 #include <string.h>
 
+typedef struct {
+	int num;
+}dataType;
+
+typedef struct node {
+	dataType data;
+	struct node* next;
+}nodeType, *nodePtr;
+
 typedef struct List {
 	int sub_num;
 	int grade;
@@ -35,8 +44,26 @@ void create_grades_lists(char* filename, StudentType* arr, int size);
 void add_node_sorted(ListType** list, int sub_num, int grade);
 StudentPtr create_student_arr(char* filename, int* size);
 int cmpById(void* a, void* b);
+nodePtr flipRecursively(nodePtr list);
+nodePtr flipR(nodePtr before, nodePtr list);
 
 void main() {
+}
+nodePtr flipRecursively(nodePtr list) {
+	if (!list) {
+		return NULL;
+	}
+	return flipR(NULL, list);
+}
+
+nodePtr flipR(nodePtr before, nodePtr list) {
+	if (!list->next) {
+		list->next = before;
+		return list;
+	}
+	nodePtr flipped = flipR(list, list->next);
+	list->next = before;
+	return flipped;
 }
 
 void calc_students_stats(StudentPtr arr, int size) {

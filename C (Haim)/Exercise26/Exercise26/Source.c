@@ -44,6 +44,8 @@ nodePtr2 selection(nodePtr2* list);
 void main() {
 }
 
+
+
 nodePtr2 selection(nodePtr2* list) {
 	if (!(*list)) {
 		puts("The list is empty idiot");
@@ -62,7 +64,7 @@ nodePtr2 selection(nodePtr2* list) {
 			temp = temp->next;
 		}
 	}
-	return newList;	
+	return newList;
 }
 
 nodePtr split(nodePtr* list) {
@@ -72,7 +74,7 @@ nodePtr split(nodePtr* list) {
 	}
 
 	nodePtr list2 = NULL, temp, moved;
-	
+
 	if ((*list)->data.num < 0) {
 		moved = (*list);
 		*list = (*list)->next;
@@ -97,7 +99,7 @@ void moveSmallNodeFirst(nodePtr* list) {
 		return;
 	}
 
-	nodePtr temp, beforeSmall,small;
+	nodePtr temp, beforeSmall, small;
 	int min = (*list)->data.num;
 
 	for (temp = *list; temp->next; temp = temp->next) {
@@ -109,7 +111,7 @@ void moveSmallNodeFirst(nodePtr* list) {
 	if ((*list)->data.num == min) {
 		return;
 	}
-	small = beforeSmall->next; 
+	small = beforeSmall->next;
 	beforeSmall->next = small->next;
 	small->next = *list;
 	*list = small;
@@ -129,7 +131,7 @@ void deleteValue(nodePtr* list, int num) {
 
 	for (temp = *list; temp->next; temp = temp->next) {
 		if (temp->next->data.num == num) {
-			deleted = temp->next; 
+			deleted = temp->next;
 			temp = temp->next->next;
 			free(deleted);
 		}
@@ -140,9 +142,9 @@ int findBigValue(nodePtr list) {
 	if (!list) {
 		return -1;
 	}
-	nodePtr temp; 
-	int max = list->data.num; 
-	
+	nodePtr temp;
+	int max = list->data.num;
+
 	for (temp = list->next; temp; temp = temp->next) {
 		if (temp->data.num > max) {
 			max = temp->data.num;
