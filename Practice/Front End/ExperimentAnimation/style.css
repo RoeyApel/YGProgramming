@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 * {
   box-sizing: border-box;
 }
@@ -12,22 +14,35 @@ body {
   gap: 3em;
   background-color: #fdfdfd;
 }
-
+header {
+  font-family: "Poppins";
+  font-size: 5rem;
+  position: relative;
+  color: #e672c3;
+}
+header::before {
+  content: "Casino";
+  position: absolute;
+  font-size: 12rem;
+  bottom: 0.1em;
+  right: 0;
+  left: -1em;
+  color: #68a4e9e8;
+}
 .wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* border: 2px solid;
-  padding: 2em; */
+  flex-wrap: wrap;
   gap: 3em;
 }
 .wrapper:hover > :not(:hover) {
   filter: hue-rotate(690deg) blur(2px);
 }
 .item:hover {
-  filter: drop-shadow(0px 3px 24px rgba(176, 179, 177, 0.973));
+  filter: drop-shadow(0px 3px 24px rgba(176, 179, 177, 0.362));
   transform: translateY(-30px) scale(1.1);
-  animation: flicker 700ms ease-in-out alternate 300ms;
+  /* animation: flicker 700ms ease-in-out alternate 300ms; */
 }
 .item {
   filter: hue-rotate(690deg);
