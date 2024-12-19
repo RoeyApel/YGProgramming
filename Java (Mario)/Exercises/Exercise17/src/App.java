@@ -3,6 +3,7 @@ import java.awt.Toolkit;
 
 public class App {
     public static void main(String[] args) {
-        TryListeners tryListeners = new TryListeners();
+        // TryListeners tryListeners = new TryListeners();
+        new T2();
     }
 }
