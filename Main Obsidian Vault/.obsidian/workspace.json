@@ -11,14 +11,12 @@
             "id": "cd17c80ad34a6f6e",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "עוד/Request Denied.md",
-                "mode": "source",
-                "source": false
+                "file": "יג/עוד/ASCIIE.png"
               },
-              "icon": "lucide-file",
-              "title": "Request Denied"
+              "icon": "lucide-image",
+              "title": "ASCIIE"
             }
           }
         ]
@@ -164,8 +162,11 @@
   },
   "active": "cd17c80ad34a6f6e",
   "lastOpenFiles": [
-    "Time Zones.md",
+    "יג/עוד/ASCII.png",
+    "יג/עוד/מערכת שעות.png",
+    "יג/עוד/מידע כללי.md",
     "עוד/Request Denied.md",
+    "Time Zones.md",
     "יג/To Do.md",
     "יג/Current Test.md",
     "יג/מקצועות/אסמבלר/assembly cheetsheet.pdf",
@@ -177,7 +178,6 @@
     "יג/עוד/כלי עזר ועוד.md",
     "יג/מקצועות/שפת c",
     "יג/מקצועות/אסמבלר",
-    "יג/עוד/מערכת שעות.png",
     "יג/עוד/לוח מבחנים.jpeg",
     "יג/מקצועות/בסיסי נתונים - SQL/Dark theme for MySQL Workbench.md",
     "יג/עוד/Terminal CheetSheet.md",
@@ -190,8 +190,6 @@
     "יג/מקצועות/בסיסי נתונים - SQL/בסיסי נתונים - SQL.md",
     "יג/מקצועות/אתרים - Front End.md",
     "יג/מקצועות/אסמבלר/אסמבלר.md",
-    "יג/עוד/מידע כללי.md",
-    "יג/עוד/ASCII.png",
     "יג/Do To.md",
     "יג/עוד/ASCIIE.png",
     "לוח מבחנים 1.jpeg",
