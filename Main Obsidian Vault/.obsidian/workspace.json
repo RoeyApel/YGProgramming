@@ -11,12 +11,14 @@
             "id": "cd17c80ad34a6f6e",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "יג/עוד/מערכת שעות.png"
+                "file": "יג/עוד/Terminal Commands.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "מערכת שעות"
+              "icon": "lucide-file",
+              "title": "Terminal Commands"
             }
           }
         ]
@@ -160,26 +162,32 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "cd17c80ad34a6f6e",
+  "active": "dba7d89e7dedbfb7",
   "lastOpenFiles": [
-    "יג/עוד/לוח מבחנים.jpeg",
-    "יג/עוד/Dark theme for MySQL Workbench.md",
+    "יג/מקצועות/בסיסי נתונים - SQL",
     "יג/עוד/Useful Terminal commends.md",
     "יג/עוד/Terminal Commands.md",
-    "יג/עוד/Terminal CheetSheet.md",
-    "יג/עוד/EMU8086 - file template.md",
-    "יג/עוד/Batch file and cmd.md",
-    "יג/מקצועות/סטטיסטיקה והסתברות.md",
+    "יג/מקצועות/אסמבלר/הגדרות של פונט לEMU8086.png",
+    "יג/עוד/כלי עזר ועוד.md",
+    "יג/מקצועות/אסמבלר/assembly cheetsheet.pdf",
+    "יג/מקצועות/שפת c",
+    "יג/מקצועות/אסמבלר",
     "יג/עוד/מערכת שעות.png",
+    "יג/עוד/לוח מבחנים.jpeg",
+    "יג/מקצועות/בסיסי נתונים - SQL/Dark theme for MySQL Workbench.md",
+    "יג/עוד/Terminal CheetSheet.md",
+    "יג/מקצועות/אסמבלר/EMU8086 - file template.md",
+    "יג/מקצועות/שפת c/Batch file and cmd.md",
+    "יג/מקצועות/סטטיסטיקה והסתברות.md",
     "יג/Current Test.md",
     "יג/To Do.md",
     "Untitled",
     "יג/מקצועות/שפת python.md",
-    "יג/מקצועות/שפת C.md",
+    "יג/מקצועות/שפת c/שפת C.md",
     "יג/מקצועות/סיבוכיות זמן ריצה ויעילות.md",
-    "יג/מקצועות/בסיסי נתונים - SQL.md",
+    "יג/מקצועות/בסיסי נתונים - SQL/בסיסי נתונים - SQL.md",
     "יג/מקצועות/אתרים - Front End.md",
-    "יג/מקצועות/אסמבלר.md",
+    "יג/מקצועות/אסמבלר/אסמבלר.md",
     "יג/עוד/מידע כללי.md",
     "יג/עוד/ASCII.png",
     "עוד/Request Denied.md",
@@ -189,12 +197,10 @@
     "לוח מבחנים.jpeg",
     "עוד/Request.md",
     "עוד/con1.png",
-    "יג/עוד/כלי עזר ועוד.md",
     "עוד/con2.png",
     "עוד",
     "יג/מקצועות/אתרים - Full Stack.md",
     "Time Zones.md",
-    "יג/עוד/הגדרות של פונט לEMU8086.png",
     "צילום מסך 2024-09-28 103506 1.png",
     "רשימת משימות.md",
     "יג/מקצועות",

@@ -96,6 +96,8 @@ header::before {
   background-color: #d5d5d57b;
   border-radius: 6px;
   position: relative;
+  display: flex;
+  justify-content: center;
 }
 @keyframes bar {
   0% {
@@ -119,5 +121,9 @@ header::before {
     rgba(230, 114, 195, 1) 100%
   );
   border-radius: 6px;
-  animation: bar 2s alternate infinite ease-in-out;
+  animation: bar 1.5s alternate infinite ease-in-out;
+}
+.secret-msg {
+  font-family: "Poppins";
+  color: #eaeaea;
 }
