@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "יג/עוד/Terminal Commands.md",
+                "file": "עוד/Request Denied.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Terminal Commands"
+              "title": "Request Denied"
             }
           }
         ]
@@ -162,25 +162,27 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "dba7d89e7dedbfb7",
+  "active": "cd17c80ad34a6f6e",
   "lastOpenFiles": [
+    "Time Zones.md",
+    "עוד/Request Denied.md",
+    "יג/To Do.md",
+    "יג/Current Test.md",
+    "יג/מקצועות/אסמבלר/assembly cheetsheet.pdf",
+    "יג/מקצועות/אסמבלר/EMU8086 - file template.md",
+    "יג/עוד/Terminal Commands.md",
     "יג/מקצועות/בסיסי נתונים - SQL",
     "יג/עוד/Useful Terminal commends.md",
-    "יג/עוד/Terminal Commands.md",
     "יג/מקצועות/אסמבלר/הגדרות של פונט לEMU8086.png",
     "יג/עוד/כלי עזר ועוד.md",
-    "יג/מקצועות/אסמבלר/assembly cheetsheet.pdf",
     "יג/מקצועות/שפת c",
     "יג/מקצועות/אסמבלר",
     "יג/עוד/מערכת שעות.png",
     "יג/עוד/לוח מבחנים.jpeg",
     "יג/מקצועות/בסיסי נתונים - SQL/Dark theme for MySQL Workbench.md",
     "יג/עוד/Terminal CheetSheet.md",
-    "יג/מקצועות/אסמבלר/EMU8086 - file template.md",
     "יג/מקצועות/שפת c/Batch file and cmd.md",
     "יג/מקצועות/סטטיסטיקה והסתברות.md",
-    "יג/Current Test.md",
-    "יג/To Do.md",
     "Untitled",
     "יג/מקצועות/שפת python.md",
     "יג/מקצועות/שפת c/שפת C.md",
@@ -190,7 +192,6 @@
     "יג/מקצועות/אסמבלר/אסמבלר.md",
     "יג/עוד/מידע כללי.md",
     "יג/עוד/ASCII.png",
-    "עוד/Request Denied.md",
     "יג/Do To.md",
     "יג/עוד/ASCIIE.png",
     "לוח מבחנים 1.jpeg",
@@ -200,7 +201,6 @@
     "עוד/con2.png",
     "עוד",
     "יג/מקצועות/אתרים - Full Stack.md",
-    "Time Zones.md",
     "צילום מסך 2024-09-28 103506 1.png",
     "רשימת משימות.md",
     "יג/מקצועות",
