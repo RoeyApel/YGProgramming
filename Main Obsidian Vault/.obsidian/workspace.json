@@ -18,8 +18,21 @@
               "icon": "lucide-image",
               "title": "ASCIIE"
             }
+          },
+          {
+            "id": "5b9969e1bd52cb41",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "יג/מקצועות/סטטיסטיקה והסתברות/טבלת התפלגות נורמלית - Z.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "טבלת התפלגות נורמלית - Z"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -160,14 +173,20 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "cd17c80ad34a6f6e",
+  "active": "dba7d89e7dedbfb7",
   "lastOpenFiles": [
+    "יג/מקצועות/סטטיסטיקה והסתברות/CamScanner 2024-12-21 15.18.pdf",
+    "יג/מקצועות/סטטיסטיקה והסתברות/טבלת התפלגות נורמלית - Z.pdf",
+    "יג/עוד/Random Questions.md",
+    "יג/מקצועות/סטטיסטיקה והסתברות",
+    "יג/עוד/ASCIIE.png",
+    "יג/עוד/Untitled",
     "יג/עוד/ASCII.png",
     "יג/עוד/מערכת שעות.png",
     "יג/עוד/מידע כללי.md",
     "עוד/Request Denied.md",
     "Time Zones.md",
-    "יג/To Do.md",
+    "To Do.md",
     "יג/Current Test.md",
     "יג/מקצועות/אסמבלר/assembly cheetsheet.pdf",
     "יג/מקצועות/אסמבלר/EMU8086 - file template.md",
@@ -182,7 +201,7 @@
     "יג/מקצועות/בסיסי נתונים - SQL/Dark theme for MySQL Workbench.md",
     "יג/עוד/Terminal CheetSheet.md",
     "יג/מקצועות/שפת c/Batch file and cmd.md",
-    "יג/מקצועות/סטטיסטיקה והסתברות.md",
+    "יג/מקצועות/סטטיסטיקה והסתברות/סטטיסטיקה והסתברות.md",
     "Untitled",
     "יג/מקצועות/שפת python.md",
     "יג/מקצועות/שפת c/שפת C.md",
@@ -191,7 +210,6 @@
     "יג/מקצועות/אתרים - Front End.md",
     "יג/מקצועות/אסמבלר/אסמבלר.md",
     "יג/Do To.md",
-    "יג/עוד/ASCIIE.png",
     "לוח מבחנים 1.jpeg",
     "לוח מבחנים.jpeg",
     "עוד/Request.md",
@@ -202,12 +220,8 @@
     "צילום מסך 2024-09-28 103506 1.png",
     "רשימת משימות.md",
     "יג/מקצועות",
-    "יג/עוד",
     "יג/שפת python.md",
-    "יג/שפת C.md",
     "Untitled.canvas",
-    "יג",
-    "Untitled 1.canvas",
-    "uyioyu"
+    "Untitled 1.canvas"
   ]
 }
