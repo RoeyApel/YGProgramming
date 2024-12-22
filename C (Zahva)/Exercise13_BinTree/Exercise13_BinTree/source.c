@@ -6,13 +6,18 @@
 int countNodes(BinNode tree);
 int sumOfEven(BinNode tree);
 int count2SonDads(BinNode tree);
+int countBigDads(BinNode tree);
+int sumOnlyChild(BinNode tree);
+int isLeaf(BinNode tree);
+int countLeafs(BinNode tree);
+int numOfOccurences(BinNode tree, int x);
 
 int main() {
 	BinNode tree = initBinNode();
 	tree = buildBinNode(NULL, NULL, 2);
-	tree->left = buildBinNode(NULL, NULL, 3);
-	//tree->right = buildBinNode(NULL, NULL, 4);
-	printf("%d", sumOnlyChild(tree));
+	tree->left = buildBinNode(NULL, NULL, 2);
+	tree->right = buildBinNode(NULL, NULL, 2);
+	printf("%d", numOfOccurences(tree,3));
 	return 0;
 }
 
@@ -97,3 +102,36 @@ int sumOnlyChild(BinNode tree) {
 	return sumOnlyChild(tree->left) + sumOnlyChild(tree->right);
 }
 
+int isLeaf(BinNode tree) {
+	return !tree->left && !tree->right;
+}
+
+int countLeafs(BinNode tree) {
+	if (!tree) {
+		return 0;
+	}
+	if (isLeaf(tree)) {
+		return 1;
+	}
+	return countLeafs(tree->left) + countLeafs(tree->right);
+}
+
+int numOfOccurences(BinNode tree, int x) {
+	if (!tree) {
+		return 0;
+	}
+	if (tree->data == x) {
+		return numOfOccurences(tree->left,x) + numOfOccurences(tree->right,x) + 1;
+	}
+	return numOfOccurences(tree->left, x) + numOfOccurences(tree->right, x);
+}
+
+int countNodesOnLevelX(BinNode tree, int x) {
+	if (!tree || x == -1) {
+		return 0;
+	}
+	if (x == 0) {
+		return 1;
+	}
+	return countNodesOnLevelX(tree->left, x - 1) + countNodesOnLevelX(tree->right, x - 1);
+}
