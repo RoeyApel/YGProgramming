@@ -23,12 +23,12 @@
             "id": "5b9969e1bd52cb41",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "pdf",
               "state": {
-                "file": "יג/עוד/מערכת שעות.png"
+                "file": "יג/מקצועות/סטטיסטיקה והסתברות/טבלת התפלגות נורמלית - Z.pdf"
               },
-              "icon": "lucide-image",
-              "title": "מערכת שעות"
+              "icon": "lucide-file-text",
+              "title": "טבלת התפלגות נורמלית - Z"
             }
           }
         ],
@@ -175,15 +175,17 @@
   },
   "active": "5b9969e1bd52cb41",
   "lastOpenFiles": [
+    "יג/עוד/כלי עזר ועוד.md",
+    "יג/עוד/לוח מבחנים.jpeg",
+    "יג/עוד/ASCII.png",
     "יג/עוד/ASCIIE.png",
+    "יג/עוד/Random Questions.md",
+    "יג/עוד/מידע כללי.md",
+    "יג/עוד/מערכת שעות.png",
     "יג/מקצועות/סטטיסטיקה והסתברות/טבלת התפלגות נורמלית - Z.pdf",
     "יג/מקצועות/סטטיסטיקה והסתברות/CamScanner 2024-12-21 15.18.pdf",
-    "יג/עוד/Random Questions.md",
     "יג/מקצועות/סטטיסטיקה והסתברות",
     "יג/עוד/Untitled",
-    "יג/עוד/ASCII.png",
-    "יג/עוד/מערכת שעות.png",
-    "יג/עוד/מידע כללי.md",
     "עוד/Request Denied.md",
     "Time Zones.md",
     "To Do.md",
@@ -194,10 +196,8 @@
     "יג/מקצועות/בסיסי נתונים - SQL",
     "יג/עוד/Useful Terminal commends.md",
     "יג/מקצועות/אסמבלר/הגדרות של פונט לEMU8086.png",
-    "יג/עוד/כלי עזר ועוד.md",
     "יג/מקצועות/שפת c",
     "יג/מקצועות/אסמבלר",
-    "יג/עוד/לוח מבחנים.jpeg",
     "יג/מקצועות/בסיסי נתונים - SQL/Dark theme for MySQL Workbench.md",
     "יג/עוד/Terminal CheetSheet.md",
     "יג/מקצועות/שפת c/Batch file and cmd.md",
