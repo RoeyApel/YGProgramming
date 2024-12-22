@@ -1,0 +1,3 @@
+﻿  source.c
+C:\Users\Student\Documents\GitHub\YGProgramming\C (Zahva)\Exercise13_BinTree\Exercise13_BinTree\source.c(15,15): warning C4013: 'sumOnlyChild' undefined; assuming extern returning int
+  Exercise13_BinTree.vcxproj -> C:\Users\Student\Documents\GitHub\YGProgramming\C (Zahva)\Exercise13_BinTree\x64\Debug\Exercise13_BinTree.exe
