@@ -127,7 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\..\Downloads\binNode\include\BinNode.c" />
+    <ClCompile Include="BinNode.c" />
     <ClCompile Include="source.c" />
   </ItemGroup>
   <ItemGroup>
