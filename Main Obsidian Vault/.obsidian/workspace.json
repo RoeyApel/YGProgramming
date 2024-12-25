@@ -13,26 +13,23 @@
             "state": {
               "type": "image",
               "state": {
-                "file": "יג/עוד/ASCIIE.png"
+                "file": "יג/עוד/מערכת שעות.png"
               },
               "icon": "lucide-image",
-              "title": "ASCIIE"
+              "title": "מערכת שעות"
             }
           },
           {
             "id": "5b9969e1bd52cb41",
             "type": "leaf",
             "state": {
-              "type": "image",
-              "state": {
-                "file": "יג/עוד/מערכת שעות.png"
-              },
-              "icon": "lucide-image",
-              "title": "מערכת שעות"
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -173,42 +170,44 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "5b9969e1bd52cb41",
+  "active": "cd17c80ad34a6f6e",
   "lastOpenFiles": [
-    "יג/עוד/מידע כללי.md",
-    "יג/עוד/מערכת שעות.png",
     "יג/עוד/לוח מבחנים.jpeg",
+    "יג/עוד/מידע כללי.md",
+    "יג/עוד/כלי עזר ועוד.md",
+    "יג/מקצועות/שפת c/שפת C.md",
+    "יג/מקצועות/אסמבלר/אסמבלר.md",
+    "יג/עוד/Terminal Commands.md",
+    "עוד/Request Denied.md",
+    "יג/עוד/ASCIIE.png",
+    "Untitled.canvas",
+    "rhfh.md",
+    "יג/עוד/ASCII.png",
+    "Untitled",
+    "יג/עוד/מערכת שעות.png",
+    "יג/מקצועות/אסמבלר/הגדרות של פונט לEMU8086.png",
+    "יג/Current Test.md",
     "יג/מקצועות/סטטיסטיקה והסתברות/טבלת התפלגות נורמלית - Z.pdf",
     "יג/מקצועות/סטטיסטיקה והסתברות/CamScanner 2024-12-21 15.18.pdf",
     "יג/עוד/Random Questions.md",
     "יג/מקצועות/סטטיסטיקה והסתברות",
-    "יג/עוד/ASCIIE.png",
     "יג/עוד/Untitled",
-    "יג/עוד/ASCII.png",
-    "עוד/Request Denied.md",
     "Time Zones.md",
     "To Do.md",
-    "יג/Current Test.md",
     "יג/מקצועות/אסמבלר/assembly cheetsheet.pdf",
     "יג/מקצועות/אסמבלר/EMU8086 - file template.md",
-    "יג/עוד/Terminal Commands.md",
     "יג/מקצועות/בסיסי נתונים - SQL",
     "יג/עוד/Useful Terminal commends.md",
-    "יג/מקצועות/אסמבלר/הגדרות של פונט לEMU8086.png",
-    "יג/עוד/כלי עזר ועוד.md",
     "יג/מקצועות/שפת c",
     "יג/מקצועות/אסמבלר",
     "יג/מקצועות/בסיסי נתונים - SQL/Dark theme for MySQL Workbench.md",
     "יג/עוד/Terminal CheetSheet.md",
     "יג/מקצועות/שפת c/Batch file and cmd.md",
     "יג/מקצועות/סטטיסטיקה והסתברות/סטטיסטיקה והסתברות.md",
-    "Untitled",
     "יג/מקצועות/שפת python.md",
-    "יג/מקצועות/שפת c/שפת C.md",
     "יג/מקצועות/סיבוכיות זמן ריצה ויעילות.md",
     "יג/מקצועות/בסיסי נתונים - SQL/בסיסי נתונים - SQL.md",
     "יג/מקצועות/אתרים - Front End.md",
-    "יג/מקצועות/אסמבלר/אסמבלר.md",
     "יג/Do To.md",
     "לוח מבחנים 1.jpeg",
     "לוח מבחנים.jpeg",
@@ -219,8 +218,6 @@
     "יג/מקצועות/אתרים - Full Stack.md",
     "צילום מסך 2024-09-28 103506 1.png",
     "רשימת משימות.md",
-    "יג/שפת python.md",
-    "Untitled.canvas",
     "Untitled 1.canvas"
   ]
 }

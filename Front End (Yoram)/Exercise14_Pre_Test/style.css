@@ -1,0 +1,82 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.main-screen {
+  background-image: url("/images/back1.jpg");
+  height: 100vh;
+  background-size: 100% 100%;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 2px solid black; */
+  height: 85px;
+  padding: 0 2em;
+}
+.wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 3em;
+}
+.link-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2.3em;
+}
+.link-wrapper a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 200;
+}
+.info-wrapper {
+  display: flex;
+  gap: 2em;
+}
+.phone-contact {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #ffffff;
+}
+.btn-styled {
+  background-image: linear-gradient(30deg, #694228 10%, #187d7f);
+  color: #ffffff;
+  font-size: 0.9em;
+  padding: 0.7em 2em;
+  border: none;
+  border-radius: 17px;
+  box-shadow: 0 0 6px 2px white;
+}
+.btn-styled2 {
+  background-color: #ffffff;
+  font-size: 1em;
+  padding: 0.5em 0.7em;
+  border: 1px solid;
+
+  border-radius: 17px;
+}
+.content-wrapper {
+  height: calc(100vh - 85px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3em;
+}
+.content {
+  width: 80%;
+}
+.logo-cont {
+}
+.logo {
+  width: 80px;
+}
