@@ -9,17 +9,21 @@ typedef struct {
 	int faculty;
 }StudentItemType, * StudentItemPtr;
 
-typedef struct NodeD {
+typedef struct {
 	long id;
 	char name[30];
 	int faculty;
 	int fails;
 	float avg;
+}StudentType, * StudentPtr;
+
+typedef struct NodeD {
+	StudentPtr student;
 	struct NodeD* prev, * next;
 }DNodeType, * DNodePtr;
 
 typedef struct Node {
-	DNodePtr student;
+	DNodePtr pstudent;
 	struct Node* next;
 } NodeType, * NodePtr;
 
