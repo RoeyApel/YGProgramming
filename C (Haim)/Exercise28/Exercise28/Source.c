@@ -46,5 +46,5 @@ void main() {
 
 void add_sorted_dNode(DNodePtr* p, long id) {
 	DNodePtr newNode = (DNodePtr)malloc(sizeof(DNodeType));
-	newNode->
+	newNode-
 }
