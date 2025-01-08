@@ -1,0 +1,4 @@
+﻿  Source.c
+C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise29\Exercise29\Source.c(23,27): warning C4020: 'init_sparse_mat': too many actual parameters
+C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise29\Exercise29\Source.c(26,58): warning C4029: declared formal parameter list different from definition
+  Exercise29.vcxproj -> C:\Users\Student\Documents\GitHub\YGProgramming\C (Haim)\Exercise29\x64\Debug\Exercise29.exe
