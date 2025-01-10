@@ -11,12 +11,14 @@
             "id": "cd17c80ad34a6f6e",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "יג/עוד/מערכת שעות.png"
+                "file": "יג/מקצועות/שפת Java/Java Project.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "מערכת שעות"
+              "icon": "lucide-file",
+              "title": "Java Project"
             }
           }
         ]
@@ -162,6 +164,10 @@
   },
   "active": "cd17c80ad34a6f6e",
   "lastOpenFiles": [
+    "יג/מקצועות/שפת Java/שפת Java.md",
+    "יג/מקצועות/שפת Java/Java Project.md",
+    "יג/עוד/מערכת שעות.png",
+    "יג/מקצועות/שפת Java",
     "יג/עוד/לוח מבחנים.jpeg",
     "יג/עוד/מידע כללי.md",
     "יג/עוד/כלי עזר ועוד.md",
@@ -174,7 +180,6 @@
     "rhfh.md",
     "יג/עוד/ASCII.png",
     "Untitled",
-    "יג/עוד/מערכת שעות.png",
     "יג/מקצועות/אסמבלר/הגדרות של פונט לEMU8086.png",
     "יג/Current Test.md",
     "יג/מקצועות/סטטיסטיקה והסתברות/טבלת התפלגות נורמלית - Z.pdf",
@@ -204,10 +209,8 @@
     "עוד/Request.md",
     "עוד/con1.png",
     "עוד/con2.png",
-    "עוד",
     "יג/מקצועות/אתרים - Full Stack.md",
     "צילום מסך 2024-09-28 103506 1.png",
-    "רשימת משימות.md",
     "Untitled 1.canvas"
   ]
 }
