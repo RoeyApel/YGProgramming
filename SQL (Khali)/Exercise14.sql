@@ -33,10 +33,7 @@ course_id int,
 grade int
 );
 
-insert into students 
-values (1,"Tom", "Popy","city1"),
-(2,"Tim", "Popy","city2"),
-(3,"Tum", "Popy","city3");
+
 
 insert into courses 
 values (1,"Sql", 20),
