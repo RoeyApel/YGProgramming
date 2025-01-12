@@ -38,7 +38,7 @@ flyingButton.addEventListener("mouseover", (e) => {
   let currentLeft = initialLeft;
   let currentTop = initialTop;
 
-  const interval = 20;
+  const interval = 10;
   let intervalID = setInterval(() => {
     currentLeft += (newLeft - initialLeft) / interval;
     currentTop += (newTop - initialTop) / interval;

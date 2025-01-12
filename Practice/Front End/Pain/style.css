@@ -3,6 +3,9 @@
 :root {
   --color-1: #5c2688;
   --color-2: #f8f8f8;
+  --color-3: #833ab4;
+  --color-4: #fd1d1d;
+  --color-5: #fcb045;
 }
 * {
   box-sizing: border-box;
@@ -27,12 +30,33 @@ body {
   padding: 0.4em 0.8em;
   border-radius: 9px;
   color: var(--color-2);
-  background-color: var(--color-1);
+  background-image: linear-gradient(
+    to right,
+    var(--color-3),
+    var(--color-4),
+    var(--color-5)
+  );
   border: 1px solid var(--color-2);
 }
 
 .flying-btn:active {
   color: var(--color-1);
+  background-image: none;
+  border-image: linear-gradient(
+      to right,
+      var(--color-3),
+      var(--color-4),
+      var(--color-5)
+    )
+    1;
   background-color: var(--color-2);
-  border: 1px solid var(--color-1);
+  color: transparent;
+  background-image: linear-gradient(
+    to right,
+    var(--color-3),
+    var(--color-4),
+    var(--color-5)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
 }

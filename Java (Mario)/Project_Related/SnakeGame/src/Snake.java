@@ -24,18 +24,6 @@ public class Snake {
         addSnakePart();
         addSnakePart();
         addSnakePart();
-        addSnakePart();
-        addSnakePart();
-        addSnakePart();
-        addSnakePart();
-        addSnakePart();
-        addSnakePart();
-        addSnakePart();
-        addSnakePart();
-        addSnakePart();
-        addSnakePart();
-        addSnakePart();
-        addSnakePart();
     }
 
     public void changeDirection(int direction) {
