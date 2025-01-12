@@ -9,57 +9,26 @@ public class Snake {
     public static final int LEFT = 2;
     public static final int RIGHT = 3;
 
+    public static final int MOVEMENT_COOLDOWN = 20;
+
     private ArrayList<SnakePart> snake;
+    private int initialCooldown;
+    private int tick;
 
     public Snake() {
+        tick = 0;
+        initialCooldown = 0;
         initSnake();
     }
 
     private void initSnake() {
         snake = new ArrayList<>();
 
-        SnakePart part = new SnakePart();
-        snake.add(part);
+        createSnakeHead();
         addSnakePart();
         addSnakePart();
         addSnakePart();
         addSnakePart();
-    }
-
-    public void changeDirection(int direction) {
-        if (direction == snake.get(0).getDirection() || direction == getReverseDir(snake.get(0).getDirection())) {
-            return;
-        }
-        int delay = 0;
-        snake.get(0).setDirection(direction);
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                for (int i = 1; i < snake.size(); i++) {
-                    try {
-                        Thread.sleep(1000 / 6);
-                    } catch (InterruptedException e) {
-                    }
-                    snake.get(i).setDirection(direction);
-                }
-            }
-        }).start();
-    }
-
-    private int getReverseDir(int direction) {
-        int output = direction == UP ? DOWN
-                : direction == DOWN ? UP
-                        : direction == LEFT ? RIGHT
-                                : direction == RIGHT ? LEFT
-                                        : 99;
-        return output;
-    }
-
-    public void addSnakePart() {
-        SnakePart part = new SnakePart();
-        part.setInitialMovementDelay(snake.get(snake.size() - 1).getInitialMovementDelay() + SnakePart.NOMRAL_DELAY);
-        snake.add(part);
     }
 
     public void drawSnake(Graphics g, int dx, int dy) {
@@ -69,8 +38,63 @@ public class Snake {
     }
 
     public void update() {
-        for (SnakePart snakePart : snake) {
-            snakePart.update();
+        if (tick == MOVEMENT_COOLDOWN) {
+            snake.get(0).move();
+
+            for (int i = 1; i < snake.size(); i++) {
+                snake.get(i).setDirection(snake.get(i - 1).getPreviousDirection());
+                snake.get(i).move();
+                tick = 0;
+            }
+        } else {
+            tick++;
         }
+
     }
+
+    public void changeDirection(int direction) {
+        snake.get(0).setDirection(direction);
+    }
+
+    public void createSnakeHead() {
+        SnakePart part = new SnakePart(Game.SIZE / 2, Game.SIZE / 2);
+        snake.add(part);
+    }
+
+    public void addSnakePart() {
+        SnakePart lastSnakePart = snake.get(snake.size() - 1);
+        SnakePart part = new SnakePart(lastSnakePart.getRow() - 1, lastSnakePart.getCol());
+        snake.add(part);
+    }
+
+    // public void changeDirection(int direction) {
+    // if (direction == snake.get(0).getDirection() || direction ==
+    // getReverseDir(snake.get(0).getDirection())) {
+    // return;
+    // }
+    // int delay = 0;
+    // snake.get(0).setDirection(direction);
+
+    // new Thread(new Runnable() {
+    // @Override
+    // public void run() {
+    // for (int i = 1; i < snake.size(); i++) {
+    // try {
+    // Thread.sleep((1000 / 60) * SnakePart.MOVEMENT_COOLDOWN);
+    // } catch (InterruptedException e) {
+    // }
+    // snake.get(i).setDirection(direction);
+    // }
+    // }
+    // }).start();
+    // }
+
+    // private int getReverseDir(int direction) {
+    // int output = direction == UP ? DOWN
+    // : direction == DOWN ? UP
+    // : direction == LEFT ? RIGHT
+    // : direction == RIGHT ? LEFT
+    // : 99;
+    // return output;
+    // }
 }

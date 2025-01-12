@@ -1,28 +1,25 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.sql.Time;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Timer;
 
 import javax.swing.*;
 
 public class SnakePart {
-    public static final int NOMRAL_DELAY = 10;
 
     private int row, col;
     private int x, y;
     private int width, height;
     private Color color;
-    private int direction;
-    private int tick;
-    private int initialMovementDelay;
+    private int direction, previousDirection;
 
-    public SnakePart() {
+    public SnakePart(int row, int col) {
         color = new Color(30, 105, 200);
         direction = Snake.DOWN;
-        tick = 0;
-        row = Game.SIZE / 2;
-        col = Game.SIZE / 2;
-        initialMovementDelay = 0;
+        this.row = row;
+        this.col = col;
     }
 
     public void draw(Graphics g, int dx, int dy) {
@@ -38,21 +35,10 @@ public class SnakePart {
         g.drawRect(x, y, width, height);
     }
 
-    public void update() {
-        if (tick == NOMRAL_DELAY + initialMovementDelay) {
-            move();
-            tick = 0;
-            initialMovementDelay = 0;
-        } else {
-            tick++;
-        }
-    }
-
-    private void move() {
+    public void move() {
         switch (direction) {
             case Snake.UP:
                 row--;
-                break;
             case Snake.DOWN:
                 row++;
                 break;
@@ -70,15 +56,8 @@ public class SnakePart {
     }
 
     public void setDirection(int direction) {
+        this.previousDirection = direction;
         this.direction = direction;
-    }
-
-    public int getInitialMovementDelay() {
-        return initialMovementDelay;
-    }
-
-    public void setInitialMovementDelay(int delay) {
-        initialMovementDelay = delay;
     }
 
     public void setPosition(int x, int y) {
@@ -129,6 +108,30 @@ public class SnakePart {
 
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    public int getCol() {
+        return col;
+    }
+
+    public void setCol(int col) {
+        this.col = col;
+    }
+
+    public int getPreviousDirection() {
+        return previousDirection;
+    }
+
+    public void setPreviousDirection(int previousDirection) {
+        this.previousDirection = previousDirection;
     }
 
 }

@@ -31,10 +31,10 @@ body {
   border-radius: 9px;
   color: var(--color-2);
   background-image: linear-gradient(
-    to right,
-    var(--color-3),
+    to bottom right,
+    var(--color-5),
     var(--color-4),
-    var(--color-5)
+    var(--color-3)
   );
   border: 1px solid var(--color-2);
 }
@@ -43,19 +43,19 @@ body {
   color: var(--color-1);
   background-image: none;
   border-image: linear-gradient(
-      to right,
-      var(--color-3),
+      to bottom right,
+      var(--color-5),
       var(--color-4),
-      var(--color-5)
+      var(--color-3)
     )
     1;
   background-color: var(--color-2);
   color: transparent;
   background-image: linear-gradient(
-    to right,
-    var(--color-3),
+    to bottom right,
+    var(--color-5),
     var(--color-4),
-    var(--color-5)
+    var(--color-3)
   );
   background-clip: text;
   -webkit-background-clip: text;
