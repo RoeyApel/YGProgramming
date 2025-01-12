@@ -63,6 +63,9 @@ public class Game implements KeyListener {
             case 's':
                 snake.changeDirection(Snake.DOWN);
                 break;
+            case 'e':
+                snake.addSnakePart();
+                break;
         }
     }
 

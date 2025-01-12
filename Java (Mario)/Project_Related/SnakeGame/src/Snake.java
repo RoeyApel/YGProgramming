@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Snake {
     public static final int DOWN = 1;
@@ -14,10 +15,12 @@ public class Snake {
     private ArrayList<SnakePart> snake;
     private int initialCooldown;
     private int tick;
+    private AtomicInteger delay;
 
     public Snake() {
         tick = 0;
         initialCooldown = 0;
+        delay = new AtomicInteger(0);
         initSnake();
     }
 
@@ -25,6 +28,14 @@ public class Snake {
         snake = new ArrayList<>();
 
         createSnakeHead();
+        addSnakePart();
+        addSnakePart();
+        addSnakePart();
+        addSnakePart();
+        addSnakePart();
+        addSnakePart();
+        addSnakePart();
+        addSnakePart();
         addSnakePart();
         addSnakePart();
         addSnakePart();
@@ -38,20 +49,18 @@ public class Snake {
     }
 
     public void update() {
-
         if (tick == MOVEMENT_COOLDOWN) {
             snake.get(0).move();
 
             for (int i = 1; i < snake.size(); i++) {
                 snake.get(i).setDirection(snake.get(i - 1).getPreviousDirection());
-                snake.get(i - 1).setPreviousDirection(snake.get(i - 1).getDirection());
                 snake.get(i).move();
+                snake.get(i - 1).setPreviousDirection(snake.get(i - 1).getDirection());
                 tick = 0;
             }
         } else {
             tick++;
         }
-
     }
 
     public void changeDirection(int direction) {
@@ -59,14 +68,27 @@ public class Snake {
     }
 
     public void createSnakeHead() {
-        SnakePart part = new SnakePart(Game.SIZE / 2, Game.SIZE / 2);
+        SnakePart part = new SnakePart(Game.SIZE / 2, Game.SIZE / 2, Snake.DOWN);
         snake.add(part);
     }
 
     public void addSnakePart() {
         SnakePart lastSnakePart = snake.get(snake.size() - 1);
-        SnakePart part = new SnakePart(lastSnakePart.getRow() - 1, lastSnakePart.getCol());
-        snake.add(part);
+        SnakePart part = new SnakePart(lastSnakePart.getRow(), lastSnakePart.getCol(),
+                lastSnakePart.getPreviousDirection());
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                delay.getAndSet(delay.intValue() + Snake.MOVEMENT_COOLDOWN);
+                try {
+                    Thread.sleep((1000 / 60) * delay.intValue());
+                } catch (InterruptedException e) {
+                }
+                delay.getAndSet(delay.intValue() - Snake.MOVEMENT_COOLDOWN);
+
+                snake.add(part);
+            }
+        }).start();
     }
 
     // public void changeDirection(int direction) {

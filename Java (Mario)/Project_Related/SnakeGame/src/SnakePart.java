@@ -15,10 +15,10 @@ public class SnakePart {
     private Color color;
     private int direction, previousDirection;
 
-    public SnakePart(int row, int col) {
+    public SnakePart(int row, int col, int direction) {
         color = new Color(30, 105, 200);
-        direction = Snake.DOWN;
-        previousDirection = Snake.DOWN;
+        this.direction = direction;
+        previousDirection = direction;
         this.row = row;
         this.col = col;
     }
