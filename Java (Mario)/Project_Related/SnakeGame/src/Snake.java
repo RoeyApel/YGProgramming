@@ -4,12 +4,12 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 public class Snake {
-    public static final int UP = 0;
     public static final int DOWN = 1;
     public static final int LEFT = 2;
     public static final int RIGHT = 3;
+    public static final int UP = 4;
 
-    public static final int MOVEMENT_COOLDOWN = 20;
+    public static final int MOVEMENT_COOLDOWN = 5;
 
     private ArrayList<SnakePart> snake;
     private int initialCooldown;
@@ -38,11 +38,13 @@ public class Snake {
     }
 
     public void update() {
+
         if (tick == MOVEMENT_COOLDOWN) {
             snake.get(0).move();
 
             for (int i = 1; i < snake.size(); i++) {
                 snake.get(i).setDirection(snake.get(i - 1).getPreviousDirection());
+                snake.get(i - 1).setPreviousDirection(snake.get(i - 1).getDirection());
                 snake.get(i).move();
                 tick = 0;
             }

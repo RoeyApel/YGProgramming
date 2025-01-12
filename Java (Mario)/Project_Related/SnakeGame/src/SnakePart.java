@@ -18,6 +18,7 @@ public class SnakePart {
     public SnakePart(int row, int col) {
         color = new Color(30, 105, 200);
         direction = Snake.DOWN;
+        previousDirection = Snake.DOWN;
         this.row = row;
         this.col = col;
     }
@@ -39,6 +40,7 @@ public class SnakePart {
         switch (direction) {
             case Snake.UP:
                 row--;
+                break;
             case Snake.DOWN:
                 row++;
                 break;
@@ -55,9 +57,9 @@ public class SnakePart {
         return direction;
     }
 
-    public void setDirection(int direction) {
-        this.previousDirection = direction;
-        this.direction = direction;
+    public void setDirection(int newDirection) {
+        this.previousDirection = this.direction;
+        this.direction = newDirection;
     }
 
     public void setPosition(int x, int y) {
