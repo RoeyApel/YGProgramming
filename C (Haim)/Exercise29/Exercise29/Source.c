@@ -24,12 +24,45 @@ int update_node(NodePtr mat, int row, int col, DataType data);
 DataType delete_node(NodePtr mat, int row, int col);
 void delete_last_col(NodePtr mat, int* cols);
 void delete_last_row(NodePtr mat, int* rows);
+void free_mat(NodePtr* mat, int* rows, int* cols);
+void print_mat_by_cols(NodePtr mat);
+void print_mat_by_rows(NodePtr mat);
 
 void main() {
 	int rows, cols;
 	NodePtr matrix = NULL;
 
 	init_sparse_mat(&matrix, &rows, &cols);
+}
+
+void print_mat_by_cols(NodePtr mat) {
+	if (!mat) {
+		puts("Mat Empty!!");
+		return;
+	}
+
+	NodePtr prow, pcol = mat;
+	for (pcol = mat->nextCol; pcol->nextCol != mat; pcol= pcol->nextCol) {
+		for (prow = pcol->nextRow; prow->nextRow != pcol; prow = prow->nextRow) {
+			printf("%d ", prow->data.num);
+		}
+		printf("\n");
+	}
+}
+
+void print_mat_by_rows(NodePtr mat) {
+	if (!mat) {
+		puts("Mat Empty!!");
+		return;
+	}
+
+	NodePtr prow = mat, pcol;
+	for (prow = mat->nextRow; prow->nextRow != mat; prow = prow->nextRow) {
+		for (pcol = prow->nextCol; pcol->nextCol != prow; pcol = pcol->nextCol) {
+			printf("%d ", pcol->data.num);
+		}
+		printf("\n");
+	}
 }
 
 void free_mat(NodePtr* mat, int* rows, int* cols) {
