@@ -14,10 +14,10 @@ public class SnakePart {
     private int x, y;
     private int width, height;
     private Color color;
-    private int direction, previousDirection;
+    private Directions direction, previousDirection;
     private int initialCooldown;
 
-    public SnakePart(int id, int row, int col, int direction, int initialCooldown) {
+    public SnakePart(int id, int row, int col, Directions direction, int initialCooldown) {
         color = new Color(30, 105, 200);
         this.direction = direction;
         previousDirection = direction;
@@ -40,32 +40,32 @@ public class SnakePart {
         g.drawRect(x, y, width, height);
 
         g.setColor(Color.black);
-        g.drawString(id + "", x + width / 2, y + height / 2);
+        // g.drawString(id + "", x + width / 2, y + height / 2);
+        // g.drawString("(" + col + "," + row + ")", x + width / 2, y + height / 2);
     }
 
     public void move() {
         switch (direction) {
-            case Snake.UP:
+            case UP:
                 row--;
                 break;
-            case Snake.DOWN:
+            case DOWN:
                 row++;
                 break;
-            case Snake.LEFT:
+            case LEFT:
                 col--;
                 break;
-            case Snake.RIGHT:
+            case RIGHT:
                 col++;
                 break;
         }
     }
 
-    public int getDirection() {
+    public Directions getDirection() {
         return direction;
     }
 
-    public void setDirection(int newDirection) {
-        this.previousDirection = this.direction;
+    public void setDirection(Directions newDirection) {
         this.direction = newDirection;
     }
 
@@ -135,11 +135,11 @@ public class SnakePart {
         this.col = col;
     }
 
-    public int getPreviousDirection() {
+    public Directions getPreviousDirection() {
         return previousDirection;
     }
 
-    public void setPreviousDirection(int previousDirection) {
+    public void setPreviousDirection(Directions previousDirection) {
         this.previousDirection = previousDirection;
     }
 

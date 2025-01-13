@@ -5,10 +5,6 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Snake {
-    public static final int DOWN = 1;
-    public static final int LEFT = 2;
-    public static final int RIGHT = 3;
-    public static final int UP = 4;
 
     public static final int MOVEMENT_COOLDOWN = 5;
 
@@ -38,6 +34,9 @@ public class Snake {
         for (SnakePart snakePart : snake) {
             snakePart.draw(g, dx, dy);
         }
+
+        // g.drawString("dirHead" + snake.get(0).getDirection(), dx, dy);
+        // g.drawString("dirHead" + snake.get(0).getDirection(), dx, 2 * dy);
     }
 
     public void update() {
@@ -59,12 +58,17 @@ public class Snake {
         }
     }
 
-    public void changeDirection(int direction) {
+    public boolean outOfBounds() {
+        return snake.get(0).getCol() < 0 || snake.get(0).getCol() > Game.SIZE
+                || snake.get(0).getRow() < 0 || snake.get(0).getRow() > Game.SIZE;
+    }
+
+    public void changeDirection(Directions direction) {
         snake.get(0).setDirection(direction);
     }
 
     public void createSnakeHead() {
-        SnakePart part = new SnakePart(0, Game.SIZE / 2, Game.SIZE / 2, Snake.DOWN, 0);
+        SnakePart part = new SnakePart(0, Game.SIZE / 2, Game.SIZE / 2, Directions.DOWN, 0);
         snake.add(part);
     }
 

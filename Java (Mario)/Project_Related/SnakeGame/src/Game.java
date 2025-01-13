@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.sql.Time;
+import java.util.HashSet;
 
 public class Game implements KeyListener {
     public static final int SIZE = 30;
@@ -49,6 +51,27 @@ public class Game implements KeyListener {
     }
 
     @Override
+    public void keyReleased(KeyEvent e) {
+        switch (e.getKeyChar()) {
+            case 'a':
+                snake.changeDirection(Directions.LEFT);
+                break;
+            case 'd':
+                snake.changeDirection(Directions.RIGHT);
+                break;
+            case 'w':
+                snake.changeDirection(Directions.UP);
+                break;
+            case 's':
+                snake.changeDirection(Directions.DOWN);
+                break;
+            case 'e':
+                snake.addSnakePart();
+                break;
+        }
+    }
+
+    @Override
     public void keyPressed(KeyEvent e) {
 
     }
@@ -56,27 +79,6 @@ public class Game implements KeyListener {
     @Override
     public void keyTyped(KeyEvent e) {
 
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        switch (e.getKeyChar()) {
-            case 'a':
-                snake.changeDirection(Snake.LEFT);
-                break;
-            case 'd':
-                snake.changeDirection(Snake.RIGHT);
-                break;
-            case 'w':
-                snake.changeDirection(Snake.UP);
-                break;
-            case 's':
-                snake.changeDirection(Snake.DOWN);
-                break;
-            case 'e':
-                snake.addSnakePart();
-                break;
-        }
     }
 
 }
