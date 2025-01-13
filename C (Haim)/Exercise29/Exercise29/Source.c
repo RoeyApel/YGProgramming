@@ -30,8 +30,29 @@ void main() {
 	init_sparse_mat(&matrix, &rows, &cols);
 }
 
-void remove_last_row(NodePtr mat, int* rows) {
-	NodePtr lastRow = find_before(mat, --(*rows), 0);
+void delete_last_row(NodePtr mat, int* cols) {
+	NodePtr prow, pcol, prev = mat;
+
+	for (pcol = mat->nextCol; pcol->nextCol != mat; prev = pcol, pcol = pcol->nextCol);
+
+	for (prow = pcol->nextRow; prow != pcol; prow = pcol->nextRow) delete_node(mat, prow->i, prow->j);
+
+	prev->nextCol = mat;
+	free(pcol);
+	(*cols)--;
+}
+
+
+void delete_last_row(NodePtr mat, int* rows) {
+	NodePtr prow, pcol, prev = mat;
+
+	for (prow = mat->nextRow; prow->nextRow != mat; prev = prow, prow = prow->nextRow);
+
+	for (pcol = prow->nextCol; pcol != prow; pcol = prow->nextCol) delete_node(mat, pcol->i, pcol->j);
+
+	prev->nextRow = mat;
+	free(prow);
+	(*rows)--;
 }
 
 DataType delete_node(NodePtr mat, int row, int col) {
