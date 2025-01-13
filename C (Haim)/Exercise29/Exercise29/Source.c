@@ -32,6 +32,19 @@ void main() {
 	init_sparse_mat(&matrix, &rows, &cols);
 }
 
+void free_mat(NodePtr* mat, int* rows, int* cols) {
+	while (*rows)
+	{
+		delete_last_row(*mat, rows);
+	}
+	while (*cols)
+	{
+		delete_last_col(*mat, cols);
+	}
+	free(*mat);
+	*mat = NULL;
+}
+
 void delete_last_col(NodePtr mat, int* cols) {
 	NodePtr prow, pcol, prev = mat;
 
