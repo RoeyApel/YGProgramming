@@ -24,6 +24,7 @@ public class Game implements KeyListener {
         gamePanel = new GamePanel(this);
         gameFrame.add(gamePanel);
 
+        gameFrame.requestFocus();
         gameFrame.setVisible(true);
 
         gameLoop = new GameLoop(this);
@@ -81,10 +82,13 @@ public class Game implements KeyListener {
         String txtGameOver = "Game Over";
         g.setColor(new Color(200, 50, 50));
 
-        g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 100));
+        g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 100));
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
         int fontWidth = g.getFontMetrics().stringWidth(txtGameOver);
         int fontHeight = g.getFontMetrics().getHeight();
-        g.drawString(txtGameOver, (SIZE / 2) * dx - fontWidth / 2, (SIZE / 2) * dy - fontHeight / 2);
+        g.drawString(txtGameOver, (SIZE / 2) * dx - fontWidth / 2, (SIZE / 2) * dy - fontHeight / 6);
     }
 
     @Override
