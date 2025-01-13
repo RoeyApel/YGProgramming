@@ -13,14 +13,10 @@ public class Snake {
     public static final int MOVEMENT_COOLDOWN = 5;
 
     private ArrayList<SnakePart> snake;
-    private int initialCooldown;
     private int tick;
-    private AtomicInteger delay;
 
     public Snake() {
         tick = 0;
-        initialCooldown = 0;
-        delay = new AtomicInteger(0);
         initSnake();
     }
 
@@ -35,11 +31,7 @@ public class Snake {
         addSnakePart();
         addSnakePart();
         addSnakePart();
-        addSnakePart();
-        addSnakePart();
-        addSnakePart();
-        addSnakePart();
-        addSnakePart();
+
     }
 
     public void drawSnake(Graphics g, int dx, int dy) {
@@ -53,11 +45,15 @@ public class Snake {
             snake.get(0).move();
 
             for (int i = 1; i < snake.size(); i++) {
-                snake.get(i).setDirection(snake.get(i - 1).getPreviousDirection());
-                snake.get(i).move();
-                snake.get(i - 1).setPreviousDirection(snake.get(i - 1).getDirection());
-                tick = 0;
+                if (snake.get(i).getInitialCooldown() == 0) {
+                    snake.get(i).setDirection(snake.get(i - 1).getPreviousDirection());
+                    snake.get(i).move();
+                    snake.get(i - 1).setPreviousDirection(snake.get(i - 1).getDirection());
+                } else {
+                    snake.get(i).decInitialCooldown();
+                }
             }
+            tick = 0;
         } else {
             tick++;
         }
@@ -68,27 +64,16 @@ public class Snake {
     }
 
     public void createSnakeHead() {
-        SnakePart part = new SnakePart(Game.SIZE / 2, Game.SIZE / 2, Snake.DOWN);
+        SnakePart part = new SnakePart(0, Game.SIZE / 2, Game.SIZE / 2, Snake.DOWN, 0);
         snake.add(part);
     }
 
     public void addSnakePart() {
         SnakePart lastSnakePart = snake.get(snake.size() - 1);
-        SnakePart part = new SnakePart(lastSnakePart.getRow(), lastSnakePart.getCol(),
-                lastSnakePart.getPreviousDirection());
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                delay.getAndSet(delay.intValue() + Snake.MOVEMENT_COOLDOWN);
-                try {
-                    Thread.sleep((1000 / 60) * delay.intValue());
-                } catch (InterruptedException e) {
-                }
-                delay.getAndSet(delay.intValue() - Snake.MOVEMENT_COOLDOWN);
+        SnakePart part = new SnakePart(lastSnakePart.getId() + 1, lastSnakePart.getRow(), lastSnakePart.getCol(),
+                lastSnakePart.getPreviousDirection(), lastSnakePart.getInitialCooldown() + 1);
+        snake.add(part);
 
-                snake.add(part);
-            }
-        }).start();
     }
 
     // public void changeDirection(int direction) {

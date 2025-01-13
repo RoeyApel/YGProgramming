@@ -50,6 +50,16 @@ public class Game implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
         switch (e.getKeyChar()) {
             case 'a':
                 snake.changeDirection(Snake.LEFT);
@@ -67,16 +77,6 @@ public class Game implements KeyListener {
                 snake.addSnakePart();
                 break;
         }
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
     }
 
 }

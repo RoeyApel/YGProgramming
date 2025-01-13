@@ -9,18 +9,22 @@ import javax.swing.*;
 
 public class SnakePart {
 
+    private int id;
     private int row, col;
     private int x, y;
     private int width, height;
     private Color color;
     private int direction, previousDirection;
+    private int initialCooldown;
 
-    public SnakePart(int row, int col, int direction) {
+    public SnakePart(int id, int row, int col, int direction, int initialCooldown) {
         color = new Color(30, 105, 200);
         this.direction = direction;
         previousDirection = direction;
         this.row = row;
         this.col = col;
+        this.id = id;
+        this.initialCooldown = initialCooldown;
     }
 
     public void draw(Graphics g, int dx, int dy) {
@@ -34,6 +38,9 @@ public class SnakePart {
 
         g.setColor(new Color(30, 30, 200));
         g.drawRect(x, y, width, height);
+
+        g.setColor(Color.black);
+        g.drawString(id + "", x + width / 2, y + height / 2);
     }
 
     public void move() {
@@ -134,6 +141,26 @@ public class SnakePart {
 
     public void setPreviousDirection(int previousDirection) {
         this.previousDirection = previousDirection;
+    }
+
+    public int getInitialCooldown() {
+        return initialCooldown;
+    }
+
+    public void setInitialCooldown(int initialCooldown) {
+        this.initialCooldown = initialCooldown;
+    }
+
+    public void decInitialCooldown() {
+        initialCooldown--;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
 }

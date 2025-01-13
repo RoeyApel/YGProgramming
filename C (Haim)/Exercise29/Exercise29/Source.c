@@ -54,7 +54,7 @@ void add_col(NodePtr mat, int* col) {
 	newNode->nextRow = newNode;
 	newNode->nextCol = mat;
 
-	for (p = mat; p->nextCol == mat; p = p->nextCol);
+	for (p = mat; p->nextCol != mat; p = p->nextCol);
 	p->nextCol = newNode;
 }
 
@@ -66,7 +66,7 @@ void add_row(NodePtr mat, int *row) {
 	newNode->nextCol = newNode;
 	newNode->nextRow = mat;
 
-	for (p = mat; p->nextRow == mat; p = p->nextRow);
+	for (p = mat; p->nextRow != mat; p = p->nextRow);
 	p->nextRow = newNode;
 }
 
