@@ -46,10 +46,6 @@ public class Game implements KeyListener {
         g.fillRect(0, 0, gamePanel.getWidth(), gamePanel.getHeight());
     }
 
-    public GamePanel getGamePanel() {
-        return gamePanel;
-    }
-
     @Override
     public void keyReleased(KeyEvent e) {
         switch (e.getKeyChar()) {
@@ -79,6 +75,10 @@ public class Game implements KeyListener {
     @Override
     public void keyTyped(KeyEvent e) {
 
+    }
+
+    public GamePanel getGamePanel() {
+        return gamePanel;
     }
 
 }

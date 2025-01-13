@@ -40,7 +40,8 @@ public class SnakePart {
         g.drawRect(x, y, width, height);
 
         g.setColor(Color.black);
-        // g.drawString(id + "", x + width / 2, y + height / 2);
+        g.drawString(initialCooldown + "", x + width / 2, y + height / 2);
+
         // g.drawString("(" + col + "," + row + ")", x + width / 2, y + height / 2);
     }
 
@@ -61,12 +62,16 @@ public class SnakePart {
         }
     }
 
+    public boolean isInEqualPosition(SnakePart other) {
+        return other.getCol() == this.col && other.getRow() == this.row;
+    }
+
     public Directions getDirection() {
         return direction;
     }
 
-    public void setDirection(Directions newDirection) {
-        this.direction = newDirection;
+    public void setDirection(Directions direction) {
+        this.direction = direction;
     }
 
     public void setPosition(int x, int y) {
