@@ -19,6 +19,9 @@ void add_row(NodePtr mat, int* row);
 void add_col(NodePtr mat, int* col);
 NodePtr find_above(NodePtr mat, int row, int col);
 NodePtr find_before(NodePtr mat, int row, int col);
+int insert_node(NodePtr mat, int row, int col, DataType data);
+int update_node(NodePtr mat, int row, int col, DataType data);
+DataType delete_node(NodePtr mat, int row, int col);
 
 void main() {
 	int rows, cols;
@@ -27,9 +30,69 @@ void main() {
 	init_sparse_mat(&matrix, &rows, &cols);
 }
 
+void remove_last_row(NodePtr mat, int* rows) {
+	NodePtr lastRow = find_before(mat, --(*rows), 0);
+}
+
+DataType delete_node(NodePtr mat, int row, int col) {
+	DataType data;
+	NodePtr above = find_above(mat, row, col);
+	NodePtr before = find_before(mat, row, col);
+
+	if (above->nextRow != before->nextCol) {
+		data.num = -1;
+		puts("Error!!");
+		return data;
+	}
+
+	NodePtr deleted = above->nextRow;
+
+	above->nextRow = deleted->nextRow;
+	before->nextCol = deleted->nextCol;
+
+	data = deleted->data;
+	free(deleted);
+	return data;
+}
+
+int update_node(NodePtr mat, int row, int col, DataType data) {
+	NodePtr above = find_above(mat, row, col);
+	NodePtr before = find_before(mat, row, col);
+
+	if (above->nextRow != before->nextCol) {
+		puts("Error!!");
+		return 0;
+	}
+
+	above->nextRow->data = data;
+	return 1;
+}
+
+int insert_node(NodePtr mat, int row, int col, DataType data) {
+	NodePtr above = find_above(mat, row, col);
+	NodePtr before = find_before(mat, row, col);
+
+	if (above->nextRow == before->nextCol) {
+		puts("Error!!");
+		return 0;
+	}
+
+	NodePtr newNode = (NodePtr)malloc(sizeof(NodeType));
+	newNode->data = data;
+	newNode->i = row;
+	newNode->j = col;
+
+	newNode->nextRow = above->nextRow;
+	above->nextRow = newNode;
+
+	newNode->nextCol = before->nextCol;
+	before->nextCol = newNode;
+	return 1;
+}
+
 NodePtr find_before(NodePtr mat, int row, int col) {
 	NodePtr temp, before;
-	for (temp = mat; temp->j < row; temp = temp->nextRow);
+	for (temp = mat; temp->i < row; temp = temp->nextRow);
 
 	for (before = temp; before->nextCol != temp && before->nextCol->j < col; before = before->nextCol);
 
@@ -50,7 +113,7 @@ void add_col(NodePtr mat, int* col) {
 
 	newNode = (NodePtr)malloc(sizeof(NodeType));
 	newNode->i = -1;
-	newNode->j = (*col)++; 
+	newNode->j = (*col)++;
 	newNode->nextRow = newNode;
 	newNode->nextCol = mat;
 
@@ -58,7 +121,7 @@ void add_col(NodePtr mat, int* col) {
 	p->nextCol = newNode;
 }
 
-void add_row(NodePtr mat, int *row) {
+void add_row(NodePtr mat, int* row) {
 	NodePtr newNode, p;
 	newNode = (NodePtr)malloc(sizeof(NodeType));
 	newNode->i = (*row)++;
