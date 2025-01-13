@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Snake {
 
-    public static final int MOVEMENT_COOLDOWN = 5;
+    public static final int MOVEMENT_COOLDOWN = 4;
 
     private ArrayList<SnakePart> snake;
     private int tick;
@@ -30,21 +30,27 @@ public class Snake {
 
     public void update() {
         if (tick == MOVEMENT_COOLDOWN) {
-            snake.get(0).move();
-
-            for (int i = 1; i < snake.size(); i++) {
-                if (snake.get(i).getInitialCooldown() == 0) {
-                    snake.get(i).setDirection(snake.get(i - 1).getPreviousDirection());
-                    snake.get(i).move();
-                    snake.get(i - 1).setPreviousDirection(snake.get(i - 1).getDirection());
-                } else {
-                    snake.get(i).decInitialCooldown();
-                }
-            }
+            moveSnake();
             tick = 0;
         } else {
             tick++;
         }
+    }
+
+    private synchronized void moveSnake() {
+        snake.get(0).move();
+
+        int i;
+        for (i = 1; i < snake.size(); i++) {
+            if (snake.get(i).getInitialCooldown() == 0) {
+                snake.get(i).setDirection(snake.get(i - 1).getPreviousDirection());
+                snake.get(i).move();
+                snake.get(i - 1).setPreviousDirection(snake.get(i - 1).getDirection());
+            } else {
+                snake.get(i).decInitialCooldown();
+            }
+        }
+        snake.get(i - 1).setPreviousDirection(snake.get(i - 1).getDirection());
     }
 
     public boolean collidsWithItself() {
@@ -62,8 +68,31 @@ public class Snake {
                 || snake.get(0).getRow() < 0 || snake.get(0).getRow() > Game.SIZE;
     }
 
-    public void changeDirection(Directions direction) {
-        snake.get(0).setDirection(direction);
+    public synchronized void changeDirection(Directions direction) {
+        Directions currentDirection = snake.get(0).getDirection();
+
+        if (isValidDirection(currentDirection, direction)) {
+            snake.get(0).setDirection(direction);
+        }
+    }
+
+    private boolean isValidDirection(Directions currentDirection, Directions nextDirection) {
+        if (currentDirection == nextDirection) {
+            return false;
+        }
+        if (currentDirection == Directions.DOWN && nextDirection == Directions.UP) {
+            return false;
+        }
+        if (currentDirection == Directions.UP && nextDirection == Directions.DOWN) {
+            return false;
+        }
+        if (currentDirection == Directions.LEFT && nextDirection == Directions.RIGHT) {
+            return false;
+        }
+        if (currentDirection == Directions.RIGHT && nextDirection == Directions.LEFT) {
+            return false;
+        }
+        return true;
     }
 
     public void createSnakeHead() {
@@ -71,9 +100,9 @@ public class Snake {
         snake.add(part);
     }
 
-    public void addSnakePart() {
+    public synchronized void addSnakePart() {
         SnakePart lastSnakePart = snake.get(snake.size() - 1);
-        SnakePart part = new SnakePart(lastSnakePart.getId(), lastSnakePart.getRow(),
+        SnakePart part = new SnakePart(lastSnakePart.getId() + 1, lastSnakePart.getRow(),
                 lastSnakePart.getCol(),
                 lastSnakePart.getPreviousDirection(), lastSnakePart.getInitialCooldown() + 1);
         snake.add(part);

@@ -1,14 +1,9 @@
 import java.awt.Color;
 import java.awt.Graphics;
-import java.sql.Time;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Timer;
 
 import javax.swing.*;
 
 public class SnakePart {
-
     private int id;
     private int row, col;
     private int x, y;
@@ -18,13 +13,14 @@ public class SnakePart {
     private int initialCooldown;
 
     public SnakePart(int id, int row, int col, Directions direction, int initialCooldown) {
-        color = new Color(30, 105, 200);
         this.direction = direction;
-        previousDirection = direction;
+        this.previousDirection = direction;
         this.row = row;
         this.col = col;
         this.id = id;
         this.initialCooldown = initialCooldown;
+
+        this.color = createColor();
     }
 
     public void draw(Graphics g, int dx, int dy) {
@@ -40,9 +36,13 @@ public class SnakePart {
         g.drawRect(x, y, width, height);
 
         g.setColor(Color.black);
-        g.drawString(initialCooldown + "", x + width / 2, y + height / 2);
+        g.drawString("dr:" + direction + " " + previousDirection, x + width / 2, y +
+                height / 2);
+
+        // g.drawString(initialCooldown + "", x + width / 2, y + height / 2);
 
         // g.drawString("(" + col + "," + row + ")", x + width / 2, y + height / 2);
+        // g.drawString(id + "", x + width / 2, y + height / 2);
     }
 
     public void move() {
@@ -64,6 +64,16 @@ public class SnakePart {
 
     public boolean isInEqualPosition(SnakePart other) {
         return other.getCol() == this.col && other.getRow() == this.row;
+    }
+
+    private Color createColor() {
+        int blueFactor = id == 0 ? 240 : 200;
+
+        int redFactor = (10 * this.id);
+        redFactor = Math.min(255, redFactor);
+
+        Color newColor = new Color(redFactor, 105, blueFactor);
+        return newColor;
     }
 
     public Directions getDirection() {

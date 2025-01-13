@@ -12,8 +12,10 @@ public class Game implements KeyListener {
     private GameFrame gameFrame;
     private GamePanel gamePanel;
     private GameLoop gameLoop;
+    private boolean gameOver;
 
     public Game() {
+        gameOver = false;
         snake = new Snake();
 
         gameFrame = new GameFrame();
@@ -31,6 +33,11 @@ public class Game implements KeyListener {
     public void render(Graphics g) {
         drawBackground(g);
 
+        if (gameOver) {
+            displayGameOver(g);
+            return;
+        }
+
         snake.drawSnake(g, dx, dy);
     }
 
@@ -39,6 +46,9 @@ public class Game implements KeyListener {
         dy = gamePanel.getHeight() / SIZE;
 
         snake.update();
+        if (snake.collidsWithItself() || snake.outOfBounds()) {
+            gameOver = true;
+        }
     }
 
     private void drawBackground(Graphics g) {
@@ -65,6 +75,16 @@ public class Game implements KeyListener {
                 snake.addSnakePart();
                 break;
         }
+    }
+
+    private void displayGameOver(Graphics g) {
+        String txtGameOver = "Game Over";
+        g.setColor(new Color(200, 50, 50));
+
+        g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 100));
+        int fontWidth = g.getFontMetrics().stringWidth(txtGameOver);
+        int fontHeight = g.getFontMetrics().getHeight();
+        g.drawString(txtGameOver, (SIZE / 2) * dx - fontWidth / 2, (SIZE / 2) * dy - fontHeight / 2);
     }
 
     @Override
