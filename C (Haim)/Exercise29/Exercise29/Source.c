@@ -22,6 +22,8 @@ NodePtr find_before(NodePtr mat, int row, int col);
 int insert_node(NodePtr mat, int row, int col, DataType data);
 int update_node(NodePtr mat, int row, int col, DataType data);
 DataType delete_node(NodePtr mat, int row, int col);
+void delete_last_col(NodePtr mat, int* cols);
+void delete_last_row(NodePtr mat, int* rows);
 
 void main() {
 	int rows, cols;
@@ -30,7 +32,7 @@ void main() {
 	init_sparse_mat(&matrix, &rows, &cols);
 }
 
-void delete_last_row(NodePtr mat, int* cols) {
+void delete_last_col(NodePtr mat, int* cols) {
 	NodePtr prow, pcol, prev = mat;
 
 	for (pcol = mat->nextCol; pcol->nextCol != mat; prev = pcol, pcol = pcol->nextCol);
