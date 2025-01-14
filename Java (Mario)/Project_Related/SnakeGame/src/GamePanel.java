@@ -8,6 +8,7 @@ public class GamePanel extends JPanel {
 
     public GamePanel(Game game) {
         this.game = game;
+        this.setPreferredSize(game.getGameFrame().getSize());
     }
 
     @Override

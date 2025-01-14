@@ -12,11 +12,15 @@ public class Game implements KeyListener {
     private GameFrame gameFrame;
     private GamePanel gamePanel;
     private GameLoop gameLoop;
+    private AppleFactory appleFactory;
     private boolean gameOver;
+    private int spawnTick;
 
     public Game() {
         gameOver = false;
         snake = new Snake();
+        appleFactory = new AppleFactory(snake);
+        spawnTick = AppleFactory.SPAWN_INTERVAL;
 
         gameFrame = new GameFrame();
         gameFrame.addKeyListener(this);
@@ -24,6 +28,7 @@ public class Game implements KeyListener {
         gamePanel = new GamePanel(this);
         gameFrame.add(gamePanel);
 
+        gameFrame.pack();
         gameFrame.requestFocus();
         gameFrame.setVisible(true);
 
@@ -36,59 +41,89 @@ public class Game implements KeyListener {
 
         if (gameOver) {
             displayGameOver(g);
+            drawCubics(g);
             return;
         }
 
         snake.drawSnake(g, dx, dy);
+
+        appleFactory.drawApples(g, dx, dy);
+
+        drawCubics(g);
+    }
+
+    private void drawCubics(Graphics g) {
+        for (int i = 0; i < Game.SIZE; i++) {
+            for (int j = 0; j < Game.SIZE; j++) {
+                g.setColor(Color.BLACK);
+                g.drawRect(i * dx, j * dy, dx, dy);
+            }
+        }
     }
 
     public void update() {
+        if (gameOver) {
+            return;
+        }
+
         dx = gamePanel.getWidth() / SIZE;
         dy = gamePanel.getHeight() / SIZE;
 
         snake.update();
+        appleFactory.update();
+
         if (snake.collidsWithItself() || snake.outOfBounds()) {
             gameOver = true;
         }
+
+        if (spawnTick >= AppleFactory.SPAWN_INTERVAL) {
+            appleFactory.spawnApple();
+            spawnTick = 0;
+        } else {
+            spawnTick++;
+        }
+    }
+
+    private void resetGame() {
+        gameOver = false;
+        snake = new Snake();
+        appleFactory = new AppleFactory(snake);
+        spawnTick = AppleFactory.SPAWN_INTERVAL;
     }
 
     private void drawBackground(Graphics g) {
-        g.setColor(new Color(164, 230, 179));
+        g.setColor(Color.decode("#54dc97"));
         g.fillRect(0, 0, gamePanel.getWidth(), gamePanel.getHeight());
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        switch (e.getKeyChar()) {
-            case 'a':
-                snake.changeDirection(Directions.LEFT);
-                break;
-            case 'd':
-                snake.changeDirection(Directions.RIGHT);
-                break;
-            case 'w':
-                snake.changeDirection(Directions.UP);
-                break;
-            case 's':
-                snake.changeDirection(Directions.DOWN);
-                break;
-            case 'e':
-                snake.addSnakePart();
-                break;
-        }
     }
 
     private void displayGameOver(Graphics g) {
         String txtGameOver = "Game Over";
-        g.setColor(new Color(200, 50, 50));
+        g.setColor(new Color(200, 70, 50));
 
-        g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 100));
+        g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 2 * (dy + dx)));
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         int fontWidth = g.getFontMetrics().stringWidth(txtGameOver);
         int fontHeight = g.getFontMetrics().getHeight();
-        g.drawString(txtGameOver, (SIZE / 2) * dx - fontWidth / 2, (SIZE / 2) * dy - fontHeight / 6);
+        g.drawString(txtGameOver, (SIZE / 2) * dx - fontWidth / 2, (SIZE / 2) * dy - fontHeight / 8);
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        int key = e.getKeyCode();
+
+        if (key == KeyEvent.VK_ENTER) {
+            resetGame();
+        } else if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
+            snake.changeDirection(Directions.LEFT);
+        } else if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {
+            snake.changeDirection(Directions.RIGHT);
+        } else if (key == KeyEvent.VK_W || key == KeyEvent.VK_UP) {
+            snake.changeDirection(Directions.UP);
+        } else if (key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN) {
+            snake.changeDirection(Directions.DOWN);
+        }
     }
 
     @Override
@@ -103,6 +138,10 @@ public class Game implements KeyListener {
 
     public GamePanel getGamePanel() {
         return gamePanel;
+    }
+
+    public GameFrame getGameFrame() {
+        return gameFrame;
     }
 
 }

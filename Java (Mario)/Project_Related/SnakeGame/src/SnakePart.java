@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 
 import javax.swing.*;
 
@@ -11,6 +12,7 @@ public class SnakePart {
     private Color color;
     private Directions direction, previousDirection;
     private int initialCooldown;
+    private Image image;
 
     public SnakePart(int id, int row, int col, Directions direction, int initialCooldown) {
         this.direction = direction;
@@ -29,15 +31,27 @@ public class SnakePart {
         width = dx;
         height = dy;
 
-        g.setColor(color);
-        g.fillRect(x, y, width, height);
+        if (id == 0) {
+            image = SnakeAssets.SNAKE.getHead(direction);
+            x -= dx / 8;
+            y -= dy / 8;
+            width += dx / 4;
+            height += dy / 4;
+        } else {
+            image = SnakeAssets.SNAKE.getBody();
+        }
 
-        g.setColor(new Color(30, 30, 200));
-        g.drawRect(x, y, width, height);
+        g.drawImage(image, x, y, width, height, null);
+        // g.setColor(color);
+        // g.fillRect(x, y, width, height);
 
-        g.setColor(Color.black);
-        g.drawString("dr:" + direction + " " + previousDirection, x + width / 2, y +
-                height / 2);
+        // g.setColor(new Color(30, 30, 200));
+        // g.drawRect(x, y, width, height);
+
+        // g.setColor(Color.black);
+
+        // g.drawString("dr:" + direction + " " + previousDirection, x + width / 2, y +
+        // height / 2);
 
         // g.drawString(initialCooldown + "", x + width / 2, y + height / 2);
 
@@ -67,9 +81,11 @@ public class SnakePart {
     }
 
     private Color createColor() {
-        int blueFactor = id == 0 ? 240 : 200;
+        int blueFactor = 200;
+        // int blueFactor = id == 0 ? 240 : 200;
 
-        int redFactor = (10 * this.id);
+        int redFactor = 30;
+        // int redFactor = (10 * this.id);
         redFactor = Math.min(255, redFactor);
 
         Color newColor = new Color(redFactor, 105, blueFactor);
