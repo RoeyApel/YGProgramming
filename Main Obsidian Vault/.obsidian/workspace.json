@@ -11,12 +11,14 @@
             "id": "cd17c80ad34a6f6e",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "יג/עוד/ASCII.png"
+                "file": "יג/מקצועות/בסיסי נתונים - SQL/SQL Project.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "ASCII"
+              "icon": "lucide-file",
+              "title": "SQL Project"
             }
           }
         ]
@@ -162,15 +164,16 @@
   },
   "active": "cd17c80ad34a6f6e",
   "lastOpenFiles": [
-    "יג/עוד/מידע כללי.md",
-    "יג/עוד/לוח מבחנים.jpeg",
-    "יג/עוד/כלי עזר ועוד.md",
     "יג/עוד/מערכת שעות.png",
+    "יג/מקצועות/בסיסי נתונים - SQL/SQL Project.md",
     "יג/מקצועות/סטטיסטיקה והסתברות/טבלת התפלגויות t.jpeg",
     "יג/מקצועות/סטטיסטיקה והסתברות/טבלת התפלגות נורמלית - Z.pdf",
     "יג/מקצועות/שפת Java/Java Project.md",
     "יג/מקצועות/שפת Java/שפת Java.md",
     "יג/מקצועות/שפת Java",
+    "יג/עוד/לוח מבחנים.jpeg",
+    "יג/עוד/מידע כללי.md",
+    "יג/עוד/כלי עזר ועוד.md",
     "יג/מקצועות/שפת c/שפת C.md",
     "יג/מקצועות/אסמבלר/אסמבלר.md",
     "יג/עוד/Terminal Commands.md",
@@ -205,7 +208,6 @@
     "יג/Do To.md",
     "לוח מבחנים 1.jpeg",
     "לוח מבחנים.jpeg",
-    "עוד/Request.md",
     "עוד/con1.png",
     "עוד/con2.png",
     "Untitled 1.canvas"

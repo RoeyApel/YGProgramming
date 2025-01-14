@@ -15,8 +15,10 @@ public class Game implements KeyListener {
     private AppleFactory appleFactory;
     private boolean gameOver;
     private int spawnTick;
+    private boolean showGrid;
 
     public Game() {
+        showGrid = false;
         gameOver = false;
         snake = new Snake();
         appleFactory = new AppleFactory(snake);
@@ -41,18 +43,16 @@ public class Game implements KeyListener {
 
         if (gameOver) {
             displayGameOver(g);
-            drawCubics(g);
-            return;
+        } else {
+            snake.drawSnake(g, dx, dy);
+            appleFactory.drawApples(g, dx, dy);
         }
 
-        snake.drawSnake(g, dx, dy);
-
-        appleFactory.drawApples(g, dx, dy);
-
-        drawCubics(g);
+        if (showGrid)
+            drawGrid(g);
     }
 
-    private void drawCubics(Graphics g) {
+    private void drawGrid(Graphics g) {
         for (int i = 0; i < Game.SIZE; i++) {
             for (int j = 0; j < Game.SIZE; j++) {
                 g.setColor(Color.BLACK);
@@ -115,6 +115,9 @@ public class Game implements KeyListener {
 
         if (key == KeyEvent.VK_ENTER) {
             resetGame();
+
+        } else if (key == KeyEvent.VK_P) {
+            showGrid = showGrid ? false : true;
         } else if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
             snake.changeDirection(Directions.LEFT);
         } else if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {
