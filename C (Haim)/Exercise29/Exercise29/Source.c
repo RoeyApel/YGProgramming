@@ -27,6 +27,7 @@ void delete_last_row(NodePtr mat, int* rows);
 void free_mat(NodePtr* mat, int* rows, int* cols);
 void print_mat_by_cols(NodePtr mat);
 void print_mat_by_rows(NodePtr mat);
+NodePtr add_two_mat(NodePtr mat1, NodePtr mat2);
 
 void main() {
 	int rows, cols;
@@ -35,6 +36,88 @@ void main() {
 	init_sparse_mat(&matrix, &rows, &cols);
 }
 
+void rotate_mat(NodePtr mat) {
+	NodePtr prow = mat->nextRow->nextCol, pcol = mat->nextCol->nextRow;
+
+	while (pcol->nextCol != mat) {
+		while (pcol->i != -1 && prow->j != -1) {
+			if (pcol->i == prow->j && pcol->j == prow->i) {
+				pcol->data.num ^= prow->data.num;
+				prow->data.num ^= pcol->data.num;
+				pcol->data.num ^= prow->data.num;
+			}
+			else if (pcol->i < prow->j) {
+				insert_node(mat, prow->i, pcol->i, pcol->data);
+				delete_node(mat, pcol->i, pcol->j);
+			}
+			else if (prow->j < pcol->i) {
+				insert_node(mat, prow->j, pcol->j, pcol->data);
+				delete_node(mat, prow->i, prow->j);
+			}
+			pcol = pcol->nextRow;
+			prow = prow->nextCol;
+
+		}
+		if (pcol->i == -1) {
+			while (prow->j != -1) {
+				insert_node(mat, prow->j, prow->i, prow->data);
+				delete_node(mat, prow->i, prow->j);
+				prow = prow->nextCol;
+			}
+		}
+		else if (prow->j == -1) {
+			while (pcol->i != -1) {
+				insert_node(mat, pcol->j, pcol->i, pcol->data);
+				delete_node(mat, pcol->i, pcol->j);
+				pcol = pcol->nextRow;
+			}
+		}
+		pcol = pcol->nextCol->nextRow;
+		prow = prow->nextRow->nextCol;
+	}
+}
+
+NodePtr add_two_mat(NodePtr mat1, NodePtr mat2) {
+	NodePtr prow1 = mat1->nextRow, pcol1;
+	NodePtr prow2 = mat2->nextRow, pcol2;
+
+	pcol1 = prow1->nextCol;
+	pcol2 = prow2->nextCol;
+	while (prow1->nextRow != mat1) {
+		if (pcol1->nextCol == prow1) {
+			prow1 = prow1->nextRow;
+			if (prow1->nextRow == mat1) {
+				break;
+			}
+			prow2 = prow2->nextRow;
+			pcol1 = prow1->nextCol;
+			pcol2 = prow2->nextCol;
+		}
+
+		while (pcol1->j < pcol2->j && pcol1->nextCol != prow1) {
+			pcol1 = pcol1->nextCol;
+		}
+
+		if (pcol1->j == pcol2->j) {
+			pcol1->data.num + pcol2->data.num;
+			pcol1 = pcol1->nextCol;
+			pcol2 = pcol2->nextCol;
+		}
+		else if (pcol1->j < pcol2->j) {
+			while (pcol2->nextCol != pcol2) {
+				insert_node(mat1, pcol2->i, pcol2->j, pcol2->data);
+				pcol1 = pcol2->nextCol;
+			}
+		}
+		else if (pcol1->j > pcol2->j) {
+			insert_node(mat1, pcol2->i, pcol2->j, pcol2->data);
+		}
+	}
+	return mat1;
+}
+
+
+
 void print_mat_by_cols(NodePtr mat) {
 	if (!mat) {
 		puts("Mat Empty!!");
@@ -42,7 +125,7 @@ void print_mat_by_cols(NodePtr mat) {
 	}
 
 	NodePtr prow, pcol = mat;
-	for (pcol = mat->nextCol; pcol->nextCol != mat; pcol= pcol->nextCol) {
+	for (pcol = mat->nextCol; pcol->nextCol != mat; pcol = pcol->nextCol) {
 		for (prow = pcol->nextRow; prow->nextRow != pcol; prow = prow->nextRow) {
 			printf("%d ", prow->data.num);
 		}

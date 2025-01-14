@@ -4,9 +4,6 @@ const EDGES_MARGIN = 100;
 
 let flyingButton = document.querySelector("#flying-btn");
 
-let initialLeft = getComputedStyle(flyingButton).left;
-let initialTop = getComputedStyle(flyingButton).top;
-
 let flyingButtonTxt = flyingButton.textContent;
 let timeOut = false;
 let canFly = true;
@@ -19,29 +16,15 @@ flyingButton.addEventListener("mouseover", (e) => {
     timeOut = false;
   }, 300);
 
-  initialLeft = parseInt(getComputedStyle(flyingButton).left, 10);
-  initialTop = parseInt(getComputedStyle(flyingButton).top, 10);
+  flyingButton.textContent = wordList[getRndNum(0, wordList.length - 1)];
 
-  let { newLeft, newTop } = getRndPosition();
+  let initialLeft = parseInt(getComputedStyle(flyingButton).left, 10);
+  let initialTop = parseInt(getComputedStyle(flyingButton).top, 10);
 
-  let currentLeft = initialLeft;
-  let currentTop = initialTop;
+  let { newLeft, newTop } = getRndPosition(initialLeft, initialTop);
 
-  const interval = 12;
-  let intervalID = setInterval(() => {
-    currentLeft += (newLeft - initialLeft) / interval;
-    currentTop += (newTop - initialTop) / interval;
-    console.log(currentLeft + " " + currentTop + "|" + newLeft + " " + newTop);
-
-    flyingButton.style.left = currentLeft + "px";
-    flyingButton.style.top = currentTop + "px";
-    if (
-      Math.abs(currentLeft - newLeft) < 30 &&
-      Math.abs(currentTop - newTop) < 30
-    ) {
-      clearInterval(intervalID);
-    }
-  }, interval);
+  flyingButton.style.left = newLeft + "px";
+  flyingButton.style.top = newTop + "px";
 });
 
 flyingButton.addEventListener("mousedown", function () {
@@ -63,7 +46,7 @@ flyingButton.addEventListener("mousedown", function () {
   );
 });
 
-function getRndPosition() {
+function getRndPosition(initialLeft, initialTop) {
   let rndXJump = getRndNum(140, 400);
   let rndYJump = getRndNum(140, 400);
   let rndXDir = getRndDir();
@@ -80,12 +63,6 @@ function getRndPosition() {
   return { newLeft, newTop };
 }
 
-function limit(num, min, max) {
-  num = Math.max(min, num);
-  num = Math.min(max, num);
-  return num;
-}
-
 function getRndNum(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -97,3 +74,39 @@ function getRndDir() {
   }
   return 1;
 }
+
+function legacyWay(initialLeft, initialTop, newLeft, newTop) {
+  let currentLeft = initialLeft;
+  let currentTop = initialTop;
+  const interval = 12;
+  let intervalID = setInterval(() => {
+    currentLeft += (newLeft - initialLeft) / interval;
+    currentTop += (newTop - initialTop) / interval;
+    console.log(currentLeft + " " + currentTop + "|" + newLeft + " " + newTop);
+    flyingButton.style.left = currentLeft + "px";
+    flyingButton.style.top = currentTop + "px";
+    if (
+      Math.abs(currentLeft - newLeft) < 30 &&
+      Math.abs(currentTop - newTop) < 30
+    ) {
+      clearInterval(intervalID);
+    }
+  }, interval);
+}
+
+const wordList = [
+  "Nope",
+  "Lol",
+  "Loser",
+  "No",
+  "I bored",
+  "Whatever",
+  "Meh",
+  "Sure",
+  "Nah",
+  "Oops",
+  "Wait",
+  "Bye",
+  "Ugh",
+  "Try me",
+];
