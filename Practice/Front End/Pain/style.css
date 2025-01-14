@@ -15,9 +15,43 @@ body {
   position: relative;
   margin: 0;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+}
+
+.header-wrapper {
+  padding: 2em 2em;
+  white-space: nowrap;
+}
+
+.header {
+  position: relative;
+  width: 0;
+  max-width: fit-content;
+  margin: auto auto;
+  font: 2rem "Poppins";
+  overflow: hidden;
+  user-select: none;
+}
+
+.header::after {
+  content: "";
+  position: absolute;
+  left: 99.4%;
+  top: 8px;
+  width: 2px;
+  height: 1em;
+  background-color: #171718;
+}
+
+.animateTyping {
+  animation: typing 2.2s ease-in-out 2 alternate;
+}
+
+@keyframes typing {
+  0% {
+  }
+  100% {
+    width: 100%;
+  }
 }
 
 .flying-btn {
