@@ -1,6 +1,9 @@
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Time;
 import java.util.HashSet;
 
@@ -100,9 +103,7 @@ public class Game implements KeyListener {
             txtScore = "Your Score: " + score;
         }
 
-        g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 3 * (dy / 3 + dx / 3)));
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        setGameFont(g, 3 * (dy / 3 + dx / 3), Font.PLAIN);
 
         int fontWidth = g.getFontMetrics().stringWidth(txtScore);
         int fontHeight = g.getFontMetrics().getHeight();
@@ -111,14 +112,31 @@ public class Game implements KeyListener {
         x = (SIZE / 2) * dx - fontWidth / 2;
 
         if (place == Directions.UP) {
-            g.setColor(new Color(0, 0, 0, 190));
-            y = (SIZE / 7) * dy - fontHeight / 2;
+            g.setColor(new Color(0, 0, 0, 220));
+            y = (SIZE / 8) * dy - dy / 4;
         } else {
             g.setColor(new Color(0, 0, 0, 240));
-            y = (SIZE / 2 + 4) * dy - fontHeight / 2;
+            y = (SIZE / 2 + 3) * dy;
         }
 
         g.drawString(txtScore, x, y);
+    }
+
+    private void setGameFont(Graphics g, int size, int style) {
+        Font font;
+        try {
+            font = Font.createFont(Font.TRUETYPE_FONT, new File("src\\fonts\\Poppins-Regular.ttf"))
+                    .deriveFont(style, size);
+        } catch (FontFormatException | IOException e) {
+            e.printStackTrace();
+            font = new Font("Arial", Font.PLAIN, 24);
+        }
+
+        g.setFont(font);
+
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
     }
 
     private void resetGame() {
@@ -137,15 +155,12 @@ public class Game implements KeyListener {
     private void displayGameOver(Graphics g) {
         String txtGameOver = "Game Over";
         g.setColor(Color.black);
-        // g.setColor(new Color(200, 70, 50));
 
-        g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 2 * (dy + dx)));
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        setGameFont(g, 2 * (dx + dy), Font.BOLD);
 
         int fontWidth = g.getFontMetrics().stringWidth(txtGameOver);
         int fontHeight = g.getFontMetrics().getHeight();
-        g.drawString(txtGameOver, (SIZE / 2) * dx - fontWidth / 2, (SIZE / 2) * dy - fontHeight / 9);
+        g.drawString(txtGameOver, (SIZE / 2) * dx - fontWidth / 2, (SIZE / 2) * dy);
     }
 
     @Override
