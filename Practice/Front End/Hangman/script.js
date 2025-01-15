@@ -1,12 +1,16 @@
+const loginInputs = document.querySelectorAll(".login-input");
 const labels = document.querySelectorAll(".label");
-const txtInputs = document.querySelectorAll(".login-input");
 
-for (let i = 0; i < txtInputs.length; i++) {
-  txtInputs[i].onfocus = inputOnFocus;
-}
+loginInputs.forEach((input, index) => {
+  const label = labels[index];
 
-function inputOnFocus() {
-  for (let i = 0; i < labels.length; i++) {
-    const element = labels[i];
-  }
-}
+  input.addEventListener("focus", () => {
+    label.style.animation = "label_animation 0.5s 1 forwards";
+  });
+
+  input.addEventListener("blur", () => {
+    if (input.value == "") {
+      label.style.animation = "";
+    }
+  });
+});
