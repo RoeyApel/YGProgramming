@@ -6,6 +6,7 @@ import java.util.HashSet;
 
 public class Game implements KeyListener {
     public static final int SIZE = 30;
+    public static final int SCORE_POINTS_INC = 1;
 
     private int dx, dy;
     private Snake snake;
@@ -16,12 +17,14 @@ public class Game implements KeyListener {
     private boolean gameOver;
     private int spawnTick;
     private boolean showGrid;
+    private int score;
 
     public Game() {
         showGrid = false;
         gameOver = false;
+        score = 0;
         snake = new Snake();
-        appleFactory = new AppleFactory(snake);
+        appleFactory = new AppleFactory(this);
         spawnTick = AppleFactory.SPAWN_INTERVAL;
 
         gameFrame = new GameFrame();
@@ -43,9 +46,11 @@ public class Game implements KeyListener {
 
         if (gameOver) {
             displayGameOver(g);
+            drawScore(g, Directions.DOWN);
         } else {
             snake.drawSnake(g, dx, dy);
             appleFactory.drawApples(g, dx, dy);
+            drawScore(g, Directions.UP);
         }
 
         if (showGrid)
@@ -53,9 +58,10 @@ public class Game implements KeyListener {
     }
 
     private void drawGrid(Graphics g) {
+        g.setColor(new Color(0, 0, 0, 100));
+
         for (int i = 0; i < Game.SIZE; i++) {
             for (int j = 0; j < Game.SIZE; j++) {
-                g.setColor(Color.BLACK);
                 g.drawRect(i * dx, j * dy, dx, dy);
             }
         }
@@ -84,10 +90,42 @@ public class Game implements KeyListener {
         }
     }
 
+    public void increaseScore(int points) {
+        score += points;
+    }
+
+    private void drawScore(Graphics g, Directions place) {
+        String txtScore = score + "";
+        if (place == Directions.DOWN) {
+            txtScore = "Your Score: " + score;
+        }
+
+        g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 3 * (dy / 3 + dx / 3)));
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+        int fontWidth = g.getFontMetrics().stringWidth(txtScore);
+        int fontHeight = g.getFontMetrics().getHeight();
+
+        int x, y;
+        x = (SIZE / 2) * dx - fontWidth / 2;
+
+        if (place == Directions.UP) {
+            g.setColor(new Color(0, 0, 0, 190));
+            y = (SIZE / 7) * dy - fontHeight / 2;
+        } else {
+            g.setColor(new Color(0, 0, 0, 240));
+            y = (SIZE / 2 + 4) * dy - fontHeight / 2;
+        }
+
+        g.drawString(txtScore, x, y);
+    }
+
     private void resetGame() {
+        score = 0;
         gameOver = false;
         snake = new Snake();
-        appleFactory = new AppleFactory(snake);
+        appleFactory = new AppleFactory(this);
         spawnTick = AppleFactory.SPAWN_INTERVAL;
     }
 
@@ -98,7 +136,8 @@ public class Game implements KeyListener {
 
     private void displayGameOver(Graphics g) {
         String txtGameOver = "Game Over";
-        g.setColor(new Color(200, 70, 50));
+        g.setColor(Color.black);
+        // g.setColor(new Color(200, 70, 50));
 
         g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 2 * (dy + dx)));
         Graphics2D g2d = (Graphics2D) g;
@@ -106,7 +145,7 @@ public class Game implements KeyListener {
 
         int fontWidth = g.getFontMetrics().stringWidth(txtGameOver);
         int fontHeight = g.getFontMetrics().getHeight();
-        g.drawString(txtGameOver, (SIZE / 2) * dx - fontWidth / 2, (SIZE / 2) * dy - fontHeight / 8);
+        g.drawString(txtGameOver, (SIZE / 2) * dx - fontWidth / 2, (SIZE / 2) * dy - fontHeight / 9);
     }
 
     @Override
@@ -147,4 +186,7 @@ public class Game implements KeyListener {
         return gameFrame;
     }
 
+    public Snake getSnake() {
+        return snake;
+    }
 }

@@ -8,13 +8,14 @@
 
 * {
   box-sizing: border-box;
-  /* cursor: none; */
+  cursor: none;
 }
 
 body {
   overflow: hidden;
   position: relative;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;

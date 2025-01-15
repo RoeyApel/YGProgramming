@@ -10,10 +10,12 @@ public class AppleFactory {
     private Random rnd = new Random();
     private ArrayList<Apple> apples;
     private ArrayList<Apple> applesToBeRemoved;
+    private Game game;
     private Snake snake;
 
-    public AppleFactory(Snake snake) {
-        this.snake = snake;
+    public AppleFactory(Game game) {
+        this.game = game;
+        this.snake = game.getSnake();
         apples = new ArrayList<>();
         applesToBeRemoved = new ArrayList<>();
     }
@@ -29,6 +31,7 @@ public class AppleFactory {
             if (snake.collidsWithApple(apple)) {
                 applesToBeRemoved.add(apple);
                 snake.addSnakePart();
+                game.increaseScore(Game.SCORE_POINTS_INC);
             }
         }
 
@@ -45,8 +48,8 @@ public class AppleFactory {
     }
 
     private Point findSpawnSpot() {
-        Point position = new Point(2, 2);
-        // Point position = getRndPosition();
+        Point position = getRndPosition();
+
         int minDis = 5;
 
         while (snake.tooCloseToHead(position.x, position.y, minDis)
