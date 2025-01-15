@@ -4,6 +4,10 @@ void LLRotation(NodePtr* tree) {
 
 }
 
+NodePtr parent(NodePtr tree) {
+	                       
+}
+
 int differ(NodePtr tree) {
 	return height(tree->left) - height(tree->right);
 }

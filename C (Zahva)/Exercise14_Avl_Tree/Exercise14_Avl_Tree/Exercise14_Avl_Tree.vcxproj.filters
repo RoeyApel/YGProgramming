@@ -18,5 +18,13 @@
     <ClCompile Include="Source.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="node_avl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="node_avl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
