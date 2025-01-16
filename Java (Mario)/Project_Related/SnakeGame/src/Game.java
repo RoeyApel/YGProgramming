@@ -9,7 +9,7 @@ import java.util.HashSet;
 
 public class Game implements KeyListener {
     public static final int SIZE = 30;
-    public static final int SCORE_POINTS_INC = 1;
+    public static final int POINTS_PER_APPLE = 1;
 
     private int dx, dy;
     private Snake snake;

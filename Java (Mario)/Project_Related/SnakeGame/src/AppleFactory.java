@@ -31,7 +31,7 @@ public class AppleFactory {
             if (snake.collidsWithApple(apple)) {
                 applesToBeRemoved.add(apple);
                 snake.addSnakePart();
-                game.increaseScore(Game.SCORE_POINTS_INC);
+                game.increaseScore(Game.POINTS_PER_APPLE);
             }
         }
 
