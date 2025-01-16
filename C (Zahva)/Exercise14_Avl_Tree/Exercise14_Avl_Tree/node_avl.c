@@ -1,9 +1,5 @@
 #include "node_avl.h";
 
-void add_avl_node(NodePtr* tree) {
-
-}
-
 void balance(NodePtr* tree) {
 	if (differ((*tree)->left) == 2) {
 		if (differ((*tree)->left->left) == 1) {
