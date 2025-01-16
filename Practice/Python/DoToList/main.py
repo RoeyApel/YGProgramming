@@ -6,6 +6,8 @@ import customtkinter as ctk
 class App(ctk.CTk):
     def __init__(self):
         super().__init__()
+        ctk.set_default_color_theme("green")
+        ctk.set_appearance_mode("dark")
 
         self.title("To Do List")
         self.center_window()
@@ -57,7 +59,7 @@ class App(ctk.CTk):
 
 class ListFrame(ctk.CTkFrame):
     def __init__(self, master):
-        super().__init__(master,width=380)
+        super().__init__(master, width=380)
         self.grid_propagate(False)
 
         self.tasks = []
@@ -85,7 +87,6 @@ class ListFrame(ctk.CTkFrame):
 
 
 if __name__ == "__main__":
-    ctk.set_appearance_mode("dark")
     app = App()
 
     app.mainloop()

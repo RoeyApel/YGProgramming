@@ -134,6 +134,7 @@ public class Game implements KeyListener {
 
         g.setFont(font);
 
+        // make no ugly font
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
@@ -168,7 +169,9 @@ public class Game implements KeyListener {
         int key = e.getKeyCode();
 
         if (key == KeyEvent.VK_ENTER) {
-            resetGame();
+            if (gameOver) {
+                resetGame();
+            }
 
         } else if (key == KeyEvent.VK_P) {
             showGrid = showGrid ? false : true;
