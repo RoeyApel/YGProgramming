@@ -1,5 +1,6 @@
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class PlayerShip {
@@ -11,20 +12,27 @@ public class PlayerShip {
     private static final int HITBOX_SCALE_X = 30;
 
     private Rectangle hitbox;
-    private int x;
+    private int x, centerX;
     private int speed;
     private HashSet<Directions> moves;
+    private ArrayList<Projectile> projectiles;
+    private ArrayList<Projectile> projectiles_delete;
 
     public PlayerShip() {
         this.x = INITIAL_X;
+        centerX = x + WIDTH / 2 - 5;
         hitbox = new Rectangle(x + HITBOX_SCALE_X / 2, Y, WIDTH - HITBOX_SCALE_X, HEIGHT);
         speed = INITIAL_SPEED;
         moves = new HashSet<>();
+        projectiles = new ArrayList<>(20);
+        projectiles_delete = new ArrayList<>(5);
     }
 
     public void draw(Graphics g) {
         g.drawImage(Images.GOOD_SHIP.getImage(), x, Y, WIDTH, HEIGHT, null);
         drawHitbox(g);
+
+        drawProjectiles(g);
     }
 
     public void update() {
@@ -34,6 +42,32 @@ public class PlayerShip {
             move(Directions.RIGHT);
         }
 
+        updateProjectiles();
+    }
+
+    public void shot() {
+        Projectile projectile = new Projectile(Images.GOOD_PROJECTILE.getImage(), centerX, Y, Directions.UP,
+                Projectile.GOOD_SPEED);
+        projectiles.add(projectile);
+    }
+
+    private void updateProjectiles() {
+        for (Projectile projectile : projectiles) {
+            if (projectile.outOfScreen()) {
+                projectiles_delete.add(projectile);
+            }
+            projectile.update();
+        }
+
+        for (Projectile projectile : projectiles_delete) {
+            projectiles.remove(projectile);
+        }
+    }
+
+    private void drawProjectiles(Graphics g) {
+        for (Projectile projectile : projectiles) {
+            projectile.draw(g);
+        }
     }
 
     private void drawHitbox(Graphics g) {
@@ -43,6 +77,7 @@ public class PlayerShip {
     private void move(Directions direction) {
         int moveBy = direction == Directions.LEFT ? -1 * speed : 1 * speed;
         x += moveBy;
+        centerX += moveBy;
         hitbox.x += moveBy;
     }
 
