@@ -1,9 +1,10 @@
 const loginInputs = document.querySelectorAll(".login-input");
 const labels = document.querySelectorAll(".label");
+const msg = document.querySelector("#msg");
 const hangmanContainer = document.querySelector("#hangman-container");
 const hangman = hangmanContainer.querySelector("#hangman");
 const word = hangmanContainer.querySelector("#word");
-const secretWord = "batman";
+let secretWord;
 
 let letters = [];
 let isHangmaning = false;
@@ -93,8 +94,10 @@ function changeHangmanPhase() {
 }
 
 function startHangman() {
+  secretWord = fetchRandomWord();
   currentHangmanPhase = 8;
   hangmanContainer.style.display = "flex";
+  msg.style.display = "block";
   createWordTemplate();
 }
 
@@ -124,8 +127,7 @@ loginInputs.forEach((input, index) => {
 loginInputs[1].addEventListener("keydown", (event) => {
   if (event.key == "Enter") {
     if (!isHangmaning && loginInputs[1].value.trim() != "") {
-      loginInputs[1].value = "";
-      loginInputs[1].blur();
+      handleInputs();
       isHangmaning = true;
       startHangman();
     }
@@ -140,4 +142,25 @@ function getRndColor() {
   let min = 0;
   let max = blueColors.length - 1;
   return blueColors[Math.floor(Math.random() * (max - min + 1)) + min];
+}
+
+function fetchRandomWord() {
+  let rndWord = wordList[getRandomIndex()];
+  while (rndWord.length < 5) {
+    rndWord = wordList[getRandomIndex()];
+  }
+  return rndWord;
+}
+function getRandomIndex() {
+  return Math.floor(Math.random() * wordList.length);
+}
+
+function handleInputs() {
+  loginInputs[0].value = "";
+  loginInputs[1].value = "";
+  loginInputs[0].focus();
+  loginInputs[0].blur();
+  loginInputs[1].blur();
+  loginInputs[0].style.pointerEvents = "none";
+  loginInputs[1].style.pointerEvents = "none";
 }
