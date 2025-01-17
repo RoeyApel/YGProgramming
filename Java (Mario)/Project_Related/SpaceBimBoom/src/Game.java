@@ -12,11 +12,6 @@ public class Game implements KeyListener {
     private Menu menu;
 
     public Game() {
-        playing = new Playing();
-        menu = new Menu();
-
-        gameState = GameStates.PLAYING;
-
         gameFrame = new GameFrame();
         gameFrame.addKeyListener(this);
         gamePanel = new GamePanel(this);
@@ -25,8 +20,14 @@ public class Game implements KeyListener {
         gameFrame.pack();
         gameFrame.setVisible(true);
 
+        playing = new Playing(this);
+        menu = new Menu(this);
+
+        gameState = GameStates.PLAYING;
+
         gameLoop = new GameLoop(this);
         gameLoop.start();
+
     }
 
     public void render(Graphics g) {
@@ -82,6 +83,11 @@ public class Game implements KeyListener {
     public void keyTyped(KeyEvent e) {
     }
 
+    public void restart() {
+        playing.restart();
+        gameState = GameStates.PLAYING;
+    }
+
     enum GameStates {
         PLAYING, MENU;
     }
@@ -89,4 +95,21 @@ public class Game implements KeyListener {
     public GamePanel getPanel() {
         return gamePanel;
     }
+
+    public GameStates getGameState() {
+        return gameState;
+    }
+
+    public void setGameState(GameStates gameState) {
+        this.gameState = gameState;
+    }
+
+    public Playing getPlaying() {
+        return playing;
+    }
+
+    public Menu getMenu() {
+        return menu;
+    }
+
 }
