@@ -14,7 +14,39 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  gap: 5em;
   background-color: var(--bg-color);
+  font-family: "Poppins";
+}
+
+.hangman-container {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2.5em;
+}
+
+.hangman {
+  background-image: url("/images/8.svg");
+  background-size: contain;
+  width: 250px;
+  height: 250px;
+}
+
+.word {
+  display: flex;
+  column-gap: 1.2em;
+  font-size: 2.5rem;
+}
+
+.letter {
+  width: 1.3em;
+  height: 1.5em;
+  text-align: center;
+  border-bottom: 2px solid black;
+  text-transform: uppercase;
 }
 
 .login-form {
@@ -47,7 +79,6 @@ body {
   }
   100% {
     bottom: 78%;
-    left: 2%;
     background-color: var(--bg-color);
     padding: 0 0.2em;
     z-index: 10;
