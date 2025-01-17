@@ -33,6 +33,7 @@ body {
   background-size: contain;
   width: 250px;
   height: 250px;
+  transition: 1s;
 }
 
 .word {
@@ -49,9 +50,29 @@ body {
   text-transform: uppercase;
 }
 
+.incorrect-letter {
+  position: absolute;
+  text-align: center;
+  text-transform: uppercase;
+}
+
 .msg {
   display: none;
   font-size: 1.5rem;
+  color: #b62c38;
+  animation: msgAnimation 2s ease-in-out 1 forwards;
+}
+
+@keyframes msgAnimation {
+  0% {
+    font-size: 0.7rem;
+  }
+  50% {
+    font-size: 2rem;
+  }
+  100% {
+    font-size: 1.5rem;
+  }
 }
 
 .login-form {
