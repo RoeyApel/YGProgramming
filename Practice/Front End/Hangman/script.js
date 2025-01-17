@@ -82,8 +82,10 @@ function placeLetter(letterTyped) {
 
   for (let i = 0; i < secretWord.length; i++) {
     if (secretWord[i] == letterTyped) {
+      let color = getRndColor();
       letters[i].textContent = letterTyped;
-      letters[i].style.color = getRndColor();
+      letters[i].style.color = color;
+      letters[i].style.borderBottomColor = color;
     }
   }
 }
