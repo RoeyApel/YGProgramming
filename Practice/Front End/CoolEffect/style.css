@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --blur-amount: 6px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #222222;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins";
+  overflow: hidden;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 0.5em;
+  padding: 1.5em;
+  border-radius: 12px;
+  color: #fffbdd;
+  background-image: linear-gradient(to bottom, #222222 20%, #fffbdd42);
+  box-shadow: 1px 1px 10px #fffbdd62;
+  text-transform: uppercase;
+}
+
+.circle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150px;
+  height: 150px;
+  background-color: #fffbdd11;
+  border-radius: 50%;
+  pointer-events: none;
+  transition: transform 0.1s;
+  border: 2px solid #222222;
+}
+.handle {
+  position: absolute;
+  left: 100%;
+  top: 80%;
+  width: 15px;
+  height: 92px;
+  background-color: #1d1d1d;
+  transform: rotate(-42deg);
+}
+.letter {
+  padding: 1em;
+  user-select: none;
+  transition: 0.15s;
+  /* text-shadow: 0 0 5px #fffbdd6e; */
+}
+.evil-letter {
+}
+
+.evil-letter:hover {
+  color: red;
+  font-weight: bold;
+  text-shadow: 2px 2px 5px #d33c2165;
+  transform: scale(4) !important;
+  cursor: pointer;
+}
+
+.letter:hover {
+  transform: scale(2.3);
+}
+.grid > .letter:not(:hover) {
+  filter: blur(var(--blur-amount));
+}
