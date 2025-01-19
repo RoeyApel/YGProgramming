@@ -11,6 +11,7 @@ var wordList = [
   "account",
   "accurate",
   "acres",
+  "nigger",
   "across",
   "action",
   "active",
