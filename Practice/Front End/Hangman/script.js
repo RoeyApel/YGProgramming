@@ -12,38 +12,6 @@ let currentHangmanPhase;
 let lettersTyped = new Set();
 let correctLetterCount;
 
-const colors = [
-  "#FF6347", // Tomato
-  "#FF4500", // Orange Red
-  "#FFD700", // Gold
-  "#ADFF2F", // Green Yellow
-  "#32CD32", // Lime Green
-  "#3CB371", // Medium Sea Green
-  "#00CED1", // Dark Turquoise
-  "#1E90FF", // Dodger Blue
-  "#8A2BE2", // Blue Violet
-  "#FF1493", // Deep Pink
-  "#FF69B4", // Hot Pink
-  "#C71585", // Medium Violet Red
-  "#D2691E", // Chocolate
-  "#8B4513", // Saddle Brown
-  "#A52A2A", // Brown
-  "#B22222", // Firebrick
-  "#FF8C00", // Dark Orange
-  "#7FFF00", // Chartreuse
-  "#00FA9A", // Medium Spring Green
-  "#00BFFF", // Deep Sky Blue
-  "#DC143C", // Crimson
-  "#9932CC", // Dark Orchid
-  "#FF00FF", // Fuchsia
-  "#8B0000", // Dark Red
-  "#F0E68C", // Khaki
-  "#2E8B57", // Sea Green
-  "#6495ED", // Cornflower Blue
-  "#C71585", // Medium Violet Red
-  "#00FF7F", // Spring Green
-  "#6A5ACD", // Slate Blue
-];
 const blueColors = [
   "#1E2A47", // Darker Blue
   "#1D3B8A", // Dark Royal Blue

@@ -3,7 +3,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Game implements KeyListener {
-
     private GameFrame gameFrame;
     private GamePanel gamePanel;
     private GameStates gameState;
