@@ -11,12 +11,14 @@
             "id": "cd17c80ad34a6f6e",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "יג/עוד/מערכת שעות.png"
+                "file": "יג/מקצועות/שפת Python/Python Project.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "מערכת שעות"
+              "icon": "lucide-file",
+              "title": "Python Project"
             }
           }
         ]
@@ -162,10 +164,13 @@
   },
   "active": "cd17c80ad34a6f6e",
   "lastOpenFiles": [
+    "יג/מקצועות/שפת Python/שפת Python.md",
+    "יג/מקצועות/שפת Python/Python Project.md",
+    "יג/עוד/מערכת שעות.png",
+    "יג/מקצועות/שפת Python",
     "יג/מקצועות/שפת Java/Java Project.md",
     "יג/מקצועות/סטטיסטיקה והסתברות/טבלת התפלגויות t.jpeg",
     "To Do.md",
-    "יג/עוד/מערכת שעות.png",
     "יג/עוד/מידע כללי.md",
     "יג/מקצועות/בסיסי נתונים - SQL/SQL Project.md",
     "יג/מקצועות/בסיסי נתונים - SQL/בסיסי נתונים - SQL.md",
@@ -196,14 +201,11 @@
     "יג/מקצועות/בסיסי נתונים - SQL",
     "יג/עוד/Useful Terminal commends.md",
     "יג/מקצועות/שפת c",
-    "יג/מקצועות/אסמבלר",
     "יג/עוד/Terminal CheetSheet.md",
     "יג/מקצועות/שפת c/Batch file and cmd.md",
     "יג/מקצועות/סטטיסטיקה והסתברות/סטטיסטיקה והסתברות.md",
-    "יג/מקצועות/שפת python.md",
     "יג/מקצועות/סיבוכיות זמן ריצה ויעילות.md",
     "יג/מקצועות/אתרים - Front End.md",
-    "יג/Do To.md",
     "לוח מבחנים 1.jpeg",
     "לוח מבחנים.jpeg",
     "עוד/con1.png",
