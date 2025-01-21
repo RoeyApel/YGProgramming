@@ -11,12 +11,14 @@
             "id": "cd17c80ad34a6f6e",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "יג/מקצועות/סטטיסטיקה והסתברות/טבלת התפלגויות t.jpeg"
+                "file": "יג/מקצועות/שפת Java/Java Project.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "טבלת התפלגויות t"
+              "icon": "lucide-file",
+              "title": "Java Project"
             }
           }
         ]
@@ -162,9 +164,10 @@
   },
   "active": "cd17c80ad34a6f6e",
   "lastOpenFiles": [
+    "יג/מקצועות/שפת Java/שפת Java.md",
+    "יג/מקצועות/סטטיסטיקה והסתברות/טבלת התפלגויות t.jpeg",
     "יג/עוד/מערכת שעות.png",
     "יג/מקצועות/סטטיסטיקה והסתברות/סטטיסטיקה והסתברות.md",
-    "יג/מקצועות/סטטיסטיקה והסתברות/טבלת התפלגויות t.jpeg",
     "יג/מקצועות/שפת Java/Java Project.md",
     "יג/עוד/מידע כללי.md",
     "יג/מקצועות/שפת Python/Python Project.md",
@@ -175,7 +178,6 @@
     "יג/מקצועות/בסיסי נתונים - SQL/בסיסי נתונים - SQL.md",
     "יג/מקצועות/בסיסי נתונים - SQL/Dark theme for MySQL Workbench.md",
     "יג/מקצועות/סטטיסטיקה והסתברות/טבלת התפלגות נורמלית - Z.pdf",
-    "יג/מקצועות/שפת Java/שפת Java.md",
     "יג/מקצועות/שפת Java",
     "יג/עוד/לוח מבחנים.jpeg",
     "יג/עוד/כלי עזר ועוד.md",

@@ -6,7 +6,7 @@ public class Game {
     private Board board;
 
     public Game() {
-        // board = new Board();
+        board = new Board();
 
         gameFrame = new GameFrame();
 
@@ -17,9 +17,6 @@ public class Game {
     }
 
     public void render(Graphics g, int panelWidth, int panelHeight) {
-        // board.drawBoard(g, panelWidth, panelHeight);
-        Slot slot = new Slot();
-        slot.setBounds(0, 0, 220, 220);
-        slot.draw(g);
+        board.drawBoard(g, panelWidth, panelHeight);
     }
 }
