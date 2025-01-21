@@ -44,4 +44,12 @@ public class Board {
         player.draw(g);
         opponent.draw(g);
     }
+
+    public Slot get(int row, int col) {
+        return board[row][col];
+    }
+
+    public Slot get(Position position) {
+        return board[position.row][position.col];
+    }
 }

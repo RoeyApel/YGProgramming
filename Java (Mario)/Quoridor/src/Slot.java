@@ -8,17 +8,15 @@ public class Slot {
     public static final int WINNING_SLOT = 3;
 
     private Rectangle hitbox;
-    private int slotId;
-    private int row, col;
+    private Position position;
     private int kind;
     private int left;
     private int buttom;
 
     public Slot(int row, int col, int kind) {
         this.kind = kind;
-        this.row = row;
-        this.col = col;
-        slotId = row * Board.COLS + col;
+        position.row = row;
+        position.col = col;
 
         buttom = (row == Board.ROWS - 1) ? NONE : EMPTY;
         left = (col == Board.COLS - 1) ? NONE : EMPTY;
@@ -35,7 +33,8 @@ public class Slot {
 
         g.setColor(Color.black);
         g.drawRect(hitbox.x, hitbox.y, hitbox.width, hitbox.height);
-        g.drawString(slotId + "", hitbox.x + hitbox.width / 2, hitbox.y + hitbox.height / 2);
+        // g.drawString(slotId + "", hitbox.x + hitbox.width / 2, hitbox.y +
+        // hitbox.height / 2);
     }
 
     public void setBounds(int x, int y, int width, int height) {
@@ -45,28 +44,20 @@ public class Slot {
         hitbox.height = height;
     }
 
-    public int getSlotId() {
-        return slotId;
-    }
-
-    public void setSlotId(int slotNum) {
-        this.slotId = slotNum;
-    }
-
     public int getRow() {
-        return row;
+        return position.row;
     }
 
     public void setRow(int row) {
-        this.row = row;
+        position.row = row;
     }
 
     public int getCol() {
-        return col;
+        return position.col;
     }
 
     public void setCol(int col) {
-        this.col = col;
+        position.col = col;
     }
 
     public int getKind() {

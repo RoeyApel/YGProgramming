@@ -8,6 +8,10 @@ public class Game {
     public Game() {
         board = new Board();
 
+        initFrame();
+    }
+
+    private void initFrame() {
         gameFrame = new GameFrame();
 
         gamePanel = new GamePanel(this);

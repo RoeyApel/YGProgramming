@@ -5,15 +5,13 @@ import java.awt.Rectangle;
 
 public class Character {
     private Rectangle hitbox;
-    private int row, col;
-    private int slotId;
+    private Position position;
     private Image image;
 
     public Character(Image image, int row, int col) {
         this.image = image;
-        this.row = row;
-        this.col = col;
-        slotId = col + row * Board.COLS;
+        position.row = row;
+        position.col = col;
         hitbox = new Rectangle();
     }
 
@@ -37,27 +35,19 @@ public class Character {
     }
 
     public int getRow() {
-        return row;
+        return position.row;
     }
 
     public void setRow(int row) {
-        this.row = row;
+        position.row = row;
     }
 
     public int getCol() {
-        return col;
+        return position.col;
     }
 
     public void setCol(int col) {
-        this.col = col;
-    }
-
-    public int getSlotId() {
-        return slotId;
-    }
-
-    public void setSlotId(int slotNum) {
-        this.slotId = slotNum;
+        position.col = col;
     }
 
     public Image getImage() {
