@@ -11,14 +11,12 @@
             "id": "cd17c80ad34a6f6e",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "יג/מקצועות/שפת Java/Java Project.md",
-                "mode": "source",
-                "source": false
+                "file": "יג/מקצועות/סטטיסטיקה והסתברות/טבלת התפלגויות t.jpeg"
               },
-              "icon": "lucide-file",
-              "title": "Java Project"
+              "icon": "lucide-image",
+              "title": "טבלת התפלגויות t"
             }
           }
         ]
@@ -164,13 +162,14 @@
   },
   "active": "cd17c80ad34a6f6e",
   "lastOpenFiles": [
-    "יג/מקצועות/סטטיסטיקה והסתברות/טבלת התפלגויות t.jpeg",
     "יג/עוד/מערכת שעות.png",
+    "יג/מקצועות/סטטיסטיקה והסתברות/סטטיסטיקה והסתברות.md",
+    "יג/מקצועות/סטטיסטיקה והסתברות/טבלת התפלגויות t.jpeg",
+    "יג/מקצועות/שפת Java/Java Project.md",
     "יג/עוד/מידע כללי.md",
     "יג/מקצועות/שפת Python/Python Project.md",
     "יג/מקצועות/שפת Python/שפת Python.md",
     "יג/מקצועות/שפת Python",
-    "יג/מקצועות/שפת Java/Java Project.md",
     "To Do.md",
     "יג/מקצועות/בסיסי נתונים - SQL/SQL Project.md",
     "יג/מקצועות/בסיסי נתונים - SQL/בסיסי נתונים - SQL.md",
@@ -203,7 +202,6 @@
     "יג/מקצועות/שפת c",
     "יג/עוד/Terminal CheetSheet.md",
     "יג/מקצועות/שפת c/Batch file and cmd.md",
-    "יג/מקצועות/סטטיסטיקה והסתברות/סטטיסטיקה והסתברות.md",
     "יג/מקצועות/סיבוכיות זמן ריצה ויעילות.md",
     "יג/מקצועות/אתרים - Front End.md",
     "לוח מבחנים 1.jpeg",
