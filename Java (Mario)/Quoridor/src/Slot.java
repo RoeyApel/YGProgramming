@@ -1,17 +1,21 @@
 import java.awt.*;
 
-public class Slot extends Piece {
+public class Slot {
     public static final int NONE = -1;
-    public static final int NORMAL_SLOT = 4;
-    public static final int WINNING_SLOT = 5;
+    public static final int EMPTY = 0;
+    public static final int WALL = 1;
+    public static final int NORMAL_SLOT = 2;
+    public static final int WINNING_SLOT = 3;
 
+    private int x, y;
+    private int width, height;
+    private int slotNum;
     private int kind;
-    private int playerNum;
+    private int leftWall;
+    private int buttomWall;
 
-    public Slot(int id, int status) {
-        this.id = id;
-        this.kind = status;
-        this.playerNum = -1;
+    public Slot() {
+
     }
 
     public void draw(Graphics g) {
@@ -25,6 +29,13 @@ public class Slot extends Piece {
 
         g.setColor(Color.black);
         g.drawRect(x, y, width, height);
-        g.drawString(id + "", x + width / 2, y + height / 2);
+        g.drawString(slotNum + "", x + width / 2, y + height / 2);
+    }
+
+    public void setBounds(int x, int y, int width, int height) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
     }
 }

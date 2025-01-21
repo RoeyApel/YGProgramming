@@ -1,11 +1,8 @@
 import java.awt.Graphics;
 
 public class Board {
-    public static final int GAME_ROWS = 9;
-    public static final int GAME_COLS = 9;
-    public static final int DATA_ROWS = 2 * GAME_ROWS - 1;
-    public static final int DATA_COLS = 2 * GAME_COLS - 1;
-    public static final int NUM_OF_SLOTS = GAME_COLS * GAME_ROWS;
+    public static final int ROWS = 9;
+    public static final int COLS = 9;
 
     private Piece[][] board;
 
@@ -30,8 +27,8 @@ public class Board {
     }
 
     public void drawBoard(Graphics g, int panelWidth, int panelHeight) {
-        int slotWidth = panelWidth / GAME_COLS;
-        int slotHeight = panelHeight / GAME_ROWS;
+        int slotWidth = panelWidth / COLS;
+        int slotHeight = panelHeight / ROWS;
 
         for (int i = 0; i < DATA_ROWS; i += 2) {
             for (int j = 0; j < DATA_COLS; j += 2) {
