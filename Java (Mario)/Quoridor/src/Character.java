@@ -18,9 +18,7 @@ public class Character {
     }
 
     public void draw(Graphics g) {
-        g.setColor(Color.black);
-        g.fillOval(hitbox.x, hitbox.y, hitbox.width, hitbox.height);
-        System.out.println(hitbox);
+        g.drawImage(image, hitbox.x, hitbox.y, hitbox.width, hitbox.height, null);
     }
 
     public void setBounds(int x, int y, int width, int height) {

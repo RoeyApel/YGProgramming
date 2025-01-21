@@ -11,8 +11,8 @@ public class Board {
 
     public Board() {
         initBoard();
-        player = new Character(null, PLAYER_START_POS / ROWS, PLAYER_START_POS % COLS);
-        opponent = new Character(null, OPPONENT_START_POS / ROWS, OPPONENT_START_POS % COLS);
+        player = new Character(Characters.PLAYER.getImage(), PLAYER_START_POS / ROWS, PLAYER_START_POS % COLS);
+        opponent = new Character(Characters.OPPONENT.getImage(), OPPONENT_START_POS / ROWS, OPPONENT_START_POS % COLS);
     }
 
     private void initBoard() {

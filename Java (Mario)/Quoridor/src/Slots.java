@@ -14,11 +14,11 @@ public enum Slots {
         markedSlotImage = new ImageIcon(getClass().getResource(pathMarked)).getImage();
     }
 
-    public Image getSlotImage() {
+    public Image getSlot() {
         return slotImage;
     }
 
-    public Image getMarkedSlotImage() {
+    public Image getMarkedSlot() {
         return markedSlotImage;
     }
 

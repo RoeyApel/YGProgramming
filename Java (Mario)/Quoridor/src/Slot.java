@@ -28,11 +28,9 @@ public class Slot {
 
     public void draw(Graphics g) {
         if (kind == NORMAL_SLOT) {
-            g.setColor(new Color(239, 222, 205));
-            g.drawImage(Slots.NORMAL.getSlotImage(), hitbox.x, hitbox.y, hitbox.width, hitbox.height, null);
+            g.drawImage(Slots.NORMAL.getSlot(), hitbox.x, hitbox.y, hitbox.width, hitbox.height, null);
         } else if (kind == WINNING_SLOT) {
-            g.setColor(new Color(119, 202, 205));
-            g.fillRect(hitbox.x, hitbox.y, hitbox.width, hitbox.height);
+            g.drawImage(Slots.WINNER.getSlot(), hitbox.x, hitbox.y, hitbox.width, hitbox.height, null);
         }
 
         g.setColor(Color.black);
