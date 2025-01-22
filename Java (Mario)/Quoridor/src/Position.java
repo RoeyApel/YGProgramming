@@ -10,4 +10,12 @@ public class Position {
     public Position() {
         row = col = 0;
     }
+
+    public boolean equals(Position other) {
+        return this.row == other.row && this.col == other.col;
+    }
+
+    public boolean equals(int row, int col) {
+        return this.row == row && this.col == col;
+    }
 }

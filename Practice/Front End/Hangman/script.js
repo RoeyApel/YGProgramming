@@ -11,6 +11,7 @@ let isHangmaning = false;
 let currentHangmanPhase;
 let lettersTyped = new Set();
 let correctLetterCount;
+let hebrewMode = false;
 
 const blueColors = [
   "#1E2A47", // Darker Blue
@@ -59,6 +60,7 @@ document.addEventListener("keydown", (event) => {
       hangman.style.transform = "scale(" + 3.5 + ")";
       hangman.style.backgroundColor = "#ffffff";
       isHangmaning = false;
+      console.log(secretWord);
     }
   }
 });
@@ -72,14 +74,21 @@ function isLetterNotFound(letterTyped) {
 }
 
 function placeCorrectLetter(letterTyped) {
+  console.log(hebrewMode);
   lettersTyped.add(letterTyped);
 
+  let index = 0;
   for (let i = 0; i < secretWord.length; i++) {
     if (secretWord[i] == letterTyped) {
+      if (hebrewMode) {
+        index = secretWord.length - i - 1;
+      } else {
+        index = i;
+      }
       let color = getRndBlueColor();
-      letters[i].textContent = letterTyped;
-      letters[i].style.color = color;
-      letters[i].style.borderBottomColor = color;
+      letters[index].textContent = letterTyped;
+      letters[index].style.color = color;
+      letters[index].style.borderBottomColor = color;
       correctLetterCount++;
     }
   }
@@ -132,7 +141,17 @@ function changeHangmanPhase() {
 }
 
 function startHangman() {
-  secretWord = fetchRandomWord();
+  if (Math.random() < 0.1) {
+    hebrewMode = true;
+    secretWord = fetchRandomHebrewWord();
+    msg.textContent =
+      "סיסמתך איננה נכונה שחק איש תלוי כדי למצוא את הסיסמה הנכונה!";
+  } else {
+    hebrewMode = false;
+    secretWord = fetchRandomWord();
+    msg.textContent =
+      "Wrong Password! Now Play Hangman To Find The Right One! [Evil Laught]";
+  }
   correctLetterCount = 0;
   currentHangmanPhase = 8;
   hangmanContainer.style.display = "flex";
@@ -180,7 +199,7 @@ loginInputs[1].addEventListener("keydown", (event) => {
 });
 
 function isALetter(input) {
-  return /^[a-zA-Z]+$/.test(input) && input.length == 1;
+  return /^[a-zA-Zא-ת]+$/.test(input) && input.length === 1;
 }
 
 function getRndBlueColor() {
@@ -202,14 +221,19 @@ function getRndAngel() {
 }
 
 function fetchRandomWord() {
-  let rndWord = wordList[getRandomIndex()];
+  let rndWord = wordList[getRandomIndex(wordList.length)];
   while (rndWord.length < 5 || rndWord.length > 7) {
-    rndWord = wordList[getRandomIndex()];
+    rndWord = wordList[getRandomIndex(wordList.length)];
   }
   return rndWord;
 }
-function getRandomIndex() {
-  return Math.floor(Math.random() * wordList.length);
+
+function fetchRandomHebrewWord() {
+  return hebrewWordList[getRandomIndex(hebrewWordList.length)];
+}
+
+function getRandomIndex(max) {
+  return Math.floor(Math.random() * max);
 }
 
 function handleInputs() {

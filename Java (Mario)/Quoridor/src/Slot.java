@@ -4,37 +4,42 @@ public class Slot {
     public static final int NONE = -1;
     public static final int EMPTY = 0;
     public static final int WALL = 1;
-    public static final int NORMAL_SLOT = 2;
-    public static final int WINNING_SLOT = 3;
 
     private Rectangle hitbox;
     private Position position;
-    private int kind;
-    private int left;
-    private int buttom;
+    private boolean ocuppied;
+    private Slots kind;
+    private int rightWall;
+    private int bottomWall;
+    private Image image;
 
-    public Slot(int row, int col, int kind) {
+    public Slot(Slots kind, int row, int col) {
         this.kind = kind;
-        position.row = row;
-        position.col = col;
+        ocuppied = false;
+        position = new Position(row, col);
 
-        buttom = (row == Board.ROWS - 1) ? NONE : EMPTY;
-        left = (col == Board.COLS - 1) ? NONE : EMPTY;
+        bottomWall = (row == Board.ROWS - 1) ? NONE : EMPTY;
+        rightWall = (col == Board.COLS - 1) ? NONE : EMPTY;
 
         hitbox = new Rectangle();
+        image = kind.getImg();
     }
 
     public void draw(Graphics g) {
-        if (kind == NORMAL_SLOT) {
-            g.drawImage(Slots.NORMAL.getSlot(), hitbox.x, hitbox.y, hitbox.width, hitbox.height, null);
-        } else if (kind == WINNING_SLOT) {
-            g.drawImage(Slots.WINNER.getSlot(), hitbox.x, hitbox.y, hitbox.width, hitbox.height, null);
-        }
+        g.drawImage(image, hitbox.x, hitbox.y, hitbox.width, hitbox.height, null);
 
         g.setColor(Color.black);
         g.drawRect(hitbox.x, hitbox.y, hitbox.width, hitbox.height);
         // g.drawString(slotId + "", hitbox.x + hitbox.width / 2, hitbox.y +
         // hitbox.height / 2);
+    }
+
+    public void mark() {
+        image = kind.getMarkedImg();
+    }
+
+    public void unmark() {
+        image = kind.getImg();
     }
 
     public void setBounds(int x, int y, int width, int height) {
@@ -60,28 +65,20 @@ public class Slot {
         position.col = col;
     }
 
-    public int getKind() {
-        return kind;
+    public int getRightWall() {
+        return rightWall;
     }
 
-    public void setKind(int kind) {
-        this.kind = kind;
+    public void setRightWall(int leftWall) {
+        this.rightWall = leftWall;
     }
 
-    public int getLeft() {
-        return left;
+    public int getBottomWall() {
+        return bottomWall;
     }
 
-    public void setLeft(int leftWall) {
-        this.left = leftWall;
-    }
-
-    public int getButtom() {
-        return buttom;
-    }
-
-    public void setButtom(int buttomWall) {
-        this.buttom = buttomWall;
+    public void setBottomWall(int buttomWall) {
+        this.bottomWall = buttomWall;
     }
 
     public Rectangle getHitbox() {
@@ -90,6 +87,26 @@ public class Slot {
 
     public void setHitbox(Rectangle hitbox) {
         this.hitbox = hitbox;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
+    public boolean isOcuppied() {
+        return ocuppied;
+    }
+
+    public void setOcuppied(boolean hasCharacter) {
+        this.ocuppied = hasCharacter;
+    }
+
+    public boolean isMarked() {
+        return image == kind.getMarkedImg();
     }
 
 }

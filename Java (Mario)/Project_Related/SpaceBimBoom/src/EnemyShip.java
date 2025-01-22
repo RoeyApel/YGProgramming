@@ -50,7 +50,7 @@ public class EnemyShip {
         }
 
         drawShip(g);
-        drawHitbox(g);
+        // drawHitbox(g);
     }
 
     private void drawShip(Graphics g) {

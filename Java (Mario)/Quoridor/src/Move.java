@@ -7,6 +7,11 @@ public class Move {
         this.target = target;
     }
 
+    public Move(int rowCur, int colCur, int rowTarg, int colTarg) {
+        current = new Position(rowCur, colCur);
+        target = new Position(rowTarg, colTarg);
+    }
+
     public Position getCurrent() {
         return current;
     }

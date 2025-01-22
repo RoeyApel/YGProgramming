@@ -48,7 +48,7 @@ public class PlayerShip {
 
         if (visible) {
             g.drawImage(Images.GOOD_SHIP.getImage(), x, Y, WIDTH, HEIGHT, null);
-            drawHitbox(g);
+            // drawHitbox(g);
         }
     }
 

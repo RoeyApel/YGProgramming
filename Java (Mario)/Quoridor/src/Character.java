@@ -2,16 +2,18 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
+import java.util.ArrayList;
 
 public class Character {
     private Rectangle hitbox;
     private Position position;
     private Image image;
+    private ArrayList<Move> moves;
 
     public Character(Image image, int row, int col) {
         this.image = image;
-        position.row = row;
-        position.col = col;
+        position = new Position(row, col);
+
         hitbox = new Rectangle();
     }
 
@@ -24,6 +26,11 @@ public class Character {
         hitbox.y = y;
         hitbox.width = width;
         hitbox.height = height;
+    }
+
+    public void setXYPos(int x, int y) {
+        hitbox.x = x;
+        hitbox.y = y;
     }
 
     public Rectangle getHitbox() {
@@ -56,6 +63,27 @@ public class Character {
 
     public void setImage(Image image) {
         this.image = image;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
+    public void setPosition(int row, int col) {
+        position.row = row;
+        position.col = col;
+    }
+
+    public ArrayList<Move> getMoves() {
+        return moves;
+    }
+
+    public void setMoves(ArrayList<Move> moves) {
+        this.moves = moves;
     }
 
 }
