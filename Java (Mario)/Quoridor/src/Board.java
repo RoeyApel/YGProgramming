@@ -1,6 +1,8 @@
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Board {
     public static final int ROWS = 9;
@@ -39,10 +41,10 @@ public class Board {
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLS; j++) {
                 board[i][j].setBounds(j * slotWidth, i * slotHeight, slotWidth, slotHeight);
-                if (true && j % 2 == 1) {
-                    board[i][j].setBottomWall(Walls.SELECTED_WALL);
-                    board[i][j].setRightWall(Walls.SELECTED_WALL);
-                }
+                // if (true && j % 2 == 1) {
+                // board[i][j].setBottomWall(Walls.SELECTED_WALL);
+                // board[i][j].setRightWall(Walls.SELECTED_WALL);
+                // }
                 board[i][j].draw(g);
             }
         }
@@ -81,6 +83,26 @@ public class Board {
         }
     }
 
+    public void removeWall(Wall wall) {
+        int row = wall.position.row;
+        int col = wall.position.col;
+        Walls type = Walls.EMPTY;
+
+        if (wall.direction == Directions.LEFT) {
+            board[row][col].setBottomWall(type);
+            board[row][col - 1].setBottomWall(type);
+        } else if (wall.direction == Directions.RIGHT) {
+            board[row - 1][col].setBottomWall(type);
+            board[row - 1][col + 1].setBottomWall(type);
+        } else if (wall.direction == Directions.UP) {
+            board[row][col].setRightWall(type);
+            board[row - 1][col].setRightWall(type);
+        } else if (wall.direction == Directions.DOWN) {
+            board[row][col].setRightWall(type);
+            board[row + 1][col].setRightWall(type);
+        }
+    }
+
     public void markSlots(ArrayList<Move> moves) {
         for (Move move : moves) {
             this.get(move.getTarget()).mark();
@@ -91,6 +113,28 @@ public class Board {
         for (Move move : moves) {
             this.get(move.getTarget()).unmark();
         }
+    }
+
+    public Queue<Wall> getPlacableWalls(int row, int col) {
+        Queue<Wall> placableWalls = new LinkedList<>();
+
+        if (row != 0 && board[row][col].getRightWall() == Walls.EMPTY
+                && board[row - 1][col].getRightWall() == Walls.EMPTY) {
+            placableWalls.add(new Wall(Walls.SELECTED_WALL, row, col, Directions.UP));
+        }
+        if (col != 0 && board[row - 1][col].getBottomWall() == Walls.EMPTY
+                && board[row - 1][col - 1].getBottomWall() == Walls.EMPTY) {
+            placableWalls.add(new Wall(Walls.SELECTED_WALL, row, col, Directions.LEFT));
+        }
+        if (row != ROWS - 1 && board[row][col - 1].getRightWall() == Walls.EMPTY
+                && board[row + 1][col - 1].getRightWall() == Walls.EMPTY) {
+            placableWalls.add(new Wall(Walls.SELECTED_WALL, row, col, Directions.DOWN));
+        }
+        if (col != COLS - 1 && board[row][col].getBottomWall() == Walls.EMPTY
+                && board[row][col + 1].getBottomWall() == Walls.EMPTY) {
+            placableWalls.add(new Wall(Walls.SELECTED_WALL, row, col, Directions.RIGHT));
+        }
+        return placableWalls;
     }
 
     public ArrayList<Move> getLegalMoves(Position pos) {
@@ -227,4 +271,5 @@ public class Board {
     public Character getOpponent() {
         return opponent;
     }
+
 }

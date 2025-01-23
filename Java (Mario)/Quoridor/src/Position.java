@@ -18,4 +18,9 @@ public class Position {
     public boolean equals(int row, int col) {
         return this.row == row && this.col == col;
     }
+
+    public void setPosition(int row, int col) {
+        this.row = row;
+        this.col = col;
+    }
 }

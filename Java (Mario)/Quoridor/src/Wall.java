@@ -14,7 +14,8 @@ public class Wall {
         this.direction = direction;
     }
 
-    public Wall(int row, int col, Directions direction) {
+    public Wall(Walls type, int row, int col, Directions direction) {
+        this.type = type;
         this.direction = direction;
         position = new Position(row, col);
     }
