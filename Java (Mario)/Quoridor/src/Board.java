@@ -39,15 +39,46 @@ public class Board {
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLS; j++) {
                 board[i][j].setBounds(j * slotWidth, i * slotHeight, slotWidth, slotHeight);
+                if (true && j % 2 == 1) {
+                    board[i][j].setBottomWall(Walls.SELECTED_WALL);
+                    board[i][j].setRightWall(Walls.SELECTED_WALL);
+                }
                 board[i][j].draw(g);
             }
         }
+
+        for (int i = 0; i < ROWS; i++) {
+            for (int j = 0; j < COLS; j++) {
+                board[i][j].drawWalls(g);
+            }
+        }
+
         player.setBounds(player.getCol() * slotWidth, player.getRow() * slotHeight, slotWidth, slotHeight);
         opponent.setBounds(opponent.getCol() * slotWidth, opponent.getRow() * slotHeight, slotWidth,
                 slotHeight);
 
         player.draw(g);
         opponent.draw(g);
+    }
+
+    public void placeWall(Wall wall) {
+        int row = wall.position.row;
+        int col = wall.position.col;
+        Walls type = wall.type;
+
+        if (wall.direction == Directions.LEFT) {
+            board[row][col].setBottomWall(type);
+            board[row][col - 1].setBottomWall(type);
+        } else if (wall.direction == Directions.RIGHT) {
+            board[row - 1][col].setBottomWall(type);
+            board[row - 1][col + 1].setBottomWall(type);
+        } else if (wall.direction == Directions.UP) {
+            board[row][col].setRightWall(type);
+            board[row - 1][col].setRightWall(type);
+        } else if (wall.direction == Directions.DOWN) {
+            board[row][col].setRightWall(type);
+            board[row + 1][col].setRightWall(type);
+        }
     }
 
     public void markSlots(ArrayList<Move> moves) {
@@ -74,7 +105,7 @@ public class Board {
     }
 
     public void addLegalMovesRight(ArrayList<Move> legalMoves, int row, int col) {
-        if (board[row][col].getRightWall() != Slot.EMPTY)
+        if (board[row][col].getRightWall() != Walls.EMPTY)
             return;
 
         if (board[row][col + 1].isOcuppied() == false) {
@@ -82,22 +113,22 @@ public class Board {
             return;
         }
 
-        if (board[row][col + 1].getRightWall() == Slot.EMPTY) {
+        if (board[row][col + 1].getRightWall() == Walls.EMPTY) {
             legalMoves.add(new Move(row, col, row, col + 2));
             return;
         }
 
-        if (row != 0 && board[row - 1][col + 1].getBottomWall() == Slot.EMPTY) {
+        if (row != 0 && board[row - 1][col + 1].getBottomWall() == Walls.EMPTY) {
             legalMoves.add(new Move(row, col, row - 1, col + 1));
         }
 
-        if (board[row][col + 1].getBottomWall() == Slot.EMPTY) {
+        if (board[row][col + 1].getBottomWall() == Walls.EMPTY) {
             legalMoves.add(new Move(row, col, row - 1, col + 1));
         }
     }
 
     public void addLegalMovesLeft(ArrayList<Move> legalMoves, int row, int col) {
-        if (col == 0 || board[row][col - 1].getRightWall() != Slot.EMPTY)
+        if (col == 0 || board[row][col - 1].getRightWall() != Walls.EMPTY)
             return;
 
         if (board[row][col - 1].isOcuppied() == false) {
@@ -105,22 +136,22 @@ public class Board {
             return;
         }
 
-        if (col != 1 && board[row][col - 2].getRightWall() == Slot.EMPTY) {
+        if (col != 1 && board[row][col - 2].getRightWall() == Walls.EMPTY) {
             legalMoves.add(new Move(row, col, row, col - 2));
             return;
         }
 
-        if (row != 0 && board[row - 1][col - 1].getBottomWall() == Slot.EMPTY) {
+        if (row != 0 && board[row - 1][col - 1].getBottomWall() == Walls.EMPTY) {
             legalMoves.add(new Move(row, col, row - 1, col - 1));
         }
 
-        if (board[row][col - 1].getBottomWall() == Slot.EMPTY) {
+        if (board[row][col - 1].getBottomWall() == Walls.EMPTY) {
             legalMoves.add(new Move(row, col, row + 1, col - 1));
         }
     }
 
     public void addLegalMovesBottom(ArrayList<Move> legalMoves, int row, int col) {
-        if (board[row][col].getBottomWall() != Slot.EMPTY)
+        if (board[row][col].getBottomWall() != Walls.EMPTY)
             return;
 
         if (board[row + 1][col].isOcuppied() == false) {
@@ -128,22 +159,22 @@ public class Board {
             return;
         }
 
-        if (board[row + 1][col].getBottomWall() == Slot.EMPTY) {
+        if (board[row + 1][col].getBottomWall() == Walls.EMPTY) {
             legalMoves.add(new Move(row, col, row + 2, col));
             return;
         }
 
-        if (col != 0 && board[row + 1][col - 1].getRightWall() == Slot.EMPTY) {
+        if (col != 0 && board[row + 1][col - 1].getRightWall() == Walls.EMPTY) {
             legalMoves.add(new Move(row, col, row + 1, col - 1));
         }
 
-        if (board[row + 1][col].getRightWall() == Slot.EMPTY) {
+        if (board[row + 1][col].getRightWall() == Walls.EMPTY) {
             legalMoves.add(new Move(row, col, row + 1, col + 1));
         }
     }
 
     public void addLegalMovesTop(ArrayList<Move> legalMoves, int row, int col) {
-        if (row == 0 || board[row - 1][col].getBottomWall() != Slot.EMPTY)
+        if (row == 0 || board[row - 1][col].getBottomWall() != Walls.EMPTY)
             return;
 
         if (board[row - 1][col].isOcuppied() == false) {
@@ -151,16 +182,16 @@ public class Board {
             return;
         }
 
-        if (row != 1 && board[row - 2][col].getBottomWall() == Slot.EMPTY) {
+        if (row != 1 && board[row - 2][col].getBottomWall() == Walls.EMPTY) {
             legalMoves.add(new Move(row, col, row - 2, col));
             return;
         }
 
-        if (col != 0 && board[row - 1][col - 1].getRightWall() == Slot.EMPTY) {
+        if (col != 0 && board[row - 1][col - 1].getRightWall() == Walls.EMPTY) {
             legalMoves.add(new Move(row, col, row - 1, col - 1));
         }
 
-        if (board[row - 1][col].getRightWall() == Slot.EMPTY) {
+        if (board[row - 1][col].getRightWall() == Walls.EMPTY) {
             legalMoves.add(new Move(row, col, row - 1, col + 1));
         }
     }
@@ -189,19 +220,11 @@ public class Board {
         this.slotHeight = slotHeight;
     }
 
-    public Position getPlayerPos() {
-        return player.getPosition();
+    public Character getPlayer() {
+        return player;
     }
 
-    public void setPlayerPos(int row, int col) {
-        player.setPosition(row, col);
-    }
-
-    public void setPlayerMoves(ArrayList<Move> moves) {
-        player.setMoves(moves);
-    }
-
-    public ArrayList<Move> getPlayerMoves() {
-        return player.getMoves();
+    public Character getOpponent() {
+        return opponent;
     }
 }

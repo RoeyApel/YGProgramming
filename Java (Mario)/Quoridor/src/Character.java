@@ -28,6 +28,14 @@ public class Character {
         hitbox.height = height;
     }
 
+    public boolean isAt(int row, int col) {
+        return position.row == row && position.col == col;
+    }
+
+    public boolean isAt(Position otherPos) {
+        return position.row == otherPos.row && position.col == otherPos.col;
+    }
+
     public void setXYPos(int x, int y) {
         hitbox.x = x;
         hitbox.y = y;
