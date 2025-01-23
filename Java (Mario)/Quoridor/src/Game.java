@@ -1,13 +1,15 @@
+
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Queue;
 
 public class Game implements MouseListener, KeyListener {
+
     private static final int NONE = -1;
     private static final int CURRENT_PLAYER = 0;
     private static final int SLOT = 1;
@@ -17,7 +19,7 @@ public class Game implements MouseListener, KeyListener {
     private GamePanel gamePanel;
     private Board board;
     private Character currentPlayer;
-    private Queue<Wall> wallSelection;
+    private Queue<Wall> wallSelection = new LinkedList<>();
     private int lastClick = NONE;
     private Position lastSlotClicked = new Position(-1, -1);
 
@@ -27,14 +29,18 @@ public class Game implements MouseListener, KeyListener {
         initFrame();
     }
 
+    // Todo: kill myself. fuck. right better code!! sigh.
+
     private void initFrame() {
         gameFrame = new GameFrame();
 
         gamePanel = new GamePanel(this);
 
-        gameFrame.addKeyListener(this);
+        gamePanel.addKeyListener(this);
         gamePanel.addMouseListener(this);
 
+        gamePanel.setFocusable(true);
+        gamePanel.requestFocusInWindow();
         gameFrame.add(gamePanel);
 
         gameFrame.setVisible(true);
@@ -52,14 +58,17 @@ public class Game implements MouseListener, KeyListener {
         if (currentPlayer.isAt(row, col)) {
             onClickCurrentPlayer(row, col);
             lastClick = CURRENT_PLAYER;
-        } else if (board.get(row, col).isMarked()) {
+        }
+        else if (board.get(row, col).isMarked()) {
             onClickMarkedSlot(row, col);
             lastClick = MARKED_SLOT;
-        } else {
+        }
+        else {
             onClickSlot(row, col);
             lastClick = SLOT;
         }
 
+        gamePanel.repaint();
         lastSlotClicked.setPosition(row, col);
     }
 
@@ -71,26 +80,13 @@ public class Game implements MouseListener, KeyListener {
         board.get(currentPlayer.getPosition()).setOcuppied(true);
 
         board.unmarkSlots(currentPlayer.getMoves());
-
-        gamePanel.repaint();
-
     }
 
     private void onClickSlot(int row, int col) {
         if (lastClick == CURRENT_PLAYER) {
             board.unmarkSlots(currentPlayer.getMoves());
-
-            gamePanel.repaint();
-        } else if (lastClick == NONE || !lastSlotClicked.equals(row, col)) {
-            if (wallSelection != null && !wallSelection.isEmpty())
-                board.removeWall(wallSelection.peek());
-
-            wallSelection = board.getPlacableWalls(row, col);
-
-            board.placeWall(wallSelection.peek());
-
-            gamePanel.repaint();
-        } else if (lastSlotClicked.equals(row, col) && !wallSelection.isEmpty()) {
+        }
+        if (lastSlotClicked.equals(row, col)) {
             board.removeWall(wallSelection.peek());
 
             wallSelection.add(wallSelection.poll());
@@ -98,8 +94,15 @@ public class Game implements MouseListener, KeyListener {
             board.placeWall(wallSelection.peek());
 
             wallSelection.add(wallSelection.poll());
+        }
+        else if (!lastSlotClicked.equals(row, col)) {
+            if (!wallSelection.isEmpty()) {
+                board.removeWall(wallSelection.peek());
+            }
 
-            gamePanel.repaint();
+            wallSelection = board.getPlacableWalls(row, col);
+
+            board.placeWall(wallSelection.peek());
         }
 
     }
@@ -111,16 +114,15 @@ public class Game implements MouseListener, KeyListener {
 
             board.markSlots(currentPlayer.getMoves());
 
-            gamePanel.repaint();
-        } else {
+        }
+        else {
             board.unmarkSlots(currentPlayer.getMoves());
-
-            gamePanel.repaint();
         }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
+
     }
 
     @Override
@@ -138,20 +140,19 @@ public class Game implements MouseListener, KeyListener {
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_E) {
-            currentPlayer = board.getOpponent().isAt(currentPlayer.getPosition()) ? board.getPlayer()
-                    : board.getOpponent();
+            currentPlayer = board.getOpponent().isAt(currentPlayer.getPosition()) ? board.getPlayer() : board.getOpponent();
         }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
 
     }
 }

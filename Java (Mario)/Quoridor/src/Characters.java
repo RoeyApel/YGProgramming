@@ -3,8 +3,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public enum Characters {
-    PLAYER("images\\player.png", (Board.ROWS - 1) * Board.COLS + Board.COLS / 2),
-    OPPONENT("images\\opponent.png", Board.COLS / 2);
+    PLAYER("images\\player.png", (Board.ROWS - 1) * Board.COLS + Board.COLS / 2), OPPONENT("images\\opponent.png", Board.COLS / 2);
 
     private Image image;
 

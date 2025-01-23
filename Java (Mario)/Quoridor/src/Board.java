@@ -56,8 +56,7 @@ public class Board {
         }
 
         player.setBounds(player.getCol() * slotWidth, player.getRow() * slotHeight, slotWidth, slotHeight);
-        opponent.setBounds(opponent.getCol() * slotWidth, opponent.getRow() * slotHeight, slotWidth,
-                slotHeight);
+        opponent.setBounds(opponent.getCol() * slotWidth, opponent.getRow() * slotHeight, slotWidth, slotHeight);
 
         player.draw(g);
         opponent.draw(g);
@@ -69,17 +68,20 @@ public class Board {
         Walls type = wall.type;
 
         if (wall.direction == Directions.LEFT) {
-            board[row][col].setBottomWall(type);
-            board[row][col - 1].setBottomWall(type);
-        } else if (wall.direction == Directions.RIGHT) {
             board[row - 1][col].setBottomWall(type);
-            board[row - 1][col + 1].setBottomWall(type);
-        } else if (wall.direction == Directions.UP) {
+            board[row - 1][col - 1].setBottomWall(type);
+        }
+        else if (wall.direction == Directions.RIGHT) {
+            board[row][col].setBottomWall(type);
+            board[row][col + 1].setBottomWall(type);
+        }
+        else if (wall.direction == Directions.UP) {
             board[row][col].setRightWall(type);
             board[row - 1][col].setRightWall(type);
-        } else if (wall.direction == Directions.DOWN) {
-            board[row][col].setRightWall(type);
-            board[row + 1][col].setRightWall(type);
+        }
+        else if (wall.direction == Directions.DOWN) {
+            board[row][col - 1].setRightWall(type);
+            board[row + 1][col - 1].setRightWall(type);
         }
     }
 
@@ -91,13 +93,16 @@ public class Board {
         if (wall.direction == Directions.LEFT) {
             board[row][col].setBottomWall(type);
             board[row][col - 1].setBottomWall(type);
-        } else if (wall.direction == Directions.RIGHT) {
+        }
+        else if (wall.direction == Directions.RIGHT) {
             board[row - 1][col].setBottomWall(type);
             board[row - 1][col + 1].setBottomWall(type);
-        } else if (wall.direction == Directions.UP) {
+        }
+        else if (wall.direction == Directions.UP) {
             board[row][col].setRightWall(type);
             board[row - 1][col].setRightWall(type);
-        } else if (wall.direction == Directions.DOWN) {
+        }
+        else if (wall.direction == Directions.DOWN) {
             board[row][col].setRightWall(type);
             board[row + 1][col].setRightWall(type);
         }
@@ -118,20 +123,16 @@ public class Board {
     public Queue<Wall> getPlacableWalls(int row, int col) {
         Queue<Wall> placableWalls = new LinkedList<>();
 
-        if (row != 0 && board[row][col].getRightWall() == Walls.EMPTY
-                && board[row - 1][col].getRightWall() == Walls.EMPTY) {
+        if (row != 0 && board[row][col].getRightWall() == Walls.EMPTY && board[row - 1][col].getRightWall() == Walls.EMPTY) {
             placableWalls.add(new Wall(Walls.SELECTED_WALL, row, col, Directions.UP));
         }
-        if (col != 0 && board[row - 1][col].getBottomWall() == Walls.EMPTY
-                && board[row - 1][col - 1].getBottomWall() == Walls.EMPTY) {
+        if (col != 0 && board[row - 1][col].getBottomWall() == Walls.EMPTY && board[row - 1][col - 1].getBottomWall() == Walls.EMPTY) {
             placableWalls.add(new Wall(Walls.SELECTED_WALL, row, col, Directions.LEFT));
         }
-        if (row != ROWS - 1 && board[row][col - 1].getRightWall() == Walls.EMPTY
-                && board[row + 1][col - 1].getRightWall() == Walls.EMPTY) {
+        if (row != ROWS - 1 && board[row][col - 1].getRightWall() == Walls.EMPTY && board[row + 1][col - 1].getRightWall() == Walls.EMPTY) {
             placableWalls.add(new Wall(Walls.SELECTED_WALL, row, col, Directions.DOWN));
         }
-        if (col != COLS - 1 && board[row][col].getBottomWall() == Walls.EMPTY
-                && board[row][col + 1].getBottomWall() == Walls.EMPTY) {
+        if (col != COLS - 1 && board[row][col].getBottomWall() == Walls.EMPTY && board[row][col + 1].getBottomWall() == Walls.EMPTY) {
             placableWalls.add(new Wall(Walls.SELECTED_WALL, row, col, Directions.RIGHT));
         }
         return placableWalls;
