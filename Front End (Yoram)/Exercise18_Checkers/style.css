@@ -1,0 +1,32 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid {
+  width: 55vw;
+  height: 80vh;
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid;
+}
+
+.slot {
+  flex-basis: 12%;
+  flex-grow: 1;
+  border: 1px solid;
+}
+.white-piece {
+  width: 80%;
+  height: 80%;
+  border: 1px solid;
+  border-radius: 50%;
+  background-color: rgb(236, 238, 240);
+}
