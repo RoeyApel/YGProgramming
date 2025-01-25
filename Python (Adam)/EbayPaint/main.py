@@ -3,9 +3,12 @@ from enum import Enum
 
 import customtkinter as ctk
 
-# globals
-gray_color = "#A9A9A9"
-black_color = "#1A1A1A"
+
+@dataclass(frozen=True)
+class Colors:
+    GRAY: str = "#A9A9A9"
+    BLACK: str = "#1A1A1A"
+    BLACK_LIGHT: str = "#2B2B2B"
 
 
 @dataclass
@@ -76,9 +79,6 @@ class Canvas(ctk.CTkCanvas):
         if self.drawings:
             last_drawing = self.drawings.pop()
             self.delete(last_drawing)
-            print("Undo successful")
-        else:
-            print("No drawings to undo")
 
 
 class NavBar(ctk.CTkFrame):
@@ -90,43 +90,32 @@ class NavBar(ctk.CTkFrame):
         self.selection_buttons = []
 
         # components
-        self.draw_line_btn = ctk.CTkButton(self, width=50, height=40, text="Line", corner_radius=5,
-                                           fg_color=black_color)
-        self.draw_line_btn.configure(command=lambda: self.on_select(self.draw_line_btn, Drawings.LINE))
-
-        self.draw_rect_btn = ctk.CTkButton(self, width=50, height=40, text="Rect", corner_radius=5, fg_color=gray_color)
-        self.draw_rect_btn.configure(command=lambda: self.on_select(self.draw_rect_btn, Drawings.RECT))
-
-        self.draw_oval_btn = ctk.CTkButton(self, width=50, height=40, text="Circle", corner_radius=5,
-                                           fg_color=gray_color)
-        self.draw_oval_btn.configure(command=lambda: self.on_select(self.draw_oval_btn, Drawings.OVAL))
-
-        self.draw_triangle_btn = ctk.CTkButton(self, width=50, height=40, text="Triangle", corner_radius=5,
-                                               fg_color=gray_color)
-        self.draw_triangle_btn.configure(command=lambda: self.on_select(self.draw_triangle_btn, Drawings.TRIANGLE))
-
-        self.selection_buttons.append(self.draw_line_btn)
-        self.selection_buttons.append(self.draw_rect_btn)
-        self.selection_buttons.append(self.draw_oval_btn)
-        self.selection_buttons.append(self.draw_triangle_btn)
+        self.selection_buttons.append(self.create_btn("Line", Colors.BLACK, Drawings.LINE))
+        self.selection_buttons.append(self.create_btn("Rect", Colors.GRAY, Drawings.RECT))
+        self.selection_buttons.append(self.create_btn("Circle", Colors.GRAY, Drawings.OVAL))
+        self.selection_buttons.append(self.create_btn("Triangle", Colors.GRAY, Drawings.TRIANGLE))
 
         # grid config
         self.columnconfigure((0, 1, 2, 3), weight=1, uniform="a")
         self.rowconfigure(0, weight=1, uniform="a")
 
         # grid placement
-        self.draw_line_btn.grid(column=0, row=0)
-        self.draw_rect_btn.grid(column=1, row=0)
-        self.draw_oval_btn.grid(column=2, row=0)
-        self.draw_triangle_btn.grid(column=3, row=0)
+        for i, button in enumerate(self.selection_buttons):
+            button.grid(column=i, row=0, padx=10, pady=10, sticky="nsew")
 
     def on_select(self, button, drawing):
         self.app.canvas.selected = drawing
         for btn in self.selection_buttons:
             if btn == button:
-                btn.configure(fg_color=black_color)
+                btn.configure(fg_color=Colors.BLACK)
             else:
-                btn.configure(fg_color=gray_color)
+                btn.configure(fg_color=Colors.GRAY)
+
+    def create_btn(self, text, fg_color, drawing):
+        draw_btn = ctk.CTkButton(self, width=50, height=40, text=text, corner_radius=5,
+                                 fg_color=fg_color, hover_color=Colors.BLACK_LIGHT)
+        draw_btn.configure(command=lambda: self.on_select(draw_btn, drawing))
+        return draw_btn
 
 
 class App(ctk.CTk):
