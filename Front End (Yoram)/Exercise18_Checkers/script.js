@@ -31,16 +31,27 @@ function createBoard() {
     slots.push(row);
   }
 }
-// todo fix this shit.
+
 function placePieces() {
   let j = 0;
-  for (let i = 1; i < NUM_OF_PIECES / 2; i += 2 - (j % 2)) {
-    const pieceElement = document.createElement("div");
-    pieceElement.classList.add("white-piece");
 
-    pieces.push(pieceElement);
-    slots[i][j].appendChild(pieceElement);
+  for (let i = 0; i < 3; i++) {
+    for (let j = (i + 1) % 2; j < SIZE; j += 2) {
+      const pieceElement = document.createElement("div");
+      pieceElement.classList.add("white-piece");
 
-    if (i == SIZE - 1) j++;
+      pieces.push(pieceElement);
+      slots[i][j].appendChild(pieceElement);
+    }
+  }
+
+  for (let i = 5; i < SIZE; i++) {
+    for (let j = i % 2; j < SIZE; j += 2) {
+      const pieceElement = document.createElement("div");
+      pieceElement.classList.add("red-piece");
+
+      pieces.push(pieceElement);
+      slots[i][j].appendChild(pieceElement);
+    }
   }
 }

@@ -11,7 +11,7 @@ body {
 }
 
 .grid {
-  width: 55vw;
+  width: 50vw;
   height: 80vh;
   display: flex;
   flex-wrap: wrap;
@@ -19,6 +19,9 @@ body {
 }
 
 .slot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex-basis: 12%;
   flex-grow: 1;
   border: 1px solid;
@@ -26,7 +29,14 @@ body {
 .white-piece {
   width: 80%;
   height: 80%;
-  border: 1px solid;
+  border: 2px solid;
   border-radius: 50%;
   background-color: rgb(236, 238, 240);
+}
+.red-piece {
+  width: 80%;
+  height: 80%;
+  border: 2px solid;
+  border-radius: 50%;
+  background-color: rgb(214, 27, 58);
 }
