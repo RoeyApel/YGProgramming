@@ -1,3 +1,8 @@
+
+#links
+1. Tkinter events binding - https://www.pythontutorial.net/tkinter/tkinter-event-binding/
+
+
 ### **Collaborative Whiteboard Tool: Detailed Plan**
 
 #### **Overview**
