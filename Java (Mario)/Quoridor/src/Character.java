@@ -9,10 +9,12 @@ public class Character {
     private Position position;
     private Image image;
     private ArrayList<Move> moves;
+    private int wallsCount;
 
     public Character(Image image, int row, int col) {
         this.image = image;
         position = new Position(row, col);
+        wallsCount = 0;
 
         hitbox = new Rectangle();
     }
@@ -94,4 +96,15 @@ public class Character {
         this.moves = moves;
     }
 
+    public int getWallsCount() {
+        return wallsCount;
+    }
+
+    public void setWallsCount(int wallsCount) {
+        this.wallsCount = wallsCount;
+    }
+
+    public void decWallsCount() {
+        wallsCount--;
+    }
 }

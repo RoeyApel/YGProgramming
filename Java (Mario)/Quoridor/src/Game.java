@@ -1,4 +1,3 @@
-
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -8,19 +7,15 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import javax.swing.SwingUtilities;
+
 public class Game implements MouseListener, KeyListener {
-
-    private static final int NONE = -1;
-    private static final int CURRENT_PLAYER = 0;
-    private static final int SLOT = 1;
-    private static final int MARKED_SLOT = 2;
-
     private GameFrame gameFrame;
     private GamePanel gamePanel;
     private Board board;
     private Character currentPlayer;
     private Queue<Wall> wallsOptions = new LinkedList<>();
-    private int lastClick = NONE;
+    private boolean wallSelectionActive, moveSelectionActive;
     private Position lastSlotClicked = new Position(-1, -1);
 
     public Game() {
@@ -28,8 +23,6 @@ public class Game implements MouseListener, KeyListener {
         currentPlayer = board.getPlayer();
         initFrame();
     }
-
-    // Todo: kill myself. fuck. right better code!! sigh. less do it!!
 
     private void initFrame() {
         gameFrame = new GameFrame();
@@ -57,88 +50,153 @@ public class Game implements MouseListener, KeyListener {
 
         if (currentPlayer.isAt(row, col)) {
             onClickCurrentPlayer(row, col);
-            lastClick = CURRENT_PLAYER;
         }
-        else if (board.get(row, col).isMarked()) {
+        else if (board.isMarked(row, col)) {
             onClickMarkedSlot(row, col);
-            lastClick = MARKED_SLOT;
         }
-        else {
-            onClickSlot(row, col);
-            lastClick = SLOT;
+        else if (SwingUtilities.isLeftMouseButton(e)) {
+            onLeftClickSlot(row, col);
+        }
+        else if (SwingUtilities.isRightMouseButton(e) && wallSelectionActive) {
+            onRightClickSlot(row, col);
         }
 
         gamePanel.repaint();
+    }
+
+    private void printDebug(MouseEvent e, int row, int col) {
+        System.out.println("======================================================");
+        System.out.println("wsa: " + wallSelectionActive);
+        System.out.println("msa: " + moveSelectionActive);
+        System.out.println("irc: " + SwingUtilities.isRightMouseButton(e));
+        System.out.println("ilc: " + SwingUtilities.isLeftMouseButton(e));
+        System.out.println("ismarked: " + board.isMarked(row, col));
+        System.out.println("lastSlot: " + lastSlotClicked.row + "|" + lastSlotClicked.col);
+        System.out.println("======================================================");
+    }
+
+    private void onRightClickSlot(int row, int col) {
+        Wall wall = wallsOptions.poll();
+        wall.type = Walls.WALL;
+
+        board.placeWall(wall);
+
+        currentPlayer.decWallsCount();
+
+        endTurn();
+
+        // **more checks before placing wall.
+    }
+
+    private void onLeftClickSlot(int row, int col) {
+        if (moveSelectionActive) {
+            deactivateMoveSelection(row, col);
+        }
+
+        if (lastSlotClicked.equals(row, col)) {
+            displayNextWallOption(row, col);
+        }
+        else {
+            if (wallSelectionActive) {
+                deactivateWallSelection(row, col);
+            }
+
+            activateWallSelection(row, col);
+        }
         lastSlotClicked.setPosition(row, col);
     }
 
-    public void mousePressed2(MouseEvent e) {
-        int row = e.getY() / board.getSlotHeight();
-        int col = e.getX() / board.getSlotWidth();
+    private boolean activateWallSelection(int row, int col) {
+        wallsOptions = board.getPlacableWalls(row, col);
 
-        if (currentPlayer.isAt(row, col)) {
-            onClickCurrentPlayer(row, col);
-            lastClick = CURRENT_PLAYER;
-        }
-        else if (board.get(row, col).isMarked()) {
-            onClickMarkedSlot(row, col);
-            lastClick = MARKED_SLOT;
-        }
-        else {
-            onClickSlot(row, col);
-            lastClick = SLOT;
+        if (wallsOptions.isEmpty()) {
+            return false;
         }
 
-        gamePanel.repaint();
-        lastSlotClicked.setPosition(row, col);
+        board.placeWall(wallsOptions.peek());
+        wallSelectionActive = true;
+        return true;
+    }
+
+    private boolean displayNextWallOption(int row, int col) {
+        if (wallsOptions.isEmpty())
+            return false;
+
+        board.removeWall(wallsOptions.peek());
+
+        wallsOptions.add(wallsOptions.poll());
+
+        board.placeWall(wallsOptions.peek());
+        return true;
     }
 
     private void onClickMarkedSlot(int row, int col) {
-        board.get(currentPlayer.getPosition()).setOcuppied(false);
+        deactivateMoveSelection(row, col);
 
-        currentPlayer.setPosition(row, col);
+        moveCurrentPlayer(row, col);
 
-        board.get(currentPlayer.getPosition()).setOcuppied(true);
-
-        board.unmarkSlots(currentPlayer.getMoves());
+        endTurn();
     }
 
-    private void onClickSlot(int row, int col) {
-        if (lastClick == CURRENT_PLAYER) {
-            board.unmarkSlots(currentPlayer.getMoves());
-        }
-        if (lastSlotClicked.equals(row, col)) {
-            board.removeWall(wallsOptions.peek());
+    private void endTurn() {
+        System.out.println("end turn");
+        reset();
 
-            wallsOptions.add(wallsOptions.poll());
+        currentPlayer = board.getOpponent().isAt(currentPlayer.getPosition()) ? board.getPlayer() : board.getOpponent();
+    }
 
-            board.placeWall(wallsOptions.peek());
+    private void reset() {
+        wallSelectionActive = false;
+        moveSelectionActive = false;
+        currentPlayer.setMoves(null);
+        wallsOptions = null;
+        lastSlotClicked.col = -1;
+        lastSlotClicked.row = -1;
+        System.out.println("dffsdefsd");
+    }
 
-            wallsOptions.add(wallsOptions.poll());
-        }
-        else if (!lastSlotClicked.equals(row, col)) {
-            if (!wallsOptions.isEmpty()) {
-                board.removeWall(wallsOptions.peek());
-            }
+    private void moveCurrentPlayer(int row, int col) {
+        Position currentPosition = currentPlayer.getPosition();
 
-            wallsOptions = board.getPlacableWalls(row, col);
+        board.get(currentPosition.row, currentPosition.col).setOcuppied(false);
+        board.get(row, col).setOcuppied(true);
 
-            board.placeWall(wallsOptions.peek());
-        }
-
+        currentPlayer.setPosition(row, col);
     }
 
     private void onClickCurrentPlayer(int row, int col) {
-        if (lastClick != CURRENT_PLAYER) {
-            ArrayList<Move> legalMoves = board.getLegalMoves(currentPlayer.getPosition());
-            currentPlayer.setMoves(legalMoves);
+        if (wallSelectionActive) {
+            deactivateWallSelection(row, col);
+        }
 
-            board.markSlots(currentPlayer.getMoves());
-
+        if (moveSelectionActive) {
+            deactivateMoveSelection(row, col);
         }
         else {
-            board.unmarkSlots(currentPlayer.getMoves());
+            activateMoveSelection(row, col);
         }
+        lastSlotClicked.setPosition(row, col);
+    }
+
+    private void activateMoveSelection(int row, int col) {
+        ArrayList<Move> moves = board.getLegalMoves(row, col);
+        currentPlayer.setMoves(moves);
+        board.markSlots(moves);
+        moveSelectionActive = true;
+    }
+
+    private void deactivateMoveSelection(int row, int col) {
+        ArrayList<Move> moves = currentPlayer.getMoves();
+        board.unmarkSlots(moves);
+        currentPlayer.setMoves(null);
+        moveSelectionActive = false;
+    }
+
+    private void deactivateWallSelection(int row, int col) {
+        Wall wall = wallsOptions.peek();
+        board.removeWall(wall);
+        wallsOptions = null;
+        wallSelectionActive = false;
     }
 
     @Override
@@ -162,9 +220,7 @@ public class Game implements MouseListener, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_E) {
-            currentPlayer = board.getOpponent().isAt(currentPlayer.getPosition()) ? board.getPlayer() : board.getOpponent();
-        }
+
     }
 
     @Override

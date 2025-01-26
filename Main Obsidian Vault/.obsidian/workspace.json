@@ -20,20 +20,6 @@
               "icon": "lucide-file",
               "title": "Java Project"
             }
-          },
-          {
-            "id": "c29279d477b771fe",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "יג/מקצועות/שפת Java/Java Project.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Java Project"
-            }
           }
         ]
       }
@@ -48,6 +34,18 @@
         "id": "d47227fe35080090",
         "type": "tabs",
         "children": [
+          {
+            "id": "dba7d89e7dedbfb7",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
           {
             "id": "28bceff24da3a354",
             "type": "leaf",
@@ -66,18 +64,6 @@
             }
           },
           {
-            "id": "dba7d89e7dedbfb7",
-            "type": "leaf",
-            "state": {
-              "type": "file-explorer",
-              "state": {
-                "sortOrder": "alphabetical"
-              },
-              "icon": "lucide-folder-closed",
-              "title": "Files"
-            }
-          },
-          {
             "id": "05be29089254bcca",
             "type": "leaf",
             "state": {
@@ -87,12 +73,12 @@
               "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "a45d2f739d5b502d",
@@ -179,22 +165,22 @@
   },
   "active": "cd17c80ad34a6f6e",
   "lastOpenFiles": [
-    "יג/עוד/מערכת שעות.png",
-    "יג/מקצועות/שפת Java/Java Project.md",
-    "יג/עוד/מידע כללי.md",
-    "יג/עוד/כלי עזר ועוד.md",
     "יג/מקצועות/שפת Python/Python Project.md",
     "To Do.md",
     "יג/מקצועות/סטטיסטיקה והסתברות/טבלת התפלגות נורמלית - Z.pdf",
     "יג/מקצועות/סטטיסטיקה והסתברות/טבלת התפלגויות t.jpeg",
     "יג/מקצועות/בסיסי נתונים - SQL/SQL Project.md",
+    "יג/עוד/מערכת שעות.png",
+    "יג/עוד/מידע כללי.md",
     "יג/מקצועות/שפת Python/שפת Python.md",
     "יג/מקצועות/שפת Python",
+    "יג/מקצועות/שפת Java/Java Project.md",
     "יג/מקצועות/בסיסי נתונים - SQL/בסיסי נתונים - SQL.md",
     "יג/מקצועות/בסיסי נתונים - SQL/Dark theme for MySQL Workbench.md",
     "יג/מקצועות/שפת Java/שפת Java.md",
     "יג/מקצועות/שפת Java",
     "יג/עוד/לוח מבחנים.jpeg",
+    "יג/עוד/כלי עזר ועוד.md",
     "יג/מקצועות/שפת c/שפת C.md",
     "יג/מקצועות/אסמבלר/אסמבלר.md",
     "יג/עוד/Terminal Commands.md",

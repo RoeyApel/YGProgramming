@@ -6,13 +6,13 @@ public class Slot {
     private Rectangle hitbox;
     private Position position;
     private boolean ocuppied;
-    private Slots kind;
+    private Slots type;
     private Walls rightWall;
     private Walls bottomWall;
     private Image image;
 
     public Slot(Slots kind, int row, int col) {
-        this.kind = kind;
+        this.type = kind;
         ocuppied = false;
         position = new Position(row, col);
 
@@ -35,12 +35,10 @@ public class Slot {
 
     public void drawWalls(Graphics g) {
         if (rightWall != Walls.NONE && rightWall != Walls.EMPTY) {
-            g.drawImage(rightWall.getVerticalImg(), hitbox.x + hitbox.width - WALL_OFFSET, hitbox.y,
-                    hitbox.width, hitbox.height, null);
+            g.drawImage(rightWall.getVerticalImg(), hitbox.x + hitbox.width - WALL_OFFSET, hitbox.y, hitbox.width, hitbox.height, null);
         }
         if (bottomWall != Walls.NONE && bottomWall != Walls.EMPTY) {
-            g.drawImage(bottomWall.getHorizontalImg(), hitbox.x, hitbox.y + WALL_OFFSET, hitbox.width,
-                    hitbox.height, null);
+            g.drawImage(bottomWall.getHorizontalImg(), hitbox.x, hitbox.y + WALL_OFFSET, hitbox.width, hitbox.height, null);
         }
     }
 
@@ -50,11 +48,11 @@ public class Slot {
     }
 
     public void mark() {
-        image = kind.getMarkedImg();
+        image = type.getMarkedImg();
     }
 
     public void unmark() {
-        image = kind.getImg();
+        image = type.getImg();
     }
 
     public void setBounds(int x, int y, int width, int height) {
@@ -105,7 +103,7 @@ public class Slot {
     }
 
     public boolean isMarked() {
-        return image == kind.getMarkedImg();
+        return image == type.getMarkedImg();
     }
 
     public Walls getRightWall() {
