@@ -19,7 +19,7 @@ public class Game implements MouseListener, KeyListener {
     private GamePanel gamePanel;
     private Board board;
     private Character currentPlayer;
-    private Queue<Wall> wallSelection = new LinkedList<>();
+    private Queue<Wall> wallsOptions = new LinkedList<>();
     private int lastClick = NONE;
     private Position lastSlotClicked = new Position(-1, -1);
 
@@ -29,7 +29,7 @@ public class Game implements MouseListener, KeyListener {
         initFrame();
     }
 
-    // Todo: kill myself. fuck. right better code!! sigh.
+    // Todo: kill myself. fuck. right better code!! sigh. less do it!!
 
     private void initFrame() {
         gameFrame = new GameFrame();
@@ -72,6 +72,27 @@ public class Game implements MouseListener, KeyListener {
         lastSlotClicked.setPosition(row, col);
     }
 
+    public void mousePressed2(MouseEvent e) {
+        int row = e.getY() / board.getSlotHeight();
+        int col = e.getX() / board.getSlotWidth();
+
+        if (currentPlayer.isAt(row, col)) {
+            onClickCurrentPlayer(row, col);
+            lastClick = CURRENT_PLAYER;
+        }
+        else if (board.get(row, col).isMarked()) {
+            onClickMarkedSlot(row, col);
+            lastClick = MARKED_SLOT;
+        }
+        else {
+            onClickSlot(row, col);
+            lastClick = SLOT;
+        }
+
+        gamePanel.repaint();
+        lastSlotClicked.setPosition(row, col);
+    }
+
     private void onClickMarkedSlot(int row, int col) {
         board.get(currentPlayer.getPosition()).setOcuppied(false);
 
@@ -87,22 +108,22 @@ public class Game implements MouseListener, KeyListener {
             board.unmarkSlots(currentPlayer.getMoves());
         }
         if (lastSlotClicked.equals(row, col)) {
-            board.removeWall(wallSelection.peek());
+            board.removeWall(wallsOptions.peek());
 
-            wallSelection.add(wallSelection.poll());
+            wallsOptions.add(wallsOptions.poll());
 
-            board.placeWall(wallSelection.peek());
+            board.placeWall(wallsOptions.peek());
 
-            wallSelection.add(wallSelection.poll());
+            wallsOptions.add(wallsOptions.poll());
         }
         else if (!lastSlotClicked.equals(row, col)) {
-            if (!wallSelection.isEmpty()) {
-                board.removeWall(wallSelection.peek());
+            if (!wallsOptions.isEmpty()) {
+                board.removeWall(wallsOptions.peek());
             }
 
-            wallSelection = board.getPlacableWalls(row, col);
+            wallsOptions = board.getPlacableWalls(row, col);
 
-            board.placeWall(wallSelection.peek());
+            board.placeWall(wallsOptions.peek());
         }
 
     }

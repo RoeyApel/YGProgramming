@@ -25,16 +25,17 @@
             "id": "c29279d477b771fe",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "יג/עוד/מערכת שעות.png"
+                "file": "יג/מקצועות/שפת Java/Java Project.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "מערכת שעות"
+              "icon": "lucide-file",
+              "title": "Java Project"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -176,10 +177,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "c29279d477b771fe",
+  "active": "cd17c80ad34a6f6e",
   "lastOpenFiles": [
-    "יג/מקצועות/שפת Java/Java Project.md",
     "יג/עוד/מערכת שעות.png",
+    "יג/מקצועות/שפת Java/Java Project.md",
     "יג/עוד/מידע כללי.md",
     "יג/עוד/כלי עזר ועוד.md",
     "יג/מקצועות/שפת Python/Python Project.md",
