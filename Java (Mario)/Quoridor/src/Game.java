@@ -64,15 +64,11 @@ public class Game implements MouseListener, KeyListener {
         gamePanel.repaint();
     }
 
-    private void printDebug(MouseEvent e, int row, int col) {
-        System.out.println("======================================================");
-        System.out.println("wsa: " + wallSelectionActive);
-        System.out.println("msa: " + moveSelectionActive);
-        System.out.println("irc: " + SwingUtilities.isRightMouseButton(e));
-        System.out.println("ilc: " + SwingUtilities.isLeftMouseButton(e));
-        System.out.println("ismarked: " + board.isMarked(row, col));
-        System.out.println("lastSlot: " + lastSlotClicked.row + "|" + lastSlotClicked.col);
-        System.out.println("======================================================");
+    private void endTurn() {
+        System.out.println("end turn");
+        reset();
+
+        currentPlayer = board.getOpponent().isAt(currentPlayer.getPosition()) ? board.getPlayer() : board.getOpponent();
     }
 
     private void onRightClickSlot(int row, int col) {
@@ -138,13 +134,6 @@ public class Game implements MouseListener, KeyListener {
         endTurn();
     }
 
-    private void endTurn() {
-        System.out.println("end turn");
-        reset();
-
-        currentPlayer = board.getOpponent().isAt(currentPlayer.getPosition()) ? board.getPlayer() : board.getOpponent();
-    }
-
     private void reset() {
         wallSelectionActive = false;
         moveSelectionActive = false;
@@ -197,6 +186,17 @@ public class Game implements MouseListener, KeyListener {
         board.removeWall(wall);
         wallsOptions = null;
         wallSelectionActive = false;
+    }
+
+    private void printDebug(MouseEvent e, int row, int col) {
+        System.out.println("======================================================");
+        System.out.println("wsa: " + wallSelectionActive);
+        System.out.println("msa: " + moveSelectionActive);
+        System.out.println("irc: " + SwingUtilities.isRightMouseButton(e));
+        System.out.println("ilc: " + SwingUtilities.isLeftMouseButton(e));
+        System.out.println("ismarked: " + board.isMarked(row, col));
+        System.out.println("lastSlot: " + lastSlotClicked.row + "|" + lastSlotClicked.col);
+        System.out.println("======================================================");
     }
 
     @Override
