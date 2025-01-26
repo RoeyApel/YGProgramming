@@ -26,4 +26,22 @@ Gameplay
 3. Board - 2d array of Slots (board), players positions (slotNum), arraylist of WallPositions type WallPosition.
 4. WallPosition - startSlotNum, direction.
 ---
-
+Mouse Events:
+variables: moveSelectionActive, wallSelectionActive, lastSlotClicked. 
+do always when clicked - calc col and row, lastSlot update at the end.
+1. current player: 
+	1. dectivate wallSelection (maybe add if wallSelectionActive is true)
+	2. if moveSelectionActive than dectivate moveSelection
+	3. else activate moveSelection 
+2. marked spot:
+	1. dectivate moveSelection
+	2. move
+	3. end turn
+3. normal spot:
+	1. if moveSelectionActive than dectivate moveSelection
+	2. if lastSlotClicked == current slot than show next Wall Option
+	3. else dectivate wallSelection and populate option queue with new options.
+4. right click and lastSlotClicked == current slot and wallSelectionActive
+	1. placeWall for the head of the wallOption queue
+	2. dec number of walls for player 
+	3. ****** ***add more checks before placing wall*** 
