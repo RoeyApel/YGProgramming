@@ -26,4 +26,14 @@ Gameplay
 3. Board - 2d array of Slots (board), players positions (slotNum), arraylist of WallPositions type WallPosition.
 4. WallPosition - startSlotNum, direction.
 ---
-
+Mouse Events:
+variables: moveSelectionActive, wallSelectionActive, lastSlotClicked. 
+1. current player: 
+	1. dectivate wallSelection (maybe add if wallSelectionActive is true)
+	2. if moveSelectionActive than dectivate moveSelection
+	3. else activate moveSelection 
+2. marked spot:
+	1. dectivate moveSelection
+	2. move
+3. spot:
+	1. 

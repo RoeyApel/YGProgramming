@@ -27,6 +27,7 @@ public class Playing implements GameState {
         drawEnemies(g);
 
         game.drawScore(g, "top");
+        drawTrangle(g);
     }
 
     private void drawTrangle(Graphics g) {
