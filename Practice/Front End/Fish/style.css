@@ -1,0 +1,108 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+}
+
+.aquarium {
+  width: 80%;
+}
+
+.menu {
+  border: 1px solid;
+
+  width: 20%;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.prev-fish-cont {
+  background-image: url("images/preview-bg.jpg");
+  background-size: 100%;
+  padding: 3em;
+  border: 2px solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 17px;
+}
+
+.fish {
+  position: relative;
+  width: 80px;
+  height: 40px;
+  background-color: rgb(63, 131, 177);
+  border-radius: 50%;
+}
+.eye {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  left: 12%;
+  top: 35%;
+}
+
+.tail {
+  position: absolute;
+  left: 85%;
+  top: -3%;
+  background-color: inherit;
+  visibility: hidden;
+  animation: flap 0.4s ease-in-out infinite alternate;
+}
+
+@keyframes flap {
+  0% {
+    transform: rotate(-8deg);
+  }
+  100% {
+    transform: rotate(8deg);
+  }
+}
+
+.tail > div {
+  width: 45px;
+  height: 20px;
+  background-color: inherit;
+  border-radius: 50%;
+  visibility: visible;
+}
+.tail > div:nth-child(1) {
+  transform: rotate(-30deg);
+}
+.tail > div:nth-child(2) {
+  transform: rotate(30deg);
+}
+
+.options {
+  display: flex;
+  justify-content: space-around;
+  padding: 0.5em;
+}
+.options > input {
+  max-width: 30%;
+}
+.color-picker {
+  background: none;
+  padding: 0;
+  border: none;
+  border-radius: 30em;
+  cursor: pointer;
+  transform: scale(1.35);
+  outline: none;
+}
+.speed-picker {
+}
+.size-picker {
+}
+
+.create-btn {
+}

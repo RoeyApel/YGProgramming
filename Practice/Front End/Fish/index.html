@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Many Fish In A Sea</title>
+  </head>
+  <body>
+    <div class="aquarium" id="aquarium"></div>
+    <div class="menu" id="menu">
+      <div class="prev-fish-cont">
+        <div class="fish preview-fish" id="preview-fish">
+          <div class="eye"></div>
+          <div class="tail">
+            <div class="tail-part"></div>
+            <div class="tail-part"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="options" id="options">
+        <input type="color" class="color-picker" id="color-picker" />
+        <input
+          type="number"
+          placeholder="speed"
+          class="speed-picker"
+          id="speed-picker"
+        />
+        <input
+          type="number"
+          placeholder="size"
+          class="size-picker"
+          id="size-picker"
+        />
+      </div>
+      <button class="create-btn" id="create-btn">Create Fish</button>
+    </div>
+  </body>
+</html>
