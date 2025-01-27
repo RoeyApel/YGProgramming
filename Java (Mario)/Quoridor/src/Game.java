@@ -17,6 +17,7 @@ public class Game implements MouseListener, KeyListener {
     private Queue<Wall> wallsOptions = new LinkedList<>();
     private boolean wallSelectionActive, moveSelectionActive;
     private Position lastSlotClicked = new Position(-1, -1);
+    private boolean gameOver;
 
     public Game() {
         board = new Board();
@@ -45,6 +46,9 @@ public class Game implements MouseListener, KeyListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
+        if (gameOver)
+            return;
+
         int row = e.getY() / board.getSlotHeight();
         int col = e.getX() / board.getSlotWidth();
 
@@ -65,7 +69,11 @@ public class Game implements MouseListener, KeyListener {
     }
 
     private void endTurn() {
-        System.out.println("end turn");
+        if (currentPlayer.hasWon()) {
+            gameOver = true;
+            System.out.println("player:" + currentPlayer + " has won");
+        }
+
         reset();
 
         currentPlayer = board.getOpponent().isAt(currentPlayer.getPosition()) ? board.getPlayer() : board.getOpponent();
@@ -141,7 +149,6 @@ public class Game implements MouseListener, KeyListener {
         wallsOptions = null;
         lastSlotClicked.col = -1;
         lastSlotClicked.row = -1;
-        System.out.println("dffsdefsd");
     }
 
     private void moveCurrentPlayer(int row, int col) {
