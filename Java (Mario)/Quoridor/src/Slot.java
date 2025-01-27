@@ -43,7 +43,7 @@ public class Slot {
     }
 
     private void drawBorder(Graphics g) {
-        g.setColor(Color.black);
+        g.setColor(new Color(85, 93, 80));
         g.drawRect(hitbox.x, hitbox.y, hitbox.width, hitbox.height);
     }
 

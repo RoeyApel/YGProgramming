@@ -3,8 +3,12 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public enum Walls {
-    NONE("", ""), EMPTY("", ""), WALL("images\\horizontal_wall.png", "images\\vertical_wall.png"),
-    SELECTED_WALL("images\\horizontal_wall_selected.png", "images\\vertical_wall_selected.png");
+    // NONE("", ""), EMPTY("", ""), WALL("images\\horizontal_wall.png",
+    // "images\\vertical_wall.png"),
+    // SELECTED_WALL("images\\horizontal_wall_selected.png",
+    // "images\\vertical_wall_selected.png");
+
+    NONE("", ""), EMPTY("", ""), WALL("images\\horizontal_wall.png", "images\\vertical_wall.png"), SELECTED_WALL("images\\9.png", "images\\8.png");
 
     private Image horizontal, vertical;
 
