@@ -15,8 +15,8 @@ public class Board {
     private Character player, opponent;
 
     public Board() {
-        player = new Character(Characters.PLAYER.getImage(), PLAYER_START_POS / ROWS, PLAYER_START_POS % COLS);
-        opponent = new Character(Characters.OPPONENT.getImage(), OPPONENT_START_POS / ROWS, OPPONENT_START_POS % COLS);
+        player = new Character(Characters.PLAYER.getImage(), PLAYER_START_POS / ROWS, PLAYER_START_POS % COLS, 0);
+        opponent = new Character(Characters.OPPONENT.getImage(), OPPONENT_START_POS / ROWS, OPPONENT_START_POS % COLS, ROWS - 1);
         initBoard();
     }
 
@@ -123,19 +123,39 @@ public class Board {
     public Queue<Wall> getPlacableWalls(int row, int col) {
         Queue<Wall> placableWalls = new LinkedList<>();
 
-        if (row != 0 && board[row][col].getRightWall() == Walls.EMPTY && board[row - 1][col].getRightWall() == Walls.EMPTY) {
+        if (isLegalPlacementUP(row, col)) {
             placableWalls.add(new Wall(Walls.SELECTED_WALL, row, col, Directions.UP));
         }
-        if (col != 0 && row != 0 && board[row - 1][col].getBottomWall() == Walls.EMPTY && board[row - 1][col - 1].getBottomWall() == Walls.EMPTY) {
+        if (isLegalPlacementLeft(row, col)) {
             placableWalls.add(new Wall(Walls.SELECTED_WALL, row, col, Directions.LEFT));
         }
-        if (row != ROWS - 1 && col != 0 && board[row][col - 1].getRightWall() == Walls.EMPTY && board[row + 1][col - 1].getRightWall() == Walls.EMPTY) {
+        if (isLegalPlacementDown(row, col)) {
             placableWalls.add(new Wall(Walls.SELECTED_WALL, row, col, Directions.DOWN));
         }
-        if (col != COLS - 1 && board[row][col].getBottomWall() == Walls.EMPTY && board[row][col + 1].getBottomWall() == Walls.EMPTY) {
+        if (isLegalPlacementRight(row, col)) {
             placableWalls.add(new Wall(Walls.SELECTED_WALL, row, col, Directions.RIGHT));
         }
         return placableWalls;
+    }
+
+    private boolean isLegalPlacementRight(int row, int col) {
+        return col != COLS - 1 && board[row][col].getBottomWall() == Walls.EMPTY && board[row][col + 1].getBottomWall() == Walls.EMPTY
+                && board[row][col].getRightWall() == Walls.EMPTY;
+    }
+
+    private boolean isLegalPlacementDown(int row, int col) {
+        return row != ROWS - 1 && col != 0 && board[row][col - 1].getRightWall() == Walls.EMPTY && board[row + 1][col - 1].getRightWall() == Walls.EMPTY
+                && board[row][col].getBottomWall() == Walls.EMPTY;
+    }
+
+    private boolean isLegalPlacementLeft(int row, int col) {
+        return col != 0 && row != 0 && board[row - 1][col].getBottomWall() == Walls.EMPTY && board[row - 1][col - 1].getBottomWall() == Walls.EMPTY
+                && board[row][col - 1].getRightWall() == Walls.EMPTY;
+    }
+
+    private boolean isLegalPlacementUP(int row, int col) {
+        return row != 0 && board[row][col].getRightWall() == Walls.EMPTY && board[row - 1][col].getRightWall() == Walls.EMPTY
+                && board[row - 1][col].getBottomWall() == Walls.EMPTY;
     }
 
     public ArrayList<Move> getLegalMoves(int row, int col) {

@@ -5,16 +5,21 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 
 public class Character {
+    private static final int NUM_OF_WALLS = 10;
+
     private Rectangle hitbox;
     private Position position;
     private Image image;
     private ArrayList<Move> moves;
     private int wallsCount;
+    private int winningRow;
 
-    public Character(Image image, int row, int col) {
+    public Character(Image image, int row, int col, int winningRow) {
         this.image = image;
+        this.winningRow = winningRow;
+
         position = new Position(row, col);
-        wallsCount = 0;
+        wallsCount = NUM_OF_WALLS;
 
         hitbox = new Rectangle();
     }
@@ -106,5 +111,9 @@ public class Character {
 
     public void decWallsCount() {
         wallsCount--;
+    }
+
+    public boolean hasWon() {
+        return winningRow == position.row;
     }
 }
