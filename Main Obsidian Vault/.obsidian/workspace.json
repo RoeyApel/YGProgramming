@@ -11,12 +11,14 @@
             "id": "cd17c80ad34a6f6e",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "יג/עוד/מערכת שעות.png"
+                "file": "יג/מקצועות/בסיסי נתונים - SQL/SQL Project.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "מערכת שעות"
+              "icon": "lucide-file",
+              "title": "SQL Project"
             }
           }
         ]
@@ -162,13 +164,13 @@
   },
   "active": "cd17c80ad34a6f6e",
   "lastOpenFiles": [
+    "יג/עוד/מערכת שעות.png",
+    "יג/מקצועות/בסיסי נתונים - SQL/SQL Project.md",
     "יג/מקצועות/שפת Java/Java Project.md",
     "יג/מקצועות/שפת Python/Python Project.md",
     "To Do.md",
     "יג/מקצועות/סטטיסטיקה והסתברות/טבלת התפלגות נורמלית - Z.pdf",
     "יג/מקצועות/סטטיסטיקה והסתברות/טבלת התפלגויות t.jpeg",
-    "יג/מקצועות/בסיסי נתונים - SQL/SQL Project.md",
-    "יג/עוד/מערכת שעות.png",
     "יג/עוד/מידע כללי.md",
     "יג/מקצועות/שפת Python/שפת Python.md",
     "יג/מקצועות/שפת Python",

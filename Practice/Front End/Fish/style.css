@@ -11,6 +11,7 @@ body {
 }
 
 .aquarium {
+  position: relative;
   width: 80%;
 }
 
@@ -36,7 +37,7 @@ body {
 }
 
 .fish {
-  position: relative;
+  position: absolute;
   width: 80px;
   height: 40px;
   background-color: rgb(63, 131, 177);
