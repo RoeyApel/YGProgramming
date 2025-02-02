@@ -41,10 +41,6 @@ public class Board {
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLS; j++) {
                 board[i][j].setBounds(j * slotWidth, i * slotHeight, slotWidth, slotHeight);
-                // if (true && j % 2 == 1) {
-                // board[i][j].setBottomWall(Walls.SELECTED_WALL);
-                // board[i][j].setRightWall(Walls.SELECTED_WALL);
-                // }
                 board[i][j].draw(g);
             }
         }
@@ -139,23 +135,19 @@ public class Board {
     }
 
     private boolean isLegalPlacementRight(int row, int col) {
-        return col != COLS - 1 && board[row][col].getBottomWall() == Walls.EMPTY && board[row][col + 1].getBottomWall() == Walls.EMPTY
-                && board[row][col].getRightWall() == Walls.EMPTY;
+        return row < ROWS - 1 && col < COLS - 1 && !board[row][col].hasBottomWall() && !board[row][col + 1].hasBottomWall() && !board[row][col].hasRightWall();
     }
 
     private boolean isLegalPlacementDown(int row, int col) {
-        return row != ROWS - 1 && col != 0 && board[row][col - 1].getRightWall() == Walls.EMPTY && board[row + 1][col - 1].getRightWall() == Walls.EMPTY
-                && board[row][col].getBottomWall() == Walls.EMPTY;
+        return row < ROWS - 1 && col > 0 && !board[row][col - 1].hasRightWall() && !board[row + 1][col - 1].hasRightWall() && !board[row][col].hasBottomWall();
     }
 
     private boolean isLegalPlacementLeft(int row, int col) {
-        return col != 0 && row != 0 && board[row - 1][col].getBottomWall() == Walls.EMPTY && board[row - 1][col - 1].getBottomWall() == Walls.EMPTY
-                && board[row][col - 1].getRightWall() == Walls.EMPTY;
+        return col > 0 && row > 0 && !board[row - 1][col].hasBottomWall() && !board[row - 1][col - 1].hasBottomWall() && !board[row][col - 1].hasRightWall();
     }
 
     private boolean isLegalPlacementUP(int row, int col) {
-        return row != 0 && board[row][col].getRightWall() == Walls.EMPTY && board[row - 1][col].getRightWall() == Walls.EMPTY
-                && board[row - 1][col].getBottomWall() == Walls.EMPTY;
+        return col < COLS - 1 && row > 0 && !board[row][col].hasRightWall() && !board[row - 1][col].hasRightWall() && !board[row - 1][col].hasBottomWall();
     }
 
     public ArrayList<Move> getLegalMoves(int row, int col) {
@@ -170,93 +162,93 @@ public class Board {
     }
 
     public void addLegalMovesRight(ArrayList<Move> legalMoves, int row, int col) {
-        if (board[row][col].getRightWall() != Walls.EMPTY)
+        if (col == COLS - 1 || board[row][col].hasRightWall())
             return;
 
-        if (board[row][col + 1].isOcuppied() == false) {
+        if (!board[row][col + 1].isOcuppied()) {
             legalMoves.add(new Move(row, col, row, col + 1));
             return;
         }
 
-        if (board[row][col + 1].getRightWall() == Walls.EMPTY) {
+        if (!board[row][col + 1].hasRightWall()) {
             legalMoves.add(new Move(row, col, row, col + 2));
             return;
         }
 
-        if (row != 0 && board[row - 1][col + 1].getBottomWall() == Walls.EMPTY) {
+        if (row != 0 && !board[row - 1][col + 1].hasBottomWall()) {
             legalMoves.add(new Move(row, col, row - 1, col + 1));
         }
 
-        if (board[row][col + 1].getBottomWall() == Walls.EMPTY) {
+        if (!board[row][col + 1].hasBottomWall()) {
             legalMoves.add(new Move(row, col, row - 1, col + 1));
         }
     }
 
     public void addLegalMovesLeft(ArrayList<Move> legalMoves, int row, int col) {
-        if (col == 0 || board[row][col - 1].getRightWall() != Walls.EMPTY)
+        if (col == 0 || board[row][col - 1].hasRightWall())
             return;
 
-        if (board[row][col - 1].isOcuppied() == false) {
+        if (!board[row][col - 1].isOcuppied()) {
             legalMoves.add(new Move(row, col, row, col - 1));
             return;
         }
 
-        if (col != 1 && board[row][col - 2].getRightWall() == Walls.EMPTY) {
+        if (col != 1 && !board[row][col - 2].hasRightWall()) {
             legalMoves.add(new Move(row, col, row, col - 2));
             return;
         }
 
-        if (row != 0 && board[row - 1][col - 1].getBottomWall() == Walls.EMPTY) {
+        if (row != 0 && !board[row - 1][col - 1].hasBottomWall()) {
             legalMoves.add(new Move(row, col, row - 1, col - 1));
         }
 
-        if (board[row][col - 1].getBottomWall() == Walls.EMPTY) {
+        if (!board[row][col - 1].hasBottomWall()) {
             legalMoves.add(new Move(row, col, row + 1, col - 1));
         }
     }
 
     public void addLegalMovesBottom(ArrayList<Move> legalMoves, int row, int col) {
-        if (board[row][col].getBottomWall() != Walls.EMPTY)
+        if (row == ROWS - 1 || board[row][col].hasBottomWall())
             return;
 
-        if (board[row + 1][col].isOcuppied() == false) {
+        if (!board[row + 1][col].isOcuppied()) {
             legalMoves.add(new Move(row, col, row + 1, col));
             return;
         }
 
-        if (board[row + 1][col].getBottomWall() == Walls.EMPTY) {
+        if (!board[row + 1][col].hasBottomWall()) {
             legalMoves.add(new Move(row, col, row + 2, col));
             return;
         }
 
-        if (col != 0 && board[row + 1][col - 1].getRightWall() == Walls.EMPTY) {
+        if (col > 0 && !board[row + 1][col - 1].hasRightWall()) {
             legalMoves.add(new Move(row, col, row + 1, col - 1));
         }
 
-        if (board[row + 1][col].getRightWall() == Walls.EMPTY) {
+        if (!board[row + 1][col].hasRightWall()) {
             legalMoves.add(new Move(row, col, row + 1, col + 1));
         }
     }
 
     public void addLegalMovesTop(ArrayList<Move> legalMoves, int row, int col) {
-        if (row == 0 || board[row - 1][col].getBottomWall() != Walls.EMPTY)
+        if (row == 0 || board[row - 1][col].hasBottomWall())
             return;
 
-        if (board[row - 1][col].isOcuppied() == false) {
+        if (!board[row - 1][col].isOcuppied()) {
             legalMoves.add(new Move(row, col, row - 1, col));
             return;
         }
 
-        if (row != 1 && board[row - 2][col].getBottomWall() == Walls.EMPTY) {
+        if (row != 1 && !board[row - 2][col].hasBottomWall()) {
             legalMoves.add(new Move(row, col, row - 2, col));
             return;
         }
 
-        if (col != 0 && board[row - 1][col - 1].getRightWall() == Walls.EMPTY) {
+        if (col != 0 && !board[row - 1][col - 1].hasRightWall()) {
             legalMoves.add(new Move(row, col, row - 1, col - 1));
         }
 
-        if (board[row - 1][col].getRightWall() == Walls.EMPTY) {
+        if (!board[row - 1][col].hasRightWall()) {
             legalMoves.add(new Move(row, col, row - 1, col + 1));
         }
     }
@@ -297,4 +289,7 @@ public class Board {
         return opponent;
     }
 
+    private boolean outOfBounds(int row, int col) {
+        return row >= ROWS || col >= COLS || row < 0 || col < 0;
+    }
 }

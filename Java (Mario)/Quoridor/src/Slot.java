@@ -16,8 +16,8 @@ public class Slot {
         ocuppied = false;
         position = new Position(row, col);
 
-        bottomWall = (row == Board.ROWS - 1) ? Walls.NONE : Walls.EMPTY;
-        rightWall = (col == Board.COLS - 1) ? Walls.NONE : Walls.EMPTY;
+        bottomWall = Walls.EMPTY;
+        rightWall = Walls.EMPTY;
 
         hitbox = new Rectangle();
         image = kind.getImg();
@@ -34,10 +34,10 @@ public class Slot {
     }
 
     public void drawWalls(Graphics g) {
-        if (rightWall != Walls.NONE && rightWall != Walls.EMPTY) {
+        if (rightWall != Walls.EMPTY) {
             g.drawImage(rightWall.getVerticalImg(), hitbox.x + hitbox.width - WALL_OFFSET, hitbox.y, hitbox.width, hitbox.height, null);
         }
-        if (bottomWall != Walls.NONE && bottomWall != Walls.EMPTY) {
+        if (bottomWall != Walls.EMPTY) {
             g.drawImage(bottomWall.getHorizontalImg(), hitbox.x, hitbox.y + WALL_OFFSET, hitbox.width, hitbox.height, null);
         }
     }
@@ -120,6 +120,14 @@ public class Slot {
 
     public void setBottomWall(Walls bottomWall) {
         this.bottomWall = bottomWall;
+    }
+
+    public boolean hasBottomWall() {
+        return bottomWall != Walls.EMPTY;
+    }
+
+    public boolean hasRightWall() {
+        return rightWall != Walls.EMPTY;
     }
 
 }
