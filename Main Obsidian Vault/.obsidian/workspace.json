@@ -38,7 +38,8 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
+                "sortOrder": "alphabetical",
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
@@ -162,10 +163,11 @@
   },
   "active": "cd17c80ad34a6f6e",
   "lastOpenFiles": [
+    "עוד/Request Denied.md",
+    "יג/עוד/מערכת שעות.png",
     "יג/מקצועות/סטטיסטיקה והסתברות/טבלת התפלגויות t.jpeg",
     "יג/מקצועות/סטטיסטיקה והסתברות/טבלת התפלגות נורמלית - Z.pdf",
     "יג/מקצועות/בסיסי נתונים - SQL/SQL Project.md",
-    "יג/עוד/מערכת שעות.png",
     "יג/מקצועות/שפת Java/Java Project.md",
     "יג/מקצועות/שפת Python/Python Project.md",
     "To Do.md",
@@ -181,7 +183,6 @@
     "יג/מקצועות/שפת c/שפת C.md",
     "יג/מקצועות/אסמבלר/אסמבלר.md",
     "יג/עוד/Terminal Commands.md",
-    "עוד/Request Denied.md",
     "יג/עוד/ASCIIE.png",
     "Untitled.canvas",
     "rhfh.md",
