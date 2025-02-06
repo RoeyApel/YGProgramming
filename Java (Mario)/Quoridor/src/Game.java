@@ -63,13 +63,15 @@ public class Game implements MouseListener, KeyListener {
         }
 
         if (debugMode && SwingUtilities.isLeftMouseButton(e)) {
-            System.out.println(shortestPath);
             if (shortestPath != null) {
                 board.unmarkPath(shortestPath);
             }
             shortestPath = computer.getShortestPath(row, col, currentPlayer.getWinningRow());
-            board.markPath(shortestPath);
+            if (shortestPath != null) {
+                board.markPath(shortestPath);
+            }
 
+            System.out.println(computer.canReachGoal(row, col, currentPlayer.getWinningRow()));
             gamePanel.repaint();
             return;
         }

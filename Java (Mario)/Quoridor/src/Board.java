@@ -147,19 +147,19 @@ public class Board {
     }
 
     private boolean isLegalPlacementRight(int row, int col) {
-        return row < ROWS - 1 && col < COLS - 1 && !board[row][col].hasBottomWall() && !board[row][col + 1].hasBottomWall() && !board[row][col].hasRightWall();
+        return row < ROWS - 1 && col < COLS - 1 && !board[row][col].hasBottomWall() && !board[row][col + 1].hasBottomWall();
     }
 
     private boolean isLegalPlacementDown(int row, int col) {
-        return row < ROWS - 1 && col > 0 && !board[row][col - 1].hasRightWall() && !board[row + 1][col - 1].hasRightWall() && !board[row][col].hasBottomWall();
+        return row < ROWS - 1 && col > 0 && !board[row][col - 1].hasRightWall() && !board[row + 1][col - 1].hasRightWall();
     }
 
     private boolean isLegalPlacementLeft(int row, int col) {
-        return col > 0 && row > 0 && !board[row - 1][col].hasBottomWall() && !board[row - 1][col - 1].hasBottomWall() && !board[row][col - 1].hasRightWall();
+        return col > 0 && row > 0 && !board[row - 1][col].hasBottomWall() && !board[row - 1][col - 1].hasBottomWall();
     }
 
     private boolean isLegalPlacementUP(int row, int col) {
-        return col < COLS - 1 && row > 0 && !board[row][col].hasRightWall() && !board[row - 1][col].hasRightWall() && !board[row - 1][col].hasBottomWall();
+        return col < COLS - 1 && row > 0 && !board[row][col].hasRightWall() && !board[row - 1][col].hasRightWall();
     }
 
     public ArrayList<Move> getLegalMoves(int row, int col) {
