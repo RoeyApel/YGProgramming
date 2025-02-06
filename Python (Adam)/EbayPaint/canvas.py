@@ -1,6 +1,9 @@
+from asyncio import set_event_loop
+
 import customtkinter as ctk
 
-from constants import Drawings
+import draw
+from constants import Options, Colors
 from utils import Point
 
 
@@ -16,7 +19,7 @@ class Canvas(ctk.CTkCanvas):
 
         # variables
         self.drawings = []
-        self.selected = Drawings.LINE
+        self.selected = Options.LINE
         self.mouse_pressed = False
         self.starting_point = Point(0, 0)
         self.current_drawing = None
@@ -27,33 +30,37 @@ class Canvas(ctk.CTkCanvas):
             self.starting_point.y = event.y
             self.mouse_pressed = True
 
-        if self.selected == Drawings.LINE:
-            self.current_drawing = self.create_line((event.x, event.y, event.x, event.y))
-        elif self.selected == Drawings.RECT:
-            self.current_drawing = self.create_rectangle((event.x, event.y, event.x, event.y))
-        elif self.selected == Drawings.OVAL:
-            self.current_drawing = self.create_oval((event.x, event.y, event.x, event.y))
-        elif self.selected == Drawings.TRIANGLE:
-            self.current_drawing = self.create_polygon((event.x, event.y, event.x, event.y, event.x, event.y),
-                                                       fill="", outline="black")
+        if self.selected == Options.LINE:
+            self.current_drawing = draw.Line(self, self.selected, 2, Colors.BLACK)
+        elif self.selected == Options.RECT:
+            self.current_drawing = draw.Rect(self, self.selected, 2, Colors.GRAY, Colors.BLACK)
+        elif self.selected == Options.OVAL:
+            self.current_drawing = draw.Oval(self, self.selected, 2, Colors.GRAY, Colors.BLACK)
+        elif self.selected == Options.RIGHT_TRIANGLE:
+            self.current_drawing = draw.RightTriangle(self, self.selected, 2, Colors.GRAY, Colors.BLACK)
+        elif self.selected == Options.TRIANGLE:
+            self.current_drawing = draw.Triangle(self, self.selected, 2, Colors.GRAY, Colors.BLACK)
+        elif self.selected == Options.ARROW:
+            self.current_drawing = draw.Arrow(self, self.selected, 2, Colors.BLACK)
+        elif self.selected == Options.TEXT_BOX:
+            self.current_drawing = draw.TextBox(self, self.selected, 25, 2, Colors.GRAY, Colors.BLACK, Colors.BLACK)
+
+        self.current_drawing.create(event.x, event.y)
 
     def on_mouse_release(self, event):
         self.mouse_pressed = False
-        self.drawings.append(self.current_drawing)
+
+        if self.selected == Options.TEXT_BOX:
+            self.current_drawing.on_place()
+
+        self.drawings.append(self.current_drawing.id)
         self.current_drawing = None
 
     def on_mouse_moving(self, event):
         if not self.mouse_pressed:
             return
 
-        if self.selected == Drawings.TRIANGLE:
-            new_coords = (self.starting_point.x, self.starting_point.y,
-                          self.starting_point.x, event.y,
-                          event.x, event.y)
-        else:
-            new_coords = (self.starting_point.x, self.starting_point.y, event.x, event.y)
-
-        self.coords(self.current_drawing, new_coords)
+        self.current_drawing.update_drawing(self.starting_point, event)
 
     def on_undo(self, event):
         if self.drawings:

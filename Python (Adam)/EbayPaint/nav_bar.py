@@ -1,6 +1,6 @@
 import customtkinter as ctk
 
-from constants import Colors, Drawings
+from constants import Colors, Options
 
 
 class NavBar(ctk.CTkFrame):
@@ -12,13 +12,17 @@ class NavBar(ctk.CTkFrame):
         self.selection_buttons = []
 
         # components
-        self.selection_buttons.append(self.create_btn("Line", Colors.BLACK, Drawings.LINE))
-        self.selection_buttons.append(self.create_btn("Rect", Colors.GRAY, Drawings.RECT))
-        self.selection_buttons.append(self.create_btn("Circle", Colors.GRAY, Drawings.OVAL))
-        self.selection_buttons.append(self.create_btn("Triangle", Colors.GRAY, Drawings.TRIANGLE))
+        self.selection_buttons.append(self.create_btn("Line", Colors.BLACK, Options.LINE))
+        self.selection_buttons.append(self.create_btn("Arrow", Colors.GRAY, Options.ARROW))
+        self.selection_buttons.append(self.create_btn("Rect", Colors.GRAY, Options.RECT))
+        self.selection_buttons.append(self.create_btn("Circle", Colors.GRAY, Options.OVAL))
+        self.selection_buttons.append(self.create_btn("Triangle", Colors.GRAY, Options.TRIANGLE))
+        self.selection_buttons.append(self.create_btn("Right Triangle", Colors.GRAY, Options.RIGHT_TRIANGLE))
+        self.selection_buttons.append(self.create_btn("Text Box", Colors.GRAY, Options.TEXT_BOX))
+        self.selection_buttons.append(self.create_btn("Selector", Colors.GRAY, Options.SELECTOR))
 
         # grid config
-        self.columnconfigure((0, 1, 2, 3), weight=1, uniform="a")
+        self.columnconfigure((0, 1, 2, 3, 4, 5, 6, 7), weight=1, uniform="a")
         self.rowconfigure(0, weight=1, uniform="a")
 
         # grid placement

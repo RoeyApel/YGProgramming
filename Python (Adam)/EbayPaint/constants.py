@@ -9,8 +9,12 @@ class Colors:
     BLACK_LIGHT: str = "#2B2B2B"
 
 
-class Drawings(Enum):
+class Options(Enum):
     LINE = 1
     RECT = 2
     OVAL = 3
     TRIANGLE = 4
+    RIGHT_TRIANGLE = 5
+    TEXT_BOX = 6
+    ARROW = 7
+    SELECTOR = 8
