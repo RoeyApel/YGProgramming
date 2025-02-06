@@ -116,6 +116,18 @@ public class Board {
         }
     }
 
+    public void markPath(ArrayList<Position> path) {
+        for (Position position : path) {
+            this.get(position).mark();
+        }
+    }
+
+    public void unmarkPath(ArrayList<Position> path) {
+        for (Position position : path) {
+            this.get(position).unmark();
+        }
+    }
+
     public Queue<Wall> getPlacableWalls(int row, int col) {
         Queue<Wall> placableWalls = new LinkedList<>();
 
@@ -161,6 +173,17 @@ public class Board {
         return legalMoves;
     }
 
+    public ArrayList<Move> getLegalMoves(Position position) {
+        ArrayList<Move> legalMoves = new ArrayList<>();
+
+        addLegalMovesBottom(legalMoves, position.row, position.col);
+        addLegalMovesRight(legalMoves, position.row, position.col);
+        addLegalMovesLeft(legalMoves, position.row, position.col);
+        addLegalMovesTop(legalMoves, position.row, position.col);
+
+        return legalMoves;
+    }
+
     public void addLegalMovesRight(ArrayList<Move> legalMoves, int row, int col) {
         if (col == COLS - 1 || board[row][col].hasRightWall())
             return;
@@ -170,7 +193,7 @@ public class Board {
             return;
         }
 
-        if (!board[row][col + 1].hasRightWall()) {
+        if (col + 2 < COLS && !board[row][col + 1].hasRightWall()) {
             legalMoves.add(new Move(row, col, row, col + 2));
             return;
         }
@@ -216,7 +239,7 @@ public class Board {
             return;
         }
 
-        if (!board[row + 1][col].hasBottomWall()) {
+        if (row + 2 < ROWS && !board[row + 1][col].hasBottomWall()) {
             legalMoves.add(new Move(row, col, row + 2, col));
             return;
         }

@@ -116,4 +116,13 @@ public class Character {
     public boolean hasWon() {
         return winningRow == position.row;
     }
+
+    public int getWinningRow() {
+        return winningRow;
+    }
+
+    public void setWinningRow(int winningRow) {
+        this.winningRow = winningRow;
+    }
+
 }

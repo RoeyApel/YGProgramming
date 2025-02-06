@@ -123,11 +123,11 @@ public class Slot {
     }
 
     public boolean hasBottomWall() {
-        return bottomWall != Walls.EMPTY;
+        return bottomWall == Walls.WALL;
     }
 
     public boolean hasRightWall() {
-        return rightWall != Walls.EMPTY;
+        return rightWall == Walls.WALL;
     }
 
 }

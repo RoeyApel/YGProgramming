@@ -14,14 +14,20 @@ public class Game implements MouseListener, KeyListener {
     private GamePanel gamePanel;
     private Board board;
     private Character currentPlayer;
+    private Computer computer;
     private Queue<Wall> wallsOptions = new LinkedList<>();
     private boolean wallSelectionActive, moveSelectionActive;
     private Position lastSlotClicked = new Position(-1, -1);
     private boolean gameOver;
+    private int turns;
+    private ArrayList<Position> shortestPath;
+    private boolean debugMode = false;
 
     public Game() {
         board = new Board();
         currentPlayer = board.getPlayer();
+        computer = new Computer(board);
+        turns = 0;
         initFrame();
     }
 
@@ -52,6 +58,22 @@ public class Game implements MouseListener, KeyListener {
         int row = e.getY() / board.getSlotHeight();
         int col = e.getX() / board.getSlotWidth();
 
+        if (SwingUtilities.isMiddleMouseButton(e)) {
+            debugMode = !debugMode;
+        }
+
+        if (debugMode && SwingUtilities.isLeftMouseButton(e)) {
+            System.out.println(shortestPath);
+            if (shortestPath != null) {
+                board.unmarkPath(shortestPath);
+            }
+            shortestPath = computer.getShortestPath(row, col, currentPlayer.getWinningRow());
+            board.markPath(shortestPath);
+
+            gamePanel.repaint();
+            return;
+        }
+
         if (currentPlayer.isAt(row, col)) {
             onClickCurrentPlayer(row, col);
         }
@@ -69,6 +91,8 @@ public class Game implements MouseListener, KeyListener {
     }
 
     private void endTurn() {
+        turns++;
+
         if (currentPlayer.hasWon()) {
             gameOver = true;
             System.out.println("player:" + currentPlayer + " has won");
