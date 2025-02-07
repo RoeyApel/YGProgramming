@@ -4,6 +4,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -20,7 +21,7 @@ public class Game implements MouseListener, KeyListener {
     private Position lastSlotClicked = new Position(-1, -1);
     private boolean gameOver;
     private int turns;
-    private ArrayList<Position> shortestPath;
+    private ArrayList<Vertex> shortestPath;
     private boolean debugMode = false;
 
     public Game() {
@@ -58,6 +59,7 @@ public class Game implements MouseListener, KeyListener {
         int row = e.getY() / board.getSlotHeight();
         int col = e.getX() / board.getSlotWidth();
 
+        // **temp start
         if (SwingUtilities.isMiddleMouseButton(e)) {
             debugMode = !debugMode;
         }
@@ -70,11 +72,14 @@ public class Game implements MouseListener, KeyListener {
             if (shortestPath != null) {
                 board.markPath(shortestPath);
             }
+            else {
+                System.out.println("found no path");
+            }
 
-            System.out.println(computer.canReachGoal(row, col, currentPlayer.getWinningRow()));
             gamePanel.repaint();
             return;
         }
+        // **temp end
 
         if (currentPlayer.isAt(row, col)) {
             onClickCurrentPlayer(row, col);
@@ -102,7 +107,18 @@ public class Game implements MouseListener, KeyListener {
 
         reset();
 
-        currentPlayer = board.getOpponent().isAt(currentPlayer.getPosition()) ? board.getPlayer() : board.getOpponent();
+        currentPlayer = turns % 2 == 0 ? board.getPlayer() : board.getOpponent();
+
+        // **temp start
+        if (turns % 2 == 1) {
+            shortestPath = computer.getShortestPath(currentPlayer.getRow(), currentPlayer.getCol(), currentPlayer.getWinningRow());
+            Vertex next = shortestPath.get(shortestPath.size() - 2);
+            System.out.println(next.toString());
+            moveCurrentPlayer(next.row, next.col);
+            gamePanel.repaint();
+            endTurn();
+        }
+        // **temp end
     }
 
     private void onRightClickSlot(int row, int col) {

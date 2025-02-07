@@ -13,21 +13,6 @@ public class Position {
         row = col = 0;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (!(o instanceof Position))
-            return false;
-        Position pos = (Position) o;
-        return row == pos.row && col == pos.col;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(row, col);
-    }
-
     public boolean equals(Position other) {
         return this.row == other.row && this.col == other.col;
     }
@@ -39,5 +24,10 @@ public class Position {
     public void setPosition(int row, int col) {
         this.row = row;
         this.col = col;
+    }
+
+    @Override
+    public String toString() {
+        return "(" + row + "," + col + ")";
     }
 }

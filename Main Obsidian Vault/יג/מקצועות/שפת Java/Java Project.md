@@ -45,3 +45,4 @@ do always when clicked - calc col and row, lastSlot update at the end.
 	1. placeWall for the head of the wallOption queue
 	2. dec number of walls for player 
 	3. ****** ***add more checks before placing wall*** 
+	

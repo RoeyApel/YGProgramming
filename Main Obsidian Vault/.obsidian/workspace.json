@@ -11,12 +11,14 @@
             "id": "cd17c80ad34a6f6e",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "יג/עוד/מערכת שעות.png"
+                "file": "יג/מקצועות/שפת Java/Java Project Al Support.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "מערכת שעות"
+              "icon": "lucide-file",
+              "title": "Java Project Al Support"
             }
           }
         ]
@@ -38,8 +40,7 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical",
-                "autoReveal": false
+                "sortOrder": "alphabetical"
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
@@ -163,15 +164,16 @@
   },
   "active": "cd17c80ad34a6f6e",
   "lastOpenFiles": [
-    "יג/מקצועות/סטטיסטיקה והסתברות/טבלת התפלגות נורמלית - Z.pdf",
+    "יג/מקצועות/שפת Java/Java Project.md",
+    "יג/מקצועות/שפת Java/Java Project Al Support.md",
+    "To Do.md",
+    "יג/עוד/מערכת שעות.png",
+    "יג/עוד/מידע כללי.md",
     "יג/מקצועות/בסיסי נתונים - SQL/SQL Project.md",
     "יג/מקצועות/בסיסי נתונים - SQL/Dark theme for MySQL Workbench.md",
-    "יג/עוד/מערכת שעות.png",
     "יג/מקצועות/סטטיסטיקה והסתברות/טבלת התפלגויות t.jpeg",
-    "יג/מקצועות/שפת Java/Java Project.md",
+    "יג/מקצועות/סטטיסטיקה והסתברות/טבלת התפלגות נורמלית - Z.pdf",
     "יג/מקצועות/שפת Python/Python Project.md",
-    "To Do.md",
-    "יג/עוד/מידע כללי.md",
     "יג/מקצועות/שפת Python/שפת Python.md",
     "יג/מקצועות/שפת Python",
     "יג/מקצועות/בסיסי נתונים - SQL/בסיסי נתונים - SQL.md",

@@ -1,6 +1,8 @@
 import java.awt.Graphics;
 import java.awt.Image;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -116,15 +118,15 @@ public class Board {
         }
     }
 
-    public void markPath(ArrayList<Position> path) {
-        for (Position position : path) {
-            this.get(position).mark();
+    public void markPath(ArrayList<Vertex> path) {
+        for (Vertex vertex : path) {
+            this.get(vertex).mark();
         }
     }
 
-    public void unmarkPath(ArrayList<Position> path) {
-        for (Position position : path) {
-            this.get(position).unmark();
+    public void unmarkPath(ArrayList<Vertex> path) {
+        for (Vertex vertex : path) {
+            this.get(vertex).unmark();
         }
     }
 
