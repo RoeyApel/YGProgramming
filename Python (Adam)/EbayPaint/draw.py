@@ -7,16 +7,16 @@ from constants import Options
 
 
 class Drawable:
-    def __init__(self, canvas, drawable_type):
+    def __init__(self, canvas):
         self.id = -1
-        self.hitboxId = -1
-        self.type = drawable_type
+        self.hitbox = Hitbox()
         self.canvas = canvas
+        self.selected = False
 
 
 class Line(Drawable):
-    def __init__(self, canvas, drawable_type, thickness, color):
-        super().__init__(canvas, drawable_type)
+    def __init__(self, canvas, thickness, color):
+        super().__init__(canvas)
         self.x1 = self.x2 = self.y1 = self.y2 = 0
         self.thickness = thickness
         self.color = color
@@ -35,11 +35,16 @@ class Line(Drawable):
         new_coords = (self.x1, self.y1, self.x2, self.y2)
         self.canvas.coords(self.id, new_coords)
 
-    def create_hitbox(self):
-        pass
+    def draw(self, x1, y1, x2, y2):
+        self.x1, self.x2 = x1, x2
+        self.y1, self.y2 = y1, y2
+        self.id = self.canvas.create_line((self.x1, self.y1, self.x2, self.y2),
+                                          width=self.thickness,
+                                          fill=self.color)
 
-    def on_click(self):
-        pass
+    def on_focus(self):
+        self.selected = True
+        self.hitbox.draw(self.canvas, self.x1, self.y1, self.x2, self.y2)
 
     def on_move(self):
         pass
@@ -48,15 +53,18 @@ class Line(Drawable):
         pass
 
     def on_place(self):
-        pass
+        self.hitbox.set(self.x1, self.y1, self.x2, self.y2)
 
-    def is_hitbox_clicked(self):
-        pass
+    def is_hitbox_clicked(self, mouse):
+        return self.hitbox.contains(mouse)
+
+    def __str__(self):
+        return f"x1: {self.x1},y1: {self.y1},x2: {self.x2},y2: {self.y2}"
 
 
 class Arrow(Line):
-    def __init__(self, canvas, drawable_type, thickness, color):
-        super().__init__(canvas, drawable_type, thickness, color)
+    def __init__(self, canvas, thickness, color):
+        super().__init__(canvas, thickness, color)
 
     @override
     def create(self, x, y):
@@ -67,10 +75,19 @@ class Arrow(Line):
                                           fill=self.color,
                                           arrow="last")
 
+    @override
+    def draw(self, x1, y1, x2, y2):
+        self.x1, self.x2 = x1, x2
+        self.y1, self.y2 = y1, y2
+        self.id = self.canvas.create_line((self.x1, self.y1, self.x2, self.y2),
+                                          width=self.thickness,
+                                          fill=self.color,
+                                          arrow="last")
+
 
 class Rect(Drawable):
-    def __init__(self, canvas, drawable_type, thickness, bg_color, outline_color):
-        super().__init__(canvas, drawable_type)
+    def __init__(self, canvas, thickness, bg_color, outline_color):
+        super().__init__(canvas)
         self.x1 = self.x2 = self.y1 = self.y2 = 0
         self.width = self.height = 0
         self.thickness = thickness
@@ -94,11 +111,18 @@ class Rect(Drawable):
         new_coords = (self.x1, self.y1, self.x2, self.y2)
         self.canvas.coords(self.id, new_coords)
 
-    def create_hitbox(self):
-        pass
+    def draw(self, x1, y1, x2, y2):
+        self.x1, self.y1 = x1, y1
+        self.x2, self.y2 = x2, y2
+        self.width = abs(self.x1 - self.x2)
+        self.height = abs(self.y1 - self.y2)
 
-    def on_click(self):
-        pass
+        self.id = self.canvas.create_rectangle((self.x1, self.y1, self.x2, self.y2), width=self.thickness,
+                                               fill=self.bg_color, outline=self.outline_color)
+
+    def on_focus(self):
+        self.selected = True
+        self.hitbox.draw(self.canvas, self.x1, self.y1, self.x2, self.y2)
 
     def on_move(self):
         pass
@@ -107,15 +131,15 @@ class Rect(Drawable):
         pass
 
     def on_place(self):
-        pass
+        self.hitbox.set(self.x1, self.y1, self.x2, self.y2)
 
-    def is_hitbox_clicked(self):
-        pass
+    def is_hitbox_clicked(self, mouse):
+        return self.hitbox.contains(mouse)
 
 
 class Oval(Drawable):
-    def __init__(self, canvas, drawable_type, thickness, bg_color, outline_color):
-        super().__init__(canvas, drawable_type)
+    def __init__(self, canvas, thickness, bg_color, outline_color):
+        super().__init__(canvas)
         self.x1 = self.x2 = self.y1 = self.y2 = 0
         self.radius = 0
         self.thickness = thickness
@@ -139,11 +163,18 @@ class Oval(Drawable):
         new_coords = (self.x1, self.y1, self.x2, self.y2)
         self.canvas.coords(self.id, new_coords)
 
-    def create_hitbox(self):
-        pass
+    def draw(self, x1, y1, x2, y2):
+        self.x1, self.y1 = x1, y1
+        self.x2, self.y2 = x2, y2
+        self.radius = abs(self.x1 - self.x2) / 2
 
-    def on_click(self):
-        pass
+        self.id = self.canvas.create_oval((self.x1, self.y1, self.x2, self.y2), width=self.thickness,
+                                          fill=self.bg_color,
+                                          outline=self.outline_color)
+
+    def on_focus(self):
+        self.selected = True
+        self.hitbox.draw(self.canvas, self.x1, self.y1, self.x2, self.y2)
 
     def on_move(self):
         pass
@@ -152,15 +183,15 @@ class Oval(Drawable):
         pass
 
     def on_place(self):
-        pass
+        self.hitbox.set(self.x1, self.y1, self.x2, self.y2)
 
-    def is_hitbox_clicked(self):
-        pass
+    def is_hitbox_clicked(self, mouse):
+        return self.hitbox.contains(mouse)
 
 
 class Triangle(Drawable):
-    def __init__(self, canvas, drawable_type, thickness, bg_color, outline_color):
-        super().__init__(canvas, drawable_type)
+    def __init__(self, canvas, thickness, bg_color, outline_color):
+        super().__init__(canvas)
         self.x1 = self.x2 = self.y1 = self.y2 = self.x3 = self.y3 = 0
         self.thickness = thickness
         self.bg_color = bg_color
@@ -185,11 +216,19 @@ class Triangle(Drawable):
         new_coords = (self.x1, self.y1, self.x2, self.y2, self.x3, self.y3)
         self.canvas.coords(self.id, new_coords)
 
-    def create_hitbox(self):
-        pass
+    def draw(self, x1, y1, x2, y2, x3, y3):
+        self.x1, self.y1 = x1, y1
+        self.x2, self.y2 = x2, y2
+        self.x3, self.y3 = x3, y3
 
-    def on_click(self):
-        pass
+        self.id = self.canvas.create_polygon((self.x1, self.y1, self.x2, self.y2, self.x3, self.y3),
+                                             width=self.thickness,
+                                             fill=self.bg_color,
+                                             outline=self.outline_color)
+
+    def on_focus(self):
+        self.selected = True
+        self.hitbox.draw(self.canvas, min(self.x2, self.x3), self.y1, max(self.x2, self.x3), self.y2)
 
     def on_move(self):
         pass
@@ -198,15 +237,15 @@ class Triangle(Drawable):
         pass
 
     def on_place(self):
-        pass
+        self.hitbox.set(self.x1, self.y1, self.x2, self.y2)
 
-    def is_hitbox_clicked(self):
-        pass
+    def is_hitbox_clicked(self, mouse):
+        return self.hitbox.contains(mouse)
 
 
 class RightTriangle(Drawable):
-    def __init__(self, canvas, drawable_type, thickness, bg_color, outline_color):
-        super().__init__(canvas, drawable_type)
+    def __init__(self, canvas, thickness, bg_color, outline_color):
+        super().__init__(canvas)
         self.x1 = self.x2 = self.y1 = self.y2 = self.x3 = self.y3 = 0
         self.thickness = thickness
         self.bg_color = bg_color
@@ -231,11 +270,19 @@ class RightTriangle(Drawable):
         new_coords = (self.x1, self.y1, self.x2, self.y2, self.x3, self.y3)
         self.canvas.coords(self.id, new_coords)
 
-    def create_hitbox(self):
-        pass
+    def draw(self, x1, y1, x2, y2, x3, y3):
+        self.x1, self.y1 = x1, y1
+        self.x2, self.y2 = x2, y2
+        self.x3, self.y3 = x3, y3
 
-    def on_click(self):
-        pass
+        self.id = self.canvas.create_polygon((self.x1, self.y1, self.x2, self.y2, self.x3, self.y3),
+                                             width=self.thickness,
+                                             fill=self.bg_color,
+                                             outline=self.outline_color)
+
+    def on_focus(self):
+        self.selected = True
+        self.hitbox.draw(self.canvas, self.x1, self.y1, self.x3, self.y3)
 
     def on_move(self):
         pass
@@ -244,15 +291,15 @@ class RightTriangle(Drawable):
         pass
 
     def on_place(self):
-        pass
+        self.hitbox.set(self.x1, self.y1, self.x3, self.y3)
 
-    def is_hitbox_clicked(self):
-        pass
+    def is_hitbox_clicked(self, mouse):
+        return self.hitbox.contains(mouse)
 
 
 class TextBox(Drawable):
-    def __init__(self, canvas, drawable_type, font_size, thickness, bg_color, outline_color, color):
-        super().__init__(canvas, drawable_type)
+    def __init__(self, canvas, font_size, thickness, bg_color, outline_color, color):
+        super().__init__(canvas)
         self.x1 = self.x2 = self.y1 = self.y2 = 0
         self.width = self.height = 0
         self.thickness = thickness
@@ -264,8 +311,7 @@ class TextBox(Drawable):
     def create(self, x, y):
         self.x1 = self.x2 = x
         self.y1 = self.y2 = y
-        self.hitboxId = self.canvas.create_rectangle((self.x1, self.y1, self.x2, self.y2), width=self.thickness,
-                                                     fill=self.bg_color, outline=self.outline_color)
+        self.hitbox.create(self.canvas, x, y)
 
     def update_drawing(self, starting_point, mouse):
         self.x1 = starting_point.x
@@ -276,13 +322,23 @@ class TextBox(Drawable):
         self.height = abs(self.y1 - self.y2)
 
         new_coords = (self.x1, self.y1, self.x2, self.y2)
-        self.canvas.coords(self.hitboxId, new_coords)
+        self.canvas.coords(self.hitbox.id, new_coords)
 
-    def create_hitbox(self):
-        pass
+    def draw(self, x1, y1, x2, y2):
+        text_box = ctk.CTkTextbox(self.canvas.master, width=self.width, height=self.height, fg_color=self.bg_color,
+                                  border_color=self.outline_color, border_width=self.thickness, font=self.font)
 
-    def on_click(self):
-        pass
+        self.x1, self.y1 = x1, y1
+        self.x2, self.y2 = x2, y2
+        self.width = abs(self.x1 - self.x2)
+        self.height = abs(self.y1 - self.y2)
+
+        self.id = self.canvas.create_window((self.x1 + self.width / 2, self.y1 + self.height / 2), window=text_box)
+
+    def on_focus(self):
+        print("dfsfdfs")
+        self.selected = True
+        self.hitbox.draw(self.canvas, self.x1, self.y1, self.x2, self.y2)
 
     def on_move(self):
         pass
@@ -291,7 +347,7 @@ class TextBox(Drawable):
         pass
 
     def on_place(self):
-        self.canvas.delete(self.hitboxId)
+        self.hitbox.remove(self.canvas)
         text_box = ctk.CTkTextbox(self.canvas.master, width=self.width, height=self.height, fg_color=self.bg_color,
                                   border_color=self.outline_color, border_width=self.thickness, font=self.font)
 
@@ -303,5 +359,51 @@ class TextBox(Drawable):
 
         self.id = self.canvas.create_window((self.x1 + self.width / 2, self.y1 + self.height / 2), window=text_box)
 
-    def is_hitbox_clicked(self):
+    def is_hitbox_clicked(self, mouse):
+        return self.hitbox.contains(mouse)
+
+
+class Hitbox:
+    def __init__(self):
+        self.id = -1
+        self.x1 = self.x2 = self.y1 = self.y2 = 0
+        self.width = self.height = 0
+
+    def set(self, x1, y1, x2, y2):
+        self.x1, self.y1 = min(x1, x2), min(y1, y2)
+        self.x2, self.y2 = max(x1, x2), max(y1, y2)
+        self.width = abs(self.x1 - self.x2)
+        self.height = abs(self.y1 - self.y2)
+
+    def create(self, canvas, x, y):
+        self.x1 = self.x2 = x
+        self.y1 = self.y2 = y
+        self.id = canvas.create_rectangle((self.x1, self.y1, self.x2, self.y2), outline="black",
+                                          dash=(1, 3))
+
+    def update_drawing(self, canvas, starting_point, mouse):
+        self.x1 = starting_point.x
+        self.y1 = starting_point.y
+        self.x2 = mouse.x
+        self.y2 = mouse.y
+        self.width = abs(self.x1 - self.x2)
+        self.height = abs(self.y1 - self.y2)
+
+        new_coords = (self.x1, self.y1, self.x2, self.y2)
+        canvas.coords(self.id, new_coords)
+
+    def draw(self, canvas, x1, y1, x2, y2):
+        self.set(x1, y1, x2, y2)
+
+        self.id = canvas.create_rectangle((self.x1, self.y1, self.x2, self.y2), outline="#eeeedd",
+                                          dash=(1, 3))
+        # canvas.lift(self.id)
+
+    def on_move(self, canvas, x, y):
         pass
+
+    def remove(self, canvas):
+        canvas.delete(self.id)
+
+    def contains(self, mouse):
+        return self.x1 < mouse.x < self.x2 and self.y1 < mouse.y < self.y2
