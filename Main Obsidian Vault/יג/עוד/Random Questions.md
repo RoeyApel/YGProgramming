@@ -1,1 +1,1 @@
-1. Why *p++ adds 1 to p and not to *p. The ++ happens at the end. so... make it make sense. 
+1. Adding threads in java project. Worth it??
