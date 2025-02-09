@@ -9,26 +9,17 @@ import java.util.Queue;
 import java.util.Stack;
 
 public class Maze {
-    private static final int ROWS = 30;
-    private static final int COLS = 30;
-    private static final int CELL_WIDTH = CustomPanel.WIDTH / COLS;
-    private static final int CELL_HEIGHT = CustomPanel.HEIGHT / ROWS;
+    public static final int ROWS = 30;
+    public static final int COLS = 30;
 
-    private static final int WALL_SIZE = (CELL_HEIGHT + CELL_WIDTH) / 15;
-    private static final int WALL_OFFSET = WALL_SIZE / 2;
+    private static final int GEN_INTERVAL = 2;
 
-    private static final int GEN_INTERVAL = 10;
-
-    private static final String WALL_COLOR = "#36454F";
-    private static final String TILE_COLOR = "#D3D3D3";
-    private static final String PATH_COLOR = "#BEBEBE";
-    private static final String TARGET_COLOR = "#B22222";
-    private static final String START_COLOR = "#22B222";
-
+    public Tile[][] grid = new Tile[ROWS][COLS];
     private final int[][] directions = { { 0, 1 }, { 1, 0 }, { -1, 0 }, { 0, -1 } };
     private HashMap<Integer, ArrayList<Integer>> maze = new HashMap<>();
     private Controller controller;
     boolean mazeDone;
+    ArrayList<Integer> solution;
     private int start, target;
 
     public Maze(Controller controller) {
@@ -46,13 +37,16 @@ public class Maze {
     }
 
     private void initMaze() {
-        int cellNum;
+        int cellNum, status;
 
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLS; j++) {
                 cellNum = i * COLS + j;
                 ArrayList<Integer> neighbors = new ArrayList<>(4);
                 maze.put(cellNum, neighbors);
+
+                status = cellNum == start ? Tile.START : cellNum == target ? Tile.TARGET : Tile.NORMAL;
+                grid[i][j] = new Tile(i, j, Tile.TILE_COLOR, status);
             }
         }
     }
@@ -60,98 +54,37 @@ public class Maze {
     public void drawMaze(Graphics g) {
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLS; j++) {
-                drawTile(g, i, j, CELL_WIDTH, CELL_HEIGHT, Color.decode(TILE_COLOR));
+                grid[i][j].draw(g);
             }
         }
 
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLS; j++) {
-                drawWalls(g, i, j);
+                ArrayList<Integer> neighbors = maze.get(i * COLS + j);
+                ArrayList<Integer> potentialNeighbors = getNeighbors(i * COLS + j);
+
+                potentialNeighbors.removeAll(neighbors);
+
+                grid[i][j].drawWalls(g, potentialNeighbors);
             }
         }
     }
 
-    private void drawTile(Graphics g, int i, int j, int width, int height, Color tileColor) {
-        int x = j * CELL_WIDTH;
-        int y = i * CELL_HEIGHT;
-
-        g.setColor(tileColor);
-        g.fillRect(x, y, width, height);
-
-        if (i * COLS + j == target) {
-            g.setColor(Color.decode(TARGET_COLOR));
-            g.fillRect(x + CELL_WIDTH / 4, y + CELL_HEIGHT / 4, CELL_WIDTH / 2, CELL_HEIGHT / 2);
-        } else if (i * COLS + j == start) {
-            g.setColor(Color.decode(START_COLOR));
-            g.fillRect(x + CELL_WIDTH / 4, y + CELL_HEIGHT / 4, CELL_WIDTH / 2, CELL_HEIGHT / 2);
-        }
-    }
-
-    private void drawWalls(Graphics g, int row, int col) {
-        ArrayList<Integer> neighbors = maze.get(row * COLS + col);
-        ArrayList<Integer> potentialNeighbors = getNeighbors(row * COLS + col);
-
-        potentialNeighbors.removeAll(neighbors);
-
-        int newRow, newCol, dirX, dirY;
-
-        for (Integer neighbor : potentialNeighbors) {
-            newRow = neighbor / COLS;
-            newCol = neighbor % COLS;
-
-            dirX = newCol - col;
-            dirY = newRow - row;
-            drawWall(g, row, col, dirX, dirY);
-        }
-    }
-
-    private void drawWall(Graphics g, int row, int col, int dirX, int dirY) {
-        int x = 0, y = 0, width = 0, height = 0;
-
-        if (dirX == 1 && dirY == 0) {
-            // Right wall
-            x = (col + 1) * CELL_WIDTH - WALL_SIZE + WALL_OFFSET;
-            y = row * CELL_HEIGHT;
-            width = WALL_SIZE;
-            height = CELL_HEIGHT;
-        } else if (dirX == 0 && dirY == 1) {
-            // Down wall
-            x = col * CELL_WIDTH;
-            y = (row + 1) * CELL_HEIGHT - WALL_SIZE + WALL_OFFSET;
-            width = CELL_WIDTH;
-            height = WALL_SIZE;
-        } else if (dirX == 0 && dirY == -1) {
-            // Up wall
-            x = col * CELL_WIDTH;
-            y = row * CELL_HEIGHT - WALL_OFFSET;
-            width = CELL_WIDTH;
-            height = WALL_SIZE;
-        } else {
-            // Left wall
-            x = col * CELL_WIDTH - WALL_OFFSET;
-            y = row * CELL_HEIGHT;
-            width = WALL_SIZE;
-            height = CELL_HEIGHT;
-        }
-        g.setColor(Color.decode(WALL_COLOR));
-        g.fillRect(x, y, width, height);
-    }
-
-    public void drawSolution(Graphics g) {
-        ArrayList<Integer> path = getSolution();
-
-        for (Integer tile : path) {
-            drawTile(g, tile / COLS, tile % COLS, CELL_WIDTH, CELL_HEIGHT,
-                    Color.decode(PATH_COLOR));
-        }
+    public void clearTiles() {
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLS; j++) {
-                drawWalls(g, i, j);
+                grid[i][j].clear();
             }
         }
     }
 
-    private ArrayList<Integer> getSolution() {
+    public void DisplaySolution() {
+        for (Integer tile : solution) {
+            grid[tile / COLS][tile % COLS].mark();
+        }
+    }
+
+    public ArrayList<Integer> findSolution() {
         HashSet<Integer> visited = new HashSet<>();
         Queue<Integer> queue = new LinkedList<>();
         int[] parents = new int[COLS * ROWS];
@@ -222,6 +155,7 @@ public class Maze {
             controller.getCustomPanel().repaint();
         }
         mazeDone = true;
+        solution = findSolution();
     }
 
     private int getRandomUnvisitedNeighbor(HashSet<Integer> visited, int vertex) {
