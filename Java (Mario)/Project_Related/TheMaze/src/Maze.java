@@ -4,30 +4,44 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
-import java.util.concurrent.TimeUnit;
-
-import javax.swing.Timer;
 
 public class Maze {
-    private static final int ROWS = 36;
-    private static final int COLS = 36;
+    private static final int ROWS = 30;
+    private static final int COLS = 30;
     private static final int CELL_WIDTH = CustomPanel.WIDTH / COLS;
     private static final int CELL_HEIGHT = CustomPanel.HEIGHT / ROWS;
+
     private static final int WALL_SIZE = (CELL_HEIGHT + CELL_WIDTH) / 15;
     private static final int WALL_OFFSET = WALL_SIZE / 2;
-    private static final int START_ROW = 0;
-    private static final int START_COL = 0;
-    private static final int GEN_INTERVAL = 20;
+
+    private static final int GEN_INTERVAL = 10;
+
     private static final String WALL_COLOR = "#36454F";
     private static final String TILE_COLOR = "#D3D3D3";
+    private static final String PATH_COLOR = "#BEBEBE";
+    private static final String TARGET_COLOR = "#B22222";
+    private static final String START_COLOR = "#22B222";
 
     private final int[][] directions = { { 0, 1 }, { 1, 0 }, { -1, 0 }, { 0, -1 } };
     private HashMap<Integer, ArrayList<Integer>> maze = new HashMap<>();
     private Controller controller;
+    boolean mazeDone;
+    private int start, target;
 
     public Maze(Controller controller) {
         this.controller = controller;
+        start = 0;
+        target = ROWS * COLS - 1;
+        initMaze();
+    }
+
+    public Maze(Controller controller, int start, int target) {
+        this.controller = controller;
+        this.start = start;
+        this.target = target;
         initMaze();
     }
 
@@ -44,14 +58,9 @@ public class Maze {
     }
 
     public void drawMaze(Graphics g) {
-        int x, y;
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLS; j++) {
-                x = j * CELL_WIDTH;
-                y = i * CELL_HEIGHT;
-
-                g.setColor(Color.decode(TILE_COLOR));
-                g.fillRect(x, y, CELL_WIDTH, CELL_HEIGHT);
+                drawTile(g, i, j, CELL_WIDTH, CELL_HEIGHT, Color.decode(TILE_COLOR));
             }
         }
 
@@ -59,6 +68,22 @@ public class Maze {
             for (int j = 0; j < COLS; j++) {
                 drawWalls(g, i, j);
             }
+        }
+    }
+
+    private void drawTile(Graphics g, int i, int j, int width, int height, Color tileColor) {
+        int x = j * CELL_WIDTH;
+        int y = i * CELL_HEIGHT;
+
+        g.setColor(tileColor);
+        g.fillRect(x, y, width, height);
+
+        if (i * COLS + j == target) {
+            g.setColor(Color.decode(TARGET_COLOR));
+            g.fillRect(x + CELL_WIDTH / 4, y + CELL_HEIGHT / 4, CELL_WIDTH / 2, CELL_HEIGHT / 2);
+        } else if (i * COLS + j == start) {
+            g.setColor(Color.decode(START_COLOR));
+            g.fillRect(x + CELL_WIDTH / 4, y + CELL_HEIGHT / 4, CELL_WIDTH / 2, CELL_HEIGHT / 2);
         }
     }
 
@@ -112,50 +137,108 @@ public class Maze {
         g.fillRect(x, y, width, height);
     }
 
-    public void generateMaze() {
-        HashSet<Integer> visited = new HashSet<>();
-        for (int i = 0; i < ROWS * COLS; i++) {
-            if (!visited.contains(i)) {
-                dfsGeneratePath(visited, i);
+    public void drawSolution(Graphics g) {
+        ArrayList<Integer> path = getSolution();
+
+        for (Integer tile : path) {
+            drawTile(g, tile / COLS, tile % COLS, CELL_WIDTH, CELL_HEIGHT,
+                    Color.decode(PATH_COLOR));
+        }
+        for (int i = 0; i < ROWS; i++) {
+            for (int j = 0; j < COLS; j++) {
+                drawWalls(g, i, j);
             }
         }
     }
 
-    private void dfsGeneratePath(HashSet<Integer> visited, int start) {
-        Stack<Integer> stack = new Stack<>();
-        int current;
+    private ArrayList<Integer> getSolution() {
+        HashSet<Integer> visited = new HashSet<>();
+        Queue<Integer> queue = new LinkedList<>();
+        int[] parents = new int[COLS * ROWS];
+        int current = start;
 
-        stack.push(start);
+        queue.add(current);
 
-        while (!stack.isEmpty()) {
-            current = stack.pop();
+        while (!queue.isEmpty()) {
+            current = queue.poll();
 
-            if (visited.contains(current))
-                continue;
-
-            visited.add(current);
-            ArrayList<Integer> neighbors = getNeighbors(current);
-
-            if (neighbors.isEmpty())
-                continue;
-
-            Collections.shuffle(neighbors);
+            if (current == target) {
+                return reconstructPath(parents, start, target);
+            }
+            ArrayList<Integer> neighbors = maze.get(current);
 
             for (Integer neighbor : neighbors) {
                 if (!visited.contains(neighbor)) {
-                    maze.get(current).add(neighbor);
-                    maze.get(neighbor).add(current);
-                    stack.push(neighbor);
-                    break;
+                    visited.add(current);
+                    parents[neighbor] = current;
+                    queue.add(neighbor);
                 }
             }
+        }
+        return null;
+    }
 
+    private ArrayList<Integer> reconstructPath(int[] parents, int start, int target) {
+        ArrayList<Integer> path = new ArrayList<>();
+
+        int current = target;
+        while (current != start) {
+            path.add(current);
+            current = parents[current];
+        }
+        path.add(start);
+
+        return path;
+    }
+
+    public void generateMaze() {
+        HashSet<Integer> visited = new HashSet<>();
+        Stack<Integer> stack = new Stack<>();
+        int current = 0;
+
+        stack.push(current);
+
+        while (!stack.isEmpty()) {
+            current = stack.peek();
+
+            visited.add(current);
+
+            int neighbor = getRandomUnvisitedNeighbor(visited, current);
+
+            if (neighbor == -1) {
+                stack.pop();
+                continue;
+            }
+
+            maze.get(current).add(neighbor);
+            maze.get(neighbor).add(current);
+            stack.push(neighbor);
+
+            // ** A delay to visualies the building of the maze.
             try {
                 Thread.sleep(GEN_INTERVAL);
             } catch (InterruptedException e) {
             }
             controller.getCustomPanel().repaint();
         }
+        mazeDone = true;
+    }
+
+    private int getRandomUnvisitedNeighbor(HashSet<Integer> visited, int vertex) {
+        ArrayList<Integer> neighbors = getNeighbors(vertex);
+
+        if (neighbors.isEmpty())
+            return -1;
+
+        Collections.shuffle(neighbors);
+
+        for (Integer neighbor : neighbors) {
+            if (!visited.contains(neighbor)) {
+                return neighbor;
+            }
+        }
+
+        return -1;
     }
 
     private ArrayList<Integer> getNeighbors(int vertex) {
