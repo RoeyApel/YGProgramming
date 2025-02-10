@@ -1,16 +1,22 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
+import javax.swing.Timer;
+
 public class Maze {
-    public static final int ROWS = 30;
-    public static final int COLS = 30;
+    private static final int PLAYER_MOVEMENT_DELAY = 150;
+    public static final int ROWS = 9;
+    public static final int COLS = 9;
 
     private static final int GEN_INTERVAL = 10;
 
@@ -20,13 +26,16 @@ public class Maze {
     private Controller controller;
     boolean mazeDone;
     ArrayList<Integer> solution;
-    private int start, target;
+    Player player;
+    int start, target, guide;
 
     public Maze(Controller controller) {
         this.controller = controller;
         start = 0;
         target = ROWS * COLS - 1;
+        guide = -1;
         initMaze();
+        player = new Player(start / COLS, start % COLS);
     }
 
     public Maze(Controller controller, int start, int target) {
@@ -68,6 +77,97 @@ public class Maze {
                 grid[i][j].drawWalls(g, potentialNeighbors);
             }
         }
+
+        player.draw(g);
+    }
+
+    public void movePlayer(Directions direction) {
+        player.look(direction);
+
+        int newRow = player.row + direction.i;
+        int newCol = player.col + direction.j;
+
+        if (!isInBounds(newRow, newCol)) {
+            return;
+        }
+
+        int currentVertex = player.row * COLS + player.col;
+        int newVertex = newRow * COLS + newCol;
+
+        if (hasNeighbor(currentVertex, newVertex))
+            player.move(direction);
+    }
+
+    private boolean hasNeighbor(int vertex1, int vertex2) {
+        for (int neighbor : maze.get(vertex1)) {
+            if (neighbor == vertex2) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void movePlayerToStart() {
+        player.look(Directions.DOWN);
+        player.row = start / COLS;
+        player.col = start % COLS;
+    }
+
+    public void guidePlayer(int row, int col) {
+        int current = player.row * COLS + player.col;
+        guide = row * COLS + col;
+
+        ArrayList<Integer> path = findSolution(current, guide);
+        Iterator<Integer> iterator = path.iterator();
+
+        if (!iterator.hasNext())
+            return;
+        iterator.next();
+
+        Timer timer = new Timer(PLAYER_MOVEMENT_DELAY, new ActionListener() {
+            int current = player.row * COLS + player.col;
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!iterator.hasNext()) {
+                    ((Timer) e.getSource()).stop();
+                    cencelGuide();
+                    return;
+                }
+
+                int vertex = iterator.next();
+                Directions direction = findDirection(current, vertex);
+                player.look(direction);
+                player.move(direction);
+                current = vertex;
+            }
+        });
+
+        timer.start();
+    }
+
+    private Directions findDirection(int vertex1, int vertex2) {
+        int row1 = vertex1 / COLS;
+        int col1 = vertex1 % COLS;
+        int row2 = vertex2 / COLS;
+        int col2 = vertex2 % COLS;
+
+        if (row2 - row1 == Directions.DOWN.i) {
+            return Directions.DOWN;
+        } else if (row2 - row1 == Directions.UP.i) {
+            return Directions.UP;
+        } else if (col2 - col1 == Directions.LEFT.j) {
+            return Directions.LEFT;
+        } else if (col2 - col1 == Directions.RIGHT.j) {
+            return Directions.RIGHT;
+        } else {
+            return null;
+        }
+    }
+
+    public void cencelGuide() {
+        grid[guide / COLS][guide % COLS].setGuide(false);
+        guide = -1;
     }
 
     public void clearTiles() {
@@ -84,7 +184,7 @@ public class Maze {
         }
     }
 
-    public ArrayList<Integer> findSolution() {
+    public ArrayList<Integer> findSolution(int start, int target) {
         HashSet<Integer> visited = new HashSet<>();
         Queue<Integer> queue = new LinkedList<>();
         int[] parents = new int[COLS * ROWS];
@@ -121,6 +221,7 @@ public class Maze {
         }
         path.add(start);
 
+        Collections.reverse(path);
         return path;
     }
 
@@ -152,10 +253,9 @@ public class Maze {
                 Thread.sleep(GEN_INTERVAL);
             } catch (InterruptedException e) {
             }
-            controller.getCustomPanel().repaint();
         }
         mazeDone = true;
-        solution = findSolution();
+        solution = findSolution(start, target);
     }
 
     private int getRandomUnvisitedNeighbor(HashSet<Integer> visited, int vertex) {
@@ -193,4 +293,5 @@ public class Maze {
     public boolean isInBounds(int row, int col) {
         return row >= 0 && row < ROWS && col >= 0 && col < COLS;
     }
+
 }

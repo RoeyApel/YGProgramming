@@ -4,20 +4,28 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.util.ArrayList;
 
 public class Controller implements KeyListener, MouseListener, MouseMotionListener {
+
+    private static final int TOGGLE = 0;
+    private static final int WRITE = 1;
+    private static final int ERASE = 2;
+    private static final int GUIDE = 3;
     CustomFrame customFrame;
     CustomPanel customPanel;
     Maze maze;
     boolean showSolution;
     boolean pressed;
     Tile currentTile;
+    GameLoop gameLoop;
+    int mode = TOGGLE;
 
     public Controller() {
         maze = new Maze(this);
 
         initFrame();
+        gameLoop = new GameLoop(this);
+        gameLoop.start();
 
         maze.generateMaze();
     }
@@ -41,6 +49,9 @@ public class Controller implements KeyListener, MouseListener, MouseMotionListen
         maze.drawMaze(g);
     }
 
+    public void update() {
+    }
+
     public CustomPanel getCustomPanel() {
         return customPanel;
     }
@@ -51,18 +62,36 @@ public class Controller implements KeyListener, MouseListener, MouseMotionListen
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_S && maze.mazeDone) {
+        int key = e.getKeyCode();
+        if (key == KeyEvent.VK_R && maze.mazeDone) {
             maze.clearTiles();
 
             if (!showSolution) {
                 maze.DisplaySolution();
             }
             showSolution = !showSolution;
-            customPanel.repaint();
-        } else if (e.getKeyCode() == KeyEvent.VK_C) {
+        } else if (key == KeyEvent.VK_V) {
+            maze.movePlayerToStart();
+        } else if (key == KeyEvent.VK_C) {
             maze.clearTiles();
-            customPanel.repaint();
+        } else if (key == KeyEvent.VK_F) {
+            mode = WRITE;
+        } else if (key == KeyEvent.VK_E) {
+            mode = ERASE;
+        } else if (key == KeyEvent.VK_T) {
+            mode = TOGGLE;
+        } else if (key == KeyEvent.VK_G && maze.mazeDone) {
+            mode = GUIDE;
+        } else if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
+            maze.movePlayer(Directions.LEFT);
+        } else if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {
+            maze.movePlayer(Directions.RIGHT);
+        } else if (key == KeyEvent.VK_W || key == KeyEvent.VK_UP) {
+            maze.movePlayer(Directions.UP);
+        } else if (key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN) {
+            maze.movePlayer(Directions.DOWN);
         }
+
     }
 
     @Override
@@ -85,8 +114,21 @@ public class Controller implements KeyListener, MouseListener, MouseMotionListen
         }
         currentTile = maze.grid[row][col];
 
-        currentTile.toggle();
-        customPanel.repaint();
+        if (mode == TOGGLE) {
+            currentTile.toggle();
+        } else if (mode == WRITE) {
+            currentTile.mark();
+        } else if (mode == ERASE) {
+            currentTile.clear();
+        } else if (mode == GUIDE) {
+            if (maze.guide == row * Maze.COLS + col) {
+                maze.cencelGuide();
+                return;
+            }
+            currentTile.setGuide(true);
+            System.out.println("dfedf");
+            maze.guidePlayer(row, col);
+        }
     }
 
     @Override
@@ -115,11 +157,18 @@ public class Controller implements KeyListener, MouseListener, MouseMotionListen
         }
 
         currentTile = maze.grid[row][col];
-        currentTile.toggle();
-        customPanel.repaint();
+
+        if (mode == TOGGLE) {
+            currentTile.toggle();
+        } else if (mode == WRITE) {
+            currentTile.mark();
+        } else if (mode == ERASE) {
+            currentTile.clear();
+        }
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
     }
+
 }

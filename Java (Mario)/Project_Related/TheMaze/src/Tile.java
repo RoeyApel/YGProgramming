@@ -11,12 +11,14 @@ public class Tile {
     public static final int NORMAL = 0;
     public static final int START = 1;
     public static final int TARGET = 2;
+    public static final int USER_TARGET = 3;
 
     public static final String WALL_COLOR = "#36454F";
     public static final String TILE_COLOR = "#D3D3D3";
     public static final String PATH_COLOR = "#BEBEBE";
     public static final String TARGET_COLOR = "#B22222";
     public static final String START_COLOR = "#22B222";
+    public static final String USER_TARGET_COLOR = "#FFFFE0";
 
     int row, col;
     String colorTxt;
@@ -45,6 +47,9 @@ public class Tile {
             g.fillRect(x + TILE_WIDTH / 4, y + TILE_HEIGHT / 4, TILE_WIDTH / 2, TILE_HEIGHT / 2);
         } else if (status == START) {
             g.setColor(Color.decode(START_COLOR));
+            g.fillRect(x + TILE_WIDTH / 4, y + TILE_HEIGHT / 4, TILE_WIDTH / 2, TILE_HEIGHT / 2);
+        } else if (status == USER_TARGET) {
+            g.setColor(Color.decode(USER_TARGET_COLOR));
             g.fillRect(x + TILE_WIDTH / 4, y + TILE_HEIGHT / 4, TILE_WIDTH / 2, TILE_HEIGHT / 2);
         }
     }
@@ -108,5 +113,11 @@ public class Tile {
 
     public void mark() {
         this.colorTxt = PATH_COLOR;
+    }
+
+    public void setGuide(boolean guide) {
+        if (status == NORMAL && guide) {
+            status = USER_TARGET;
+        }
     }
 }
