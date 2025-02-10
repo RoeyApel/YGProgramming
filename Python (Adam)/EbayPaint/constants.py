@@ -4,9 +4,28 @@ from enum import Enum
 
 @dataclass(frozen=True)
 class Colors:
-    GRAY: str = "#A9A9A9"
-    BLACK: str = "#1A1A1A"
-    BLACK_LIGHT: str = "#2B2B2B"
+    GRAY = "#A9A9A9"
+    BLACK = "#1A1A1A"
+    BLACK_LIGHT = "#2B2B2B"
+
+    # Background Colors (light tones):
+    BG_LIGHT = "#F5F5F5"  # Soft off-white background
+    BG_MEDIUM = "#E0E0E0"  # Neutral light gray
+    BG_ACCENT = "#D3D3D3"  # Slightly darker for depth
+
+    # Border Colors (subtle contrast):
+    BORDER_LIGHT = "#C0C0C0"  # Very light gray border
+    BORDER_MEDIUM = "#A9A9A9"  # Medium gray for definition
+    BORDER_DARK = "#808080"  # Visible but not harsh
+
+    # Accent Colors (muted pastels for highlights):
+    ACCENT_BLUE = "#9AC8D3"  # Soft sky blue
+    ACCENT_GREEN = "#B8D8BA"  # Muted sage
+    ACCENT_PINK = "#E6C4D5"  # Dusty rose
+
+    # Text Colors:
+    TEXT_MAIN = "#404040"  # Dark gray for readability
+    TEXT_SECONDARY = "#606060"  # Medium gray
 
 
 class Options(Enum):

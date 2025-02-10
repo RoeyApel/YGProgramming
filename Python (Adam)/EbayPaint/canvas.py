@@ -23,6 +23,9 @@ class Canvas(ctk.CTkCanvas):
         self.mouse_pressed = False
         self.starting_point = Point(0, 0)
         self.current_drawing = None
+        self.selected_bg_color = Colors.BG_LIGHT
+        self.selected_txt_color = Colors.TEXT_MAIN
+        self.selected_outline_color = Colors.BORDER_MEDIUM
 
     def on_mouse_press(self, event):
         if not self.mouse_pressed:
@@ -37,19 +40,19 @@ class Canvas(ctk.CTkCanvas):
             return
 
         if self.selected == Options.LINE:
-            self.current_drawing = draw.Line(self, 2, Colors.BLACK)
+            self.current_drawing = draw.Line(self, 2, self.selected_outline_color)
         elif self.selected == Options.RECT:
-            self.current_drawing = draw.Rect(self, 2, Colors.GRAY, Colors.BLACK)
+            self.current_drawing = draw.Rect(self, 2, self.selected_bg_color, self.selected_outline_color)
         elif self.selected == Options.OVAL:
-            self.current_drawing = draw.Oval(self, 2, Colors.GRAY, Colors.BLACK)
+            self.current_drawing = draw.Oval(self, 2, self.selected_bg_color, self.selected_outline_color)
         elif self.selected == Options.RIGHT_TRIANGLE:
-            self.current_drawing = draw.RightTriangle(self, 2, Colors.GRAY, Colors.BLACK)
+            self.current_drawing = draw.RightTriangle(self, 2, self.selected_bg_color, self.selected_outline_color)
         elif self.selected == Options.TRIANGLE:
-            self.current_drawing = draw.Triangle(self, 2, Colors.GRAY, Colors.BLACK)
+            self.current_drawing = draw.Triangle(self, 2, self.selected_bg_color, self.selected_outline_color)
         elif self.selected == Options.ARROW:
-            self.current_drawing = draw.Arrow(self, 2, Colors.BLACK)
+            self.current_drawing = draw.Arrow(self, 2, self.selected_outline_color)
         elif self.selected == Options.TEXT_BOX:
-            self.current_drawing = draw.TextBox(self, 25, 2, Colors.GRAY, Colors.BLACK, Colors.BLACK)
+            self.current_drawing = draw.TextBox(self, 25, 2, self.selected_txt_color)
 
         self.current_drawing.create(event.x, event.y)
 
