@@ -80,6 +80,9 @@ public class Controller implements KeyListener, MouseListener, MouseMotionListen
         int row = e.getY() / Tile.TILE_HEIGHT;
         int col = e.getX() / Tile.TILE_WIDTH;
 
+        if (!maze.isInBounds(row, col)) {
+            return;
+        }
         currentTile = maze.grid[row][col];
 
         currentTile.toggle();
@@ -107,7 +110,7 @@ public class Controller implements KeyListener, MouseListener, MouseMotionListen
         int row = e.getY() / Tile.TILE_HEIGHT;
         int col = e.getX() / Tile.TILE_WIDTH;
 
-        if (currentTile.equals(row, col)) {
+        if (currentTile.equals(row, col) || !maze.isInBounds(row, col)) {
             return;
         }
 

@@ -12,7 +12,7 @@ public class Maze {
     public static final int ROWS = 30;
     public static final int COLS = 30;
 
-    private static final int GEN_INTERVAL = 2;
+    private static final int GEN_INTERVAL = 10;
 
     public Tile[][] grid = new Tile[ROWS][COLS];
     private final int[][] directions = { { 0, 1 }, { 1, 0 }, { -1, 0 }, { 0, -1 } };
@@ -190,7 +190,7 @@ public class Maze {
         return neighbors;
     }
 
-    private boolean isInBounds(int row, int col) {
+    public boolean isInBounds(int row, int col) {
         return row >= 0 && row < ROWS && col >= 0 && col < COLS;
     }
 }
