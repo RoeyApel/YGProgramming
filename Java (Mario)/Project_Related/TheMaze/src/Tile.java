@@ -118,6 +118,8 @@ public class Tile {
     public void setGuide(boolean guide) {
         if (status == NORMAL && guide) {
             status = USER_TARGET;
+        } else if (status == USER_TARGET) {
+            status = NORMAL;
         }
     }
 }

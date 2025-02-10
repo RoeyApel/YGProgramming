@@ -28,6 +28,7 @@ public class Maze {
     ArrayList<Integer> solution;
     Player player;
     int start, target, guide;
+    Timer timer;
 
     public Maze(Controller controller) {
         this.controller = controller;
@@ -82,6 +83,9 @@ public class Maze {
     }
 
     public void movePlayer(Directions direction) {
+        if (guide != -1) {
+            return;
+        }
         player.look(direction);
 
         int newRow = player.row + direction.i;
@@ -124,7 +128,7 @@ public class Maze {
             return;
         iterator.next();
 
-        Timer timer = new Timer(PLAYER_MOVEMENT_DELAY, new ActionListener() {
+        timer = new Timer(PLAYER_MOVEMENT_DELAY, new ActionListener() {
             int current = player.row * COLS + player.col;
 
             @Override
@@ -168,6 +172,7 @@ public class Maze {
     public void cencelGuide() {
         grid[guide / COLS][guide % COLS].setGuide(false);
         guide = -1;
+        timer.stop();
     }
 
     public void clearTiles() {

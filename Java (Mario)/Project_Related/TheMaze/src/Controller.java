@@ -125,6 +125,9 @@ public class Controller implements KeyListener, MouseListener, MouseMotionListen
                 maze.cencelGuide();
                 return;
             }
+            if (maze.guide != -1) {
+                maze.cencelGuide();
+            }
             currentTile.setGuide(true);
             System.out.println("dfedf");
             maze.guidePlayer(row, col);
