@@ -15,23 +15,21 @@ import javax.swing.Timer;
 
 public class Maze {
     private static final int PLAYER_MOVEMENT_DELAY = 150;
-    public static final int ROWS = 9;
-    public static final int COLS = 9;
+    public static final int ROWS = 30;
+    public static final int COLS = 30;
 
     private static final int GEN_INTERVAL = 10;
 
     public Tile[][] grid = new Tile[ROWS][COLS];
     private final int[][] directions = { { 0, 1 }, { 1, 0 }, { -1, 0 }, { 0, -1 } };
     private HashMap<Integer, ArrayList<Integer>> maze = new HashMap<>();
-    private Controller controller;
     boolean mazeDone;
     ArrayList<Integer> solution;
     Player player;
     int start, target, guide;
     Timer timer;
 
-    public Maze(Controller controller) {
-        this.controller = controller;
+    public Maze() {
         start = 0;
         target = ROWS * COLS - 1;
         guide = -1;
@@ -39,8 +37,7 @@ public class Maze {
         player = new Player(start / COLS, start % COLS);
     }
 
-    public Maze(Controller controller, int start, int target) {
-        this.controller = controller;
+    public Maze(int start, int target) {
         this.start = start;
         this.target = target;
         initMaze();

@@ -21,7 +21,7 @@ public class Controller implements KeyListener, MouseListener, MouseMotionListen
     int mode = TOGGLE;
 
     public Controller() {
-        maze = new Maze(this);
+        maze = new Maze();
 
         initFrame();
         gameLoop = new GameLoop(this);
