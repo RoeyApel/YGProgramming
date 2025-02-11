@@ -15,8 +15,8 @@ import javax.swing.Timer;
 
 public class Maze {
     private static final int PLAYER_MOVEMENT_DELAY = 150;
-    public static final int ROWS = 30;
-    public static final int COLS = 30;
+    public static final int ROWS = 9;
+    public static final int COLS = 9;
 
     private static final int GEN_INTERVAL = 10;
 
