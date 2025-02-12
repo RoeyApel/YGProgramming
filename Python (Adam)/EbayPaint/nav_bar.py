@@ -25,7 +25,7 @@ class NavBar(ctk.CTkFrame):
         self.master.bind_all("<w>", lambda event: self.on_select(self.selection_buttons[7], Options.SELECTOR))
 
         # grid config
-        self.columnconfigure((0, 1, 2, 3, 4, 5, 6, 7), weight=1, uniform="a")
+        self.columnconfigure(tuple(range(len(self.selection_buttons))), weight=1, uniform="a")
         self.rowconfigure(0, weight=1, uniform="a")
 
         # grid placement
