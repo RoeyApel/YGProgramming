@@ -9,9 +9,12 @@ from constants import Options
 class Drawable:
     def __init__(self, canvas):
         self.id = -1
+        self.z_index = -1
         self.hitbox = Hitbox()
         self.canvas = canvas
         self.selected = False
+        self.mouse_x_on_select = -1
+        self.mouse_y_on_select = -1
 
 
 class Line(Drawable):
@@ -42,17 +45,38 @@ class Line(Drawable):
                                           width=self.thickness,
                                           fill=self.color)
 
-    def on_focus(self):
+    def on_focus(self, mouse):
+        self.mouse_x_on_select = mouse.x
+        self.mouse_y_on_select = mouse.y
         self.selected = True
         self.hitbox.draw(self.canvas, self.x1, self.y1, self.x2, self.y2)
 
-    def on_move(self):
-        pass
+    def on_blur(self):
+        self.selected = False
+        self.hitbox.remove(self.canvas)
+
+    def on_move(self, mouse):
+        move_x = mouse.x - self.mouse_x_on_select
+        move_y = mouse.y - self.mouse_y_on_select
+
+        self.canvas.move(self.id, move_x, move_y)
+        self.hitbox.on_move(self.canvas, move_x, move_y)
+
+        self.mouse_x_on_select = mouse.x
+        self.mouse_y_on_select = mouse.y
+
+        coords = self.canvas.coords(self.id)
+        self.x1, self.y1, self.x2, self.y2 = coords
+
+    def on_drop(self, z_index):
+        self.z_index = z_index
+        self.canvas.lift(self.id)
 
     def on_resize(self):
         pass
 
-    def on_place(self):
+    def on_place(self, z_index):
+        self.z_index = z_index
         self.hitbox.set(self.x1, self.y1, self.x2, self.y2)
 
     def is_hitbox_clicked(self, mouse):
@@ -120,17 +144,38 @@ class Rect(Drawable):
         self.id = self.canvas.create_rectangle((self.x1, self.y1, self.x2, self.y2), width=self.thickness,
                                                fill=self.bg_color, outline=self.outline_color)
 
-    def on_focus(self):
+    def on_focus(self, mouse):
+        self.mouse_x_on_select = mouse.x
+        self.mouse_y_on_select = mouse.y
         self.selected = True
         self.hitbox.draw(self.canvas, self.x1, self.y1, self.x2, self.y2)
 
-    def on_move(self):
-        pass
+    def on_blur(self):
+        self.selected = False
+        self.hitbox.remove(self.canvas)
+
+    def on_move(self, mouse):
+        move_x = mouse.x - self.mouse_x_on_select
+        move_y = mouse.y - self.mouse_y_on_select
+
+        self.canvas.move(self.id, move_x, move_y)
+        self.hitbox.on_move(self.canvas, move_x, move_y)
+
+        self.mouse_x_on_select = mouse.x
+        self.mouse_y_on_select = mouse.y
+
+        coords = self.canvas.coords(self.id)
+        self.x1, self.y1, self.x2, self.y2 = coords
+
+    def on_drop(self, z_index):
+        self.z_index = z_index
+        self.canvas.lift(self.id)
 
     def on_resize(self):
         pass
 
-    def on_place(self):
+    def on_place(self, z_index):
+        self.z_index = z_index
         self.hitbox.set(self.x1, self.y1, self.x2, self.y2)
 
     def is_hitbox_clicked(self, mouse):
@@ -172,17 +217,38 @@ class Oval(Drawable):
                                           fill=self.bg_color,
                                           outline=self.outline_color)
 
-    def on_focus(self):
+    def on_focus(self, mouse):
+        self.mouse_x_on_select = mouse.x
+        self.mouse_y_on_select = mouse.y
         self.selected = True
         self.hitbox.draw(self.canvas, self.x1, self.y1, self.x2, self.y2)
 
-    def on_move(self):
-        pass
+    def on_blur(self):
+        self.selected = False
+        self.hitbox.remove(self.canvas)
+
+    def on_move(self, mouse):
+        move_x = mouse.x - self.mouse_x_on_select
+        move_y = mouse.y - self.mouse_y_on_select
+
+        self.canvas.move(self.id, move_x, move_y)
+        self.hitbox.on_move(self.canvas, move_x, move_y)
+
+        self.mouse_x_on_select = mouse.x
+        self.mouse_y_on_select = mouse.y
+
+        coords = self.canvas.coords(self.id)
+        self.x1, self.y1, self.x2, self.y2 = coords
+
+    def on_drop(self, z_index):
+        self.z_index = z_index
+        self.canvas.lift(self.id)
 
     def on_resize(self):
         pass
 
-    def on_place(self):
+    def on_place(self, z_index):
+        self.z_index = z_index
         self.hitbox.set(self.x1, self.y1, self.x2, self.y2)
 
     def is_hitbox_clicked(self, mouse):
@@ -226,17 +292,38 @@ class Triangle(Drawable):
                                              fill=self.bg_color,
                                              outline=self.outline_color)
 
-    def on_focus(self):
+    def on_focus(self, mouse):
+        self.mouse_x_on_select = mouse.x
+        self.mouse_y_on_select = mouse.y
         self.selected = True
         self.hitbox.draw(self.canvas, min(self.x2, self.x3), self.y1, max(self.x2, self.x3), self.y2)
 
-    def on_move(self):
-        pass
+    def on_blur(self):
+        self.selected = False
+        self.hitbox.remove(self.canvas)
+
+    def on_move(self, mouse):
+        move_x = mouse.x - self.mouse_x_on_select
+        move_y = mouse.y - self.mouse_y_on_select
+
+        self.canvas.move(self.id, move_x, move_y)
+        self.hitbox.on_move(self.canvas, move_x, move_y)
+
+        self.mouse_x_on_select = mouse.x
+        self.mouse_y_on_select = mouse.y
+
+        coords = self.canvas.coords(self.id)
+        self.x1, self.y1, self.x2, self.y2, self.x3, self.y3 = coords
+
+    def on_drop(self, z_index):
+        self.z_index = z_index
+        self.canvas.lift(self.id)
 
     def on_resize(self):
         pass
 
-    def on_place(self):
+    def on_place(self, z_index):
+        self.z_index = z_index
         self.hitbox.set(min(self.x2, self.x3), self.y1, max(self.x2, self.x3), self.y2)
 
     def is_hitbox_clicked(self, mouse):
@@ -280,17 +367,38 @@ class RightTriangle(Drawable):
                                              fill=self.bg_color,
                                              outline=self.outline_color)
 
-    def on_focus(self):
+    def on_focus(self, mouse):
+        self.mouse_x_on_select = mouse.x
+        self.mouse_y_on_select = mouse.y
         self.selected = True
         self.hitbox.draw(self.canvas, self.x1, self.y1, self.x3, self.y3)
 
-    def on_move(self):
-        pass
+    def on_blur(self):
+        self.selected = False
+        self.hitbox.remove(self.canvas)
+
+    def on_move(self, mouse):
+        move_x = mouse.x - self.mouse_x_on_select
+        move_y = mouse.y - self.mouse_y_on_select
+
+        self.canvas.move(self.id, move_x, move_y)
+        self.hitbox.on_move(self.canvas, move_x, move_y)
+
+        self.mouse_x_on_select = mouse.x
+        self.mouse_y_on_select = mouse.y
+
+        coords = self.canvas.coords(self.id)
+        self.x1, self.y1, self.x2, self.y2, self.x3, self.y3 = coords
+
+    def on_drop(self, z_index):
+        self.z_index = z_index
+        self.canvas.lift(self.id)
 
     def on_resize(self):
         pass
 
-    def on_place(self):
+    def on_place(self, z_index):
+        self.z_index = z_index
         self.hitbox.set(self.x1, self.y1, self.x3, self.y3)
 
     def is_hitbox_clicked(self, mouse):
@@ -340,18 +448,38 @@ class TextBox(Drawable):
         self.id = self.canvas.create_window((self.x1 + self.width / 2, self.y1 + self.height / 2),
                                             window=self.text_widget)
 
-    def on_focus(self):
-        print("dfsfdfs")
+    def on_focus(self, mouse):
+        self.mouse_x_on_select = mouse.x
+        self.mouse_y_on_select = mouse.y
         self.selected = True
         self.hitbox.draw(self.canvas, self.x1, self.y1, self.x2, self.y2)
 
-    def on_move(self):
-        pass
+    def on_blur(self):
+        self.selected = False
+        self.hitbox.remove(self.canvas)
+
+    def on_move(self, mouse):
+        move_x = mouse.x - self.mouse_x_on_select
+        move_y = mouse.y - self.mouse_y_on_select
+
+        self.canvas.move(self.id, move_x, move_y)
+        self.hitbox.on_move(self.canvas, move_x, move_y)
+
+        self.mouse_x_on_select = mouse.x
+        self.mouse_y_on_select = mouse.y
+
+        coords = self.canvas.coords(self.id)
+        self.x1, self.y1, self.x2, self.y2 = coords
+
+    def on_drop(self, z_index):
+        self.z_index = z_index
+        self.canvas.lift(self.id)
 
     def on_resize(self):
         pass
 
-    def on_place(self):
+    def on_place(self, z_index):
+        self.z_index = z_index
         self.hitbox.remove(self.canvas)
         self.text_widget = ctk.CTkTextbox(self.canvas.master, width=self.width, height=self.height,
                                           border_width=self.thickness, font=self.font)
@@ -403,11 +531,15 @@ class Hitbox:
     def draw(self, canvas, x1, y1, x2, y2):
         self.set(x1, y1, x2, y2)
 
-        self.id = canvas.create_rectangle((self.x1, self.y1, self.x2, self.y2), outline="#eeeedd",
+        self.id = canvas.create_rectangle((self.x1, self.y1, self.x2, self.y2), outline="black",
                                           dash=(1, 3))
         canvas.lift(self.id)
 
-    def on_move(self, canvas, x, y):
+    def on_move(self, canvas, move_x, move_y):
+        canvas.move(self.id, move_x, move_y)
+        self.x1, self.y1, self.x2, self.y2 = canvas.coords(self.id)
+
+    def on_drop(self, canvas):
         pass
 
     def remove(self, canvas):
