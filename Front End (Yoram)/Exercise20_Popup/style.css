@@ -58,7 +58,7 @@ body {
   color: #9e344a;
 }
 .open-animation {
-  animation: openAnimation 1s ease-in 1;
+  animation: openAnimation 1.2s ease-in 1;
 }
 @keyframes openAnimation {
   0% {

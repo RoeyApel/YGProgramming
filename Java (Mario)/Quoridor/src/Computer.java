@@ -7,9 +7,25 @@ import java.util.Stack;
 
 public class Computer {
     private Board board;
+    private Character bot, player;
 
     public Computer(Board board) {
         this.board = board;
+        this.bot = board.getOpponent();
+        this.player = board.getPlayer();
+    }
+
+    public void makeMove() {
+
+    }
+
+    private void moveBot(int row, int col) {
+        Position currentPosition = bot.getPosition();
+
+        board.get(currentPosition.row, currentPosition.col).setOcuppied(false);
+        board.get(row, col).setOcuppied(true);
+
+        bot.setPosition(row, col);
     }
 
     public ArrayList<Vertex> getShortestPath(int row, int col, int winningRow) {

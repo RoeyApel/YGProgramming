@@ -105,7 +105,7 @@ public class Game implements MouseListener, KeyListener {
             System.out.println("player:" + currentPlayer + " has won");
         }
 
-        reset();
+        turnReset();
 
         currentPlayer = turns % 2 == 0 ? board.getPlayer() : board.getOpponent();
 
@@ -184,7 +184,7 @@ public class Game implements MouseListener, KeyListener {
         endTurn();
     }
 
-    private void reset() {
+    private void turnReset() {
         wallSelectionActive = false;
         moveSelectionActive = false;
         currentPlayer.setMoves(null);
