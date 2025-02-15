@@ -2,6 +2,7 @@ from os import write
 from typing import override
 
 import customtkinter as ctk
+from utils import Point
 
 from constants import Options
 
@@ -13,6 +14,7 @@ class Drawable:
         self.hitbox = Hitbox()
         self.canvas = canvas
         self.selected = False
+        self.resized = False
         self.mouse_x_on_select = -1
         self.mouse_y_on_select = -1
 
@@ -72,8 +74,12 @@ class Line(Drawable):
         self.z_index = z_index
         self.canvas.lift(self.id)
 
-    def on_resize(self):
-        pass
+    def on_resize(self, mouse):
+        self.resized = True
+        scale_x = (mouse.x - self.mouse_x_on_select) / 2
+        scale_y = (mouse.y - self.mouse_y_on_select) / 2
+        self.canvas.scale(self.id, self.x2, self.y2, scale_x, scale_y)
+        # self.hitbox.on_resize(self.canvas, mouse)
 
     def on_place(self, z_index):
         self.z_index = z_index
@@ -547,3 +553,11 @@ class Hitbox:
 
     def contains(self, mouse):
         return self.x1 < mouse.x < self.x2 and self.y1 < mouse.y < self.y2
+
+    def has_clicked_corner(self, mouse):
+        size = (self.width + self.height) / 10
+        return ((self.x2 + size >= mouse.x >= self.x2 - size) and
+                (self.y2 + size >= mouse.y >= self.y2 - size))
+
+    def on_resize(self, canvas, mouse):
+        canvas.scale(self.id, 8, 8)

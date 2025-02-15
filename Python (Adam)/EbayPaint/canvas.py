@@ -42,6 +42,8 @@ class Canvas(tk.Canvas):
 
         if self.selected == Options.SELECTOR:
             self.on_select(event)
+            if self.current_selected_drawing and self.current_selected_drawing.hitbox.has_clicked_corner(event):
+                self.current_selected_drawing.resized = True
             return
 
         if self.selected == Options.LINE:
@@ -72,9 +74,9 @@ class Canvas(tk.Canvas):
 
         if self.selected == Options.SELECTOR:
             if self.current_selected_drawing:
+                self.current_selected_drawing.resized = False
                 self.current_selected_drawing.on_drop(self.last_z_index + 1)
                 self.last_z_index += 1
-                print(self.last_z_index)
             return
 
         self.current_drawing.on_place(self.last_z_index + 1)
@@ -88,6 +90,10 @@ class Canvas(tk.Canvas):
             return
 
         if self.selected == Options.SELECTOR:
+            if self.current_selected_drawing and self.current_selected_drawing.resized:
+                self.current_selected_drawing.on_resize(event)
+                return
+
             if self.current_selected_drawing:
                 self.current_selected_drawing.on_move(event)
             return
