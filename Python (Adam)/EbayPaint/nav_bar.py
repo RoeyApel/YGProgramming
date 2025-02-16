@@ -2,6 +2,8 @@ import customtkinter as ctk
 
 from constants import Colors, Options
 
+from tkinter import colorchooser
+
 
 class NavBar(ctk.CTkFrame):
     def __init__(self, master):

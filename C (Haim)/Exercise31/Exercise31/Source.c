@@ -2,23 +2,70 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
 void encrypt(char* sourceFile, char* encryptFile, int key);
 
 int main() {
 	return 0;
 }
 
-void encrypt(char* source_filename, char* encrypt_filename, int key) {
-	FILE* source_file = fopen(source_filename, "rt");
+void decrypt(char* source_filename, char* encrypt_filename, int key) {
+	FILE* source_file = fopen(source_filename, "wt");
+	FILE* encrypt_file = fopen(encrypt_filename, "rt");
 
-	if (!source_file) {
+	if (!source_file || !encrypt_file) {
 		puts("error!");
 		exit(3);
 	}
 
-	char** data;
+	char line[256];
+	int line_length;
+	char ch;
+	int i, start;
+	while ((fgets(line, sizeof(line), encrypt_file)) != NULL) {
 
-	while(fgetc(source_file))// Todo!!!
+		line_length = strlen(line);
+		start = line_length - key % line_length;
+		for (i = start; i + 1 != start; i = (i + 1) % line_length)
+		{
+			ch = *(line + i) - key;
+			fputc(ch, source_file);
+		}
+		ch = '\n';
+		fputc(ch, source_file);
+	}
+	fclose(source_file);
+	fclose(encrypt_file);
+}
+
+void encrypt(char* source_filename, char* encrypt_filename, int key) {
+	FILE* source_file = fopen(source_filename, "rt");
+	FILE* encrypt_file = fopen(encrypt_filename, "wt");
+
+	if (!source_file || !encrypt_file) {
+		puts("error!");
+		exit(3);
+	}
+
+	char line[256];
+	char line_length;
+	char ch;
+	int i, start;
+	while ((fgets(line, sizeof(line), source_file)) != NULL) {
+
+		line_length = strlen(line);
+		start = key % line_length;
+		for (i = start; i + 1 != start; i = (i + 1) % line_length)
+		{
+			ch = *(line + i) + key;
+			fputc(ch, encrypt_file);
+		}
+		ch = '\n';
+		fputc(ch, encrypt_file);
+	}
+	fclose(source_file);
+	fclose(encrypt_file);
 }
 
 void create_sorted_arr(int* arr, int* size) {

@@ -73,13 +73,12 @@ class Line(Drawable):
     def on_drop(self, z_index):
         self.z_index = z_index
         self.canvas.lift(self.id)
+        if self.resized:
+            self.hitbox.draw(self.canvas, self.x1, self.y1, self.x2, self.y2)
 
     def on_resize(self, mouse):
-        self.resized = True
-        scale_x = (mouse.x - self.mouse_x_on_select) / 2
-        scale_y = (mouse.y - self.mouse_y_on_select) / 2
-        self.canvas.scale(self.id, self.x2, self.y2, scale_x, scale_y)
-        # self.hitbox.on_resize(self.canvas, mouse)
+        self.update_drawing(Point(self.x1, self.y1), mouse)
+        self.hitbox.remove(self.canvas)
 
     def on_place(self, z_index):
         self.z_index = z_index
@@ -87,6 +86,9 @@ class Line(Drawable):
 
     def is_hitbox_clicked(self, mouse):
         return self.hitbox.contains(mouse)
+
+    def has_clicked_corner(self, mouse):
+        return self.hitbox.has_clicked_corner(self.x2, self.y2, mouse)
 
     def __str__(self):
         return f"x1: {self.x1},y1: {self.y1},x2: {self.x2},y2: {self.y2}"
@@ -176,9 +178,12 @@ class Rect(Drawable):
     def on_drop(self, z_index):
         self.z_index = z_index
         self.canvas.lift(self.id)
+        if self.resized:
+            self.hitbox.draw(self.canvas, self.x1, self.y1, self.x2, self.y2)
 
-    def on_resize(self):
-        pass
+    def on_resize(self, mouse):
+        self.update_drawing(Point(self.x1, self.y1), mouse)
+        self.hitbox.remove(self.canvas)
 
     def on_place(self, z_index):
         self.z_index = z_index
@@ -186,6 +191,9 @@ class Rect(Drawable):
 
     def is_hitbox_clicked(self, mouse):
         return self.hitbox.contains(mouse)
+
+    def has_clicked_corner(self, mouse):
+        return self.hitbox.has_clicked_corner(self.x2, self.y2, mouse)
 
 
 class Oval(Drawable):
@@ -249,9 +257,12 @@ class Oval(Drawable):
     def on_drop(self, z_index):
         self.z_index = z_index
         self.canvas.lift(self.id)
+        if self.resized:
+            self.hitbox.draw(self.canvas, self.x1, self.y1, self.x2, self.y2)
 
-    def on_resize(self):
-        pass
+    def on_resize(self, mouse):
+        self.update_drawing(Point(self.x1, self.y1), mouse)
+        self.hitbox.remove(self.canvas)
 
     def on_place(self, z_index):
         self.z_index = z_index
@@ -259,6 +270,9 @@ class Oval(Drawable):
 
     def is_hitbox_clicked(self, mouse):
         return self.hitbox.contains(mouse)
+
+    def has_clicked_corner(self, mouse):
+        return self.hitbox.has_clicked_corner(self.x2, self.y2, mouse)
 
 
 class Triangle(Drawable):
@@ -324,9 +338,12 @@ class Triangle(Drawable):
     def on_drop(self, z_index):
         self.z_index = z_index
         self.canvas.lift(self.id)
+        if self.resized:
+            self.hitbox.draw(self.canvas, min(self.x2, self.x3), self.y1, max(self.x2, self.x3), self.y2)
 
-    def on_resize(self):
-        pass
+    def on_resize(self, mouse):
+        self.update_drawing(Point(self.x2, self.y1), mouse)
+        self.hitbox.remove(self.canvas)
 
     def on_place(self, z_index):
         self.z_index = z_index
@@ -334,6 +351,9 @@ class Triangle(Drawable):
 
     def is_hitbox_clicked(self, mouse):
         return self.hitbox.contains(mouse)
+
+    def has_clicked_corner(self, mouse):
+        return self.hitbox.has_clicked_corner(self.x3, self.y3, mouse)
 
 
 class RightTriangle(Drawable):
@@ -399,9 +419,12 @@ class RightTriangle(Drawable):
     def on_drop(self, z_index):
         self.z_index = z_index
         self.canvas.lift(self.id)
+        if self.resized:
+            self.hitbox.draw(self.canvas, self.x1, self.y1, self.x3, self.y3)
 
-    def on_resize(self):
-        pass
+    def on_resize(self, mouse):
+        self.update_drawing(Point(self.x1, self.y1), mouse)
+        self.hitbox.remove(self.canvas)
 
     def on_place(self, z_index):
         self.z_index = z_index
@@ -409,6 +432,9 @@ class RightTriangle(Drawable):
 
     def is_hitbox_clicked(self, mouse):
         return self.hitbox.contains(mouse)
+
+    def has_clicked_corner(self, mouse):
+        return self.hitbox.has_clicked_corner(self.x3, self.y3, mouse)
 
 
 class TextBox(Drawable):
@@ -480,9 +506,12 @@ class TextBox(Drawable):
     def on_drop(self, z_index):
         self.z_index = z_index
         self.canvas.lift(self.id)
+        if self.resized:
+            self.hitbox.draw(self.canvas, self.x1, self.y1, self.x2, self.y2)
 
-    def on_resize(self):
-        pass
+    def on_resize(self, mouse):
+        self.update_drawing(Point(self.x1, self.y1), mouse)
+        self.hitbox.remove(self.canvas)
 
     def on_place(self, z_index):
         self.z_index = z_index
@@ -501,6 +530,9 @@ class TextBox(Drawable):
 
     def is_hitbox_clicked(self, mouse):
         return self.hitbox.contains(mouse)
+
+    def has_clicked_corner(self, mouse):
+        return self.hitbox.has_clicked_corner(self.x2, self.y2, mouse)
 
 
 class Hitbox:
@@ -549,15 +581,14 @@ class Hitbox:
         pass
 
     def remove(self, canvas):
-        canvas.delete(self.id)
+        if self.id != -1:
+            canvas.delete(self.id)
+            self.id = -1
 
     def contains(self, mouse):
         return self.x1 < mouse.x < self.x2 and self.y1 < mouse.y < self.y2
 
-    def has_clicked_corner(self, mouse):
+    def has_clicked_corner(self, x, y, mouse):
         size = (self.width + self.height) / 10
-        return ((self.x2 + size >= mouse.x >= self.x2 - size) and
-                (self.y2 + size >= mouse.y >= self.y2 - size))
-
-    def on_resize(self, canvas, mouse):
-        canvas.scale(self.id, 8, 8)
+        return ((x + size >= mouse.x >= x - size) and
+                (y + size >= mouse.y >= y - size))
