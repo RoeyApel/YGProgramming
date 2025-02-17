@@ -54,9 +54,9 @@ function clearDisplay() {
   disableEvilMode();
 }
 
-function calc() {
+function on_calc() {
   try {
-    let result = Math.round(eval(display_targil.textContent) * 100) / 100;
+    let result = evaluate(display_targil.textContent);
 
     if (result == 666) {
       enableEvilMode();
@@ -90,4 +90,90 @@ function disableEvilMode() {
   display_targil.style.color = "#4a4767";
   body.style.backgroundImage = "url('images/background.jpg')";
   display.style.backgroundColor = "#dddddd";
+}
+
+function evaluate(targil) {
+  let postfix = infixToPostfix(targil);
+  console.log(targil);
+  console.log(postfix);
+
+  let stack = [];
+  let num1, num2, result;
+
+  for (let i = 0; i < postfix.length; i++) {
+    if (!isOperator(postfix[i])) {
+      stack.push(postfix[i]);
+    } else {
+      num2 = stack.pop();
+      num1 = stack.pop();
+      result = calc(num1, num2, postfix[i]);
+      stack.push(result);
+    }
+  }
+  result = stack.pop();
+  console.log(result);
+
+  return Math.round(result * 100) / 100;
+}
+
+function infixToPostfix(targil) {
+  let precedence = { "+": 1, "-": 1, "/": 2, "*": 2 };
+  let stack = [];
+  let postfix = [];
+
+  let i = 0;
+  let num = "";
+
+  while (i < targil.length) {
+    while (!isOperator(targil[i]) && i < targil.length) {
+      num += targil[i];
+      i++;
+    }
+
+    if (num != "") {
+      postfix.push(parseFloat(num));
+      num = "";
+    }
+
+    if (i >= targil.length) {
+      break;
+    }
+
+    while (
+      !isEmpty(stack) &&
+      precedence[targil[i]] <= precedence[stack[stack.length - 1]]
+    ) {
+      postfix.push(stack.pop());
+    }
+    stack.push(targil[i]);
+
+    i++;
+  }
+
+  while (!isEmpty(stack)) {
+    postfix.push(stack.pop());
+  }
+
+  return postfix;
+}
+function isOperator(ch) {
+  return ch == "+" || ch == "-" || ch == "/" || ch == "*";
+}
+function getLast(array) {
+  return array[array.length - 1];
+}
+function isEmpty(array) {
+  return array.length === 0;
+}
+
+function calc(num1, num2, operator) {
+  if (operator == "+") {
+    return num1 + num2;
+  } else if (operator == "-") {
+    return num1 - num2;
+  } else if (operator == "/") {
+    return num1 / num2;
+  } else if (operator == "*") {
+    return num1 * num2;
+  }
 }

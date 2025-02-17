@@ -69,8 +69,8 @@ class NavBar(ctk.CTkFrame):
         return btn
 
     def on_size_pick(self):
-        dialog = ctk.CTkInputDialog(text="Type in a number:", title="Test")
-        # text = dialog.get_input()  # waits for input
+        dialog = ctk.CTkInputDialog(fg_color="#111111")
+        text = dialog.get_input()
 
     def on_color_pick(self, btn, option, text):
         color_code = colorchooser.askcolor(title=f"Pick a {text}")
