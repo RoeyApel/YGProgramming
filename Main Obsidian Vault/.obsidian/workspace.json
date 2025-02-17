@@ -11,12 +11,14 @@
             "id": "cd17c80ad34a6f6e",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "יג/עוד/מערכת שעות.png"
+                "file": "יג/עוד/מידע כללי.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "מערכת שעות"
+              "icon": "lucide-file",
+              "title": "מידע כללי"
             }
           }
         ]
@@ -163,11 +165,11 @@
   },
   "active": "cd17c80ad34a6f6e",
   "lastOpenFiles": [
+    "יג/עוד/מערכת שעות.png",
     "יג/עוד/לוח מבחנים.jpeg",
     "To Do.md",
     "יג/מקצועות/שפת Java/Java Project.md",
     "יג/מקצועות/שפת Java/Java Project Al Support.md",
-    "יג/עוד/מערכת שעות.png",
     "יג/עוד/מידע כללי.md",
     "יג/Current Test.md",
     "יג/עוד/Random Questions.md",

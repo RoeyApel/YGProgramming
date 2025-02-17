@@ -8,6 +8,15 @@ class Colors:
     BLACK = "#1A1A1A"
     BLACK_LIGHT = "#2B2B2B"
 
+    WHITE = "#FFFFFF"
+    WHITE_SMOKE = "#F5F5F5"
+    SNOW = "#FFFAFA"
+    IVORY = "#FFFFF0"
+    SEASHELL = "#FFF5EE"
+    GHOST_WHITE = "#F8F8FF"
+    FLORAL_WHITE = "#FFFAF0"
+    ANTIQUE_WHITE = "#FAEBD7"
+
     # Background Colors (light tones):
     BG_LIGHT = "#F5F5F5"  # Soft off-white background
     BG_MEDIUM = "#E0E0E0"  # Neutral light gray
@@ -37,3 +46,6 @@ class Options(Enum):
     TEXT_BOX = 6
     ARROW = 7
     SELECTOR = 8
+    BG_COLOR = 9
+    BR_COLOR = 10
+    TXT_COLOR = 11
