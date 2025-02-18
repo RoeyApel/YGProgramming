@@ -48,194 +48,311 @@ A hotel managing rooms, guests, bookings, and staff.
 - A **guest** can have multiple **bookings**, and a **booking** can include multiple **services**.
 - **Rooms** are assigned to **bookings** and their status updates dynamically.
 
-### **Additional Tables Options for the Database**
-#### **1. Payment Information**
+----
+## 1. Database Tables and Their Structure
 
-To handle payments for bookings and services.
+### **Guests Table**
 
-- **Columns:**
-    - `payment_id` (Primary Key)
-    - `booking_id` (Foreign Key)
-    - `amount`
-    - `payment_date`
-    - `payment_method` (e.g., Credit Card, Cash, Online)
-    - `status` (e.g., Paid, Pending, Failed)
+This table stores information about every guest staying at the hotel.
 
----
+sql
 
-#### **2. Amenities**
+CopyEdit
 
-To manage the amenities provided by the hotel.
+`CREATE TABLE Guests (     guest_id INT AUTO_INCREMENT PRIMARY KEY,     first_name VARCHAR(50) NOT NULL,     last_name VARCHAR(50) NOT NULL,     email VARCHAR(100) UNIQUE,     phone VARCHAR(20),     address VARCHAR(255),     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP );`
 
-- **Columns:**
-    - `amenity_id` (Primary Key)
-    - `amenity_name` (e.g., WiFi, Swimming Pool, Gym)
-    - `description`
-    - `availability` (e.g., Yes/No)
+- **Usage:** Referenced by the **Reservations** table to link a booking to a specific guest.
 
 ---
 
-#### **3. Room Maintenance**
+### **Rooms Table**
 
-To track maintenance schedules for rooms.
+This table contains details about the hotel rooms.
 
-- **Columns:**
-    - `maintenance_id` (Primary Key)
-    - `room_id` (Foreign Key)
-    - `issue_reported`
-    - `report_date`
-    - `repair_date`
-    - `status` (e.g., Pending, In Progress, Resolved)
-    - `maintenance_cost`
+sql
 
----
+CopyEdit
 
-#### **4. Inventory**
+`CREATE TABLE Rooms (     room_id INT AUTO_INCREMENT PRIMARY KEY,     room_number VARCHAR(10) UNIQUE NOT NULL,     room_type VARCHAR(50),     capacity INT,     price DECIMAL(10,2),     status ENUM('available', 'occupied', 'maintenance') DEFAULT 'available' );`
 
-To manage the stock of items used in the hotel.
-
-- **Columns:**
-    - `item_id` (Primary Key)
-    - `item_name` (e.g., Towels, Bedsheets, Toiletries)
-    - `quantity_in_stock`
-    - `restock_date`
-    - `supplier_name`
+- **Usage:** Linked to reservations via the **ReservationRooms** join table.
 
 ---
 
-#### **5. Employee Schedule**
+### **Employees Table**
 
-To organize employee shifts.
+This table holds information about hotel employees.
 
-- **Columns:**
-    - `schedule_id` (Primary Key)
-    - `staff_id` (Foreign Key)
-    - `shift_date`
-    - `shift_time` (e.g., Morning, Afternoon, Night)
-    - `role` (e.g., Receptionist, Housekeeper)
+sql
 
----
+CopyEdit
 
-#### **6. Feedback**
+`CREATE TABLE Employees (     employee_id INT AUTO_INCREMENT PRIMARY KEY,     first_name VARCHAR(50) NOT NULL,     last_name VARCHAR(50) NOT NULL,     position VARCHAR(50),     email VARCHAR(100) UNIQUE,     phone VARCHAR(20),     hire_date DATE );`
 
-To record customer reviews and feedback.
-
-- **Columns:**
-    - `feedback_id` (Primary Key)
-    - `guest_id` (Foreign Key)
-    - `booking_id` (Foreign Key)
-    - `rating` (1-5 stars)
-    - `comments`
-    - `feedback_date`
+- **Usage:** Referenced by the **Services** table to record which employee provided a particular service (if applicable).
 
 ---
 
-#### **7. Promotions**
+### **Reservations Table**
 
-To manage discounts and promotional offers.
+This table records reservation details and links a reservation to a guest. (Note: Room associations are handled in the join table.)
 
-- **Columns:**
-    - `promotion_id` (Primary Key)
-    - `promotion_name`
-    - `discount_percentage`
-    - `start_date`
-    - `end_date`
-    - `applicable_rooms` (e.g., Suite, Deluxe)
+sql
 
----
+CopyEdit
 
-#### **8. Event Management**
+`CREATE TABLE Reservations (     reservation_id INT AUTO_INCREMENT PRIMARY KEY,     guest_id INT NOT NULL,     check_in_date DATE NOT NULL,     check_out_date DATE NOT NULL,     number_of_guests INT,     status ENUM('booked', 'checked_in', 'checked_out', 'cancelled') DEFAULT 'booked',     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,     FOREIGN KEY (guest_id) REFERENCES Guests(guest_id) );`
 
-To handle events hosted at the hotel (e.g., weddings, conferences).
-
-- **Columns:**
-    - `event_id` (Primary Key)
-    - `event_name`
-    - `guest_id` (Foreign Key)
-    - `event_date`
-    - `venue`
-    - `number_of_guests`
-    - `total_cost`
+- **Usage:** Each reservation is linked to one guest and may include multiple rooms and additional services.
 
 ---
 
-#### **9. Dining Services**
+### **ReservationRooms Table (Join Table)**
 
-To track dining orders placed by guests.
+This join table establishes a many-to-many relationship between **Reservations** and **Rooms**.
 
-- **Columns:**
-    - `order_id` (Primary Key)
-    - `guest_id` (Foreign Key)
-    - `room_id` (Foreign Key)
-    - `order_date`
-    - `order_details` (e.g., Food Items)
-    - `total_cost`
-    - `status` (e.g., Delivered, Pending)
+sql
 
----
+CopyEdit
 
-#### **10. Loyalty Program**
+`CREATE TABLE ReservationRooms (     reservation_room_id INT AUTO_INCREMENT PRIMARY KEY,     reservation_id INT NOT NULL,     room_id INT NOT NULL,     FOREIGN KEY (reservation_id) REFERENCES Reservations(reservation_id),     FOREIGN KEY (room_id) REFERENCES Rooms(room_id),     UNIQUE (reservation_id, room_id)  -- Prevents duplicate room entries for the same reservation );`
 
-To manage loyal customers and their rewards.
-
-- **Columns:**
-    - `loyalty_id` (Primary Key)
-    - `guest_id` (Foreign Key)
-    - `loyalty_points`
-    - `tier` (e.g., Bronze, Silver, Gold)
-    - `last_updated`
+- **Usage:** Allows one reservation to include multiple rooms and each room to be associated with multiple reservations over time.
 
 ---
 
-#### **11. Transportation Services**
+### **Services Table**
 
-To manage transportation arrangements for guests.
+This table records additional services (e.g., room service, spa treatments) provided during a guest’s stay. It maintains a one-to-many relationship with **Reservations**.
 
-- **Columns:**
-    - `transport_id` (Primary Key)
-    - `guest_id` (Foreign Key)
-    - `pickup_location`
-    - `dropoff_location`
-    - `vehicle_type` (e.g., Car, Van)
-    - `price`
-    - `status` (e.g., Scheduled, Completed)
+sql
 
----
+CopyEdit
 
-#### **12. Room Packages**
+`CREATE TABLE Services (     service_id INT AUTO_INCREMENT PRIMARY KEY,     reservation_id INT NOT NULL,     employee_id INT,  -- Optional: employee who provided the service     service_name VARCHAR(100) NOT NULL,     description TEXT,     cost DECIMAL(10,2),     service_date DATE,     FOREIGN KEY (reservation_id) REFERENCES Reservations(reservation_id),     FOREIGN KEY (employee_id) REFERENCES Employees(employee_id) );`
 
-To manage bundled offerings (e.g., honeymoon package, family package).
-
-- **Columns:**
-    - `package_id` (Primary Key)
-    - `package_name`
-    - `included_amenities`
-    - `price`
-    - `validity_period`
+- **Usage:** Each service record is directly linked to one reservation. Optionally, it also records which employee delivered the service.
 
 ---
 
-#### **13. Reservation Waitlist**
+### **Reviews Table**
 
-To manage guests on a waitlist when rooms are fully booked.
+This table captures guest feedback related to their reservation.
 
-- **Columns:**
-    - `waitlist_id` (Primary Key)
-    - `guest_id` (Foreign Key)
-    - `room_type`
-    - `request_date`
-    - `status` (e.g., Pending, Confirmed)
+sql
+
+CopyEdit
+
+`CREATE TABLE Reviews (`
+    `review_id INT AUTO_INCREMENT PRIMARY KEY,`
+    `reservation_id INT NOT NULL,`
+    `rating TINYINT NOT NULL,  -- e.g., a rating from 1 to 5`
+    `comment TEXT,`
+    `review_date DATE NOT NULL,`
+    `FOREIGN KEY (reservation_id) REFERENCES Reservations(reservation_id)`
+    `-- Optionally, add UNIQUE(reservation_id) to enforce one review per reservation`
+`);`
+
+
+- **Usage:** Links guest feedback to a specific reservation.
 
 ---
 
-#### **14. Room Upgrades**
+## 2. Explanation of Relationships
 
-To manage room upgrade requests.
+1. **Guests ↔ Reservations (One-to-Many):**
+    
+    - **What It Means:** One guest can have multiple reservations.
+    - **Implementation:** The **Reservations** table includes a foreign key (`guest_id`) referencing the **Guests** table.
+2. **Rooms ↔ Reservations (Many-to-Many):**
+    
+    - **What It Means:** A reservation can include multiple rooms (e.g., booking several rooms at once), and a single room can appear in multiple reservations at different times.
+    - **Implementation:** The **ReservationRooms** join table links `reservation_id` (from **Reservations**) and `room_id` (from **Rooms**).
+3. **Reservations ↔ Services (One-to-Many):**
+    
+    - **What It Means:** Each reservation can have multiple additional service records (such as several room service orders), but each service record is associated with one reservation.
+    - **Implementation:** The **Services** table includes a foreign key (`reservation_id`) referencing **Reservations**.
+4. **Employees ↔ Services (One-to-Many, Optional):**
+    
+    - **What It Means:** An employee may provide multiple services across different reservations.
+    - **Implementation:** The **Services** table optionally includes an `employee_id` that references **Employees**.
+5. **Reservations ↔ Reviews (One-to-One/One-to-Many):**
+    
+    - **What It Means:** Each review is tied to a reservation to capture guest feedback.
+    - **Implementation:** The **Reviews** table includes a foreign key (`reservation_id`) referencing **Reservations**.
 
-- **Columns:**
-    - `upgrade_id` (Primary Key)
-    - `guest_id` (Foreign Key)
-    - `current_room_id` (Foreign Key)
-    - `requested_room_type`
-    - `upgrade_cost`
-    - `status` (e.g., Approved, Denied)
+---
+
+## 3. How to Use This Schema
+
+- **Creating a New Reservation:**  
+    Insert a record into the **Reservations** table with the guest’s `guest_id`, check-in/check-out dates, and other details. For each room booked under that reservation, insert a record into the **ReservationRooms** table linking the reservation with the corresponding `room_id`.
+    
+- **Recording Service Usage:**  
+    When a guest uses an additional service, insert a record into the **Services** table linked to the appropriate `reservation_id`. Optionally, record the `employee_id` if a staff member provided the service.
+    
+- **Collecting Guest Reviews:**  
+    After their stay, guest feedback is recorded in the **Reviews** table linked to the respective `reservation_id`.
+    
+- **Managing Room Availability:**  
+    The **Rooms** table tracks each room's status (available, occupied, or under maintenance). Application logic should prevent overlapping bookings for the same room.
+---
+---
+## 1. Database Tables and Their Structure
+
+### **Guests Table**
+
+This table stores information about every guest staying at the hotel.
+
+sql
+
+CopyEdit
+
+`CREATE TABLE Guests (     guest_id INT AUTO_INCREMENT PRIMARY KEY,     first_name VARCHAR(50) NOT NULL,     last_name VARCHAR(50) NOT NULL,     email VARCHAR(100) UNIQUE,     phone VARCHAR(20),     address VARCHAR(255),     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP );`
+
+- **Key Field:** `guest_id` uniquely identifies each guest.
+- **Usage:** Referenced by the Reservations table to link a booking to a specific guest.
+
+---
+
+### **Rooms Table**
+
+This table contains details about the hotel rooms.
+
+sql
+
+CopyEdit
+
+`CREATE TABLE Rooms (     room_id INT AUTO_INCREMENT PRIMARY KEY,     room_number VARCHAR(10) UNIQUE NOT NULL,     room_type VARCHAR(50),     capacity INT,     price DECIMAL(10,2),     status ENUM('available', 'occupied', 'maintenance') DEFAULT 'available' );`
+
+- **Key Field:** `room_id` uniquely identifies each room.
+- **Usage:** The Reservations table uses `room_id` to assign a specific room to a reservation.
+
+---
+
+### **Employees Table**
+
+This table holds information about hotel employees.
+
+sql
+
+CopyEdit
+
+`CREATE TABLE Employees (     employee_id INT AUTO_INCREMENT PRIMARY KEY,     first_name VARCHAR(50) NOT NULL,     last_name VARCHAR(50) NOT NULL,     position VARCHAR(50),     email VARCHAR(100) UNIQUE,     phone VARCHAR(20),     hire_date DATE );`
+
+- **Key Field:** `employee_id` uniquely identifies each employee.
+- **Usage:** This table is referenced in the **Reservation_Services** table to record which employee provided a particular service (if applicable).
+
+---
+
+### **Reservations Table**
+
+This table records reservation details, linking guests to rooms.
+
+sql
+
+CopyEdit
+
+`CREATE TABLE Reservations (     reservation_id INT AUTO_INCREMENT PRIMARY KEY,     guest_id INT NOT NULL,     room_id INT NOT NULL,     check_in_date DATE NOT NULL,     check_out_date DATE NOT NULL,     number_of_guests INT,     status ENUM('booked', 'checked_in', 'checked_out', 'cancelled') DEFAULT 'booked',     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,     FOREIGN KEY (guest_id) REFERENCES Guests(guest_id),     FOREIGN KEY (room_id) REFERENCES Rooms(room_id) );`
+
+- **Key Fields and Relationships:**
+    - **`guest_id`:** Associates each reservation with one guest.
+    - **`room_id`:** Assigns a specific room to the reservation.
+
+---
+
+### **Reviews Table**
+
+This table captures guest feedback related to their reservation.
+
+sql
+
+CopyEdit
+
+`CREATE TABLE Reviews (     review_id INT AUTO_INCREMENT PRIMARY KEY,     reservation_id INT NOT NULL,     rating TINYINT NOT NULL,  -- e.g., a rating from 1 to 5     comment TEXT,     review_date DATE NOT NULL,     FOREIGN KEY (reservation_id) REFERENCES Reservations(reservation_id)     -- Optionally, add UNIQUE(reservation_id) to enforce one review per reservation );`
+
+- **Key Field:** `review_id` uniquely identifies each review.
+- **Usage:** Links guest feedback to a specific reservation.
+
+---
+
+### **ServiceCatalog Table**
+
+This table lists all the available service types offered by the hotel.
+
+sql
+
+CopyEdit
+
+`CREATE TABLE ServiceCatalog (     service_catalog_id INT AUTO_INCREMENT PRIMARY KEY,     service_name VARCHAR(100) NOT NULL,     description TEXT,     base_cost DECIMAL(10,2) );`
+
+- **Key Field:** `service_catalog_id` uniquely identifies each service type.
+- **Usage:** Defines the available services that can be used in any reservation.
+
+---
+
+### **Reservation_Services Table**
+
+This join table links reservations with services from the catalog, effectively modeling a many-to-many relationship. It also optionally records which employee provided the service and any specific details for that service usage.
+
+sql
+
+CopyEdit
+
+`CREATE TABLE Reservation_Services (     reservation_service_id INT AUTO_INCREMENT PRIMARY KEY,     reservation_id INT NOT NULL,     service_catalog_id INT NOT NULL,     employee_id INT,  -- Optional: employee who provided the service     actual_cost DECIMAL(10,2),     service_date DATE,     FOREIGN KEY (reservation_id) REFERENCES Reservations(reservation_id),     FOREIGN KEY (service_catalog_id) REFERENCES ServiceCatalog(service_catalog_id),     FOREIGN KEY (employee_id) REFERENCES Employees(employee_id) );`
+
+- **Key Field:** `reservation_service_id` uniquely identifies each service usage record.
+- **Usage:**
+    - **`reservation_id`:** Links the service usage to a specific reservation.
+    - **`service_catalog_id`:** Connects the service to the predefined service catalog entry.
+    - **`employee_id`:** Optionally records which employee provided the service.
+
+---
+
+## 2. Explanation of Relationships
+
+1. **Guests ↔ Reservations (One-to-Many):**
+    
+    - **What It Means:** A single guest (identified by `guest_id` in the Guests table) can have multiple reservations over time. Each reservation is linked to exactly one guest.
+    - **Implementation:** The Reservations table includes a foreign key (`guest_id`) referencing the Guests table.
+2. **Rooms ↔ Reservations (One-to-Many):**
+    
+    - **What It Means:** Each room (identified by `room_id` in the Rooms table) can be booked many times over different periods. Every reservation is associated with one specific room.
+    - **Implementation:** The Reservations table includes a foreign key (`room_id`) referencing the Rooms table.
+3. **Reservations ↔ Reviews (One-to-One/One-to-Many):**
+    
+    - **What It Means:** Each review is associated with a reservation, capturing guest feedback for that stay. Depending on your requirements, you might enforce one review per reservation or allow multiple.
+    - **Implementation:** The Reviews table includes a foreign key (`reservation_id`) referencing the Reservations table.
+4. **Reservations ↔ Reservation_Services (Many-to-Many via Join Table):**
+    
+    - **What It Means:** A single reservation can include multiple service usages (for example, multiple room service orders or spa treatments), and each service from the catalog can be applied to many reservations.
+    - **Implementation:**
+        - The **Reservation_Services** table links a reservation to a service from the **ServiceCatalog** using foreign keys.
+        - This join table enables tracking of each service instance during a guest’s stay, including any adjustments to cost or specific service dates.
+5. **ServiceCatalog ↔ Reservation_Services (One-to-Many):**
+    
+    - **What It Means:** A predefined service (such as “Room Service”) can appear in many reservation service records.
+    - **Implementation:** The **Reservation_Services** table includes a foreign key (`service_catalog_id`) that references the **ServiceCatalog** table.
+6. **Employees ↔ Reservation_Services (One-to-Many, Optional):**
+    
+    - **What It Means:** An employee (identified by `employee_id` in the Employees table) may provide multiple services. Each record in **Reservation_Services** can optionally record which employee delivered that service.
+    - **Implementation:** The **Reservation_Services** table includes an optional foreign key (`employee_id`) that references the Employees table.
+
+---
+
+## 3. How to Use This Schema
+
+- **Creating a New Reservation:**  
+    Insert a record into the **Reservations** table with the guest’s `guest_id` and the desired `room_id`, along with check-in and check-out dates.
+    
+- **Recording Service Usage:**  
+    When a guest uses an extra service during their stay, first ensure the service exists in the **ServiceCatalog**. Then, insert a record into **Reservation_Services** linking the relevant `reservation_id` with the corresponding `service_catalog_id`. Optionally, record the `employee_id` if an employee provided the service, along with the actual cost and service date.
+    
+- **Collecting Guest Reviews:**  
+    After their stay, a guest’s feedback is recorded in the **Reviews** table, linked to the specific reservation.
+    
+- **Managing Room Availability:**  
+    The **Rooms** table tracks the status of each room (available, occupied, or under maintenance) to help avoid double-booking.
+    
+- **Employee Service Tracking:**  
+    The link between **Employees** and **Reservation_Services** allows you to monitor which staff members are delivering additional services, aiding in performance tracking and accountability.
