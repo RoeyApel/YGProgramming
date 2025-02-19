@@ -89,39 +89,5 @@ public class Computer {
         return path;
     }
 
-    // public boolean canReachGoal(int row, int col, int winningRow) {
-    // return dfsHasPath(row, col, winningRow);
-    // }
 
-    // private boolean dfsHasPath(int startRow, int startCol, int targetRow) {
-    // HashSet<Vertex> visited = new HashSet<>();
-    // Stack<Vertex> stack = new Stack<>();
-
-    // Vertex current = new Vertex(startRow, startCol);
-
-    // stack.add(current);
-
-    // while (!stack.isEmpty()) {
-    // current = stack.pop();
-
-    // if (visited.contains(current)) {
-    // continue;
-    // }
-
-    // visited.add(current);
-
-    // if (current.row == targetRow) {
-    // return true;
-    // }
-
-    // for (Move move : board.getLegalMoves(current)) {
-    // Vertex vertex = new Vertex(move.getTarget());
-
-    // if (!visited.contains(vertex)) {
-    // stack.add(vertex);
-    // }
-    // }
-    // }
-    // return false;
-    // }
 }
