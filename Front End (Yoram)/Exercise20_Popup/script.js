@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", startTimer);
 
 function startTimer() {
   setInterval(updateTimer, 1000);
-  setTimeout(openPopup, 5000);
+  setTimeout(openPopup, 2000);
 }
 
 function updateTimer() {
