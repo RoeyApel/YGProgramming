@@ -7,6 +7,8 @@ from constants import Colors, Options
 
 from tkinter import colorchooser
 
+from utils import show_error
+
 
 class NavBar(ctk.CTkFrame):
     def __init__(self, master):
@@ -30,7 +32,8 @@ class NavBar(ctk.CTkFrame):
         self.properties_buttons.append(self.create_color_picker_btn("bg_color", Options.BG_COLOR, Colors.BG_LIGHT))
         self.properties_buttons.append(self.create_color_picker_btn("br_color", Options.BR_COLOR, Colors.BORDER_MEDIUM))
         self.properties_buttons.append(self.create_color_picker_btn("txt_color", Options.TXT_COLOR, Colors.TEXT_MAIN))
-        self.properties_buttons.append(self.create_size_picker_btn("change size", Colors.TEXT_SECONDARY))
+        self.properties_buttons.append(self.create_add_text_btn("Add Text", Options.TXT_COLOR, Colors.TEXT_MAIN))
+        self.properties_buttons.append(self.create_size_picker_btn("Change Size\nsize: 2", Colors.TEXT_SECONDARY))
         # events binding
         self.master.bind_all("<w>", lambda event: self.on_select(self.selection_buttons[7], Options.SELECTOR))
 
@@ -65,15 +68,20 @@ class NavBar(ctk.CTkFrame):
     def create_size_picker_btn(self, text, fg_color):
         btn = ctk.CTkButton(self, width=50, height=40, text=text, corner_radius=5,
                             fg_color=fg_color, hover_color=Colors.FLORAL_WHITE, text_color=Colors.BLACK)
-        btn.configure(command=self.on_size_pick)
+        btn.configure(command=lambda: self.on_size_pick(btn))
         return btn
 
-    def on_size_pick(self):
-        dialog = CTkInputDialog(title="pick a size:")
+    def on_size_pick(self, btn):
+        dialog = CTkInputDialog(title="size picker", text="pick a size:")
         try:
-            self.app.canvas.selected_thickness = int(dialog.get_input())
+            size = dialog.get_input()
+            if not size:
+                return
+            size = int(size)
+            self.app.canvas.selected_thickness = size
+            btn.configure(text=f"Change Size\nsize: {size}")
         except:
-            print("not a num")
+            show_error("Invaild Input!")
 
     def on_color_pick(self, btn, option, text):
         color_code = colorchooser.askcolor(title=f"Pick a {text}")
@@ -88,3 +96,18 @@ class NavBar(ctk.CTkFrame):
             self.app.canvas.selected_bg_color = color_code[1]
         elif option == Options.TXT_COLOR:
             self.app.canvas.selected_txt_color = color_code[1]
+
+    def create_add_text_btn(self, text, option, fg_color):
+        btn = ctk.CTkButton(self, width=50, height=40, text=text, corner_radius=5,
+                            fg_color=fg_color, hover_color=Colors.FLORAL_WHITE, text_color=Colors.BLACK)
+        btn.configure(command=self.on_adding_text)
+        return btn
+
+    def on_adding_text(self):
+        dialog = CTkInputDialog(title="Add text", text="Enter Text:")
+        text = dialog.get_input()
+
+        if not text:
+            return
+
+        print(text)

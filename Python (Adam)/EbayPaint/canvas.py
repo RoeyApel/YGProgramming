@@ -86,11 +86,12 @@ class Canvas(tk.Canvas):
                 self.current_selected_drawing.resized = False
             return
 
-        self.current_drawing.on_place(self.last_z_index + 1)
-        self.last_z_index += 1
+        if self.current_drawing:
+            self.current_drawing.on_place(self.last_z_index + 1)
+            self.last_z_index += 1
 
-        self.drawings.append(self.current_drawing)
-        self.current_drawing = None
+            self.drawings.append(self.current_drawing)
+            self.current_drawing = None
 
     def on_mouse_moving(self, event):
         if not self.mouse_pressed:
