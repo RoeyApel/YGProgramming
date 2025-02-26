@@ -9,7 +9,7 @@ class App(ctk.CTk):
     def __init__(self):
         super().__init__()
         # window config
-        self.title = "EbayPaint"
+        self.title("EbayPaint")
         self.center_window(1300, 800)
 
         # components
@@ -37,17 +37,3 @@ class App(ctk.CTk):
 if __name__ == '__main__':
     app = App()
     app.mainloop()
-
-# app = ctk.CTk()
-# app.geometry("400x300")
-#
-#
-# def button_click_event():
-#     dialog = ctk.CTkInputDialog(text="Type in a number:", title="Test")
-#     print("Number:", dialog.get_input())
-#
-#
-# button = ctk.CTkButton(app, text="Open Dialog", command=button_click_event)
-# button.pack(padx=20, pady=20)
-#
-# app.mainloop()

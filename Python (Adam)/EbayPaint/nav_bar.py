@@ -69,7 +69,11 @@ class NavBar(ctk.CTkFrame):
         return btn
 
     def on_size_pick(self):
-        pass
+        dialog = CTkInputDialog(title="pick a size:")
+        try:
+            self.app.canvas.selected_thickness = int(dialog.get_input())
+        except:
+            print("not a num")
 
     def on_color_pick(self, btn, option, text):
         color_code = colorchooser.askcolor(title=f"Pick a {text}")
