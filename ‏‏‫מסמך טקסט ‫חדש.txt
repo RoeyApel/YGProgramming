@@ -1,0 +1,91 @@
+#define _CRT_SECURE_NO_WARNINGS
+
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+	long id;
+	char name[30];
+	float avg;
+	int grades[7];
+
+}studentRec, * studentPtr;
+
+void main() {
+
+}
+
+void func1(char* filename, studentRec** arr, int* arrsize) {
+	FILE* fstudents = fopen(filename, "rb");
+
+	if (!fstudents) {
+		puts("error");
+		exit(3);
+	}
+
+	fseek(fstudents, 0, SEEK_END);
+	*arrsize = ftell(fstudents) / sizeof(studentRec);
+
+	*arr = (studentPtr)malloc(sizeof(studentRec) * *arrsize);
+
+	fseek(fstudents, 0, SEEK_SET);
+	fread(*arr, sizeof(studentRec), *arrsize, fstudents);
+
+	fclose(fstudents);
+
+	qsort(*arr, *arrsize, sizeof(studentRec), avg_cmp);
+}
+
+void func2(studentRec** arr1, int* size1, studentRec** arr2, int* size2, studentRec** arr3, int* size3) {
+	int i;
+	for (i = 0; i < *size1 && (*arr1)[i].avg <= 50; i++)
+	{
+		*arr2 = (studentPtr)realloc(*arr2, sizeof(studentRec) * ++(*size2));
+		(*arr2)[*size2 - 1] = (*arr1)[i];
+	}
+
+	int offset = i;
+	for (; i < *size1 && (*arr1)[i].avg <= 85; i++)
+	{
+		(*arr1)[i - offset] = (*arr1)[i];
+	}
+	int arr1_final_size = i - offset;
+	for (; i < *size1; i++)
+	{
+		*arr3 = (studentPtr)realloc(*arr3, sizeof(studentRec) * ++(*size3));
+		(*arr3)[*size3 - 1] = (*arr3)[i];
+	}
+
+	*arr1 = (studentPtr)realloc(*arr1, sizeof(studentRec) * arr1_final_size);
+}
+
+void func3(studentRec* arr, int size, char* filename) {
+	FILE* fp = fopen(filename, "wb");
+
+	fwrite(arr, sizeof(studentRec), size, fp);
+
+	fclose(fp);
+}
+
+void func4(studentRec** arr, int* size, float avg) {
+	studentRec temp;
+	temp.avg = avg;
+
+	studentPtr addr = (studentPtr)bsearch(&temp, *arr, *size, sizeof(studentRec), avg_cmp);
+
+
+}
+
+int avg_cmp(void* a, void* b) {
+	studentRec* sa = (studentRec*)a;
+	studentRec* sb = (studentRec*)b;
+
+	if (sa->avg > sb->avg) {
+		return 1;
+	}
+	if (sb->avg > sa->avg) {
+		return -1;
+	}
+	return 0;
+}
+
