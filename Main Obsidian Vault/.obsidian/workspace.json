@@ -11,14 +11,12 @@
             "id": "cd17c80ad34a6f6e",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "יג/עוד/מידע כללי.md",
-                "mode": "source",
-                "source": false
+                "file": "יג/עוד/מערכת שעות.png"
               },
-              "icon": "lucide-file",
-              "title": "מידע כללי"
+              "icon": "lucide-image",
+              "title": "מערכת שעות"
             }
           }
         ]
@@ -165,15 +163,15 @@
   },
   "active": "cd17c80ad34a6f6e",
   "lastOpenFiles": [
+    "Pasted image 20250217174817.png",
+    "יג/עוד/מידע כללי.md",
     "יג/מקצועות/סטטיסטיקה והסתברות/טבלת התפלגות נורמלית - Z.pdf",
     "יג/מקצועות/בסיסי נתונים - SQL/SQL Project.md",
     "יג/מקצועות/בסיסי נתונים - SQL/בסיסי נתונים - SQL.md",
     "יג/עוד/Random Questions.md",
     "Pasted image 20250217181241.png",
-    "Pasted image 20250217174817.png",
     "Pasted image 20250217172956.png",
     "Pasted image 20250217172233.png",
-    "יג/עוד/מידע כללי.md",
     "יג/עוד/מערכת שעות.png",
     "יג/עוד/לוח מבחנים.jpeg",
     "To Do.md",
