@@ -1,6 +1,9 @@
+import threading
+
 import customtkinter as ctk
 
 from canvas import Canvas
+from meta import save_as_json, load_save
 
 from nav_bar import NavBar
 
@@ -12,6 +15,10 @@ class App(ctk.CTk):
         self.title("EbayPaint")
         self.center_window(1300, 800)
 
+        # events bindings
+        self.bind_all("<Control-s>", lambda event: self.save(event))
+        self.bind_all("<Control-l>", lambda event: self.load_save(event))
+
         # components
         self.nav_bar = NavBar(self)
         self.canvas = Canvas(self)
@@ -19,7 +26,7 @@ class App(ctk.CTk):
         # grid config
         self.columnconfigure(0, weight=1, uniform="a")
         self.rowconfigure(0, weight=1, uniform="a")
-        self.rowconfigure(1, weight=10, uniform="a")
+        self.rowconfigure(1, weight=13, uniform="a")
 
         # grid placement
         self.nav_bar.grid(column=0, row=0, sticky="nswe")
@@ -32,6 +39,14 @@ class App(ctk.CTk):
         x = (screen_width - width) // 2
         y = (screen_height - height) // 2
         self.geometry(f"{width}x{height}+{x}+{y}")
+
+    def save(self, event):
+        thread = threading.Thread(target=save_as_json, args=(self.canvas.drawings, self.canvas.canvas_color))
+        thread.start()
+
+    def load_save(self, event):
+        thread = threading.Thread(target=load_save, args=("save.json", self.canvas))
+        thread.start()
 
 
 if __name__ == '__main__':

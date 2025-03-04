@@ -49,3 +49,15 @@ class Options(Enum):
     BG_COLOR = 9
     BR_COLOR = 10
     TXT_COLOR = 11
+    CANVAS_COLOR = 12
+
+
+@dataclass(frozen=True)
+class Types:
+    LINE = "line"
+    RECT = "rect"
+    OVAL = "oval"
+    TRIANGLE = "triangle"
+    RIGHT_TRIANGLE = "right_triangle"
+    TEXT_BOX = "text_box"
+    ARROW = "arrow"

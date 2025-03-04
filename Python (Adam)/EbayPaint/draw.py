@@ -1,14 +1,16 @@
+from math import log10
 from os import write
 from typing import override
 
 import customtkinter as ctk
 from utils import Point
 
-from constants import Options
+from constants import Options, Types
 
 
 class Drawable:
     def __init__(self, canvas):
+        self.type = "---"
         self.id = -1
         self.z_index = -1
         self.hitbox = Hitbox()
@@ -22,6 +24,7 @@ class Drawable:
 class Line(Drawable):
     def __init__(self, canvas, thickness, color):
         super().__init__(canvas)
+        self.type = Types.LINE
         self.x1 = self.x2 = self.y1 = self.y2 = 0
         self.thickness = thickness
         self.color = color
@@ -90,12 +93,16 @@ class Line(Drawable):
     def has_clicked_corner(self, mouse):
         return self.hitbox.has_clicked_corner(self.x2, self.y2, mouse)
 
-    def __str__(self):
-        return f"x1: {self.x1},y1: {self.y1},x2: {self.x2},y2: {self.y2}"
+    def update_style(self, thickness, color):
+        self.thickness = thickness
+        self.color = color
+        self.canvas.itemconfig(self.id, width=self.thickness,
+                               fill=self.color)
 
 
 class Arrow(Line):
     def __init__(self, canvas, thickness, color):
+        self.type = Types.ARROW
         super().__init__(canvas, thickness, color)
 
     @override
@@ -105,7 +112,7 @@ class Arrow(Line):
         self.id = self.canvas.create_line((self.x1, self.y1, self.x2, self.y2),
                                           width=self.thickness,
                                           fill=self.color,
-                                          arrow="last")
+                                          arrow="last", arrowshape=(64, 80, 24))
 
     @override
     def draw(self, x1, y1, x2, y2):
@@ -120,6 +127,7 @@ class Arrow(Line):
 class Rect(Drawable):
     def __init__(self, canvas, thickness, bg_color, outline_color):
         super().__init__(canvas)
+        self.type = Types.RECT
         self.x1 = self.x2 = self.y1 = self.y2 = 0
         self.width = self.height = 0
         self.thickness = thickness
@@ -195,10 +203,18 @@ class Rect(Drawable):
     def has_clicked_corner(self, mouse):
         return self.hitbox.has_clicked_corner(self.x2, self.y2, mouse)
 
+    def update_style(self, thickness, bg_color, outline_color):
+        self.thickness = thickness
+        self.bg_color = bg_color
+        self.outline_color = outline_color
+        self.canvas.itemconfig(self.id, width=self.thickness,
+                               fill=self.bg_color, outline=self.outline_color)
+
 
 class Oval(Drawable):
     def __init__(self, canvas, thickness, bg_color, outline_color):
         super().__init__(canvas)
+        self.type = Types.OVAL
         self.x1 = self.x2 = self.y1 = self.y2 = 0
         self.radius = 0
         self.thickness = thickness
@@ -274,10 +290,18 @@ class Oval(Drawable):
     def has_clicked_corner(self, mouse):
         return self.hitbox.has_clicked_corner(self.x2, self.y2, mouse)
 
+    def update_style(self, thickness, bg_color, outline_color):
+        self.thickness = thickness
+        self.bg_color = bg_color
+        self.outline_color = outline_color
+        self.canvas.itemconfig(self.id, width=self.thickness,
+                               fill=self.bg_color, outline=self.outline_color)
+
 
 class Triangle(Drawable):
     def __init__(self, canvas, thickness, bg_color, outline_color):
         super().__init__(canvas)
+        self.type = Types.TRIANGLE
         self.x1 = self.x2 = self.y1 = self.y2 = self.x3 = self.y3 = 0
         self.thickness = thickness
         self.bg_color = bg_color
@@ -355,10 +379,18 @@ class Triangle(Drawable):
     def has_clicked_corner(self, mouse):
         return self.hitbox.has_clicked_corner(self.x3, self.y3, mouse)
 
+    def update_style(self, thickness, bg_color, outline_color):
+        self.thickness = thickness
+        self.bg_color = bg_color
+        self.outline_color = outline_color
+        self.canvas.itemconfig(self.id, width=self.thickness,
+                               fill=self.bg_color, outline=self.outline_color)
+
 
 class RightTriangle(Drawable):
     def __init__(self, canvas, thickness, bg_color, outline_color):
         super().__init__(canvas)
+        self.type = Types.RIGHT_TRIANGLE
         self.x1 = self.x2 = self.y1 = self.y2 = self.x3 = self.y3 = 0
         self.thickness = thickness
         self.bg_color = bg_color
@@ -436,57 +468,55 @@ class RightTriangle(Drawable):
     def has_clicked_corner(self, mouse):
         return self.hitbox.has_clicked_corner(self.x3, self.y3, mouse)
 
+    def update_style(self, thickness, bg_color, outline_color):
+        self.thickness = thickness
+        self.bg_color = bg_color
+        self.outline_color = outline_color
+        self.canvas.itemconfig(self.id, width=self.thickness,
+                               fill=self.bg_color, outline=self.outline_color)
+
 
 class TextBox(Drawable):
-    def __init__(self, canvas, font_size, thickness, color):
+    def __init__(self, canvas, text, thickness, color):
         super().__init__(canvas)
-        self.x1 = self.x2 = self.y1 = self.y2 = 0
+        self.type = Types.TEXT_BOX
+        self.x = self.y = 0
         self.width = self.height = 0
         self.thickness = thickness
         self.color = color
-        self.font = ("Helvetica", font_size)
-        self.text_widget = None
-
-    def get_text(self) -> str:
-        if self.text_widget is not None:
-            return self.text_widget.get("1.0", "end-1c")
-        return ""
+        self.font = ("Helvetica", int(thickness * 5))
+        self.text = text
 
     def create(self, x, y):
-        self.x1 = self.x2 = x
-        self.y1 = self.y2 = y
-        self.hitbox.create(self.canvas, x, y)
+        pass
 
     def update_drawing(self, starting_point, mouse):
-        self.x1 = starting_point.x
-        self.y1 = starting_point.y
-        self.x2 = mouse.x
-        self.y2 = mouse.y
-        self.width = abs(self.x1 - self.x2)
-        self.height = abs(self.y1 - self.y2)
+        pass
 
-        new_coords = (self.x1, self.y1, self.x2, self.y2)
-        self.canvas.coords(self.hitbox.id, new_coords)
+    def draw(self, x, y):
+        self.x, self.y = x, y
 
-    def draw(self, x1, y1, x2, y2):
-        self.text_widget = ctk.CTkTextbox(self.canvas.master, width=self.width, height=self.height,
-                                          border_width=self.thickness, font=self.font)
+        self.id = self.canvas.create_text(x, y, text=self.text, font=self.font, fill=self.color)
 
-        self.x1, self.y1 = x1, y1
-        self.x2, self.y2 = x2, y2
-        self.width = abs(self.x1 - self.x2)
-        self.height = abs(self.y1 - self.y2)
+        box = self.canvas.bbox(self.id)
 
-        self.id = self.canvas.create_window((self.x1 + self.width / 2, self.y1 + self.height / 2),
-                                            window=self.text_widget)
+        if box:
+            self.width = box[2] - box[0]
+            self.height = box[3] - box[1]
+            self.hitbox.set(*box)
 
     def on_focus(self, mouse):
+        print("focus")
         self.mouse_x_on_select = mouse.x
         self.mouse_y_on_select = mouse.y
         self.selected = True
-        self.hitbox.draw(self.canvas, self.x1, self.y1, self.x2, self.y2)
+
+        bbox = self.canvas.bbox(self.id)
+        if bbox:
+            self.hitbox.draw(self.canvas, *bbox)
 
     def on_blur(self):
+        print("blur")
         self.selected = False
         self.hitbox.remove(self.canvas)
 
@@ -501,38 +531,34 @@ class TextBox(Drawable):
         self.mouse_y_on_select = mouse.y
 
         coords = self.canvas.coords(self.id)
-        self.x1, self.y1, self.x2, self.y2 = coords
+        self.x, self.y = coords
 
     def on_drop(self, z_index):
         self.z_index = z_index
         self.canvas.lift(self.id)
         if self.resized:
-            self.hitbox.draw(self.canvas, self.x1, self.y1, self.x2, self.y2)
+            self.hitbox.draw(self.canvas, *self.canvas.bbox(self.id))
 
     def on_resize(self, mouse):
-        self.update_drawing(Point(self.x1, self.y1), mouse)
-        self.hitbox.remove(self.canvas)
+        pass
 
     def on_place(self, z_index):
         self.z_index = z_index
-        self.hitbox.remove(self.canvas)
-        self.text_widget = ctk.CTkTextbox(self.canvas.master, width=self.width, height=self.height,
-                                          border_width=self.thickness, font=self.font)
-
-        if self.x1 > self.x2:
-            self.x1, self.x2 = self.x2, self.x1
-
-        if self.y1 > self.y2:
-            self.y1, self.y2 = self.y2, self.y1
-
-        self.id = self.canvas.create_window((self.x1 + self.width / 2, self.y1 + self.height / 2),
-                                            window=self.text_widget)
+        self.canvas.lift(self.id)
+        if self.hitbox.id in self.canvas.find_all():
+            self.hitbox.remove(self.canvas)
 
     def is_hitbox_clicked(self, mouse):
         return self.hitbox.contains(mouse)
 
     def has_clicked_corner(self, mouse):
-        return self.hitbox.has_clicked_corner(self.x2, self.y2, mouse)
+        pass
+
+    def update_style(self, thickness, color):
+        self.thickness = thickness
+        self.color = color
+        self.canvas.itemconfig(self.id, font=("Helvetica", int(self.thickness * 5)),
+                               fill=self.color)
 
 
 class Hitbox:
@@ -586,9 +612,14 @@ class Hitbox:
             self.id = -1
 
     def contains(self, mouse):
+        print(self.x1 < mouse.x < self.x2 and self.y1 < mouse.y < self.y2)
         return self.x1 < mouse.x < self.x2 and self.y1 < mouse.y < self.y2
 
     def has_clicked_corner(self, x, y, mouse):
         size = (self.width + self.height) / 10
         return ((x + size >= mouse.x >= x - size) and
                 (y + size >= mouse.y >= y - size))
+
+    def __str__(self):
+        return (f"Hitbox(id={self.id}, x1={self.x1}, y1={self.y1}, "
+                f"x2={self.x2}, y2={self.y2}, width={self.width}, height={self.height})")
