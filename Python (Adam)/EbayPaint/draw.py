@@ -102,8 +102,8 @@ class Line(Drawable):
 
 class Arrow(Line):
     def __init__(self, canvas, thickness, color):
-        self.type = Types.ARROW
         super().__init__(canvas, thickness, color)
+        self.type = Types.ARROW
 
     @override
     def create(self, x, y):
@@ -121,7 +121,7 @@ class Arrow(Line):
         self.id = self.canvas.create_line((self.x1, self.y1, self.x2, self.y2),
                                           width=self.thickness,
                                           fill=self.color,
-                                          arrow="last")
+                                          arrow="last", arrowshape=(64, 80, 24))
 
 
 class Rect(Drawable):

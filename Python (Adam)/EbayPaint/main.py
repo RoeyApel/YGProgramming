@@ -1,3 +1,4 @@
+import os
 import threading
 
 import customtkinter as ctk
@@ -41,11 +42,17 @@ class App(ctk.CTk):
         self.geometry(f"{width}x{height}+{x}+{y}")
 
     def save(self, event):
-        thread = threading.Thread(target=save_as_json, args=(self.canvas.drawings, self.canvas.canvas_color))
+        app_directory = os.path.dirname(os.path.abspath(__file__))
+        file_path = os.path.join(app_directory, "save.json")
+
+        thread = threading.Thread(target=save_as_json, args=(file_path, self.canvas.drawings, self.canvas.canvas_color))
         thread.start()
 
     def load_save(self, event):
-        thread = threading.Thread(target=load_save, args=("save.json", self.canvas))
+        app_directory = os.path.dirname(os.path.abspath(__file__))
+        file_path = os.path.join(app_directory, "save.json")
+
+        thread = threading.Thread(target=load_save, args=(file_path, self.canvas))
         thread.start()
 
 

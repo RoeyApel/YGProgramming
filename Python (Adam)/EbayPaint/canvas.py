@@ -247,6 +247,7 @@ class Canvas(tk.Canvas):
             self.delete(drawing.id)
 
         self.drawings = []
+        self.change_canvas_color("#ffffff")
 
     def change_canvas_color(self, color):
         self.configure(bg=color)
