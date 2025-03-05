@@ -16,7 +16,7 @@ class Canvas(tk.Canvas):
         self.bind("<ButtonRelease>", lambda event: self.on_mouse_release(event))
         self.bind("<Motion>", lambda event: self.on_mouse_moving(event))
         self.master.bind_all("<Control-z>", lambda event: self.on_undo(event))
-        self.master.bind_all("<Alt-d>", lambda event: self.delete_drawing(event))
+        self.master.bind_all("<Delete>", lambda event: self.delete_drawing(event))
         self.master.bind_all("<Control-a>", lambda event: self.update_selected_drawing(event))
         self.master.bind_all("<Control-d>", lambda event: self.lower_selected_z_index(event))
         self.master.bind_all("<Control-c>", lambda event: self.clear_canvas(event))
@@ -151,7 +151,7 @@ class Canvas(tk.Canvas):
 
     def load_drawings(self, drawings):
         drawings = sorted(drawings, key=lambda item: item["z_index"])
-        print(drawings)
+        self.last_z_index = drawings[len(drawings) - 1]["z_index"] + 1
 
         for drawing in drawings:
             self.draw(drawing)
