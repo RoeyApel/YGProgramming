@@ -43,7 +43,7 @@ class NavBar(ctk.CTkFrame):
         self.properties_buttons.append(self.create_size_picker_btn("Change Size\nsize: 2", Colors.TEXT_SECONDARY))
         # events binding
         self.master.bind_all("<w>", lambda event: self.on_select(self.set_selector_btn, Options.SELECTOR))
-        self.master.bind_all("<Control-a>", lambda event: self.on_adding_text())
+        self.master.bind_all("<Control-b>", lambda event: self.on_adding_text())
         self.master.bind_all("<Control-q>", lambda event: self.on_size_pick(self.add_text_btn))
 
         # grid config
