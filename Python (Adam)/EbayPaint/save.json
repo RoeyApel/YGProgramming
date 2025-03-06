@@ -24,13 +24,13 @@
         },
         {
             "type": "triangle",
-            "z_index": 0,
-            "x1": 697.0,
-            "x2": 520.0,
-            "y1": 215.0,
-            "y2": 406.0,
-            "x3": 874.0,
-            "y3": 406.0,
+            "z_index": 74,
+            "x1": 920.0,
+            "x2": 743.0,
+            "y1": 72.0,
+            "y2": 263.0,
+            "x3": 1097.0,
+            "y3": 263.0,
             "thickness": 12,
             "bg_color": "#6fd2aa",
             "outline_color": "#d968ba"
@@ -252,21 +252,6 @@
             "thickness": 2,
             "bg_color": "#637ede",
             "outline_color": "#dc65a9"
-        },
-        {
-            "type": "text_box",
-            "z_index": 71,
-            "x": 688.0,
-            "y": 102.0,
-            "width": 494,
-            "height": 89,
-            "thickness": 12,
-            "color": "#89da67",
-            "font": [
-                "Helvetica",
-                60
-            ],
-            "text": "Roey's House"
         },
         {
             "type": "oval",
@@ -611,6 +596,21 @@
                 25
             ],
             "text": "Kill me I am too ugly!"
+        },
+        {
+            "type": "text_box",
+            "z_index": 71,
+            "x": 688.0,
+            "y": 102.0,
+            "width": 494,
+            "height": 89,
+            "thickness": 12,
+            "color": "#89da67",
+            "font": [
+                "Helvetica",
+                60
+            ],
+            "text": "Roey's House"
         }
     ],
     "background_color": "#6c50f1"
