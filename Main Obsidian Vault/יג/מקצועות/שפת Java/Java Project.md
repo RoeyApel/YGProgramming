@@ -47,4 +47,21 @@ do always when clicked - calc col and row, lastSlot update at the end.
 	3. ****** ***add more checks before placing wall*** 
 ---
 Computer:
-1. 
+1. function: makeMove, return move object.
+2. functions: moveBot, placeWall.
+3. function: canReachGoal(player), check if player can reach the goal using dfs for O(V+E). 
+4. variables: board, bot, player, bot_shortest_path, player_shortest_path(updated with every board change).
+5. makeMove- details: find the shortest path then logic block it's sara and then find the 2th shortest path and the the 3th and so on, until he doesn't have any other paths (*if he can't). check for all the paths in order if using one wall you can make it longer than 4 slots(check the first 4 blocks).
+6. *hard blocked* - wall that when placed it make the path longer than 4 blocks.
+7. totally blocked - can't reach the goal.
+8. make move logic 
+	1. find the shortest path.
+	2. try to block 3 first slots in the path with wall . 
+	3. if in one of them he is hard blocked, then store it somewhere.
+	4. if there is a hard block then temporarily place the wall to make the hard block.
+	5. and then do step 1-5 again.
+	6. stop the loop when all the paths are explored meaning, the player is completely blocked and can't reach the goal.
+	7. info about all the paths: first is block resistance and length.
+	8. *if 0 walls to player than don't make any checks*
+	9. *if the block (hard or total) is in the block itself than ignore it*
+

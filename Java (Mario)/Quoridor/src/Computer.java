@@ -1,9 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.PriorityQueue;
-import java.util.Queue;
-import java.util.Stack;
 
 public class Computer {
     private Board board;
@@ -22,7 +19,7 @@ public class Computer {
     private void moveBot(int row, int col) {
         Position currentPosition = bot.getPosition();
 
-        board.get(currentPosition.row, currentPosition.col).setOcuppied(false);
+        board.get(currentPosition).setOcuppied(false);
         board.get(row, col).setOcuppied(true);
 
         bot.setPosition(row, col);
@@ -88,6 +85,5 @@ public class Computer {
         }
         return path;
     }
-
 
 }
