@@ -16,6 +16,7 @@ public class Game implements MouseListener, KeyListener {
     private Board board;
     private Character currentPlayer;
     private Computer computer;
+    private Bot bot;
     private Queue<Wall> wallsOptions = new LinkedList<>();
     private boolean wallSelectionActive, moveSelectionActive;
     private Position lastSlotClicked = new Position(-1, -1);
@@ -28,7 +29,9 @@ public class Game implements MouseListener, KeyListener {
         board = new Board();
         currentPlayer = board.getPlayer();
         computer = new Computer(board);
+        bot = new DifficultBot(computer);
         turns = 0;
+        computer.updateShortestPaths();
         initFrame();
     }
 
@@ -68,7 +71,7 @@ public class Game implements MouseListener, KeyListener {
             if (shortestPath != null) {
                 board.unmarkPath(shortestPath);
             }
-            shortestPath = computer.getShortestPath(row, col, currentPlayer.getWinningRow());
+            shortestPath = computer.findShortestPath(row, col, currentPlayer.getWinningRow());
             if (shortestPath != null) {
                 board.markPath(shortestPath);
             }
@@ -105,16 +108,15 @@ public class Game implements MouseListener, KeyListener {
             System.out.println("player:" + currentPlayer + " has won");
         }
 
+        computer.updateShortestPaths();
+
         turnReset();
 
         currentPlayer = turns % 2 == 0 ? board.getPlayer() : board.getOpponent();
 
         // **temp start
         if (turns % 2 == 1) {
-            shortestPath = computer.getShortestPath(currentPlayer.getRow(), currentPlayer.getCol(), currentPlayer.getWinningRow());
-            Vertex next = shortestPath.get(shortestPath.size() - 2);
-            System.out.println(next.toString());
-            moveCurrentPlayer(next.row, next.col);
+            bot.makeMove();
             gamePanel.repaint();
             endTurn();
         }
@@ -124,6 +126,11 @@ public class Game implements MouseListener, KeyListener {
     private void onRightClickSlot(int row, int col) {
         Wall wall = wallsOptions.poll();
         wall.type = Walls.WALL;
+
+        if (!computer.isValidWallPlacement(wall)) {
+            System.out.println("invalid wall placement! temp");
+            return;
+        }
 
         board.placeWall(wall);
 
