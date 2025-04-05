@@ -1,86 +1,180 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he">
+  <head>
+    <meta charset="UTF-8" />
+    <title>רעיונות לשאילתות לניהול המלון - Canvas Document</title>
+    <style>
+      body {
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+      }
+      canvas {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="docCanvas" width="800" height="1400"></canvas>
+    <script>
+      const canvas = document.getElementById("docCanvas");
+      const ctx = canvas.getContext("2d");
 
-<head>
-    <link rel="stylesheet" type="text/css" href="index.css" />
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search</title>
-</head>
+      // Styling for titles and text
+      const titleFont = "bold 20px Arial";
+      const headerFont = "bold 18px Arial";
+      const textFont = "16px Arial";
+      const lineHeight = 24;
+      let yPos = 40;
+      const leftMargin = 20;
+      const maxWidth = canvas.width - leftMargin * 2;
 
-<body>
-    <div class="container1">
-        <div class="circle">
-            <img class="mystery" src="/images/mystery.jpg" alt="Mystery">
-        </div>
-        <div class="circle">
-            <img class="mystery" src="/images/mystery.jpg" alt="Mystery">
-        </div>
-        <div class="circle">
-            <img class="mystery" src="/images/mystery.jpg" alt="Mystery">
-        </div>
-    </div>
+      // Helper function to wrap text
+      function wrapText(context, text, x, y, maxWidth, lineHeight) {
+        const words = text.split(" ");
+        let line = "";
+        for (let n = 0; n < words.length; n++) {
+          const testLine = line + words[n] + " ";
+          const metrics = context.measureText(testLine);
+          const testWidth = metrics.width;
+          if (testWidth > maxWidth && n > 0) {
+            context.fillText(line, x, y);
+            line = words[n] + " ";
+            y += lineHeight;
+          } else {
+            line = testLine;
+          }
+        }
+        context.fillText(line, x, y);
+        return y;
+      }
 
-    <form action="http://google.com/search" method="get">
-        <fieldset>
-            <legend>Google Search</legend>
+      // Draw document title
+      ctx.font = titleFont;
+      ctx.fillStyle = "#333";
+      ctx.fillText("רעיונות לשאילתות לניהול המלון", leftMargin, yPos);
+      yPos += lineHeight * 2;
 
-            <input type="text" id="q" name="q" />
+      // Data for each idea
+      const ideas = [
+        {
+          title: "1. בדיקת תפוסת חדרים לפי תאריכים",
+          idea: "הרצת שאילתה לספירת חדרים תפוסים בטווח תאריכים מסוים (על בסיס טבלת reservation_rooms).",
+          goal: "לדעת כמה חדרים תפוסים לעומת כמה פנויים בכל יום.",
+          reason:
+            "עוזר לקבוע מחירים טובים יותר ולהבין מתי יש ביקוש גבוה או נמוך.",
+        },
+        {
+          title: "2. פירוט הכנסות מהמלון",
+          idea: "שילוב נתונים מהזמנות חדרים (מטבלאות reservation_rooms ו-rooms) ומהשירותים הנוספים (מ-guest_services ו-services) ולחשב את סך ההכנסות.",
+          goal: "לקבל תמונה ברורה של הכנסות מחדרים לעומת שירותים.",
+          reason: "מסייע להבין מאיזה חלקים בוחרים להרוויח יותר ומה צריך לשפר.",
+        },
+        {
+          title: "3. מדד שביעות רצון האורחים",
+          idea: "חישוב ממוצע ציונים וספירת ביקורות מטבלת reviews.",
+          goal: "לדעת כמה האורחים מרוצים מהשהייה.",
+          reason:
+            "מאפשר לזהות בעיות ולשפר את איכות השירות בהתאם לפידבק האורחים.",
+        },
+        {
+          title: "4. מדדי ביצועים לעובדים",
+          idea: "הרצת שאילתה המציגה את מספר ההזמנות או השירותים שטופלו על ידי כל עובד (באיחוד טבלאות employees עם reservations או services).",
+          goal: "להבין מי עובד בצורה הכי יעילה.",
+          reason:
+            "עוזר לחלק את העבודה בצורה נכונה, לתת תגמולים ולתכנן הכשרות לעובדים.",
+        },
+        {
+          title: "5. היסטוריית הזמנות של אורחים",
+          idea: "איסוף מידע על כל אורח – ההזמנות שלו והשירותים שהשתמש בהם (באיחוד טבלאות guests, reservation_guests, reservation_rooms ו-guest_services).",
+          goal: "לבנות פרופיל של מה האורח אוהב ואיך הוא מתנהג.",
+          reason:
+            "עוזר בשיווק מותאם אישית, קידום תוכניות נאמנות ושיפור השירות בהתאם להעדפות האורח.",
+        },
+        {
+          title: "6. ניתוח מגמות הזמנות לפי ימים",
+          idea: "בדיקת מתי מתרחשות הצ'ק-אין והצ'ק-אאוט, למשל לפי יום בשבוע (חילוץ היום מתוך תאריך בטבלת reservation_rooms).",
+          goal: "לזהות דפוסים – איזה ימים עסוקים יותר ואילו פחות.",
+          reason: "עוזר לתכנן משמרות עובדים ולהריץ מבצעים בימים פחות עסוקים.",
+        },
+        {
+          title: "7. דוח שימוש בשירותים",
+          idea: "ספירת מספר הפעמים שכל שירות נבחר, באמצעות הצטרפות בין guest_services ל-services.",
+          goal: "לדעת איזה שירותים הכי מבוקשים ואילו פחות.",
+          reason:
+            "עוזר להחליט אילו שירותים לשפר, להתאים מחירים או להפסיק להציע שירותים שפחות נחשבים.",
+        },
+        {
+          title: "8. זיהוי אורחים שמביאים הכי הרבה כסף",
+          idea: "בדיקה של אילו אורחים מוציאים הכי הרבה כסף, על ידי חישוב הוצאות מהזמנות חדרים (מחיר חדר וזמן שהייה) ומהשירותים הנוספים.",
+          goal: "לזהות את האורחים הכי יקרים.",
+          reason:
+            "מאפשר להתמקד בשיווק ממוקד, להעניק הטבות ולפתח תוכניות נאמנות לאורחים בעלי ערך.",
+        },
+        {
+          title: "9. אורך שהייה ממוצע לפי סוג חדר",
+          idea: "חישוב משך השהייה הממוצע של אורחים לפי סוג החדר, על ידי חישוב ההפרש בין תאריכי צ'ק-אין וצ'ק-אאוט (בטבלת reservation_rooms) ואיחוד עם rooms.",
+          goal: "להבין איזה סוג חדר מושך שהייה ארוכה יותר.",
+          reason:
+            "עוזר בתמחור נכון, תכנון תחזוקה וקביעת אסטרטגיות שיווק מתאימות.",
+        },
+        {
+          title: "10. מעקב אחרי עזיבות קרובות וסיבוב חדרים",
+          idea: "הצגת רשימת הזמנות עם צ'ק-אאוט ב-24 השעות הקרובות, מתוך טבלת reservation_rooms.",
+          goal: "להתכונן לסיבוב חדרים – ניקיון, תחזוקה והכנה לאורחים הבאים.",
+          reason:
+            "מבטיח שהחדרים מוכנים בזמן, משפר את חוויית האורח ומייעל את הפעילות התפעולית.",
+        },
+      ];
 
-            <button type="submit">Search</button>
-        </fieldset>
-    </form>
-    <form action="https://he.wikipedia.org/wiki" method="get">
-        <fieldset>
-            <legend>Wiki Search</legend>
+      // Loop over each idea and render it on the canvas
+      ideas.forEach((item) => {
+        // Draw title
+        ctx.font = headerFont;
+        ctx.fillStyle = "#000";
+        ctx.fillText(item.title, leftMargin, yPos);
+        yPos += lineHeight;
 
-            <input type="text" id="search" name="search" />
+        // Draw "רעיון"
+        ctx.font = textFont;
+        yPos =
+          wrapText(
+            ctx,
+            "רעיון: " + item.idea,
+            leftMargin,
+            yPos,
+            maxWidth,
+            lineHeight
+          ) +
+          lineHeight / 2;
+        // Draw "מטרה"
+        yPos =
+          wrapText(
+            ctx,
+            "מטרה: " + item.goal,
+            leftMargin,
+            yPos,
+            maxWidth,
+            lineHeight
+          ) +
+          lineHeight / 2;
+        // Draw "סיבה עסקית"
+        yPos =
+          wrapText(
+            ctx,
+            "סיבה עסקית: " + item.reason,
+            leftMargin,
+            yPos,
+            maxWidth,
+            lineHeight
+          ) + lineHeight;
 
-            <button type="submit">Search</button>
-        </fieldset>
-    </form>
-    <form action="http://youtube.com/results" method="get">
-        <fieldset>
-            <legend>Youtube Search</legend>
-
-            <input type="text" id="search_query" name="search_query" />
-
-            <button type="submit">Search</button>
-        </fieldset>
-    </form>
-    <form action="https://unsplash.com/s/" method="get">
-        <fieldset>
-            <legend>Unsplash Search</legend>
-
-            <input type="text" id="searchKeyword" name="searchKeyword" />
-
-            <button type="submit">Search</button>
-        </fieldset>
-    </form>
-    <form action="https://dribbble.com/search/" method="get">
-        <fieldset>
-            <legend>Dribbble Search</legend>
-
-            <input type="text" id="q" name="q" />
-
-            <button type="submit">Search</button>
-        </fieldset>
-    </form>
-
-    <div class="container1">
-        <div class="circle">
-            <img class="mystery" src="/images/mystery.jpg" alt="Mystery">
-        </div>
-        <div class="circle">
-            <img class="mystery" src="/images/mystery.jpg" alt="Mystery">
-        </div>
-        <div class="circle">
-            <img class="mystery" src="/images/mystery.jpg" alt="Mystery">
-        </div>
-    </div>
-
-
-
-</body>
-
+        // Add extra spacing between ideas
+        yPos += lineHeight;
+      });
+    </script>
+  </body>
 </html>
