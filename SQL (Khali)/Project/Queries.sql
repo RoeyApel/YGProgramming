@@ -16,7 +16,7 @@ inner join guest_services as gs on s.service_id = gs.service_id
 group by s.service_id
 having profit > 0
 
-union 
+union all
 select "Total", get_total_profit() as profit;
 
 #3
@@ -39,7 +39,7 @@ having hours_til_check_out between 0 and 24
 order by hours_til_check_out;
 
 #6
-select concat(e.first_name, " ", e.last_name) as full_name, e.job as job, sum(cost) as profit 
+select concat(e.first_name, " ", e.last_name) as employee_name, e.job as job, sum(cost) as profit 
 from services as s inner join employees as e on e.employee_id = s.employee_id
 group by s.employee_id
 order by profit desc;
