@@ -114,13 +114,13 @@ public class Game implements MouseListener, KeyListener {
 
         currentPlayer = turns % 2 == 0 ? board.getPlayer() : board.getOpponent();
 
-        // **temp start
-        if (turns % 2 == 1) {
-            bot.makeMove();
-            gamePanel.repaint();
-            endTurn();
-        }
-        // **temp end
+        // // **temp start
+        // if (turns % 2 == 1) {
+        // bot.makeMove();
+        // gamePanel.repaint();
+        // endTurn();
+        // }
+        // // **temp end
     }
 
     private void onRightClickSlot(int row, int col) {
