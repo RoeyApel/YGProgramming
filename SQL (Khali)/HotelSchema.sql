@@ -43,13 +43,20 @@ CREATE TABLE services (
     FOREIGN KEY (employee_id) REFERENCES employees(employee_id)
 );
 
+CREATE TABLE review_targets (
+    target_id INT PRIMARY KEY,
+    target_name VARCHAR(50) NOT NULL
+);
+
 CREATE TABLE reviews (
     review_id INT AUTO_INCREMENT PRIMARY KEY,
     guest_id INT NOT NULL,
     rating INT,
     content TEXT,
     review_date DATETIME,
-    FOREIGN KEY (guest_id) REFERENCES guests(guest_id)
+    target_id INT,
+    FOREIGN KEY (guest_id) REFERENCES guests(guest_id),
+    FOREIGN KEY (target_id) REFERENCES review_targets(target_id)
 );
 
 CREATE TABLE reservation_guests (
