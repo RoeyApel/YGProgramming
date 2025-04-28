@@ -1,16 +1,16 @@
 USE Hotel_DB;
 
 #1
-
+call get_occupied_rooms("2025-4-4");
 
 #2
-select concat(room_type, " room type") as what, sum(price) as profit
+select concat(room_type, " room type") as product, sum(price) as profit
 from rooms as r 
 inner join reservation_rooms as rr on rr.room_id = r.room_id
 group by room_type
 
 union all
-select service_name as what, sum(cost) as profit
+select service_name as product, sum(cost) as profit
 from services as s
 inner join guest_services as gs on s.service_id = gs.service_id
 group by s.service_id
@@ -26,6 +26,7 @@ select floor(avg(rating)) as average_rating,
 from reviews;
 
 #4
+create view services_uses as
 select service_name, count(gs.service_id) as users_count
 from services as s 
 inner join guest_services as gs on s.service_id = gs.service_id
@@ -58,5 +59,12 @@ from reservations
 group by month(reservation_date);
 
 #9
+select round(avg(users_count)) as average_services_uses,
+max(users_count) as max_service_uses,
+count(users_count) as total_uses
+from services_uses;
 
 #10
+# Trigger
+delete from guests
+where guest_id = 1;

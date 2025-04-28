@@ -74,8 +74,7 @@ public class Game implements MouseListener, KeyListener {
             shortestPath = computer.findShortestPath(row, col, currentPlayer.getWinningRow());
             if (shortestPath != null) {
                 board.markPath(shortestPath);
-            }
-            else {
+            } else {
                 System.out.println("found no path");
             }
 
@@ -86,14 +85,11 @@ public class Game implements MouseListener, KeyListener {
 
         if (currentPlayer.isAt(row, col)) {
             onClickCurrentPlayer(row, col);
-        }
-        else if (board.isMarked(row, col)) {
+        } else if (board.isMarked(row, col)) {
             onClickMarkedSlot(row, col);
-        }
-        else if (SwingUtilities.isLeftMouseButton(e)) {
+        } else if (SwingUtilities.isLeftMouseButton(e)) {
             onLeftClickSlot(row, col);
-        }
-        else if (SwingUtilities.isRightMouseButton(e) && wallSelectionActive) {
+        } else if (SwingUtilities.isRightMouseButton(e) && wallSelectionActive) {
             onRightClickSlot(row, col);
         }
 
@@ -114,13 +110,13 @@ public class Game implements MouseListener, KeyListener {
 
         currentPlayer = turns % 2 == 0 ? board.getPlayer() : board.getOpponent();
 
-        // // **temp start
-        // if (turns % 2 == 1) {
-        // bot.makeMove();
-        // gamePanel.repaint();
-        // endTurn();
-        // }
-        // // **temp end
+        // **temp start
+        if (turns % 2 == 1) {
+            bot.makeMove();
+            gamePanel.repaint();
+            endTurn();
+        }
+        // **temp end
     }
 
     private void onRightClickSlot(int row, int col) {
@@ -148,8 +144,7 @@ public class Game implements MouseListener, KeyListener {
 
         if (lastSlotClicked.equals(row, col)) {
             displayNextWallOption(row, col);
-        }
-        else {
+        } else {
             if (wallSelectionActive) {
                 deactivateWallSelection(row, col);
             }
@@ -216,8 +211,7 @@ public class Game implements MouseListener, KeyListener {
 
         if (moveSelectionActive) {
             deactivateMoveSelection(row, col);
-        }
-        else {
+        } else {
             activateMoveSelection(row, col);
         }
         lastSlotClicked.setPosition(row, col);

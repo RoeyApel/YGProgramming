@@ -118,7 +118,6 @@ INSERT INTO reservation_rooms (reservation_id, room_id, check_in, check_out) VAL
 (11, 111, '2025-04-07 10:00:00', '2025-04-07 18:00:00'),
 (12, 112, '2025-04-07 15:00:00', '2025-04-08 09:00:00');
 
--- Insert data into guest_services
 INSERT INTO guest_services (guest_id, service_id) VALUES
 (1, 1),
 (2, 5),
