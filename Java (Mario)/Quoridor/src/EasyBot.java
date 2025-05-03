@@ -1,19 +1,14 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.*;
+public class EasyBot extends Bot {
+    private static final int REACH = 2;
 
-public class DifficultBot extends Bot {
-
-    private static final int REACH = 4;
-
-    public DifficultBot(Computer computer) {
+    public EasyBot(Computer computer) {
         super(computer);
     }
 
+    @Override
     public void makeMove() {
-
         ArrayList<Vertex> playerPath = computer.getPlayerShortestPath();
         ArrayList<Vertex> botPath = computer.getBotShortestPath();
 
@@ -28,11 +23,11 @@ public class DifficultBot extends Bot {
             return;
         }
 
-        boolean playerClose = playerSteps <= 4;
-        boolean botBehind = botSteps > playerSteps;
-        boolean randomBlock = botSteps == playerSteps && Math.random() < 0.3;
+        boolean playerClose = playerSteps <= 3;
+        boolean random30Chance = Math.random() < 0.3;
+        boolean random70Chance = Math.random() < 0.7;
 
-        if ((playerClose && botBehind) || randomBlock) {
+        if ((playerClose && random70Chance) || random30Chance) {
             Wall wall = computer.findBestBlockingSpot(playerPath, REACH, computer.getPlayer());
             if (wall != null) {
                 computer.getBoard().placeWall(wall);
@@ -41,7 +36,6 @@ public class DifficultBot extends Bot {
         }
 
         computer.moveBot(nextMove.row, nextMove.col);
-
     }
 
 }

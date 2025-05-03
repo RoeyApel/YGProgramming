@@ -167,6 +167,10 @@ public class Board {
     public ArrayList<Move> getLegalMoves(int row, int col) {
         ArrayList<Move> legalMoves = new ArrayList<>();
 
+        if (outOfBounds(row, col)) {
+            return legalMoves;
+        }
+
         addLegalMovesBottom(legalMoves, row, col);
         addLegalMovesRight(legalMoves, row, col);
         addLegalMovesLeft(legalMoves, row, col);
@@ -177,6 +181,10 @@ public class Board {
 
     public ArrayList<Move> getLegalMoves(Position position) {
         ArrayList<Move> legalMoves = new ArrayList<>();
+
+        if (outOfBounds(position.row, position.col)) {
+            return legalMoves;
+        }
 
         addLegalMovesBottom(legalMoves, position.row, position.col);
         addLegalMovesRight(legalMoves, position.row, position.col);

@@ -1,3 +1,4 @@
+import java.awt.CardLayout;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -8,11 +9,21 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import javax.smartcardio.Card;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 
 public class Game implements MouseListener, KeyListener {
+    private static final String PLAYING = "playing";
+    private static final String MENU = "menu";
+
     private GameFrame gameFrame;
+    private CardLayout cardLayout;
+    private JPanel mainPanel;
     private GamePanel gamePanel;
+    private MenuPanel menuPanel;
     private Board board;
     private Character currentPlayer;
     private Computer computer;
@@ -24,30 +35,64 @@ public class Game implements MouseListener, KeyListener {
     private int turns;
     private ArrayList<Vertex> shortestPath;
     private boolean debugMode = false;
+    private Modes mode;
+    private boolean botTurn;
 
     public Game() {
-        board = new Board();
-        currentPlayer = board.getPlayer();
-        computer = new Computer(board);
-        bot = new DifficultBot(computer);
-        turns = 0;
-        computer.updateShortestPaths();
         initFrame();
     }
 
     private void initFrame() {
         gameFrame = new GameFrame();
 
+        cardLayout = new CardLayout();
+        mainPanel = new JPanel(cardLayout);
+        mainPanel.addKeyListener(this);
+        mainPanel.setFocusable(true);
+        mainPanel.requestFocusInWindow();
+
+        menuPanel = new MenuPanel();
         gamePanel = new GamePanel(this);
 
-        gamePanel.addKeyListener(this);
-        gamePanel.addMouseListener(this);
+        mainPanel.add(menuPanel, MENU);
+        mainPanel.add(gamePanel, PLAYING);
 
-        gamePanel.setFocusable(true);
-        gamePanel.requestFocusInWindow();
-        gameFrame.add(gamePanel);
+        menuPanel.pvpButton.addActionListener(e -> startGame(Modes.PVP));
+        menuPanel.easyButton.addActionListener(e -> startGame(Modes.EASY));
+        menuPanel.hardButton.addActionListener(e -> startGame(Modes.HARD));
+
+        gameFrame.add(mainPanel);
+
+        cardLayout.show(mainPanel, MENU);
 
         gameFrame.setVisible(true);
+    }
+
+    private void startGame(Modes mode) {
+        this.mode = mode;
+
+        gameOver = false;
+        botTurn = false;
+        board = new Board();
+        currentPlayer = board.getPlayer();
+        computer = new Computer(board);
+
+        if (mode == Modes.EASY) {
+            bot = new EasyBot(computer);
+            turns = 0;
+            computer.updateShortestPaths();
+        }
+        else if (mode == Modes.HARD) {
+            bot = new DifficultBot(computer);
+            turns = 0;
+            computer.updateShortestPaths();
+        }
+
+        cardLayout.show(mainPanel, PLAYING);
+    }
+
+    public void returnToMenu() {
+        cardLayout.show(mainPanel, MENU);
     }
 
     public void render(Graphics g, int panelWidth, int panelHeight) {
@@ -56,7 +101,7 @@ public class Game implements MouseListener, KeyListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if (gameOver)
+        if (gameOver || botTurn)
             return;
 
         int row = e.getY() / board.getSlotHeight();
@@ -74,7 +119,8 @@ public class Game implements MouseListener, KeyListener {
             shortestPath = computer.findShortestPath(row, col, currentPlayer.getWinningRow());
             if (shortestPath != null) {
                 board.markPath(shortestPath);
-            } else {
+            }
+            else {
                 System.out.println("found no path");
             }
 
@@ -85,38 +131,69 @@ public class Game implements MouseListener, KeyListener {
 
         if (currentPlayer.isAt(row, col)) {
             onClickCurrentPlayer(row, col);
-        } else if (board.isMarked(row, col)) {
+        }
+        else if (board.isMarked(row, col)) {
             onClickMarkedSlot(row, col);
-        } else if (SwingUtilities.isLeftMouseButton(e)) {
+        }
+        else if (SwingUtilities.isLeftMouseButton(e)) {
             onLeftClickSlot(row, col);
-        } else if (SwingUtilities.isRightMouseButton(e) && wallSelectionActive) {
+        }
+        else if (SwingUtilities.isRightMouseButton(e) && wallSelectionActive) {
             onRightClickSlot(row, col);
         }
 
         gamePanel.repaint();
     }
 
-    private void endTurn() {
-        turns++;
-
+    private void nextTurn() {
         if (currentPlayer.hasWon()) {
             gameOver = true;
-            System.out.println("player:" + currentPlayer + " has won");
+            showGameOverDialog();
+            returnToMenu();
+            return;
         }
 
-        computer.updateShortestPaths();
+        turns++;
+        currentPlayer = (turns % 2 == 0) ? board.getPlayer() : board.getOpponent();
 
         turnReset();
 
-        currentPlayer = turns % 2 == 0 ? board.getPlayer() : board.getOpponent();
-
-        // **temp start
-        if (turns % 2 == 1) {
-            bot.makeMove();
-            gamePanel.repaint();
-            endTurn();
+        if (isBotTurn()) {
+            computer.updateShortestPaths();
+            botTurn = true;
+            scheduleBotMove();
         }
-        // **temp end
+    }
+
+    private void scheduleBotMove() {
+        int delayMs = 300;
+        Timer t = new Timer(delayMs, e -> {
+            ((Timer) e.getSource()).stop();
+            onBotMove();
+            gamePanel.repaint();
+        });
+        t.setRepeats(false);
+        t.start();
+    }
+
+    private void onPlayerMove(int row, int col) {
+        moveCurrentPlayer(row, col);
+        nextTurn();
+    }
+
+    private void onBotMove() {
+        bot.makeMove();
+        botTurn = false;
+        nextTurn();
+    }
+
+    private boolean isBotTurn() {
+        return mode != Modes.PVP && currentPlayer == board.getOpponent();
+    }
+
+    private void showGameOverDialog() {
+        String winner = (currentPlayer == board.getPlayer()) ? "You" : "Opponent";
+        JOptionPane.showMessageDialog(gameFrame, "The winner is: " + winner, "Game Over", JOptionPane.INFORMATION_MESSAGE);
     }
 
     private void onRightClickSlot(int row, int col) {
@@ -124,7 +201,8 @@ public class Game implements MouseListener, KeyListener {
         wall.type = Walls.WALL;
 
         if (!computer.isValidWallPlacement(wall)) {
-            System.out.println("invalid wall placement! temp");
+            JOptionPane.showMessageDialog(gameFrame, "please don't place a wall that gets you or your opponent completely stuck",
+                    "Invaid Wall Placement", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
 
@@ -132,9 +210,7 @@ public class Game implements MouseListener, KeyListener {
 
         currentPlayer.decWallsCount();
 
-        endTurn();
-
-        // **more checks before placing wall.
+        nextTurn();
     }
 
     private void onLeftClickSlot(int row, int col) {
@@ -144,7 +220,8 @@ public class Game implements MouseListener, KeyListener {
 
         if (lastSlotClicked.equals(row, col)) {
             displayNextWallOption(row, col);
-        } else {
+        }
+        else {
             if (wallSelectionActive) {
                 deactivateWallSelection(row, col);
             }
@@ -181,9 +258,7 @@ public class Game implements MouseListener, KeyListener {
     private void onClickMarkedSlot(int row, int col) {
         deactivateMoveSelection(row, col);
 
-        moveCurrentPlayer(row, col);
-
-        endTurn();
+        onPlayerMove(row, col);
     }
 
     private void turnReset() {
@@ -211,7 +286,8 @@ public class Game implements MouseListener, KeyListener {
 
         if (moveSelectionActive) {
             deactivateMoveSelection(row, col);
-        } else {
+        }
+        else {
             activateMoveSelection(row, col);
         }
         lastSlotClicked.setPosition(row, col);
@@ -236,17 +312,6 @@ public class Game implements MouseListener, KeyListener {
         board.removeWall(wall);
         wallsOptions = null;
         wallSelectionActive = false;
-    }
-
-    private void printDebug(MouseEvent e, int row, int col) {
-        System.out.println("======================================================");
-        System.out.println("wsa: " + wallSelectionActive);
-        System.out.println("msa: " + moveSelectionActive);
-        System.out.println("irc: " + SwingUtilities.isRightMouseButton(e));
-        System.out.println("ilc: " + SwingUtilities.isLeftMouseButton(e));
-        System.out.println("ismarked: " + board.isMarked(row, col));
-        System.out.println("lastSlot: " + lastSlotClicked.row + "|" + lastSlotClicked.col);
-        System.out.println("======================================================");
     }
 
     @Override
@@ -275,11 +340,17 @@ public class Game implements MouseListener, KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            returnToMenu();
+        }
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
 
+    }
+
+    private enum Modes {
+        PVP, EASY, HARD;
     }
 }

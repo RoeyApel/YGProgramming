@@ -7,6 +7,10 @@ public class GamePanel extends JPanel {
 
     public GamePanel(Game game) {
         this.game = game;
+        this.addKeyListener(game);
+        this.addMouseListener(game);
+
+        this.requestFocusInWindow();
     }
 
     @Override
