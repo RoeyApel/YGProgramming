@@ -107,28 +107,6 @@ public class Game implements MouseListener, KeyListener {
         int row = e.getY() / board.getSlotHeight();
         int col = e.getX() / board.getSlotWidth();
 
-        // **temp start
-        if (SwingUtilities.isMiddleMouseButton(e)) {
-            debugMode = !debugMode;
-        }
-
-        if (debugMode && SwingUtilities.isLeftMouseButton(e)) {
-            if (shortestPath != null) {
-                board.unmarkPath(shortestPath);
-            }
-            shortestPath = computer.findShortestPath(row, col, currentPlayer.getWinningRow());
-            if (shortestPath != null) {
-                board.markPath(shortestPath);
-            }
-            else {
-                System.out.println("found no path");
-            }
-
-            gamePanel.repaint();
-            return;
-        }
-        // **temp end
-
         if (currentPlayer.isAt(row, col)) {
             onClickCurrentPlayer(row, col);
         }
