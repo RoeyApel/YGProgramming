@@ -1,5 +1,3 @@
-USE Hotel_DB;
-
 INSERT INTO guests (first_name, last_name, email, phone, address) VALUES
 ('John', 'Doe', 'john.doe@example.com', '5551234567', '123 Main St'),
 ('Jane', 'Smith', 'jane.smith@example.com', '5552345678', '456 Oak Ave'),
@@ -27,6 +25,9 @@ INSERT INTO employees (first_name, last_name, job, phone, hire_date) VALUES
 ('James', 'King', 'Receptionist', '5558889999', '2021-12-25 09:15:00'),
 ('Elizabeth', 'Wright', 'Manager', '5559990000', '2017-08-08 08:45:00'),
 ('Charles', 'Lopez', 'Housekeeping', '5550001111', '2022-06-30 07:00:00');
+
+
+
 
 INSERT INTO rooms (room_number, room_type, price, capacity) VALUES
 (101, 'Single', 75.00, 1),
@@ -76,6 +77,12 @@ INSERT INTO review_targets (target_id, target_name) VALUES
 (2, 'Service'),
 (3, 'Facilities');
 
+
+
+
+
+
+
 INSERT INTO reviews (guest_id, rating, content, review_date, target_id) VALUES
 (1, 5, 'Excellent service and clean rooms.', '2023-04-02 10:00:00', 0),
 (2, 4, 'Great location and friendly staff.', '2023-04-03 11:00:00', 0),
@@ -89,6 +96,9 @@ INSERT INTO reviews (guest_id, rating, content, review_date, target_id) VALUES
 (10, 5, 'Perfect experience and top-notch amenities.', '2023-04-11 19:00:00', 0),
 (11, 4, 'Nice but some issues with noise.', '2023-04-12 20:00:00', 2),
 (12, 5, 'Fantastic experience, highly recommended.', '2023-04-13 21:00:00', 0);
+
+
+
 
 INSERT INTO reservation_guests (reservation_id, guest_id, room_id, is_payer_guest) VALUES
 (1, 1, 1, TRUE),
@@ -104,19 +114,7 @@ INSERT INTO reservation_guests (reservation_id, guest_id, room_id, is_payer_gues
 (11, 1, 11, TRUE),
 (12, 2, 12, TRUE);
 
-INSERT INTO reservation_rooms (reservation_id, room_id, check_in, check_out) VALUES
-(1, 101, '2025-04-01 14:00:00', '2025-04-05 11:00:00'),
-(2, 102, '2025-04-02 15:30:00', '2025-04-06 10:00:00'),
-(3, 103, '2025-04-03 12:00:00', '2025-04-07 12:00:00'),
-(4, 104, '2025-04-04 16:45:00', '2025-04-08 09:00:00'),
-(5, 105, '2025-04-05 10:15:00', '2025-04-09 10:00:00'),
-(6, 106, '2025-04-06 11:00:00', '2025-04-10 11:00:00'),
-(7, 107, '2025-04-07 09:30:00', '2025-04-11 12:00:00'),
-(8, 108, '2025-04-08 13:20:00', '2025-04-12 10:30:00'),
-(9, 109, '2025-04-09 17:10:00', '2025-04-13 09:45:00'),
-(10, 110, '2025-04-10 08:50:00', '2025-04-14 10:15:00'),
-(11, 111, '2025-04-07 10:00:00', '2025-04-07 18:00:00'),
-(12, 112, '2025-04-07 15:00:00', '2025-04-08 09:00:00');
+
 
 INSERT INTO guest_services (guest_id, service_id) VALUES
 (1, 1),
@@ -139,3 +137,17 @@ INSERT INTO guest_services (guest_id, service_id) VALUES
 (8, 3),
 (9, 6),
 (10, 7);
+
+INSERT INTO reservation_rooms (reservation_id, room_id, check_in, check_out) VALUES
+(1, 3, '2025-04-01 14:00:00', '2025-04-05 11:00:00'),
+(2, 3, '2025-04-02 15:30:00', '2025-04-06 10:00:00'),
+(3, 2, '2025-04-03 12:00:00', '2025-04-07 12:00:00'),
+(4, 4, '2025-04-04 16:45:00', '2025-04-08 09:00:00'),
+(5, 6, '2025-04-05 10:15:00', '2025-04-09 10:00:00'),
+(6, 6, '2025-04-06 11:00:00', '2025-04-10 11:00:00'),
+(7, 6, '2025-04-07 09:30:00', '2025-04-11 12:00:00'),
+(8, 9, '2025-04-08 13:20:00', '2025-04-12 10:30:00'),
+(9, 12, '2025-04-09 17:10:00', '2025-04-13 09:45:00'),
+(10, 11, '2025-04-10 08:50:00', '2025-04-14 10:15:00'),
+(11, 3, '2025-04-07 10:00:00', '2025-04-07 18:00:00'),
+(12, 7, '2025-04-07 15:00:00', '2025-04-08 09:00:00');
