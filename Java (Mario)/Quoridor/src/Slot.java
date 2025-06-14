@@ -28,9 +28,6 @@ public class Slot {
 
         drawBorder(g);
 
-        // g.drawString(position.row * Board.COLS + position.col + "", hitbox.x +
-        // hitbox.width / 2, hitbox.y +
-        // hitbox.height / 2);
     }
 
     public void drawWalls(Graphics g) {
